@@ -1,121 +1,157 @@
-Creative Commons Legal Code
+THE VERY SERIOUS GAME LICENSE
+Version 1.0
 
-CC0 1.0 Universal
+Copyright (c) 2026
 
-    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
-    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
-    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
-    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
-    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
-    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
-    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
-    HEREUNDER.
+Permission is hereby granted to any human, developer, student, teacher, goblin, wizard, sentient toaster, or suspiciously intelligent household appliance obtaining a copy of this software and associated files (the "Game") to use, study, modify, compile, break, repair, accidentally break again, and generally interact with the Game, subject to the following extremely serious conditions.
 
-Statement of Purpose
+1. THE "PLEASE DON'T STEAL IT" CLAUSE
 
-The laws of most jurisdictions throughout the world automatically confer
-exclusive Copyright and Related Rights (defined below) upon the creator
-and subsequent owner(s) (each and all, an "owner") of an original work of
-authorship and/or a database (each, a "Work").
+You may modify the source code for personal or educational purposes.
 
-Certain owners wish to permanently relinquish those rights to a Work for
-the purpose of contributing to a commons of creative, cultural and
-scientific works ("Commons") that the public can reliably and without fear
-of later claims of infringement build upon, modify, incorporate in other
-works, reuse and redistribute as freely as possible in any form whatsoever
-and for any purposes, including without limitation commercial purposes.
-These owners may contribute to the Commons to promote the ideal of a free
-culture and the further production of creative, cultural and scientific
-works, or to gain reputation or greater distribution for their Work in
-part through the use and efforts of others.
+You may learn from it.
 
-For these and/or other purposes and motivations, and without any
-expectation of additional consideration or compensation, the person
-associating CC0 with a Work (the "Affirmer"), to the extent that he or she
-is an owner of Copyright and Related Rights in the Work, voluntarily
-elects to apply CC0 to the Work and publicly distribute the Work under its
-terms, with knowledge of his or her Copyright and Related Rights in the
-Work and the meaning and intended legal effect of CC0 on those rights.
+You may stare at it for several hours wondering why changing one line somehow broke seventeen unrelated systems.
 
-1. Copyright and Related Rights. A Work made available under CC0 may be
-protected by copyright and related or neighboring rights ("Copyright and
-Related Rights"). Copyright and Related Rights include, but are not
-limited to, the following:
+You may NOT copy the entire project, change the title, replace the logo, and proudly announce:
 
-  i. the right to reproduce, adapt, distribute, perform, display,
-     communicate, and translate a Work;
- ii. moral rights retained by the original author(s) and/or performer(s);
-iii. publicity and privacy rights pertaining to a person's image or
-     likeness depicted in a Work;
- iv. rights protecting against unfair competition in regards to a Work,
-     subject to the limitations in paragraph 4(a), below;
-  v. rights protecting the extraction, dissemination, use and reuse of data
-     in a Work;
- vi. database rights (such as those arising under Directive 96/9/EC of the
-     European Parliament and of the Council of 11 March 1996 on the legal
-     protection of databases, and under any national implementation
-     thereof, including any amended or successor version of such
-     directive); and
-vii. other similar, equivalent or corresponding rights throughout the
-     world based on applicable law or treaty, and any national
-     implementations thereof.
+"Guys, I made a game."
 
-2. Waiver. To the greatest extent permitted by, but not in contravention
-of, applicable law, Affirmer hereby overtly, fully, permanently,
-irrevocably and unconditionally waives, abandons, and surrenders all of
-Affirmer's Copyright and Related Rights and associated claims and causes
-of action, whether now known or unknown (including existing as well as
-future claims and causes of action), in the Work (i) in all territories
-worldwide, (ii) for the maximum duration provided by applicable law or
-treaty (including future time extensions), (iii) in any current or future
-medium and for any number of copies, and (iv) for any purpose whatsoever,
-including without limitation commercial, advertising or promotional
-purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
-member of the public at large and to the detriment of Affirmer's heirs and
-successors, fully intending that such Waiver shall not be subject to
-revocation, rescission, cancellation, termination, or any other legal or
-equitable action to disrupt the quiet enjoyment of the Work by the public
-as contemplated by Affirmer's express Statement of Purpose.
+That is not software development.
+That is Ctrl+C with ambition.
 
-3. Public License Fallback. Should any part of the Waiver for any reason
-be judged legally invalid or ineffective under applicable law, then the
-Waiver shall be preserved to the maximum extent permitted taking into
-account Affirmer's express Statement of Purpose. In addition, to the
-extent the Waiver is so judged Affirmer hereby grants to each affected
-person a royalty-free, non transferable, non sublicensable, non exclusive,
-irrevocable and unconditional license to exercise Affirmer's Copyright and
-Related Rights in the Work (i) in all territories worldwide, (ii) for the
-maximum duration provided by applicable law or treaty (including future
-time extensions), (iii) in any current or future medium and for any number
-of copies, and (iv) for any purpose whatsoever, including without
-limitation commercial, advertising or promotional purposes (the
-"License"). The License shall be deemed effective as of the date CC0 was
-applied by Affirmer to the Work. Should any part of the License for any
-reason be judged legally invalid or ineffective under applicable law, such
-partial invalidity or ineffectiveness shall not invalidate the remainder
-of the License, and in such case Affirmer hereby affirms that he or she
-will not (i) exercise any of his or her remaining Copyright and Related
-Rights in the Work or (ii) assert any associated claims and causes of
-action with respect to the Work, in either case contrary to Affirmer's
-express Statement of Purpose.
+2. THE BUG OWNERSHIP ACT
 
-4. Limitations and Disclaimers.
+All bugs discovered in the original Game are officially classified as:
 
- a. No trademark or patent rights held by Affirmer are waived, abandoned,
-    surrendered, licensed or otherwise affected by this document.
- b. Affirmer offers the Work as-is and makes no representations or
-    warranties of any kind concerning the Work, express, implied,
-    statutory or otherwise, including without limitation warranties of
-    title, merchantability, fitness for a particular purpose, non
-    infringement, or the absence of latent or other defects, accuracy, or
-    the present or absence of errors, whether or not discoverable, all to
-    the greatest extent permissible under applicable law.
- c. Affirmer disclaims responsibility for clearing rights of other persons
-    that may apply to the Work or any use thereof, including without
-    limitation any person's Copyright and Related Rights in the Work.
-    Further, Affirmer disclaims responsibility for obtaining any necessary
-    consents, permissions or other rights required for any use of the
-    Work.
- d. Affirmer understands and acknowledges that Creative Commons is not a
-    party to this document and has no duty or obligation with respect to
-    this CC0 or use of the Work.
+"Unexpected gameplay features."
+
+If you modify the Game and introduce additional bugs, those bugs legally, spiritually, and emotionally belong to you.
+
+The original developers refuse custody.
+
+3. THE "IT WORKS ON MY MACHINE" PROVISION
+
+If the Game works correctly on the developers' computers but fails to run on yours, the developers reserve the right to respond:
+
+"Interesting. It works on my machine."
+
+This statement shall constitute a complete technical investigation.
+
+Further debugging may occur eventually.
+
+No promises.
+
+4. SOURCE CODE WARNING
+
+Parts of this software may contain:
+
+- questionable variable names,
+- TODO comments older than some civilizations,
+- code nobody remembers writing,
+- temporary solutions that became permanent,
+- functions that work for reasons unknown to modern science,
+- and at least one line that MUST NOT BE TOUCHED.
+
+If you encounter code accompanied by comments such as:
+
+// DO NOT DELETE THIS
+
+or
+
+// somehow this fixes it
+
+you are strongly advised to respect the ancient knowledge.
+
+5. WARRANTY
+
+THE GAME IS PROVIDED "AS IS."
+
+Actually, sometimes it isn't even provided "as is."
+
+Sometimes it is provided "as we last managed to get it working."
+
+No warranty is provided that the Game will:
+
+- run,
+- launch,
+- save,
+- load,
+- maintain a stable frame rate,
+- respect the laws of physics,
+- respect the laws of mathematics,
+- or continue functioning after a Unity update.
+
+6. DAMAGE AND LIABILITY
+
+The developers shall not be held responsible for:
+
+lost save files,
+corrupted projects,
+unexpected crashes,
+NPCs walking through walls,
+characters achieving low Earth orbit,
+bosses becoming immortal,
+missing textures,
+audio playing at 400% volume,
+or computers developing emotional problems.
+
+Use at your own risk.
+
+7. STACK OVERFLOW / INTERNET CLAUSE
+
+Any resemblance between certain pieces of code and solutions found somewhere on the internet is purely coincidental, educational, inspirational, traditional, inevitable, and absolutely none of your business.
+
+8. THE 3 A.M. DEVELOPMENT EXCEPTION
+
+Code written after 03:00 local time is exempt from normal standards of readability, logic, architecture, mathematics, naming conventions, and human dignity.
+
+Such code shall be considered valid if:
+
+a) it compiles, or
+
+b) nobody touches it.
+
+9. MODIFICATION RIGHTS
+
+You are allowed to create modifications, experiments, forks, and personal versions of the Game.
+
+However, if your modification somehow becomes significantly better than the original Game, the developers reserve the right to:
+
+a) pretend they always planned that feature,
+
+b) inspect your code with uncomfortable interest,
+
+and
+
+c) quietly reconsider their career choices.
+
+10. COMMERCIAL USE
+
+Commercial redistribution of the complete Game or substantial portions of it without explicit permission is prohibited.
+
+Selling an unchanged copy for €79.99 and calling it the "Ultimate Definitive Remastered GOTY Edition" does not magically make it your intellectual property.
+
+Nice attempt.
+
+11. FINAL LEGAL DECLARATION
+
+By using, compiling, modifying, launching, downloading, cloning, forking, observing, thinking about, or standing suspiciously close to this repository, you acknowledge that software development is an inherently unstable activity performed by humans who voluntarily turn coffee into error messages.
+
+If everything works:
+
+Excellent.
+
+If something breaks:
+
+Check the console.
+
+If the console contains 47 red errors:
+
+Check the first one.
+
+If fixing the first one creates 83 new errors:
+
+Welcome to game development.
+
+END OF LICENSE
