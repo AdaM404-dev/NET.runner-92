@@ -1,2 +1,7 @@
 # NET.runner-92
-3D First-Person RPG - Cyberpunk ihlette
+Egy 3D First-Person RPG játék amely egy iskolai projekt keretében készül 
+
+##A játék
+Magát a viziót a Cyberpunk 2077 ihlette és a játékmecanikák is ismerősek lehetnek pont ezért.
+
+...
