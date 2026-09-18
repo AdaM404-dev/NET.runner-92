@@ -155,3 +155,165 @@ If fixing the first one creates 83 new errors:
 Welcome to game development.
 
 END OF LICENSE
+
+---------------------------------------------------------
+HU
+A „NAGYON KOMOLY JÁTÉK” LICENC
+1.0-s verzió
+
+Szerzői jog (c) 2026
+
+Ezennel engedélyt kap minden ember, fejlesztő, diák, tanár, goblin, varázsló, öntudattal rendelkező kenyérpirító vagy gyanúsan intelligens háztartási eszköz, aki/amely megszerzi e szoftver és a hozzá tartozó fájlok (a „Játék”) egy példányát, hogy használja, tanulmányozza, módosítsa, fordítsa, elrontsa, megjavítsa, véletlenül újra elrontsa, és általánosságban interakcióba lépjen a Játékkal – az alábbi rendkívül komoly feltételek betartása mellett.
+
+1. A „KÉRLEK, NE LOPD EL” ZÁRADÉK
+
+Módosíthatod a forráskódot személyes vagy oktatási célból.
+
+Tanulhatsz belőle.
+
+Bámulhatod órákon át, azon tűnődve, miért okozta egyetlen sor megváltoztatása tizenhét, egymással össze nem függő rendszer összeomlását.
+
+NEM másolhatod le a teljes projektet, változtathatod meg a címet, cserélheted le a logót, és jelentheted ki büszkén:
+
+„Srácok, csináltam egy játékot.”
+
+Az nem szoftverfejlesztés.
+
+Az csupán ambícióval fűszerezett Ctrl+C.
+
+2. A HIBA-TULAJDONJOGI TÖRVÉNY
+
+Az eredeti Játékban felfedezett összes hibát hivatalosan a következő kategóriába soroljuk:
+
+„Váratlan játékmenet-funkciók.”
+
+Ha módosítod a Játékot, és további hibákat viszel bele, azok a hibák jogilag, lelkileg és érzelmileg a te tulajdonodba kerülnek.
+
+Az eredeti fejlesztők elzárkóznak a felügyeletüktől.
+
+3. AZ „AZ ÉN GÉPEMEN MŰKÖDIK” RENDELKEZÉS
+
+Ha a Játék megfelelően működik a fejlesztők számítógépén, de a tiéden nem indul el, a fejlesztők fenntartják a jogot, hogy így válaszoljanak:
+
+„Érdekes. Az én gépemen működik.”
+
+Ez a kijelentés teljes körű technikai vizsgálatnak minősül.
+
+A hibakeresés folytatása esetleg megtörténhet a jövőben.
+
+Ígéreteket nem teszünk.
+
+4. FIGYELMEZTETÉS A FORRÁSKÓDDAL KAPCSOLATBAN
+
+A szoftver egyes részei tartalmazhatnak:
+
+- megkérdőjelezhető változóneveket,
+
+- egyes civilizációknál is régebbi TODO-megjegyzéseket,
+
+- olyan kódot, amelynek megírására senki sem emlékszik,
+
+- ideiglenes megoldásokat, amelyek véglegessé váltak,
+
+- olyan függvényeket, amelyek a modern tudomány számára ismeretlen okokból működnek,
+
+- és legalább egy olyan sort, amelyhez TILOS HOZZÁNYÚLNI.
+
+Ha olyan kóddal találkozol, amelyhez ilyen megjegyzések tartoznak:
+
+// EZT NE TÖRÖLD KI
+
+vagy
+
+// valahogy ez megoldja a problémát
+
+nyomatékosan javasoljuk, hogy tiszteld ezt az ősi tudást.
+
+5. GARANCIA
+
+A JÁTÉKOT „ÚGY BOCSÁTJUK RENDELKEZÉSRE, AHOGYAN VAN.”
+
+Sőt, néha még csak nem is „úgy bocsátjuk rendelkezésre, ahogyan van”. Néha a szoftver abban az állapotban érhető el, ahogyan utoljára sikerült működésre bírnunk.
+
+Nem vállalunk garanciát arra, hogy a Játék:
+
+- futni fog,
+- elindul,
+- menteni tud,
+- betölteni tud,
+- stabil képkockasebességet tart fenn,
+- betartja a fizika törvényeit,
+- betartja a matematika törvényeit,
+- vagy továbbra is működni fog egy Unity-frissítés után.
+
+6. KÁROK ÉS FELELŐSSÉG
+
+A fejlesztők nem vonhatók felelősségre az alábbiakért:
+
+elveszett mentésfájlok,
+sérült projektek,
+váratlan összeomlások,
+falakon átsétáló NPC-k,
+alacsony Föld körüli pályára jutó karakterek,
+halhatatlanná váló főellenségek,
+hiányzó textúrák,
+400%-os hangerőn szóló hanghatások,
+vagy érzelmi problémákkal küzdő számítógépek.
+
+Használat saját felelősségre.
+
+7. STACK OVERFLOW / INTERNET ZÁRADÉK
+
+Bármilyen hasonlóság a kód egyes részei és az interneten fellelhető megoldások között tisztán véletlenszerű, oktató jellegű, inspiráló, hagyománytisztelő, elkerülhetetlen, és semmi közöd hozzá.
+
+8. A HAJNALI 3 ÓRÁS FEJLESZTÉSI KIVÉTEL
+
+A helyi idő szerinti hajnali 3 óra után írt kód mentesül az olvashatóságra, logikára, architektúrára, matematikára, elnevezési konvenciókra és az emberi méltóságra vonatkozó szokásos elvárások alól.
+
+Az ilyen kód érvényesnek tekintendő, ha:
+
+a) lefordul (kompilálódik), vagy
+
+b) senki sem nyúl hozzá.
+
+9. MÓDOSÍTÁSI JOGOK
+
+Jogodban áll módosításokat, kísérleteket, elágazásokat (forkokat) és személyes verziókat készíteni a Játékból.
+
+Ha azonban a módosításod valahogyan jelentősen jobbá válik, mint az eredeti Játék, a fejlesztők fenntartják a jogot arra, hogy:
+
+a) úgy tegyenek, mintha mindig is tervezték volna az adott funkciót,
+
+b) kényelmetlenül nagy érdeklődéssel vizsgálják át a kódodat,
+
+és
+
+c) csendben átgondolják karrierdöntéseiket.
+
+10. KERESKEDELMI FELHASZNÁLÁS
+
+A teljes Játék vagy annak jelentős részeinek kereskedelmi célú továbbterjesztése kifejezett engedély nélkül tilos.
+
+Egy változatlan példány 79,99 euróért történő értékesítése és „Ultimate Definitive Remastered GOTY Edition” néven való illetése nem változtatja azt varázsütésre a te szellemi tulajdonoddá.
+
+Nem rossz próbálkozás. 11. VÉGSŐ JOGI NYILATKOZAT
+
+A jelen adattár használatával, összeállításával, módosításával, elindításával, letöltésével, klónozásával, elágaztatásával (forkolásával), megfigyelésével, az azon való gondolkodással vagy a közelében gyanúsan közeli pozícióban való tartózkodással tudomásul veszed, hogy a szoftverfejlesztés eleve instabil tevékenység, amelyet olyan emberek végeznek, akik önkéntesen alakítják át a kávét hibaüzenetekké.
+
+Ha minden működik:
+
+Kiváló.
+
+Ha valami elromlik:
+
+Ellenőrizd a konzolt.
+
+Ha a konzol 47 piros hibaüzenetet tartalmaz:
+
+Vizsgáld meg az elsőt.
+
+Ha az első hiba kijavítása 83 újabb hibát eredményez:
+
+Üdv a játékfejlesztés világában.
+
+A LICENC VÉGE
