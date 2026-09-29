@@ -1,0 +1,1604 @@
+{
+  "asset": "NEXUS L-07 / closed garment refinement",
+  "height_m": 1.7874055774882436,
+  "rig_bones": 65,
+  "same_face_vertices": true,
+  "same_bone_hierarchy_and_rest_positions": true,
+  "garment_fully_closed": true,
+  "frames_per_second": 30,
+  "actions": [
+    "Cinematic_ClosedGarment_Intro_20s",
+    "FPS_Ready",
+    "Idle_Ready",
+    "Jog_Forward",
+    "Preview_Contact_Index",
+    "Preview_Grip_Open_Close",
+    "Preview_Interface_Deploy",
+    "Walk_Forward"
+  ],
+  "LOD0": [
+    {
+      "object": "Cuff_Stitch",
+      "vertices": 272,
+      "triangles": 536,
+      "materials": 1,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Garment_ArticulatedTrousers",
+      "vertices": 3513,
+      "triangles": 6880,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Garment_Bindings_Stitches_FootwearDetails",
+      "vertices": 1672,
+      "triangles": 3023,
+      "materials": 5,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Garment_FlatWaistband",
+      "vertices": 320,
+      "triangles": 480,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Hair_Practical_Short",
+      "vertices": 1755,
+      "triangles": 3344,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Hair_SurfaceStrands",
+      "vertices": 14456,
+      "triangles": 10842,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_Head_Neck",
+      "vertices": 18218,
+      "triangles": 36288,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_Index_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_Middle_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_Pinky_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_RightArm",
+      "vertices": 8275,
+      "triangles": 16480,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_Ring_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Human_Thumb_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Jacket_LeatherBindings",
+      "vertices": 2905,
+      "triangles": 5682,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Jacket_LeatherShell",
+      "vertices": 10030,
+      "triangles": 20068,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Jacket_PlacketStitch",
+      "vertices": 719,
+      "triangles": 1422,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Jacket_PlacketStitch.001",
+      "vertices": 719,
+      "triangles": 1422,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Jacket_ZipperHardware",
+      "vertices": 3239,
+      "triangles": 5642,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Knee_ArticulationStitch",
+      "vertices": 161,
+      "triangles": 313,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Knee_ArticulationStitch.001",
+      "vertices": 162,
+      "triangles": 313,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Left_ApproachBoot",
+      "vertices": 833,
+      "triangles": 1600,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Left_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Left_Eyeball",
+      "vertices": 266,
+      "triangles": 528,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Left_Iris",
+      "vertices": 266,
+      "triangles": 528,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Left_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Left_Pupil",
+      "vertices": 266,
+      "triangles": 528,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LeftArm_DeployableContact",
+      "vertices": 160,
+      "triangles": 312,
+      "materials": 2,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LeftArm_Flexible_JointCore",
+      "vertices": 8083,
+      "triangles": 16096,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LeftArm_RigidMechanisms",
+      "vertices": 23862,
+      "triangles": 45234,
+      "materials": 8,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Natural_Eyebrow_Hairs",
+      "vertices": 2280,
+      "triangles": 760,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Right_ApproachBoot",
+      "vertices": 833,
+      "triangles": 1600,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Right_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Right_Eyeball",
+      "vertices": 266,
+      "triangles": 528,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Right_Iris",
+      "vertices": 266,
+      "triangles": 528,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Right_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Right_Pupil",
+      "vertices": 266,
+      "triangles": 528,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Shoulder_IntegratedMount",
+      "vertices": 1564,
+      "triangles": 3112,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Trouser_LateralStitch",
+      "vertices": 317,
+      "triangles": 622,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Trouser_LateralStitch.001",
+      "vertices": 317,
+      "triangles": 622,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Trouser_PocketWelt",
+      "vertices": 210,
+      "triangles": 408,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Trouser_PocketWelt.001",
+      "vertices": 210,
+      "triangles": 408,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "Waist_FlushRelease",
+      "vertices": 56,
+      "triangles": 108,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    }
+  ],
+  "FirstPerson": [
+    {
+      "object": "FP_Cuff_Stitch",
+      "vertices": 272,
+      "triangles": 536,
+      "materials": 1,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Human_Index_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Human_Middle_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Human_Pinky_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Human_RightArm",
+      "vertices": 8275,
+      "triangles": 16480,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Human_Ring_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Human_Thumb_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Jacket_LeatherBindings",
+      "vertices": 1230,
+      "triangles": 2428,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Jacket_LeatherShell",
+      "vertices": 3186,
+      "triangles": 6138,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_LeftArm_DeployableContact",
+      "vertices": 160,
+      "triangles": 312,
+      "materials": 2,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_LeftArm_Flexible_JointCore",
+      "vertices": 8083,
+      "triangles": 16096,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_LeftArm_RigidMechanisms",
+      "vertices": 23862,
+      "triangles": 45234,
+      "materials": 8,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "FP_Shoulder_IntegratedMount",
+      "vertices": 1564,
+      "triangles": 3112,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    }
+  ],
+  "LOD1": [
+    {
+      "object": "LOD1_Cuff_Stitch",
+      "vertices": 145,
+      "triangles": 284,
+      "materials": 1,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Garment_ArticulatedTrousers",
+      "vertices": 1894,
+      "triangles": 3645,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Garment_Bindings_Stitches_FootwearDetails",
+      "vertices": 918,
+      "triangles": 1602,
+      "materials": 5,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Garment_FlatWaistband",
+      "vertices": 204,
+      "triangles": 254,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Hair_Practical_Short",
+      "vertices": 960,
+      "triangles": 1772,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Hair_SurfaceStrands",
+      "vertices": 9636,
+      "triangles": 5745,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_Head_Neck",
+      "vertices": 9690,
+      "triangles": 19232,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_Index_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_Middle_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_Pinky_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_RightArm",
+      "vertices": 4402,
+      "triangles": 8734,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_Ring_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Human_Thumb_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Jacket_LeatherBindings",
+      "vertices": 1569,
+      "triangles": 3010,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Jacket_LeatherShell",
+      "vertices": 5314,
+      "triangles": 10636,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Jacket_PlacketStitch",
+      "vertices": 384,
+      "triangles": 752,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Jacket_PlacketStitch.001",
+      "vertices": 384,
+      "triangles": 752,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Jacket_ZipperHardware",
+      "vertices": 1913,
+      "triangles": 2990,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Knee_ArticulationStitch",
+      "vertices": 85,
+      "triangles": 164,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Knee_ArticulationStitch.001",
+      "vertices": 86,
+      "triangles": 165,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Left_ApproachBoot",
+      "vertices": 442,
+      "triangles": 846,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Left_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Left_Eyeball",
+      "vertices": 141,
+      "triangles": 278,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Left_Iris",
+      "vertices": 141,
+      "triangles": 278,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Left_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Left_Pupil",
+      "vertices": 141,
+      "triangles": 278,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_LeftArm_DeployableContact",
+      "vertices": 86,
+      "triangles": 164,
+      "materials": 2,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_LeftArm_Flexible_JointCore",
+      "vertices": 4300,
+      "triangles": 8530,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_LeftArm_RigidMechanisms",
+      "vertices": 13037,
+      "triangles": 23974,
+      "materials": 8,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Natural_Eyebrow_Hairs",
+      "vertices": 1922,
+      "triangles": 402,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Right_ApproachBoot",
+      "vertices": 442,
+      "triangles": 846,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Right_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Right_Eyeball",
+      "vertices": 141,
+      "triangles": 278,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Right_Iris",
+      "vertices": 141,
+      "triangles": 278,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Right_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Right_Pupil",
+      "vertices": 141,
+      "triangles": 278,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Shoulder_IntegratedMount",
+      "vertices": 832,
+      "triangles": 1648,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Trouser_LateralStitch",
+      "vertices": 168,
+      "triangles": 328,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Trouser_LateralStitch.001",
+      "vertices": 168,
+      "triangles": 328,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Trouser_PocketWelt",
+      "vertices": 114,
+      "triangles": 216,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Trouser_PocketWelt.001",
+      "vertices": 114,
+      "triangles": 216,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD1_Waist_FlushRelease",
+      "vertices": 56,
+      "triangles": 108,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    }
+  ],
+  "LOD2": [
+    {
+      "object": "LOD2_Cuff_Stitch",
+      "vertices": 72,
+      "triangles": 138,
+      "materials": 1,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Garment_ArticulatedTrousers",
+      "vertices": 934,
+      "triangles": 1788,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Garment_Bindings_Stitches_FootwearDetails",
+      "vertices": 506,
+      "triangles": 784,
+      "materials": 5,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Garment_FlatWaistband",
+      "vertices": 120,
+      "triangles": 124,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Hair_Practical_Short",
+      "vertices": 489,
+      "triangles": 868,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Hair_SurfaceStrands",
+      "vertices": 7626,
+      "triangles": 2818,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_Head_Neck",
+      "vertices": 4790,
+      "triangles": 9434,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_Index_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_Middle_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_Pinky_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_RightArm",
+      "vertices": 2176,
+      "triangles": 4284,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_Ring_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Human_Thumb_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Jacket_LeatherBindings",
+      "vertices": 779,
+      "triangles": 1477,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Jacket_LeatherShell",
+      "vertices": 2604,
+      "triangles": 5216,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Jacket_PlacketStitch",
+      "vertices": 188,
+      "triangles": 369,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Jacket_PlacketStitch.001",
+      "vertices": 189,
+      "triangles": 369,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Knee_ArticulationStitch",
+      "vertices": 43,
+      "triangles": 80,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Knee_ArticulationStitch.001",
+      "vertices": 43,
+      "triangles": 80,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Left_ApproachBoot",
+      "vertices": 219,
+      "triangles": 415,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Left_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Left_Eyeball",
+      "vertices": 70,
+      "triangles": 136,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Left_Iris",
+      "vertices": 70,
+      "triangles": 136,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Left_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Left_Pupil",
+      "vertices": 70,
+      "triangles": 136,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_LeftArm_Flexible_JointCore",
+      "vertices": 2124,
+      "triangles": 4183,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_LeftArm_RigidMechanisms",
+      "vertices": 6830,
+      "triangles": 11760,
+      "materials": 8,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Right_ApproachBoot",
+      "vertices": 219,
+      "triangles": 415,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Right_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Right_Eyeball",
+      "vertices": 70,
+      "triangles": 136,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Right_Iris",
+      "vertices": 70,
+      "triangles": 136,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Right_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Right_Pupil",
+      "vertices": 70,
+      "triangles": 136,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Shoulder_IntegratedMount",
+      "vertices": 412,
+      "triangles": 808,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Trouser_LateralStitch",
+      "vertices": 83,
+      "triangles": 160,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Trouser_LateralStitch.001",
+      "vertices": 84,
+      "triangles": 161,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Trouser_PocketWelt",
+      "vertices": 59,
+      "triangles": 106,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Trouser_PocketWelt.001",
+      "vertices": 59,
+      "triangles": 106,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD2_Waist_FlushRelease",
+      "vertices": 56,
+      "triangles": 108,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    }
+  ],
+  "LOD3": [
+    {
+      "object": "LOD3_Cuff_Stitch",
+      "vertices": 30,
+      "triangles": 54,
+      "materials": 1,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Garment_ArticulatedTrousers",
+      "vertices": 367,
+      "triangles": 687,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Garment_Bindings_Stitches_FootwearDetails",
+      "vertices": 343,
+      "triangles": 458,
+      "materials": 5,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Garment_FlatWaistband",
+      "vertices": 47,
+      "triangles": 48,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Hair_Practical_Short",
+      "vertices": 201,
+      "triangles": 334,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Hair_SurfaceStrands",
+      "vertices": 6339,
+      "triangles": 1084,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_Head_Neck",
+      "vertices": 1876,
+      "triangles": 3628,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_Index_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_Middle_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_Pinky_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_RightArm",
+      "vertices": 848,
+      "triangles": 1648,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_Ring_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Human_Thumb_Nail",
+      "vertices": 63,
+      "triangles": 96,
+      "materials": 2,
+      "max_bone_influences": 2,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Jacket_LeatherBindings",
+      "vertices": 309,
+      "triangles": 567,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Jacket_LeatherShell",
+      "vertices": 999,
+      "triangles": 2006,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Jacket_PlacketStitch",
+      "vertices": 74,
+      "triangles": 142,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Jacket_PlacketStitch.001",
+      "vertices": 74,
+      "triangles": 142,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Knee_ArticulationStitch",
+      "vertices": 30,
+      "triangles": 54,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Knee_ArticulationStitch.001",
+      "vertices": 27,
+      "triangles": 48,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Left_ApproachBoot",
+      "vertices": 87,
+      "triangles": 160,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Left_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Left_Eyeball",
+      "vertices": 28,
+      "triangles": 52,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Left_Iris",
+      "vertices": 28,
+      "triangles": 52,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Left_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Left_Pupil",
+      "vertices": 28,
+      "triangles": 52,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_LeftArm_Flexible_JointCore",
+      "vertices": 829,
+      "triangles": 1608,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_LeftArm_RigidMechanisms",
+      "vertices": 2884,
+      "triangles": 4523,
+      "materials": 8,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Right_ApproachBoot",
+      "vertices": 87,
+      "triangles": 160,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Right_BootToeGuard",
+      "vertices": 104,
+      "triangles": 168,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Right_Eyeball",
+      "vertices": 28,
+      "triangles": 52,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Right_Iris",
+      "vertices": 28,
+      "triangles": 52,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Right_KneeStretchGusset",
+      "vertices": 121,
+      "triangles": 200,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Right_Pupil",
+      "vertices": 28,
+      "triangles": 52,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Shoulder_IntegratedMount",
+      "vertices": 163,
+      "triangles": 310,
+      "materials": 3,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Trouser_LateralStitch",
+      "vertices": 34,
+      "triangles": 62,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Trouser_LateralStitch.001",
+      "vertices": 34,
+      "triangles": 62,
+      "materials": 1,
+      "max_bone_influences": 3,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Trouser_PocketWelt",
+      "vertices": 23,
+      "triangles": 39,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Trouser_PocketWelt.001",
+      "vertices": 23,
+      "triangles": 39,
+      "materials": 1,
+      "max_bone_influences": 4,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    },
+    {
+      "object": "LOD3_Waist_FlushRelease",
+      "vertices": 56,
+      "triangles": 108,
+      "materials": 1,
+      "max_bone_influences": 1,
+      "unnormalized_or_unweighted_vertices": 0,
+      "uv_layers": 1
+    }
+  ]
+}

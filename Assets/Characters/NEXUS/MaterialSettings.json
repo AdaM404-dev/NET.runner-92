@@ -1,0 +1,460 @@
+{
+  "materials": [
+    {
+      "name": "AnodizedFrame",
+      "metallic": 0.800000011920929,
+      "roughness": 0.38999998569488525,
+      "normalScale": 0.5,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Brow_DarkBrown",
+      "metallic": 0.0,
+      "roughness": 0.7900000214576721,
+      "normalScale": 1,
+      "baseColor": [
+        0.029999999329447746,
+        0.017000000923871994,
+        0.009999999776482582,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "BrushedTitanium",
+      "metallic": 0.8799999952316284,
+      "roughness": 0.3100000023841858,
+      "normalScale": 0.5,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "ContactAlloy",
+      "metallic": 0.8700000047683716,
+      "roughness": 0.28999999165534973,
+      "normalScale": 0.5,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Diagnostic_PaleCyan",
+      "metallic": 0.10000000149011612,
+      "roughness": 0.27000001072883606,
+      "normalScale": 1,
+      "baseColor": [
+        0.3400000035762787,
+        0.7799999713897705,
+        0.8799999952316284,
+        1.0
+      ],
+      "emissionColor": [
+        0.3400000035762787,
+        0.7799999713897705,
+        0.8799999952316284,
+        1.0
+      ],
+      "emissionStrength": 1.2999999523162842
+    },
+    {
+      "name": "DisplayGlass",
+      "metallic": 0.25,
+      "roughness": 0.17000000178813934,
+      "normalScale": 1,
+      "baseColor": [
+        0.003000000026077032,
+        0.010999999940395355,
+        0.014000000432133675,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "GraphiteCeramic",
+      "metallic": 0.2199999988079071,
+      "roughness": 0.46000000834465027,
+      "normalScale": 0.5,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Hair_DarkBrown",
+      "metallic": 0.0,
+      "roughness": 0.6700000166893005,
+      "normalScale": 0.6499999761581421,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Iris_GreyHazel",
+      "metallic": 0.0,
+      "roughness": 0.2199999988079071,
+      "normalScale": 1,
+      "baseColor": [
+        0.11999999731779099,
+        0.10499999672174454,
+        0.06800000369548798,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "JointElastomer",
+      "metallic": 0.0,
+      "roughness": 0.7799999713897705,
+      "normalScale": 0.5,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Leather_Charcoal",
+      "metallic": 0.0,
+      "roughness": 0.5600000023841858,
+      "normalScale": 1.0,
+      "baseColor": [
+        0.008999999612569809,
+        0.009999999776482582,
+        0.010999999940395355,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Leather_EdgeBinding",
+      "metallic": 0.0,
+      "roughness": 0.5699999928474426,
+      "normalScale": 1.0,
+      "baseColor": [
+        0.026000000536441803,
+        0.02500000037252903,
+        0.024000000208616257,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Leather_Stitch",
+      "metallic": 0.0,
+      "roughness": 0.8700000047683716,
+      "normalScale": 1,
+      "baseColor": [
+        0.054999999701976776,
+        0.04800000041723251,
+        0.04100000113248825,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Pupil",
+      "metallic": 0.0,
+      "roughness": 0.1599999964237213,
+      "normalScale": 1,
+      "baseColor": [
+        0.0010000000474974513,
+        0.0010000000474974513,
+        0.0010000000474974513,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Sclera",
+      "metallic": 0.0,
+      "roughness": 0.20000000298023224,
+      "normalScale": 1,
+      "baseColor": [
+        0.36000001430511475,
+        0.3499999940395355,
+        0.3199999928474426,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "SeamTape",
+      "metallic": 0.0,
+      "roughness": 0.6499999761581421,
+      "normalScale": 0.5,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "ServiceMarkings",
+      "metallic": 0.10000000149011612,
+      "roughness": 0.550000011920929,
+      "normalScale": 1,
+      "baseColor": [
+        0.47999998927116394,
+        0.5699999928474426,
+        0.5899999737739563,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Skin",
+      "metallic": 0.0,
+      "roughness": 0.47999998927116394,
+      "normalScale": 1.0,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "StretchPanel",
+      "metallic": 0.0,
+      "roughness": 0.8799999952316284,
+      "normalScale": 1,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "UrbanTwill",
+      "metallic": 0.0,
+      "roughness": 0.8399999737739563,
+      "normalScale": 1,
+      "baseColor": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "emissionColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissionStrength": 0.0
+    },
+    {
+      "name": "Human_Nail",
+      "roughness": 0.3400000035762787,
+      "metallic": 0,
+      "normalScale": 1,
+      "baseColor": [
+        0.30000001192092896,
+        0.20499999821186066,
+        0.16500000655651093,
+        1.0
+      ],
+      "emissionColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "emissionStrength": 0
+    },
+    {
+      "name": "Human_NailTip",
+      "roughness": 0.4099999964237213,
+      "metallic": 0,
+      "normalScale": 1,
+      "baseColor": [
+        0.38999998569488525,
+        0.33000001311302185,
+        0.28999999165534973,
+        1.0
+      ],
+      "emissionColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "emissionStrength": 0
+    },
+    {
+      "name": "Hair_StrandDetail",
+      "roughness": 0.7200000286102295,
+      "metallic": 0,
+      "normalScale": 1,
+      "baseColor": [
+        0.02199999988079071,
+        0.014000000432133675,
+        0.00800000037997961,
+        1.0
+      ],
+      "emissionColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "emissionStrength": 0
+    },
+    {
+      "name": "Boot_ReinforcedToe",
+      "roughness": 0.7300000190734863,
+      "metallic": 0,
+      "normalScale": 1,
+      "baseColor": [
+        0.01600000075995922,
+        0.019999999552965164,
+        0.020999999716877937,
+        1.0
+      ],
+      "emissionColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "emissionStrength": 0
+    }
+  ]
+}

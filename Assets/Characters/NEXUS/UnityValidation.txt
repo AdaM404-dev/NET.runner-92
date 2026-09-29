@@ -1,0 +1,8 @@
+Unity 6000.6.2f1
+Structural import validation. This does not certify all gameplay animation ranges or art direction.
+
+NEXUS_FirstPerson_Arms.fbx: PASS; Avatar valid=True; humanoid=False; triangles=90816; vertices=57930; height=0,3317m; missing bones=0; unweighted vertices=0; clips=1
+NEXUS_FullBody_LOD0.fbx: PASS; Avatar valid=True; humanoid=True; triangles=188001; vertices=126085; height=1,7874m; missing bones=0; unweighted vertices=0; clips=8
+NEXUS_FullBody_LOD1.fbx: PASS; Avatar valid=True; humanoid=True; triangles=100227; vertices=72246; height=1,7873m; missing bones=0; unweighted vertices=0; clips=0
+NEXUS_FullBody_LOD2.fbx: PASS; Avatar valid=True; humanoid=True; triangles=48083; vertices=38254; height=1,7874m; missing bones=0; unweighted vertices=0; clips=0
+NEXUS_FullBody_LOD3.fbx: PASS; Avatar valid=True; humanoid=True; triangles=19499; vertices=18267; height=1,7849m; missing bones=0; unweighted vertices=0; clips=0

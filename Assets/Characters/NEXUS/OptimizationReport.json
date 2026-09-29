@@ -1,0 +1,52 @@
+[
+  {
+    "object": "Cuff_Stitch",
+    "before_triangles": 5376,
+    "after_triangles": 536
+  },
+  {
+    "object": "Garment_Bindings_Stitches_FootwearDetails",
+    "before_triangles": 8640,
+    "after_triangles": 3023
+  },
+  {
+    "object": "Jacket_LeatherBindings",
+    "before_triangles": 47360,
+    "after_triangles": 5682
+  },
+  {
+    "object": "Jacket_PlacketStitch",
+    "before_triangles": 17792,
+    "after_triangles": 1422
+  },
+  {
+    "object": "Jacket_PlacketStitch.001",
+    "before_triangles": 17792,
+    "after_triangles": 1422
+  },
+  {
+    "object": "Jacket_ZipperHardware",
+    "before_triangles": 22572,
+    "after_triangles": 5642
+  },
+  {
+    "object": "Knee_ArticulationStitch",
+    "before_triangles": 1044,
+    "after_triangles": 313
+  },
+  {
+    "object": "Knee_ArticulationStitch.001",
+    "before_triangles": 1044,
+    "after_triangles": 313
+  },
+  {
+    "object": "Trouser_LateralStitch",
+    "before_triangles": 2076,
+    "after_triangles": 622
+  },
+  {
+    "object": "Trouser_LateralStitch.001",
+    "before_triangles": 2076,
+    "after_triangles": 622
+  }
+]
