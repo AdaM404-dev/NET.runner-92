@@ -1,46 +1,81 @@
-# NEXUS character controls
+# Coding NEXUS character movement
 
-This guide covers the playable NEXUS character in this Unity 6.6 project. The controller is [`Assets/Scripts/NexusPlayer.cs`](Assets/Scripts/NexusPlayer.cs), and the ready-to-use prefab is [`Assets/Prefabs/NEXUS_Player.prefab`](Assets/Prefabs/NEXUS_Player.prefab).
+This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/Scripts/NexusPlayer.cs`](Assets/Scripts/NexusPlayer.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
 
-## Try the character
+## Movement pipeline
 
-1. Open `Assets/Scenes/MainTest.unity` in Unity and press **Play**. This is the warehouse scene with a movable NEXUS player.
-2. Click the Game view if it does not have focus. The controller captures the mouse when play starts.
-3. Open `Assets/Scenes/CharacterPreview.unity` to inspect the character in a stationary preview. Movement and jumping are disabled there.
+Each frame, `NexusPlayer.Update()` reads input and calls `Simulate(input, run, jump, Time.deltaTime)` once. `Simulate` turns the two-dimensional input into a world-space direction, rotates the character, applies gravity and jumping through `CharacterController.Move`, and updates the Animator. `LateUpdate()` positions the camera after the character moves.
 
-`SampleScene.unity` is still the project's startup scene; it does not contain the NEXUS player. Both NEXUS scenes are enabled in Build Settings, so **F1** can switch between them.
+```text
+Input in Update → camera-relative direction → CharacterController.Move
+                → Animator Speed → camera follow in LateUpdate
+```
 
-## Controls
+The prefab disables Animator root motion, so the `CharacterController` owns translation. Keep one owner for movement: enabling root motion or calling `Move` from another controller as well will produce conflicting motion.
 
-| Input | Action |
-| --- | --- |
-| **W / A / S / D** | Move relative to the camera in `MainTest`. |
-| **Mouse** | Look around. In third person it orbits the camera; in first person it aims the view. |
-| **Left Shift** | Run while moving. |
-| **Space** | Jump while grounded in `MainTest`. |
-| **E** | Toggle a `NexusDoor` within 3.5 metres of the camera crosshair. |
-| **Tab** | Switch between third-person and first-person views. |
-| **F1** | Switch between `MainTest` and `CharacterPreview`. |
-| **R** | Return to the position recorded when the player spawned. |
-| **Escape** | Release or recapture the mouse cursor. Left-click also recaptures it. |
+## 1. Read input in `Update`
 
-In `CharacterPreview`, the mouse and **Tab** still change the view, but movement and jumping are intentionally disabled. Door interaction only has an effect when the camera ray hits an object with `NexusDoor` on it or one of its parents.
+The current code reads Unity's legacy `Input` axes and keys. It builds a `Vector2` from `Horizontal` and `Vertical`, reads the run and jump buttons, then passes those values to `Simulate` with the frame duration:
 
-## Put NEXUS in another scene
+```csharp
+Vector2 input = cursorCaptured
+    ? new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))
+    : Vector2.zero;
 
-1. Drag `Assets/Prefabs/NEXUS_Player.prefab` into the scene, placing its root just above a floor with a collider.
-2. Keep the prefab's `CharacterController`, `NexusPlayer`, child visual, animator, LOD group, and `Player_Camera` references together. They are already assigned in the prefab.
-3. Disable or remove any other active camera and audio listener if this is the player camera.
-4. Leave **Preview Mode** unchecked for normal movement. Press **Play** and click the Game view.
+Simulate(input, Input.GetKey(KeyCode.LeftShift),
+    Input.GetKeyDown(KeyCode.Space), Time.deltaTime);
+```
 
-`Assets/Prefabs/NEXUS_Character.prefab` is the character visual. Use `NEXUS_Player.prefab` when you need the camera and movement controls.
+`cursorCaptured` prevents movement when the mouse has been released for UI use. `previewMode` also zeros movement inside `Simulate` and blocks jumping; leave it false for a playable character. The project sets **Active Input Handling** to **Both** because this controller still uses the legacy API.
 
-## Controller settings and integration
+Mouse input updates the private `yaw` and `pitch` fields in `Update`. `yaw` controls camera-relative movement and first-person facing; `pitch` is clamped to −78° through 78° for camera aim. If you replace the input source, continue updating these values before calling `Simulate`.
 
-The `NexusPlayer` component exposes **Walk Speed** (1.65), **Run Speed** (3.25), and **Sensitivity** (2). **First Person** selects the starting view; **Preview Mode** locks movement for the character study scene. The script drives the Animator's `Speed` float and raises the first-person arms layer when first-person view is active. It also forces the highest LOD in first person and hides head geometry from the camera while retaining its shadows.
+## 2. Calculate camera-relative direction
 
-The controller reads Unity's legacy `Input` axes and keys. This project enables **Both** input backends in Player Settings; the `InputSystem_Actions.inputactions` asset is not wired to `NexusPlayer`. If your game uses only the new Input System, adapt `NexusPlayer.Update()` to your input actions before switching that setting. The public `Simulate(Vector2 input, bool run, bool jump, float dt)`, `SetView(bool)`, and `Respawn()` methods are available for integration, but `Update()` also reads player input every frame, so coordinate any external calls with that loop.
+`Simulate` clamps the input vector to length 1 so diagonal movement is not faster, then rotates it by camera yaw:
 
-The controller uses layer 8 to exclude the player from door raycasts and layer 9 for third-person camera collision. If you change those layers, update the masks in `NexusPlayer.cs` as well. Doors need a collider and `NexusDoor` on the hit object or a parent. The character prefab's `CharacterController` is 1.78 m tall with a 0.26 m radius.
+```csharp
+input = Vector2.ClampMagnitude(input, 1f);
+Vector3 direction = Quaternion.Euler(0f, yaw, 0f)
+    * new Vector3(input.x, 0f, input.y);
+```
 
-The imported materials were authored for Unity's Built-in Standard shader. In this URP project, convert them to URP materials if they render magenta. Asset attribution is in `Assets/Documentation/Character_Licenses/`.
+In first person, the root faces `yaw` directly. In third person, it turns toward nonzero movement with `Quaternion.Slerp`. If you add strafing or aim-while-moving, change this facing rule separately from the movement vector.
+
+The prefab exposes `walkSpeed` (1.65 m/s) and `runSpeed` (3.25 m/s). `Simulate` chooses one and multiplies it by `direction`. Change these fields on the prefab for basic speed tuning. To add acceleration, keep a horizontal velocity field and move that velocity toward `direction * targetSpeed` each frame before calling `CharacterController.Move`; also drive the Animator from the resulting velocity rather than raw input.
+
+## 3. Apply gravity and jumping
+
+The controller stores vertical velocity in `verticalSpeed`. When grounded and falling, it holds the character against the floor at −2 m/s. A grounded jump sets vertical velocity to 4.4 m/s, then gravity subtracts `14 * dt` every frame:
+
+```csharp
+if (motor.isGrounded && verticalSpeed < 0f) verticalSpeed = -2f;
+if (jump && motor.isGrounded && !previewMode) verticalSpeed = 4.4f;
+verticalSpeed -= 14f * dt;
+
+motor.Move((direction * (run ? runSpeed : walkSpeed)
+    + Vector3.up * verticalSpeed) * dt);
+```
+
+Keep the horizontal and vertical movement in the same `Move` call so collision handling sees the combined displacement. `CharacterController` does not apply gravity by itself. Tune jump impulse and gravity together; both are currently constants in `Simulate`. `Grounded` exposes the controller's grounded state, and `Respawn()` resets both position and vertical velocity.
+
+## 4. Match animation and camera to motion
+
+The Animator controller has a `Speed` float. `Simulate` sets it to the selected speed multiplied by input magnitude, with 0.15 seconds of damping. When you introduce acceleration, use actual horizontal velocity for this value so the animation follows the character's movement.
+
+`SetView(bool)` switches the first-person animation layer, forces LOD 0 in first person, and makes head renderers cast shadows without drawing in the camera view. `LateUpdate()` then places the camera at the first-person eye position or behind the character in third person. The third-person camera spherecasts against layer 9 to shorten its offset near walls. Preserve this order if you change the camera: move the character in `Update`, then place the camera in `LateUpdate`.
+
+## 5. Replace or extend the input source
+
+The project includes `Assets/InputSystem_Actions.inputactions` with `Player/Move`, `Player/Look`, `Player/Jump`, and `Player/Sprint` actions, but `NexusPlayer` does not yet use them. To migrate:
+
+1. Enable the `Player` action map and connect its action values to the existing move, look, run, and jump variables.
+2. Replace the legacy reads in `Update`; keep the cursor, view-switching, and camera logic you still need.
+3. Update `yaw` and `pitch` from the look action, then call `Simulate(move, run, jumpPressedThisFrame, Time.deltaTime)` exactly once per frame.
+4. Remove or disable the old input path before another component starts calling `Simulate`. Otherwise both paths will move the same `CharacterController`.
+
+`Simulate` is public for tests or external control, but it uses the controller's private `yaw`. An AI or network controller should supply a look/heading value through a new method or refactor heading into an explicit argument. Keep the animation and camera updates connected to the same movement state.
+
+## Verify a movement change
+
+Use `Assets/Scenes/MainTest.unity` for a quick integration check. Confirm that idle input leaves the player still, diagonal input does not increase speed, the character turns correctly in both views, a jump starts only while grounded and lands, the Animator follows actual motion, and the third-person camera moves closer near a layer-9 wall. Check `CharacterPreview.unity` separately if you touched `previewMode` or `SetView`.

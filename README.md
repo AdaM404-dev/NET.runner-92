@@ -14,7 +14,7 @@ Unity 6.6 project (`6000.6.2f1`). Open this directory in Unity Hub.
 
 2. In Unity Hub, add the cloned or extracted project folder. Select the folder that directly contains `Assets`, `Packages`, and `ProjectSettings`.
 3. Open it with Unity **6000.6.2f1**. Let Unity download the packages and finish importing the assets on first launch. The generated `Library` folder does not need to be downloaded from GitHub.
-4. In the Project window, open `Assets/Scenes/MainTest.unity` and press **Play** to try the warehouse and NEXUS player. Open `Assets/Scenes/CharacterPreview.unity` for the stationary character preview. See [tutorial.md](tutorial.md) for the controls.
+4. In the Project window, open `Assets/Scenes/MainTest.unity` and press **Play** to try the warehouse and NEXUS player. Open `Assets/Scenes/CharacterPreview.unity` for the stationary character preview. See [tutorial.md](tutorial.md) for the movement implementation guide.
 
 ### Bring the assets into another Unity project
 
