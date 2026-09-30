@@ -87,11 +87,11 @@ Linux player build about 5 minutes (356 MB output).
 - A player build rewrites three URP assets in `Assets/Settings/` and
   `ProjectSettings/GraphicsSettings.asset`. Restore with
   `git checkout -- Assets/Settings` unless the change is intended.
-- Closing the editor rewrote eight emissive materials in
-  `Assets/Materials/Environment/`, dropping their `_EMISSION` keyword, because
-  the Built-in Standard shader is not valid under URP. Restore them with
-  `git checkout -- Assets/Materials` until the materials are converted
-  (`agent.md` V-02); committing that change would lose the emission setup.
+- Running a URP converter also rewrites `ProjectSettings/URPProjectSettings.asset`.
+- Unity's Built-in to URP material converter does not turn emission back on.
+  After converting, re-enable `_EMISSION` on materials that glow and check
+  them in a screenshot. (Before the conversion of 2026-09-30, closing the
+  editor also stripped `_EMISSION` from the then-invalid Built-in materials.)
 - `unity command quit` fails in edit mode with Pipeline `0.8.0-exp.1`
   (a `DontDestroyOnLoad` error). Close the editor window instead, or run
   `unity command eval 'UnityEditor.EditorApplication.Exit(0);'`, which exits
