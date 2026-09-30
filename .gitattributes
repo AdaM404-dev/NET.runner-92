@@ -25,11 +25,14 @@ bin/*    text eol=lf
 *.psd  binary
 *.exr  binary
 *.fbx  binary
+*.blend binary
 *.wav  binary
 *.ogg  binary
 *.mp3  binary
 *.mp4  binary
 *.cubemap binary
+# Preserve the delivered source package byte-for-byte for its SHA256 manifest.
+ArtSource/K7_Industrial_Robot/** -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.PNG filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,9 @@
+{
+  "resolution": 4096,
+  "triangles_tested": 128304,
+  "subpixel_or_degenerate_uv_triangles": 0,
+  "occupied_interior_texels": 8958571,
+  "overlapping_interior_texels": 0,
+  "triangles_with_overlapping_interior_texels": 0,
+  "method": "Barycentric interior raster at 4K; shared edges excluded. Subpixel overlap is below this test resolution. Lower LODs intentionally reuse the LOD0 atlas."
+}

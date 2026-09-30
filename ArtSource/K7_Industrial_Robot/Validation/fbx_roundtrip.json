@@ -1,0 +1,80 @@
+{
+  "source_blend_opens": true,
+  "textures_packed": true,
+  "deform_bones": 52,
+  "rigid_edge_length_max_error_m": {
+    "30": 3.12590125341964e-07,
+    "60": 2.0213077593471407e-07,
+    "90": 1.3042277551833514e-06,
+    "150": 2.4385321162876707e-07,
+    "210": 1.3042277551833514e-06,
+    "270": 1.2890623410366508e-06
+  },
+  "roundtrip": {
+    "visual_mesh_count": 48,
+    "bone_count": 52,
+    "height_m": 2.0000002516121445,
+    "ground_z_m": -1.319356535134375e-08,
+    "collider_count": 15,
+    "triangle_counts_match": true,
+    "sockets": {
+      "HackPoint": [
+        0.0,
+        0.24199999868869781,
+        1.630000114440918
+      ],
+      "VisionOrigin": [
+        0.0,
+        -0.13899999856948853,
+        1.9299999475479126
+      ],
+      "Hand_L_Point": [
+        0.37999990582466125,
+        -0.04999998211860657,
+        1.0059996843338013
+      ],
+      "Foot_R_Point": [
+        -0.15499942004680634,
+        -0.064999058842659,
+        3.734603524208069e-07
+      ]
+    },
+    "root_position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "armature_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "socket_position_errors_m": {
+      "HackPoint": 1.1920928955078125e-07,
+      "VisionOrigin": 0.0,
+      "Hand_L_Point": 3.591767189858541e-07,
+      "Foot_R_Point": 1.1649505298886789e-06
+    }
+  },
+  "animation_roundtrip": {
+    "actions": [
+      "AudioOrigin|Scene",
+      "ChestPoint|Scene",
+      "Foot_L_Point|Scene",
+      "Foot_R_Point|Scene",
+      "HackPoint|Scene",
+      "Hand_L_Point|Scene",
+      "Hand_R_Point|Scene",
+      "HeadPoint|Scene",
+      "K7_Rig|Scene",
+      "VisionOrigin|Scene"
+    ],
+    "frames": [
+      2.0,
+      301.0
+    ],
+    "bones": 52,
+    "finger_rotation_degrees": 64.79923408996157
+  },
+  "external_texture_paths_exist": true
+}
