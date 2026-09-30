@@ -22,6 +22,13 @@ it as the default and ask before crossing a boundary.
 - Materials use URP shaders. Built-in Standard materials render magenta in
   this project (`agent.md` item V-02).
 - Source attribution and licences go in `Assets/Documentation/`.
+- Source packages that Unity must not import (Blender files, generator
+  scripts) go under `ArtSource/`, like the K7 robot.
+- Proposed (decision D6 in [[architecture/before-new-scripts]]): export
+  doors shut. Today 71 of 113 swing doors arrive standing open and the door
+  script treats that pose as "closed"; see [[systems/doors-and-interaction]].
+- Proposed (decision D3): the warehouse becomes a prefab owned by art, which
+  both the preview scene and our gameplay scene place.
 
 ## Platforms
 

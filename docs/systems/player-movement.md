@@ -2,6 +2,8 @@
 
 This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](../../Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
 
+> Note (2026-09-30): no scene uses `NEXUS_Player.prefab` yet. `MainTest` and `CharacterPreview` each hold their own copy of the player, so a change to the prefab does not show when you play those scenes. The whole player object, its keys and its frame order are described in [[systems/player]]; the plan to fix the copies is step 3 of [[architecture/before-new-scripts]].
+
 ## Movement pipeline
 
 Each frame, `NexusPlayer.Update()` reads input and calls `Simulate(input, run, jump, Time.deltaTime)` once. `Simulate` turns the two-dimensional input into a world-space direction, rotates the character, applies gravity and jumping through `CharacterController.Move`, and updates the Animator. `LateUpdate()` positions the camera after the character moves.

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Print read-only facts about the project, taken from the open Unity editor.
+# Usage: bin/unity-inspect [player|scene|environment|animation|map ...]
+#        With no arguments: player, scene, environment and animation.
+# Each name is a C# snippet in tools/inspect/ that is run through
+# `unity command eval_file`. The snippets only read; they change nothing.
+# Needs the editor open on this project and the Unity CLI (`unity`) on PATH.
+# The numbers in docs/systems/*.md come from these reports.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+names=("$@")
+[[ ${#names[@]} -eq 0 ]] && names=(player scene environment animation)
+
+status=0
+for name in "${names[@]}"; do
+  file="tools/inspect/$name.cs"
+  if [[ ! -f "$file" ]]; then
+    echo "unknown report '$name' (no $file)" >&2
+    status=2
+    continue
+  fi
+  [[ ${#names[@]} -gt 1 ]] && echo "===== $name"
+  UNITY_NO_BANNER=1 unity --json command eval_file --file "$PWD/$file" --timeout 120 --project-path "$PWD" \
+    | python3 -c '
+import json, sys
+try:
+    reply = json.load(sys.stdin)
+except ValueError:
+    sys.exit("no reply from the editor: is it open on this project? (check: unity status)")
+result = (reply.get("data") or {}).get("result") or {}
+if not result.get("success"):
+    errors = reply.get("errors") or [{"message": json.dumps(reply)[:600]}]
+    sys.exit("\n".join(e.get("message", "") for e in errors))
+print((result.get("result") or "").rstrip())
+' || status=1
+done
+exit $status
