@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bin/unity-compile)",
+      "Bash(bin/unity-test:*)",
+      "Bash(bin/unity-shot:*)",
+      "Bash(unity status:*)",
+      "Bash(unity command console:*)",
+      "Bash(unity command console_status:*)",
+      "Bash(unity command recompile_status:*)",
+      "Bash(unity command editor_status:*)",
+      "Bash(unity command list_open_scenes:*)",
+      "Bash(unity command get_scene_hierarchy:*)",
+      "Bash(unity command list_tests:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}
