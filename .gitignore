@@ -113,3 +113,10 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Obsidian vault in docs/: share settings, not per-user window layout
+/docs/.obsidian/workspace*.json
+/docs/.obsidian/cache
+
+# Claude Code per-user settings
+/.claude/settings.local.json
