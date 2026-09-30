@@ -11,12 +11,12 @@ Development status and agent handoff notes are tracked in [agent.md](agent.md).
 1. Clone the repository, or download its ZIP from GitHub and extract it:
 
    ```bash
-   git clone https://github.com/AdaM404-dev/NET.runner-92-2026-09-29_22-29-57.git
+   git clone https://github.com/AdaM404-dev/NET.runner-92.git
    ```
 
 2. In Unity Hub, add the cloned or extracted project folder. Select the folder that directly contains `Assets`, `Packages`, and `ProjectSettings`.
 3. Open it with Unity **6000.6.2f1**. Let Unity download the packages and finish importing the assets on first launch. The generated `Library` folder does not need to be downloaded from GitHub.
-4. In the Project window, open `Assets/Scenes/MainTest.unity` and press **Play** to try the warehouse and NEXUS player. Open `Assets/Scenes/CharacterPreview.unity` for the stationary character preview. See [tutorial.md](tutorial.md) for the movement implementation guide.
+4. In the Project window, open `Assets/Scenes/MainTest.unity` and press **Play** to try the warehouse and NEXUS player. Open `Assets/Scenes/CharacterPreview.unity` for the stationary character preview. See [docs/systems/player-movement.md](docs/systems/player-movement.md) for the movement implementation guide.
 
 ### Bring the assets into another Unity project
 
