@@ -26,13 +26,20 @@ For the playable character, drag `Assets/Prefabs/NEXUS_Player.prefab` into a sce
 
 ## Included assets
 
+- `ArtSource/K7_Industrial_Robot/`: the complete K7 enemy robot package, including its Blender source, FBX LODs, 2K/4K textures, Unity setup helpers, previews, authoring scripts and validation reports. See its [README](ArtSource/K7_Industrial_Robot/README.md).
 - `Assets/Environment/Warehouse_NearFuture/`: the futuristic warehouse visual and collision FBX models, textures, and Unity metadata.
 - `Assets/Characters/NEXUS/`: the refined NEXUS character, first-person arms, LOD models, textures, and Unity metadata.
 - `Assets/Materials/NEXUS/`, `Assets/Prefabs/`, and `Assets/Animations/`: materials and prefabs for the imported models.
 - `Assets/Scenes/MainTest.unity` and `Assets/Scenes/CharacterPreview.unity`: asset preview scenes. `SampleScene.unity` remains the startup scene.
 - `Assets/Documentation/`: warehouse source notes and character asset attribution.
 
-The preview controller uses Unity's legacy Input API, so the project enables both input backends. Unity-generated `Library`, `Temp`, `Logs`, and similar directories are excluded from Git. Source Blender files and packaged archives remain in the original asset folders outside this project; the repository contains their Unity-ready exports.
+The preview controller uses Unity's legacy Input API, so the project enables both input backends. Unity-generated `Library`, `Temp`, `Logs`, and similar directories are excluded from Git. NEXUS and warehouse Blender sources and packaged archives remain outside this project. The complete K7 source package is included under `ArtSource`, outside Unity's automatically imported `Assets` folder.
+
+### Import the K7 enemy robot
+
+Copy the `FBX`, `Textures` and `Unity` folders from `ArtSource/K7_Industrial_Robot` into `Assets/Characters/K7_Industrial_Robot`. After Unity imports the files and compiles the helpers, select `FBX/K7_Robot.fbx` and run **Tools > K7 > Build Prefab from Selected FBX**. The supplied helper creates materials for URP and a prefab with the LODs and gameplay sockets. Keep the Blender project and authoring scripts in `ArtSource`.
+
+The upload preserves the original package. The K7 prefab has not been generated or tested in this repository; its AI, movement and combat behavior still need game integration. See the package README for setup instructions and the original validation limits.
 
 The imported preview materials were authored with the Built-in Standard shader. Convert them to URP materials in the Unity editor if they appear magenta in this URP project.
 
