@@ -23,14 +23,24 @@ it as the default and ask before crossing a boundary.
   this project (`agent.md` item V-02).
 - Source attribution and licences go in `Assets/Documentation/`.
 
+## Platforms
+
+Samuel works on Linux, AdaM404 on Windows. Consequences:
+
+- The Linux editor adds two Linux-host toolchain packages to
+  `Packages/manifest.json` and touches some `ProjectSettings` files. Those
+  changes are never committed; details in [[architecture/tooling]].
+- File and folder names must not differ only by letter case, and script
+  references must match the file's exact case: Windows ignores case, Linux
+  does not.
+- Line endings are normalised by `.gitattributes`; Unity YAML and `.meta`
+  files are always LF.
+
 ## Open questions for the team
 
 1. **Git LFS.** The repository has no LFS; binaries up to 24 MB are in normal
    history (about 155 MB after nine commits). Moving existing files into LFS
    rewrites history and needs a fresh clone by everyone, which is cheapest to
    do now. The alternative is LFS for new files only.
-2. **Editor platforms.** The Linux editor adds two Linux toolchain packages
-   to `Packages/manifest.json`. Which OS does each person use, and should
-   those entries be committed?
-3. **Branching.** Proposed: feature branches and PRs, no direct pushes to `main`.
-4. **Visibility.** The repository is public; is that intended?
+2. **Branching.** Proposed: feature branches and PRs, no direct pushes to `main`.
+3. **Visibility.** The repository is public; is that intended?

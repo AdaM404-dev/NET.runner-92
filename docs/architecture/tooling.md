@@ -67,6 +67,10 @@ Full logs: `Logs/cli-*.log`. Test results: `Logs/test-results-<mode>.xml`.
 The editor binary is resolved from `ProjectSettings/ProjectVersion.txt` under
 `~/Unity/Hub/Editor/`; override with `UNITY_EDITOR=/path/to/Unity`.
 
+These are bash scripts and have only been run on Linux. On Windows they
+would need Git Bash and `UNITY_EDITOR` pointing at `Unity.exe`; that is
+untested. The `unity command ...` bridge is the same on every platform.
+
 Timings on the development machine: first import about 2 minutes, a warm
 compile check about 25 seconds, an EditMode test run about 75 seconds, a
 Linux player build about 5 minutes (356 MB output).
@@ -77,8 +81,9 @@ Linux player build about 5 minutes (356 MB output).
   `com.unity.toolchain.linux-x86_64-linux` to `Packages/manifest.json`, and
   may touch `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED`
   define), `EditorBuildSettings.asset` and `QualitySettings.asset` (a
-  serialization version bump). These are left uncommitted until the team
-  decides; see [[assets/handoff]].
+  serialization version bump). These are never committed: the two packages
+  are toolchains for a Linux host, and the other contributor works on
+  Windows. Stage files by name so they stay out; see [[assets/handoff]].
 - A player build rewrites three URP assets in `Assets/Settings/` and
   `ProjectSettings/GraphicsSettings.asset`. Restore with
   `git checkout -- Assets/Settings` unless the change is intended.

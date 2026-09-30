@@ -1,8 +1,9 @@
 # NET.runner-92
 
 First-person cyberpunk RPG in Unity `6000.6.2f1` (URP). Two people: Samuel
-(gameplay code, works with Claude Code) and AdaM404 (art and graphical
-content, works with his own AI agent).
+(gameplay code, on Linux, works with Claude Code) and AdaM404 (art and
+graphical content, on Windows, works with his own AI agent). Anything
+committed has to work on both platforms.
 
 @AGENTS.md
 
@@ -90,8 +91,9 @@ ideas briefly the first time they come up.
   (`git mv` both) so GUIDs survive. Never regenerate a `.meta`.
 - `Library/`, `Temp/`, `Logs/`, `Builds/`, `UserSettings/` stay out of git.
 - On Linux the editor rewrites `Packages/manifest.json`,
-  `packages-lock.json` and two `ProjectSettings` files on its own. Do not
-  commit those changes unless the team has agreed to; stage files by name.
+  `packages-lock.json` and several `ProjectSettings` files on its own. Never
+  commit those: the added packages are Linux-host toolchains and the
+  teammate works on Windows. Stage files by name, not `git add -A`.
   See "Known platform quirks" in `docs/architecture/tooling.md`.
 - Art folders (`Assets/Characters`, `Environment`, `Materials`, `Animations`)
   and the preview scenes belong to the teammate. Do not modify them without
