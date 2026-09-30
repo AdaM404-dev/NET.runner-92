@@ -117,6 +117,7 @@ InitTestScene*.unity*
 # Obsidian vault in docs/: share settings, not per-user window layout
 /docs/.obsidian/workspace*.json
 /docs/.obsidian/cache
+/docs/.obsidian/graph.json
 
 # Claude Code per-user settings
 /.claude/settings.local.json
