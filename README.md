@@ -2,6 +2,8 @@
 
 Unity 6.6 project (`6000.6.2f1`). Open this directory in Unity Hub.
 
+Development status and agent handoff notes are tracked in [agent.md](agent.md).
+
 ## Import into Unity
 
 ### Open the complete project
