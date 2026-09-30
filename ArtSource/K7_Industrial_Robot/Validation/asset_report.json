@@ -1,0 +1,226 @@
+{
+  "blender": "5.0.0",
+  "lods": [
+    {
+      "level": 0,
+      "triangles": 128304,
+      "vertices": 65080,
+      "renderers": 12,
+      "height_m": 2.0,
+      "ground_z_m": 0.0,
+      "bounds_m": [
+        [
+          -0.42399999499320984,
+          0.42399999499320984
+        ],
+        [
+          -0.23849999904632568,
+          0.2378000020980835
+        ],
+        [
+          0.0,
+          2.0
+        ]
+      ],
+      "nonrigid_vertices": 0,
+      "bad_object_transforms": 0,
+      "uv_out_of_range": 0,
+      "degenerate_triangles": 0,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    {
+      "level": 1,
+      "triangles": 67992,
+      "vertices": 34924,
+      "renderers": 12,
+      "height_m": 1.9999217987060547,
+      "ground_z_m": 0.0,
+      "bounds_m": [
+        [
+          -0.4239746034145355,
+          0.4239840805530548
+        ],
+        [
+          -0.23849999904632568,
+          0.23780487477779388
+        ],
+        [
+          0.0,
+          1.9999217987060547
+        ]
+      ],
+      "nonrigid_vertices": 0,
+      "bad_object_transforms": 0,
+      "uv_out_of_range": 0,
+      "degenerate_triangles": 0,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    {
+      "level": 2,
+      "triangles": 32712,
+      "vertices": 17284,
+      "renderers": 12,
+      "height_m": 1.9995933953032363,
+      "ground_z_m": 0.00028143494273535907,
+      "bounds_m": [
+        [
+          -0.4238967299461365,
+          0.42392677068710327
+        ],
+        [
+          -0.23809030652046204,
+          0.2378121018409729
+        ],
+        [
+          0.00028143494273535907,
+          1.9998748302459717
+        ]
+      ],
+      "nonrigid_vertices": 0,
+      "bad_object_transforms": 0,
+      "uv_out_of_range": 0,
+      "degenerate_triangles": 0,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    {
+      "level": 3,
+      "triangles": 14744,
+      "vertices": 8300,
+      "renderers": 12,
+      "height_m": 1.9988664409611374,
+      "ground_z_m": 0.0006477811839431524,
+      "bounds_m": [
+        [
+          -0.4239112436771393,
+          0.4239698052406311
+        ],
+        [
+          -0.23720456659793854,
+          0.23781360685825348
+        ],
+        [
+          0.0006477811839431524,
+          1.9995142221450806
+        ]
+      ],
+      "nonrigid_vertices": 0,
+      "bad_object_transforms": 0,
+      "uv_out_of_range": 0,
+      "degenerate_triangles": 0,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    }
+  ],
+  "skeleton_bones": 52,
+  "materials": [
+    "MAT_K7_Armor",
+    "MAT_K7_Internal",
+    "MAT_K7_Metal",
+    "MAT_K7_Rubber",
+    "MAT_K7_SensorGlass",
+    "MAT_K7_Cables",
+    "MAT_K7_StatusLight"
+  ],
+  "sockets": {
+    "HeadPoint": {
+      "blender_world_xyz": [
+        0.0,
+        0.0,
+        2.0
+      ],
+      "bone": "Head"
+    },
+    "VisionOrigin": {
+      "blender_world_xyz": [
+        0.0,
+        -0.13899999856948853,
+        1.9299999475479126
+      ],
+      "bone": "Head"
+    },
+    "AudioOrigin": {
+      "blender_world_xyz": [
+        0.0,
+        -0.06499999761581421,
+        1.7380000352859497
+      ],
+      "bone": "Chest"
+    },
+    "HackPoint": {
+      "blender_world_xyz": [
+        0.0,
+        0.24199999868869781,
+        1.6299999952316284
+      ],
+      "bone": "Chest"
+    },
+    "ChestPoint": {
+      "blender_world_xyz": [
+        0.0,
+        -0.1599999964237213,
+        1.600000023841858
+      ],
+      "bone": "Chest"
+    },
+    "Hand_L_Point": {
+      "blender_world_xyz": [
+        0.37999993562698364,
+        -0.04999999701976776,
+        1.00600004196167
+      ],
+      "bone": "Hand_L"
+    },
+    "Foot_L_Point": {
+      "blender_world_xyz": [
+        0.1550000011920929,
+        -0.06499999761581421,
+        1.862645149230957e-09
+      ],
+      "bone": "Foot_L"
+    },
+    "Hand_R_Point": {
+      "blender_world_xyz": [
+        -0.37999993562698364,
+        -0.04999999701976776,
+        1.00600004196167
+      ],
+      "bone": "Hand_R"
+    },
+    "Foot_R_Point": {
+      "blender_world_xyz": [
+        -0.1550000011920929,
+        -0.06499999761581421,
+        1.862645149230957e-09
+      ],
+      "bone": "Foot_R"
+    }
+  },
+  "IK": {
+    "Foot_L": {
+      "target_error_m": 1.5884617301595968e-05,
+      "pass": true
+    },
+    "Hand_L": {
+      "target_error_m": 8.368328811753125e-06,
+      "pass": true
+    },
+    "Foot_R": {
+      "target_error_m": 1.5652526583954845e-05,
+      "pass": true
+    },
+    "Hand_R": {
+      "target_error_m": 8.275207294034436e-06,
+      "pass": true
+    }
+  },
+  "unity_editor_tested": false,
+  "notes": [
+    "LOD0 UV components occupy exclusive atlas tiles. Each tile is smart-unwrapped; detailed raster overlap audit is in uv_validation.json.",
+    "Closed parts overlap intentionally at mechanical assemblies. Full swept-volume collision certification is not claimed.",
+    "Animation is an articulation diagnostic, not a finished locomotion library.",
+    "Generic Unity import is the supported default. Humanoid mapping needs manual Avatar configuration."
+  ]
+}
