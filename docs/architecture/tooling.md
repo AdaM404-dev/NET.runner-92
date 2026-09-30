@@ -68,12 +68,26 @@ The editor binary is resolved from `ProjectSettings/ProjectVersion.txt` under
 `~/Unity/Hub/Editor/`; override with `UNITY_EDITOR=/path/to/Unity`.
 
 Timings on the development machine: first import about 2 minutes, a warm
-compile check about 25 seconds, an EditMode test run about 75 seconds.
+compile check about 25 seconds, an EditMode test run about 75 seconds, a
+Linux player build about 5 minutes (356 MB output).
 
 ## Known platform quirks
 
 - The Linux editor adds `com.unity.sdk.linux-x86_64` and
   `com.unity.toolchain.linux-x86_64-linux` to `Packages/manifest.json`, and
   may touch `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED`
-  define) and `EditorBuildSettings.asset`. These are left uncommitted until
-  the team decides; see [[assets/handoff]].
+  define), `EditorBuildSettings.asset` and `QualitySettings.asset` (a
+  serialization version bump). These are left uncommitted until the team
+  decides; see [[assets/handoff]].
+- A player build rewrites three URP assets in `Assets/Settings/` and
+  `ProjectSettings/GraphicsSettings.asset`. Restore with
+  `git checkout -- Assets/Settings` unless the change is intended.
+- Closing the editor rewrote eight emissive materials in
+  `Assets/Materials/Environment/`, dropping their `_EMISSION` keyword, because
+  the Built-in Standard shader is not valid under URP. Restore them with
+  `git checkout -- Assets/Materials` until the materials are converted
+  (`agent.md` V-02); committing that change would lose the emission setup.
+- `unity command quit` fails in edit mode with Pipeline `0.8.0-exp.1`
+  (a `DontDestroyOnLoad` error). Close the editor window instead, or run
+  `unity command eval 'UnityEditor.EditorApplication.Exit(0);'`, which exits
+  without saving.
