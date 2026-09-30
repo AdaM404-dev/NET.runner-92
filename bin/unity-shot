@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Capture the open editor's Game or Scene view to Logs/shots/<name>.png.
+# Needs the editor open on this project and the Unity CLI (`unity`) on PATH.
+# Usage: bin/unity-shot [name] [game|scene] [width] [height]
+# The CLI's own save_path only writes inside Assets/, so this decodes the
+# inline image instead and keeps screenshots out of the asset database.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+name="${1:-shot-$(date +%H%M%S)}"
+view="${2:-game}"
+width="${3:-1280}"
+height="${4:-720}"
+case "$view" in
+  game|scene) ;;
+  *) echo "usage: bin/unity-shot [name] [game|scene] [width] [height]" >&2; exit 2 ;;
+esac
+
+out="Logs/shots/$name.png"
+mkdir -p Logs/shots
+
+UNITY_NO_BANNER=1 unity --json command "capture_${view}_view" --width "$width" --height "$height" \
+  --project-path "$PWD" | python3 -c '
+import base64, json, sys
+reply = json.load(sys.stdin)
+image = (reply.get("data", {}).get("result") or {}).get("base64")
+if not image:
+    sys.exit("capture failed: " + json.dumps(reply)[:400])
+open(sys.argv[1], "wb").write(base64.b64decode(image))
+' "$out"
+
+echo "$out"

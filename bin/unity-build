@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Headless Linux player build of the scenes enabled in Build Settings.
+# Output: Builds/Linux/NET.runner-92.x86_64   Full log: Logs/cli-build.log
+set -uo pipefail
+source "$(dirname "$0")/_unity.sh"
+
+out="$PROJECT_ROOT/Builds/Linux/NET.runner-92.x86_64"
+mkdir -p "$(dirname "$out")"
+
+status=0
+run_unity build -nographics -quit -buildTarget Linux64 -buildLinux64Player "$out" || status=$?
+
+errors="$(print_compile_errors)"
+[[ -n "$errors" ]] && echo "$errors"
+if [[ $status -ne 0 || ! -x "$out" ]]; then
+  echo "FAILED: build did not complete (Unity exit $status). See $UNITY_LOG"
+  exit 1
+fi
+echo "OK: $out"

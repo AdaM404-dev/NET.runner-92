@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Run Unity Test Framework tests headlessly and print a summary plus failures.
+# Usage: bin/unity-test [edit|play] [test-name-filter]
+# Results: Logs/test-results-<mode>.xml   Full log: Logs/cli-test-<mode>.log
+set -uo pipefail
+source "$(dirname "$0")/_unity.sh"
+
+mode="${1:-edit}"
+filter="${2:-}"
+case "$mode" in
+  edit) platform=EditMode; extra=(-nographics) ;;
+  play) platform=PlayMode; extra=() ;;
+  *) echo "usage: bin/unity-test [edit|play] [test-name-filter]" >&2; exit 2 ;;
+esac
+[[ -n "$filter" ]] && extra+=(-testFilter "$filter")
+
+results="Logs/test-results-$mode.xml"
+rm -f "$results"
+
+status=0
+run_unity "test-$mode" -runTests -testPlatform "$platform" -testResults "$PROJECT_ROOT/$results" "${extra[@]}" || status=$?
+
+if [[ ! -s "$results" ]]; then
+  errors="$(print_compile_errors)"
+  [[ -n "$errors" ]] && echo "$errors"
+  echo "FAILED: no test results written (Unity exit $status). See $UNITY_LOG"
+  exit 1
+fi
+
+python3 - "$results" <<'PY'
+import sys, xml.etree.ElementTree as ET
+
+run = ET.parse(sys.argv[1]).getroot()
+total, passed, failed, skipped = (int(run.get(k, 0)) for k in ("total", "passed", "failed", "skipped"))
+for case in run.iter("test-case"):
+    if case.get("result") == "Failed":
+        print(f"FAIL {case.get('fullname')}")
+        message = case.findtext("failure/message") or ""
+        for line in message.strip().splitlines():
+            print(f"     {line}")
+if total == 0:
+    print("NO TESTS: the run completed but found no tests for this mode.")
+    sys.exit(4)
+print(f"{'OK' if failed == 0 else 'FAILED'}: {passed} passed, {failed} failed, {skipped} skipped, {total} total")
+sys.exit(0 if failed == 0 else 1)
+PY

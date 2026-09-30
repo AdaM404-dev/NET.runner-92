@@ -1,6 +1,6 @@
 # Coding NEXUS character movement
 
-This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/Scripts/NexusPlayer.cs`](Assets/Scripts/NexusPlayer.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
+This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](../../Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
 
 ## Movement pipeline
 

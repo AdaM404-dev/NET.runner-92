@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Headless import + script compile check. Prints only compiler errors.
+# Exit 0 = compiles cleanly. Full log: Logs/cli-compile.log
+set -uo pipefail
+source "$(dirname "$0")/_unity.sh"
+
+status=0
+run_unity compile -nographics -quit || status=$?
+
+errors="$(print_compile_errors)"
+if [[ -n "$errors" ]]; then
+  echo "$errors"
+  echo "FAILED: $(wc -l <<<"$errors") compile error(s). Full log: $UNITY_LOG"
+  exit 1
+fi
+if [[ $status -ne 0 ]]; then
+  echo "FAILED: Unity exited with $status and no compiler errors. See $UNITY_LOG"
+  tail -n 20 "$UNITY_LOG"
+  exit "$status"
+fi
+echo "OK: project imports and compiles ($unity_version)."

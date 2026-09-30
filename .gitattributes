@@ -1,0 +1,33 @@
+# Text: normalise line endings; Unity YAML always LF.
+* text=auto
+*.cs     text diff=csharp
+*.md     text
+*.json   text
+*.meta   text eol=lf
+*.unity  text eol=lf merge=unityyamlmerge
+*.prefab text eol=lf merge=unityyamlmerge
+*.asset  text eol=lf merge=unityyamlmerge
+*.mat    text eol=lf merge=unityyamlmerge
+*.anim   text eol=lf merge=unityyamlmerge
+*.controller text eol=lf merge=unityyamlmerge
+bin/*    text eol=lf
+
+# The unityyamlmerge driver is opt-in per machine; without it git falls back
+# to its normal text merge. To enable (adjust the editor path):
+#   git config merge.unityyamlmerge.name "Unity SmartMerge"
+#   git config merge.unityyamlmerge.driver \
+#     '"<Editor>/Data/Tools/UnityYAMLMerge" merge -p %O %B %A %A'
+
+# Binary assets. Git LFS is not enabled yet: see docs/assets/handoff.md.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.tga  binary
+*.psd  binary
+*.exr  binary
+*.fbx  binary
+*.wav  binary
+*.ogg  binary
+*.mp3  binary
+*.mp4  binary
+*.cubemap binary
