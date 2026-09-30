@@ -35,3 +35,5 @@ For the playable character, drag `Assets/Prefabs/NEXUS_Player.prefab` into a sce
 The preview controller uses Unity's legacy Input API, so the project enables both input backends. Unity-generated `Library`, `Temp`, `Logs`, and similar directories are excluded from Git. Source Blender files and packaged archives remain in the original asset folders outside this project; the repository contains their Unity-ready exports.
 
 The imported preview materials were authored with the Built-in Standard shader. Convert them to URP materials in the Unity editor if they appear magenta in this URP project.
+
+end of README.md
