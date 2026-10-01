@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How decisions and next steps work
+    url: https://github.com/AdaM404-dev/NET.runner-92/blob/main/docs/decisions/README.md
+    about: Statuses, labels and how to agree, explained in the project docs.

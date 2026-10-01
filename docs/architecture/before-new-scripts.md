@@ -3,7 +3,12 @@
 The game runs, but what exists was built to preview the art, not to grow a
 game on. This page lists what should change before new gameplay scripts are
 added, why, in which order, and who does it. Nothing on this page has been
-done yet. Each item becomes a task in [[backlog]] once its tag is agreed.
+done yet.
+
+**Each step and each decision is now a GitHub issue** with the full
+reasoning (why, what will change, what stays the same, risks, checks), linked
+below. The pinned [Roadmap, issue #5](https://github.com/AdaM404-dev/NET.runner-92/issues/5)
+keeps the order; [[decisions/README]] explains how the issues work.
 
 Written 2026-09-30 from the inspection described in the `systems/` notes
 (commit `df3a31d`).
@@ -26,6 +31,8 @@ Samuel reviews).
 
 ### 1. Name the layers and stop using layer numbers in code
 
+Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6)
+
 | | |
 | --- | --- |
 | Now | Layers 8 (player) and 9 (the whole warehouse) are used but have no names. The code writes `1 << 9` and `~(1 << 8)`. |
@@ -35,23 +42,29 @@ Samuel reviews).
 
 ### 2. Remove template leftovers and set the project's identity
 
+Issue: [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7)
+
 | | |
 | --- | --- |
 | Now | `Assets/TutorialInfo/` and `Assets/Readme.asset` from Unity's template; five prefabs nothing uses; company name `DefaultCompany`. |
 | Why it matters | Leftovers show up in every search. The company name decides where save files go on players' computers, so it should be final before any save system exists. |
-| Change | Delete the template files. Keep `NEXUS_FirstPerson_Arms.prefab` until decision D2; delete the four `NEXUS_FullBody_LOD*` prefabs if AdaM404 agrees. Set the company name (decision D5). |
+| Change | Delete the template files. Keep `NEXUS_FirstPerson_Arms.prefab` until [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) is decided; delete the four `NEXUS_FullBody_LOD*` prefabs if AdaM404 agrees. Set the company name (decision D5). |
 | Size, tag | S, CLAUDE |
 
 ### 3. A gameplay scene of our own, the warehouse as a prefab, one player prefab
+
+Issue: [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8)
 
 | | |
 | --- | --- |
 | Now | The 119 door scripts, 704 colliders and 106 lights exist only inside `MainTest.unity` (2 MB), the teammate's preview scene. The player exists three times: in `MainTest`, in `CharacterPreview`, and as `NEXUS_Player.prefab`, which nothing uses. The build list starts with the empty `SampleScene`. |
 | Why it blocks | Every gameplay object (a locked door, a terminal, an enemy spawn, the navigation mesh) would be added inside the teammate's scene, so both of us would edit the same 2 MB file and fight over merges; if he re-exports the level, our work detaches. Every player feature would have to be added to three copies. |
 | Change | Save `Warehouse_NearFuture` (with its doors, colliders and lights) as a prefab under `Assets/Environment/Warehouse_NearFuture/` (art side). Create `Assets/Scenes/Game/Warehouse.unity` (our side) holding that prefab and an instance of `NEXUS_Player.prefab`. `MainTest` keeps previewing the same warehouse prefab. Put the new scene first in the build list and remove `SampleScene`. |
-| Size, tag | M, CLAUDE. **Needs AdaM404's agreement** (decision D3), because it restructures his scene. If he has not answered yet, continue with steps 4 to 7 and come back to this one. |
+| Size, tag | M, CLAUDE. **Needs AdaM404's agreement** ([#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18)), because it restructures his scene. If he has not answered yet, continue with steps 4 to 7 and come back to this one. |
 
 ### 4. Give the code a structure and a first test
+
+Issue: [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9)
 
 | | |
 | --- | --- |
@@ -62,6 +75,8 @@ Samuel reviews).
 
 ### 5. One way to interact with anything
 
+Issue: [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)
+
 | | |
 | --- | --- |
 | Now | `Interact()` looks for a `NexusDoor` and nothing else. It casts from the camera, so in third person it reaches 0.3 m. For 71 of 113 doors "open" means shut. Every door says "Access granted". |
@@ -71,6 +86,8 @@ Samuel reviews).
 
 ### 6. Split `NexusPlayer` into small components
 
+Issue: [#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11)
+
 | | |
 | --- | --- |
 | Now | One 135-line class handles input, movement, two camera modes, interaction, the HUD, cursor locking, debug keys, respawn, preview mode and an auto-test. |
@@ -79,6 +96,8 @@ Samuel reviews).
 | Size, tag | L, PAIR. Depends on 4 and 5. |
 
 ### 7. Switch to the Input System
+
+Issue: [#12](https://github.com/AdaM404-dev/NET.runner-92/issues/12)
 
 | | |
 | --- | --- |
@@ -109,9 +128,10 @@ Not blocking, but cheap if done early:
 | Import the K7 robot (open item V-07) | after step 4, so its scripts get their own assembly; after the navigation mesh |
 | Lighting pass: shadows on key lights, reflection probes, baked or probe lighting, occlusion data | art, when the look is decided |
 | Performance baseline in a built game, then budgets | once the gameplay scene exists |
-| Git LFS (open item V-04) | team decision, sooner is cheaper |
+| Git LFS ([#17](https://github.com/AdaM404-dev/NET.runner-92/issues/17)) | team decision, sooner is cheaper |
 | Automatic compile and test run on every pull request | after step 4 |
 | Remove unused packages (Visual Scripting, AI Inference, Version Control) | after the design kickoff |
+| An editor command that checks incoming art (missing references, Built-in shaders, oversized textures, naming) | when art arrives regularly |
 
 ## What is fine and should stay
 
@@ -128,14 +148,14 @@ Not blocking, but cheap if done early:
 
 ## Decisions needed
 
-| # | Question | Recommendation | Who |
-| --- | --- | --- | --- |
-| D1 | Third person: part of the game or a debug view? | Debug view only; the game is first-person. It keeps the camera work small. | Samuel |
-| D2 | First person: full body (today) or the arms-only model? | Keep the full body for now (it works and shows the cybernetic arm); decide again when aiming or weapons arrive. Keep the arms prefab until then. | Samuel, AdaM404 |
-| D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both |
-| D4 | Target platforms | PC only (Windows and Linux); remove the Mobile quality level. | both |
-| D5 | Company name and code namespace | Pick the team name for the company; namespace `NetRunner`. | both |
-| D6 | Doors that are exported open | The door script works out from the frame which pose is shut; later, export doors shut. | Samuel, AdaM404 |
+| # | Question | Recommendation | Who | Issue |
+| --- | --- | --- | --- | --- |
+| D1 | Third person: part of the game or a debug view? | Debug view only; the game is first-person. It keeps the camera work small. | Samuel | [#13](https://github.com/AdaM404-dev/NET.runner-92/issues/13) |
+| D2 | First person: full body (today) or the arms-only model? | Keep the full body for now (it works and shows the cybernetic arm); decide again when aiming or weapons arrive. Keep the arms prefab until then. | Samuel, AdaM404 | [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) |
+| D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
+| D4 | Target platforms | PC only (Windows and Linux); remove the Mobile quality level. | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
+| D5 | Company name and code namespace | Pick the team name for the company; namespace `NetRunner`. | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
+| D6 | Doors that are exported open | The door script works out from the frame which pose is shut; later, export doors shut. | Samuel, AdaM404 | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 
 ## After these steps
 
