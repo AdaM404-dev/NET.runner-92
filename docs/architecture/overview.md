@@ -1,18 +1,23 @@
 # Architecture overview
 
+How the code is organised today, and the structure it is moving to. For
+where every file and object is, see [[architecture/project-map]].
+
 ## Current state (2026-09-30)
 
 All gameplay code is two MonoBehaviours in `Assets/Scripts/`, in the global
 namespace, with no assembly definitions and no tests:
 
-- `NexusPlayer.cs` — input (legacy `Input`), movement on a
-  `CharacterController`, first/third-person camera, an `OnGUI` HUD, door
-  interaction, and a command-line auto-test (`-nexus-autotest`) that walks,
-  jumps, captures screenshots and writes to `../../QA/Runtime`, outside the
-  repository. See [[systems/player-movement]].
-- `NexusDoor.cs` — toggled swing or lift door.
+- `NexusPlayer.cs`: input (legacy `Input`), movement on a
+  `CharacterController`, first- and third-person camera, door interaction, an
+  `OnGUI` HUD, debug keys, preview mode, and a command-line auto-test. See
+  [[systems/player]], [[systems/camera]] and [[systems/player-movement]].
+- `NexusDoor.cs`: a door that swings or lifts when toggled. See
+  [[systems/doors-and-interaction]].
 
-`Assets/TutorialInfo/` and `Assets/Readme.asset` are Unity template leftovers.
+Scene setup (doors, colliders, lights) lives inside the `MainTest` scene;
+there is no gameplay scene of our own yet. What has to change before new
+scripts are added is listed, in order, in [[architecture/before-new-scripts]].
 
 ## Target structure
 
@@ -20,27 +25,32 @@ Code stays under `Assets/Scripts/`, split into assemblies so that compile
 times stay short and dependencies only point one way:
 
 ```
-NetRunner.Core        plain C#, no scenes: stats, inventory, quests, saves, hacking rules
-      ^
-NetRunner.Gameplay    MonoBehaviours: player, interaction, AI, world objects
-      ^
+NetRunner.Core        plain C#, no scenes: stats, inventory, quests, saves, hacking
+      ^               rules, interfaces such as IInteractable, movement maths
+NetRunner.Gameplay    MonoBehaviours: PlayerInput, PlayerMotor, PlayerCamera,
+      ^               PlayerInteractor, doors, AI, world objects
 NetRunner.UI          HUD, menus
 NetRunner.Editor      editor-only tools and validation (Editor platform only)
 NetRunner.Tests.EditMode / NetRunner.Tests.PlayMode
 ```
+
+Asset helper scripts delivered with art (for example the K7 robot's) get their
+own assembly next to their asset instead of joining ours.
 
 Principles:
 
 - **Rules in plain C#.** Anything that can be decided without a scene lives
   in `Core` and is tested in EditMode, which runs in seconds.
 - **Thin MonoBehaviours.** They gather input, call `Core`, and present results.
-- **Content as data.** Items, abilities, enemies and quests are
-  ScriptableObjects; adding content should not require new code.
+- **Content as data.** Items, abilities, enemies, quests and tuning values
+  are ScriptableObjects; adding content should not require new code.
 - **Input System package** for all new input.
+- **Named layers and `LayerMask` fields**, never layer numbers in code.
 
-## Planned first refactor
+## First refactors
 
-Split `NexusPlayer` into an input reader, a motor, a camera rig and a HUD,
-keeping behaviour identical, and move the auto-test into a PlayMode test that
-writes inside the project. This closes `agent.md` item V-03. The prefab
-`NEXUS_Player.prefab` must be re-wired through the editor, not by editing YAML.
+Steps 4 to 7 of [[architecture/before-new-scripts]]: the structure above with
+a first test, the `IInteractable` contract, splitting `NexusPlayer` into the
+components listed above with identical behaviour, and the switch to the Input
+System (closes `agent.md` item V-03). Scenes and prefabs are re-wired through
+the editor, never by editing their YAML.
