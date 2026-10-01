@@ -15,14 +15,21 @@ before editing it and only append to its tables; two agents write to it.
 
 - `agent.md` — what is done, in progress, unverified; the work log.
 - `docs/` — an Obsidian vault of plain Markdown. Start at `docs/README.md`.
-  - `design/` the game itself, `architecture/` how the code is organised,
-    `systems/` one note per system, `decisions/` ADRs, `assets/` art pipeline
-    and handoff rules, `backlog.md` tagged tasks, `journal.md` session notes.
+  - `architecture/project-map.md` says where every file and object is;
+    check it before searching.
+  - `guide/` the learning path for Samuel, `design/` the game itself,
+    `architecture/` project and code structure, `systems/` one note per
+    system, `decisions/` ADRs, `assets/` art pipeline and handoff rules,
+    `backlog.md` tagged tasks, `journal.md` session notes.
 - Do not restate in this file what `agent.md` or `docs/` already record.
 
 Read the matching `docs/systems/` note before changing a system, and update
 it in the same commit when behaviour or public API changes. A decision that
 took real discussion gets an ADR in `docs/decisions/`.
+
+**Before adding any new gameplay script**, check
+`docs/architecture/before-new-scripts.md`: its seven "must do first" steps
+come first unless Samuel explicitly skips one.
 
 ## Commands
 
@@ -44,6 +51,7 @@ unity command console --level error   # read the console
 unity command recompile               # then: unity command recompile_status
 unity command run_tests
 bin/unity-shot <name> [game|scene]    # screenshot into Logs/shots/
+bin/unity-inspect [player|scene|environment|animation|doors|map]  # read-only facts
 ```
 
 `unity command` with no arguments lists everything the editor exposes; the
@@ -98,6 +106,8 @@ ideas briefly the first time they come up.
 - Art folders (`Assets/Characters`, `Environment`, `Materials`, `Animations`)
   and the preview scenes belong to the teammate. Do not modify them without
   asking; see `docs/assets/handoff.md`.
+- Never save `MainTest` or `CharacterPreview` as a side effect: URP marks
+  them unsaved on its own. Entering and leaving Play mode is safe.
 
 ## Git
 

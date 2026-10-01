@@ -24,7 +24,17 @@ unity command run_tests            # tests inside the open editor
 unity command eval 'return Application.unityVersion;'
 bin/unity-shot maintest            # Game view -> Logs/shots/maintest.png
 bin/unity-shot layout scene        # Scene view
+bin/unity-inspect                  # read-only reports: player, scene, environment, animation
+bin/unity-inspect doors map        # more reports; see tools/inspect/
 ```
+
+`bin/unity-inspect` runs the C# snippets in `tools/inspect/` inside the
+editor. They only read; the numbers in the `docs/systems/` notes come from
+them. `tools/inspect/floorplan.py` turns `bin/unity-inspect map` into
+`docs/img/warehouse-floorplan.svg`. Snippets for `unity command eval_file`
+cannot contain `using` lines (the code is wrapped in a method, with
+`UnityEngine` and `System` already in scope), and `Object` must be written
+`UnityEngine.Object`.
 
 Notes from first use:
 
@@ -96,3 +106,10 @@ Linux player build about 5 minutes (356 MB output).
   (a `DontDestroyOnLoad` error). Close the editor window instead, or run
   `unity command eval 'UnityEditor.EditorApplication.Exit(0);'`, which exits
   without saving.
+- `MainTest` gets marked as unsaved without anyone editing it: URP attaches
+  its helper components (`UniversalAdditionalLightData` on 105 lights,
+  `UniversalAdditionalCameraData` on the camera) when it first draws them.
+  The committed scene file has none of them, so saving would add 106
+  components to the teammate's 2 MB scene. Answer **Don't Save** until the
+  team decides; agents must not save it either. Play mode is safe: Unity
+  restores the unsaved state when Play stops.
