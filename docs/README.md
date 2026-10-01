@@ -19,6 +19,8 @@ New to the project or to Unity? Read in this order:
    X → open Y".
 4. [[architecture/before-new-scripts]]: what has to change before new
    gameplay scripts are added.
+5. The [Roadmap issue #5](https://github.com/AdaM404-dev/NET.runner-92/issues/5) on GitHub: every next step and open
+   decision, in order, each with why and what will change.
 
 ## Map of the docs
 
@@ -28,9 +30,9 @@ New to the project or to Unity? Read in this order:
 | [[design/README\|design/]] | The game: pillars, core loop, RPG systems, world, netrunning |
 | [[architecture/overview\|architecture/]] | How the project is organised: [[architecture/project-map]], [[architecture/overview]] (code structure), [[architecture/before-new-scripts]], [[architecture/tooling]] (build, test, editor bridge) |
 | `systems/` | One note per system, see below |
-| [[decisions/README\|decisions/]] | Architecture decision records (ADRs) |
+| [[decisions/README\|decisions/]] | How decisions and next steps work: they are GitHub issues labelled `decision`, starting from the pinned [Roadmap #5](https://github.com/AdaM404-dev/NET.runner-92/issues/5) |
 | [[assets/handoff\|assets/]] | Art pipeline, naming, and who owns which folders |
-| [[backlog]] | Prioritised tasks, each tagged YOU WRITE / PAIR / CLAUDE |
+| [[backlog]] | Where the backlog is: the GitHub issues, and what was done before them |
 | [[journal]] | Dated session notes: what was built, what was learned |
 | `img/` | Pictures used by the notes; the floor plan is generated, see [[systems/level-warehouse]] |
 
@@ -58,4 +60,5 @@ System notes:
   same commit.
 - Numbers in the notes come from `bin/unity-inspect` (read-only reports in
   `tools/inspect/`); re-run it after the art changes.
-- A decision that took real discussion gets an ADR, so it is not re-argued.
+- A next step or a decision gets a GitHub issue with the ten sections described
+  in [[decisions/README]], so it is not re-argued.
