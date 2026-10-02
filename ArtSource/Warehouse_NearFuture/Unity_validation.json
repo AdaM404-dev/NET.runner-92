@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "doors": 119,
+  "hinged_doors": 113,
+  "loading_shutters": 6,
+  "checks": 594,
+  "all_scene_doors_closed": true,
+  "play_mode_initial_state_verified": true,
+  "formerly_open_door_toggle_cycle_verified": true,
+  "scene_saved": false,
+  "unity_version": "6000.6.2f1",
+  "execution": "Windows batchmode, nographics",
+  "input_keys_pressed_by_hand": false,
+  "unity_rendering_tested": false
+}

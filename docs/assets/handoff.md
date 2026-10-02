@@ -25,9 +25,12 @@ before crossing a boundary.
 - Source attribution and licences go in `Assets/Documentation/`.
 - Source packages that Unity must not import (Blender files, generator
   scripts) go under `ArtSource/`, like the K7 robot.
-- Proposed ([issue #16](https://github.com/AdaM404-dev/NET.runner-92/issues/16)): export
-  doors shut. Today 71 of 113 swing doors arrive standing open and the door
-  script treats that pose as "closed"; see [[systems/doors-and-interaction]].
+- AdaM404 requested all warehouse doors closed on 2026-10-02. The updated
+  art export has all 113 hinged leaves shut and six shutters fully lowered;
+  `close_doors.py` preserves this rule after rebuilding the source. Keep
+  doors closed in future art exports. The broader code/art decision in
+  [issue #16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) remains
+  open; see [[systems/doors-and-interaction]].
 - Proposed ([issue #8](https://github.com/AdaM404-dev/NET.runner-92/issues/8)): the warehouse becomes a prefab owned by art, which
   both the preview scene and our gameplay scene place.
 

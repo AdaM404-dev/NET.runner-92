@@ -1,0 +1,16 @@
+{
+  "fbx_roundtrip_import": "passed",
+  "mesh_objects": 1827,
+  "triangles": 1086728,
+  "all_meshes_have_uv0": true,
+  "all_meshes_have_materials": true,
+  "interactive_doors": 119,
+  "missing_texture_files": [],
+  "unity_runtime_tested": true,
+  "parented_door_skins": 119,
+  "all_door_skins_follow_operable_parent": true,
+  "all_119_exported_doors_closed": true,
+  "door_pose_errors": {},
+  "loading_shutters_closed": 6,
+  "unity_validation_scope": "MainTest: 119 closed initial poses, colliders and skin parents; one formerly open hall door opens/closes by scripted Toggle calls. See Unity_validation.json."
+}

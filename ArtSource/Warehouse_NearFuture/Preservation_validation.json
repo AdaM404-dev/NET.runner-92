@@ -1,0 +1,19 @@
+{
+  "source_file": "Original_Warehouse.blend",
+  "source_mesh_objects_checked": 1716,
+  "changed_original_meshes_or_transforms": [],
+  "preservation_passed": true,
+  "new_mesh_objects": 681,
+  "new_lights": 15,
+  "unchanged_footprint_m": [
+    118,
+    80
+  ],
+  "unchanged_hall_m": [
+    72,
+    44
+  ],
+  "method": "SHA-256 of original mesh vertex coordinates, polygon indices and full world transforms before and after the retrofit. Existing materials and light properties may change.",
+  "audit_stage": "Initial additive retrofit, before the 2026-10-02 closed-door revision",
+  "current_revision_validation": "Door_closure_validation.json"
+}
