@@ -1,0 +1,414 @@
+{
+  "method": "Ground-floor grid flood-fill, 0.4 m spacing, 0.54 m diameter clearance at 0.25 / 1.05 / 1.72 m; operable door leaves excluded. Base geometry only. Not a Unity NavMesh bake.",
+  "walkable_samples": 46638,
+  "reachable_samples": 45950,
+  "room_door_checks": [
+    {
+      "room": "West_Outer_L0_0",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Outer_L0_1",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Outer_L0_2",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Outer_L0_3",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Outer_L0_4",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Outer_L0_5",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Inner_L0_0",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Inner_L0_1",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Inner_L0_2",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Inner_L0_3",
+      "door_reachable": true
+    },
+    {
+      "room": "West_Inner_L0_4",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Outer_L0_0",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Outer_L0_1",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Outer_L0_2",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Outer_L0_3",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Outer_L0_4",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Outer_L0_5",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Inner_L0_0",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Inner_L0_1",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Inner_L0_2",
+      "door_reachable": true
+    },
+    {
+      "room": "South_Inner_L0_3",
+      "door_reachable": true
+    },
+    {
+      "room": "NE_Outer_L0_0",
+      "door_reachable": true
+    },
+    {
+      "room": "NE_Outer_L0_1",
+      "door_reachable": true
+    },
+    {
+      "room": "NE_Inner_L0_0",
+      "door_reachable": true
+    },
+    {
+      "room": "NE_Inner_L0_1",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_0",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_1",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_2",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_3",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_4",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_5",
+      "door_reachable": true
+    },
+    {
+      "room": "North_Service_6",
+      "door_reachable": true
+    },
+    {
+      "room": "Technical_Lower_0",
+      "door_reachable": true
+    },
+    {
+      "room": "Technical_Lower_1",
+      "door_reachable": true
+    },
+    {
+      "room": "Technical_Lower_2",
+      "door_reachable": true
+    },
+    {
+      "room": "Technical_Upper_0",
+      "door_reachable": true
+    },
+    {
+      "room": "Technical_Upper_1",
+      "door_reachable": true
+    },
+    {
+      "room": "Technical_Upper_2",
+      "door_reachable": true
+    }
+  ],
+  "unreachable_room_doors": [],
+  "upper_room_door_checks": [
+    {
+      "room": "West_Outer_L3.6_0",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Outer_L3.6_1",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Outer_L3.6_2",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Outer_L3.6_3",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Outer_L3.6_4",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Outer_L3.6_5",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Inner_L3.6_0",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Inner_L3.6_1",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Inner_L3.6_2",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Inner_L3.6_3",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "West_Inner_L3.6_4",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Outer_L3.6_0",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Outer_L3.6_1",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Outer_L3.6_2",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Outer_L3.6_3",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Outer_L3.6_4",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Outer_L3.6_5",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Inner_L3.6_0",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Inner_L3.6_1",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Inner_L3.6_2",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "South_Inner_L3.6_3",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "NE_Outer_L3.6_0",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "NE_Outer_L3.6_1",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "NE_Inner_L3.6_0",
+      "door_reachable_from_stair_landing": true
+    },
+    {
+      "room": "NE_Inner_L3.6_1",
+      "door_reachable_from_stair_landing": true
+    }
+  ],
+  "stair_checks": [
+    {
+      "name": "STAIR_West_Office",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_South_Office",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_NE_Office",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Upper_West_Link_0",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Upper_West_Link_1",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Upper_West_Link_2",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Upper_South_Link_0",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Upper_South_Link_1",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Upper_NE_Link",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Catwalk_West",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_North_Lower",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_North_Upper",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_Main",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_East",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_West_-25",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_West_10",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_West_29",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_North_-20",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_North_20",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_WestRear",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_NERear",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_NERight",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_TechRight",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_LoadingRight",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    },
+    {
+      "name": "STAIR_Exterior_TechFront",
+      "top_landing_present": true,
+      "sampled_headroom_at_least_1_8m": true,
+      "minimum_hit_headroom_m": null
+    }
+  ]
+}

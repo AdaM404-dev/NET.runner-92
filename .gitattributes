@@ -35,3 +35,4 @@ bin/*    text eol=lf
 
 # Preserve the delivered source package byte-for-byte for its SHA256 manifest.
 ArtSource/K7_Industrial_Robot/** -text
+ArtSource/Warehouse_NearFuture/** -text whitespace=cr-at-eol

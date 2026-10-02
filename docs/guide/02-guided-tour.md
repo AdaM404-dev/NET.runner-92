@@ -202,6 +202,9 @@ bin/unity-shot mytest                # screenshot of the Game view into Logs/sho
    > Answer: the script treats the pose from the model file as "closed", but
    > that door was exported standing open. Toggling turns it 95° and marks it
    > "open", which here means shut.
+   > The 2026-10-02 warehouse art revision corrects this: all doors are
+   > exported closed, so the first toggle opens them. The question above
+   > describes the earlier export.
 
 6. Where is the setting that decides which scene a built game opens first,
    and what is wrong with it?
