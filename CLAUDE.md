@@ -19,13 +19,23 @@ before editing it and only append to its tables; two agents write to it.
     check it before searching.
   - `guide/` the learning path for Samuel, `design/` the game itself,
     `architecture/` project and code structure, `systems/` one note per
-    system, `decisions/` ADRs, `assets/` art pipeline and handoff rules,
-    `backlog.md` tagged tasks, `journal.md` session notes.
+    system, `decisions/README.md` how decision issues work, `assets/` art
+    pipeline and handoff rules, `journal.md` session notes.
+- **GitHub issues labelled `decision`**: every next step and open decision,
+  each with why, what will change, risks and checks. The pinned Roadmap
+  (issue #5) gives the order; `bin/decisions` lists them in the terminal.
 - Do not restate in this file what `agent.md` or `docs/` already record.
 
 Read the matching `docs/systems/` note before changing a system, and update
-it in the same commit when behaviour or public API changes. A decision that
-took real discussion gets an ADR in `docs/decisions/`.
+it in the same commit when behaviour or public API changes. A next step or a
+decision that needs agreement gets a `decision` issue with the ten sections
+in `docs/decisions/README.md` (issue #6 is the model).
+
+**Before working on a planned change**, read its issue. Start only when it
+has `status: accepted` or Samuel says to go ahead; then set
+`status: in progress`. The pull request says `Closes #<number>` and fills in
+the Outcome section of the template. Record answers given in chat as an
+issue comment.
 
 **Before adding any new gameplay script**, check
 `docs/architecture/before-new-scripts.md`: its seven "must do first" steps
@@ -52,6 +62,15 @@ unity command recompile               # then: unity command recompile_status
 unity command run_tests
 bin/unity-shot <name> [game|scene]    # screenshot into Logs/shots/
 bin/unity-inspect [player|scene|environment|animation|doors|map]  # read-only facts
+```
+
+Decisions on GitHub (needs `gh`):
+
+```bash
+bin/decisions                         # open decision issues, foundation steps in order
+gh issue view <n>                     # read one
+gh issue comment <n> --body "…"       # record an answer or an outcome
+gh issue edit <n> --add-label "status: accepted" --remove-label "status: proposed" --remove-label "needs Samuel"
 ```
 
 `unity command` with no arguments lists everything the editor exposes; the
