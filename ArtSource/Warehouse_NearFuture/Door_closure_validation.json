@@ -1,0 +1,3991 @@
+{
+  "all_doors_closed": true,
+  "doors": 119,
+  "hinged_doors": 113,
+  "loading_shutters": 6,
+  "previously_open_doors_corrected": 71,
+  "changed_doors": [
+    {
+      "name": "DOOR_Admin_Loading",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_Hall_X-18_-20",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_X-18_23",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_X-18_4",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_X26_-10",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_X26_-28",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_X26_12",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_X26_29",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Hall_Y-36_-11",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_Hall_Y-36_20",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_Hall_Y-36_4",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_Hall_Y36_-10",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_Hall_Y36_22",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_Hall_Y36_6",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_NE_Inner_L0_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_NE_Inner_L3.6_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_NE_Outer_L0_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_NE_Outer_L3.6_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_NorthWing_End_-36",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_NorthWing_End_36",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_North_Service_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_North_Service_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_North_Service_4",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_North_Service_5",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Inner_L0_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Inner_L0_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Inner_L3.6_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Inner_L3.6_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L0_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L0_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L0_4",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L0_5",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_4",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_5",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Storage_Admin",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_Tech_Admin",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_Tech_Maint_A",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_Tech_Maint_B",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_Technical_Lower_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Technical_Lower_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Technical_Upper_1",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_Technical_Upper_2",
+      "previous_angle_from_closed_degrees": 79.99999767274336
+    },
+    {
+      "name": "DOOR_UpperHall_X-18_-20",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_UpperHall_X-18_4",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_UpperHall_X26_-10",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_UpperHall_X26_-28",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_UpperHall_X26_12",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_UpperHall_X26_29",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    },
+    {
+      "name": "DOOR_UpperHall_Y-36_-11",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_UpperHall_Y-36_20",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_UpperHall_Y-36_4",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_UpperHall_Y36_-10",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_UpperHall_Y36_22",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_UpperHall_Y36_6",
+      "previous_angle_from_closed_degrees": 85.00000350370536
+    },
+    {
+      "name": "DOOR_West_Inner_L0_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Inner_L0_2",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Inner_L0_4",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_2",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_4",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L0_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L0_2",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L0_4",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L0_5",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_1",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_2",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_4",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_5",
+      "previous_angle_from_closed_degrees": 79.9999908425542
+    },
+    {
+      "name": "DOOR_West_Storage_Link",
+      "previous_angle_from_closed_degrees": 84.99999667351618
+    }
+  ],
+  "all_mesh_geometry_unchanged": true,
+  "non_door_world_transforms_unchanged": true,
+  "door_skin_local_transforms_unchanged": true,
+  "door_skin_parents_preserved": 119,
+  "closed_pose_checks": [
+    {
+      "name": "DOOR_Admin_Loading",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          12.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -26.399999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_EastVest",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          60.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -4.550000190734863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Entry_Main",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -5.550000190734863
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -40.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_11_-4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          58.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -4.550000190734863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_11_13",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          58.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          12.449999809265137
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_12_47.0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          46.45000076293945
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_13_-28.0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -28.549999237060547
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_1_-5",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -5.550000190734863
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_3_-25",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -58.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -25.549999237060547
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_3_10",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -58.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          9.449999809265137
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_3_29",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -58.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          28.450000762939453
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_4_-47.0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -47.54999923706055
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          34.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_6_-20",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -20.549999237060547
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          36.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_6_20",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          19.450000762939453
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          36.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_8_46.0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          45.45000076293945
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          40.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Exterior_9_29.0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          56.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          28.450000762939453
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X-18_-20",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -20.799999237060547
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X-18_23",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          21.200000762939453
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X-18_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          3.200000047683716
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X26_-10",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -10.800000190734863
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X26_-28",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -28.799999237060547
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X26_12",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          11.199999809265137
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_X26_29",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          28.200000762939453
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_Y-36_-11",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -11.800000190734863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_Y-36_20",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          19.200000762939453
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_Y-36_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          3.200000047683716
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_Y36_-10",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -10.800000190734863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_Y36_22",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          21.200000762939453
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Hall_Y36_6",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          5.199999809265137
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Loading_01",
+      "type": "sectional overhead",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -53.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Loading_02",
+      "type": "sectional overhead",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -45.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Loading_03",
+      "type": "sectional overhead",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -37.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Loading_04",
+      "type": "sectional overhead",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          17.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Loading_05",
+      "type": "sectional overhead",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          24.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Loading_06",
+      "type": "sectional overhead",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          31.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -38.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Inner_L0_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          27.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Inner_L0_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          34.025001525878906
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Inner_L3.6_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          27.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Inner_L3.6_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          34.025001525878906
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Outer_L0_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          19.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Outer_L0_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          34.025001525878906
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Outer_L3.6_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          19.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NE_Outer_L3.6_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          34.025001525878906
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NorthWing_End_-36",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          26.899999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_NorthWing_End_36",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          26.899999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -34.974998474121094
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -26.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -17.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -8.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          1.024999976158142
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_5",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          13.024999618530273
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_North_Service_6",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          23.024999618530273
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          29.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Shaft_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -33.5
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          19.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Shaft_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          30.5
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L0_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -19.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L0_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -11.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L0_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -2.9749999046325684
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L0_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          5.025000095367432
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L3.6_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -19.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L3.6_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -11.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L3.6_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -2.9749999046325684
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Inner_L3.6_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          5.025000095367432
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -24.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L0_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -30.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L0_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -22.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L0_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -15.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L0_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -7.974999904632568
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L0_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.02500000037252903
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L0_5",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          7.025000095367432
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -30.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -22.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -15.975000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -7.974999904632568
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.02500000037252903
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_South_Outer_L3.6_5",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          7.025000095367432
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -27.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Storage_Admin",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -32.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -22.899999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Tech_Admin",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          44.75
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Tech_Maint_A",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          39.45000076293945
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          8.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Tech_Maint_B",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          54.45000076293945
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          8.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Technical_Lower_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          39.224998474121094
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Technical_Lower_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          46.025001525878906
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Technical_Lower_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          52.025001525878906
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Technical_Upper_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          39.224998474121094
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          1.2000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Technical_Upper_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          45.025001525878906
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          1.2000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_Technical_Upper_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          53.025001525878906
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          1.2000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_X-18_-20",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -20.600000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_X-18_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          3.4000000953674316
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_X26_-10",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -10.600000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_X26_-28",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -28.600000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_X26_12",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          11.399999618530273
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_X26_29",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          28.399999618530273
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          26.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_Y-36_-11",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -11.600000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_Y-36_20",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          19.399999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_Y-36_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          3.4000000953674316
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_Y36_-10",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -10.600000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_Y36_22",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          21.399999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_UpperHall_Y36_6",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          36.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          5.400000095367432
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          4.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L0_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -5.974999904632568
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L0_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          2.0250000953674316
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L0_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          9.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L0_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          18.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L0_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          27.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -5.974999904632568
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          2.0250000953674316
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          9.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          18.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Inner_L3.6_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -44.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          27.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L0_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -16.975000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L0_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -8.975000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L0_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -1.975000023841858
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L0_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          6.025000095367432
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L0_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          15.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L0_5",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          24.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_0",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -16.975000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_1",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -8.975000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_2",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          -1.975000023841858
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_3",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          6.025000095367432
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_4",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          15.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Outer_L3.6_5",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          -4.371138828673793e-08,
+          -1.0,
+          0.0,
+          -47.0
+        ],
+        [
+          1.0,
+          -4.371138828673793e-08,
+          0.0,
+          24.024999618530273
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          3.5999999046325684
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_West_Storage_Link",
+      "type": "hinged door",
+      "closed": true,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -46.29999923706055
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -18.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "blender_version": "5.0.0",
+  "unity_runtime_tested": true,
+  "unity_validation_scope": "MainTest: 119 closed initial poses, colliders and skin parents; one formerly open hall door opens/closes by scripted Toggle calls. See Unity_validation.json."
+}

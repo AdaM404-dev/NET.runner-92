@@ -7,6 +7,12 @@ large hall, offices, technical rooms, loading docks and a yard.
 set up only inside the `MainTest` scene file; there is no warehouse prefab,
 no navigation data for enemies and no baked lighting.
 
+The 2026-10-02 art revision closes all 119 doors and includes the editable
+Blender source under `ArtSource/Warehouse_NearFuture`. The 71 previously
+open leaves and their skins are repositioned; the building geometry,
+object names, door hierarchy and Unity metadata are preserved. Review
+images and export checks are included with the source package.
+
 Verified 2026-09-30 on commit `df3a31d` with `bin/unity-inspect scene
 environment map` in the open editor.
 
