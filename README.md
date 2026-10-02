@@ -36,6 +36,12 @@ For the playable character, drag `Assets/Prefabs/NEXUS_Player.prefab` into a sce
 
 The preview controller uses Unity's legacy Input API, so the project enables both input backends. Unity-generated `Library`, `Temp`, `Logs`, and similar directories are excluded from Git. NEXUS Blender sources and packaged archives remain outside this project. The complete K7 and warehouse source packages are included under `ArtSource`, outside Unity's automatically imported `Assets` folder.
 
+### Warehouse replacement status
+
+The model with all 119 doors closed is uploaded in [PR #21](https://github.com/AdaM404-dev/NET.runner-92/pull/21) on `codex/warehouse-closed-doors`. It replaces the previous visual FBX at `Assets/Environment/Warehouse_NearFuture/Models/Warehouse_NearFuture_Geometry.fbx`. Its existing `.meta` GUID is preserved, so `MainTest.unity` uses the replacement with its door scripts, colliders and material assignments retained. Unity 6000.6.2f1 import, compilation and the focused Play-mode door checks passed; see [the validation report](ArtSource/Warehouse_NearFuture/Unity_validation.json).
+
+PR #21 is awaiting merge into `main`. Until it is merged, check out `codex/warehouse-closed-doors` before opening the Unity project to use this revision. The earlier active model has been overwritten in that branch; `ArtSource/Warehouse_NearFuture/Source/Original_Warehouse.blend` is an authoring reference and is outside Unity's imported `Assets` folder.
+
 ### Import the K7 enemy robot
 
 Copy the `FBX`, `Textures` and `Unity` folders from `ArtSource/K7_Industrial_Robot` into `Assets/Characters/K7_Industrial_Robot`. After Unity imports the files and compiles the helpers, select `FBX/K7_Robot.fbx` and run **Tools > K7 > Build Prefab from Selected FBX**. The supplied helper creates materials for URP and a prefab with the LODs and gameplay sockets. Keep the Blender project and authoring scripts in `ArtSource`.

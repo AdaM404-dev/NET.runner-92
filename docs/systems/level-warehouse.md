@@ -13,6 +13,15 @@ open leaves and their skins are repositioned; the building geometry,
 object names, door hierarchy and Unity metadata are preserved. Review
 images and export checks are included with the source package.
 
+This revision replaces the previous visual FBX at the existing model path;
+it uses the same Unity `.meta` GUID, so the `MainTest` model instance already
+loads the new warehouse with its door components and material assignments.
+The imported FBX and source-package FBX have matching SHA-256 hashes.
+Unity import/compilation and the focused Play-mode door checks passed on
+2026-10-02; see `ArtSource/Warehouse_NearFuture/Unity_validation.json`.
+The upload is in [PR #21](https://github.com/AdaM404-dev/NET.runner-92/pull/21),
+on `codex/warehouse-closed-doors`, and is awaiting merge into `main`.
+
 Verified 2026-09-30 on commit `df3a31d` with `bin/unity-inspect scene
 environment map` in the open editor.
 
