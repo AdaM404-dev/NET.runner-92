@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56e978bb59898d418c196e73fb42ba6, type: 3}
+  m_Name: MenuPrototypeSettings
+  m_EditorClassIdentifier: NetRunner.MenuPrototype::NetRunner.MenuPrototype.MenuPrototypeSettings
+  bootLineDuration: 0.65
+  titleDuration: 0.85
+  fadeDuration: 0.45
+  signalDuration: 0.14
+  cameraInterval: {x: 18, y: 27}
+  eventInterval: {x: 38, y: 62}
+  eventProbability: 0.75
+  loadingDuration: 9
+  terminalHoldDuration: 2.5
+  accent: {r: 0.44, g: 0.7, b: 0.73, a: 1}
+  warning: {r: 0.75, g: 0.52, b: 0.27, a: 1}
+  text: {r: 0.81, g: 0.83, b: 0.82, a: 1}
+  facilityStatus: PARTIAL ACTIVITY DETECTED
+  networkStatus: CONNECTED
+  activeCameras: 04 / 18
+  powerDraw: +417%
+  bootLines:
+  - INITIALIZING NETWORK INTERFACE...
+  - SEARCHING FOR ACTIVE NODES
+  - WAREHOUSE NETWORK FOUND
+  - ESTABLISHING CONNECTION...
+  loadingLines:
+  - establishing secure tunnel
+  - bypassing firewall
+  - reconstructing environment
+  - loading surveillance network
+  - synchronizing local systems
+  internalLogs:
+  - 'INTERNAL LOG // 03:42:17
+
+    POWER CONSUMPTION    +417%
+
+    AUTHORIZED PERSONNEL    0
+
+    ACTIVE MACHINES        23'
+  - 'INCIDENT BUFFER // CAM_08
+
+    02:14  motion detected
+
+    02:14  camera disabled
+
+    02:15  camera restored
+
+    02:15  camera disabled
+
+    02:16  unknown user connected'
+  - 'MAINTENANCE QUEUE // BAY_04
+
+    VENTILATION     manual override
+
+    LAST SERVICE    unavailable
+
+    RELAY CYCLE     0000092
+
+    OPERATOR        unresolved'
