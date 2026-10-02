@@ -79,7 +79,7 @@ Issue: [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)
 
 | | |
 | --- | --- |
-| Now | `Interact()` looks for a `NexusDoor` and nothing else. It casts from the camera, so in third person it reaches 0.3 m. For 71 of 113 doors "open" means shut. Every door says "Access granted". |
+| Now | `Interact()` looks for a `NexusDoor` and nothing else. It casts from the camera, so in third person it reaches 0.3 m. The 2026-10-02 warehouse export closes all doors; the code still assumes any imported pose is closed. Every door says "Access granted". |
 | Why it blocks | Terminals, access readers, pickups, people and hack points all need "look at it, press E". Without a shared contract, each one means editing the player script. |
 | Change | An interface in `Core`: `IInteractable` with a prompt text, `CanInteract` and `Interact`. A `PlayerInteractor` component casts from the eyes (not from the camera) using a `LayerMask`, shows the prompt, and calls `Interact`. `NexusDoor` implements the interface, works out from its frame whether it is really open, and reports locked or unlocked. |
 | Size, tag | M, **YOU WRITE**: a small, self-contained first script for Samuel that touches the core Unity ideas (raycasts, interfaces, `GetComponent`, the Inspector). Claude writes the spec and test names. |
