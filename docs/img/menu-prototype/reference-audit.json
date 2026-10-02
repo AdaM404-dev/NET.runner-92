@@ -1,0 +1,23 @@
+{
+  "unityVersion": "6000.6.2f1",
+  "scene": "Assets/NETRunner/MainMenu/Scenes/NETRunner_MainMenu_Prototype.unity",
+  "missingComponents": 0,
+  "missingOrErrorMaterials": 0,
+  "unexpectedAssetDependencies": [],
+  "cameras": 4,
+  "enabledCameras": 1,
+  "lights": 9,
+  "audioSources": 5,
+  "meshTriangles": 4820,
+  "runtimeAssemblyReferences": [
+    "netstandard",
+    "UnityEngine.CoreModule",
+    "UnityEngine.AudioModule",
+    "UnityEngine.UIElementsModule"
+  ],
+  "buildScenes": [
+    "Assets/Scenes/SampleScene.unity",
+    "Assets/Scenes/MainTest.unity",
+    "Assets/Scenes/CharacterPreview.unity"
+  ]
+}

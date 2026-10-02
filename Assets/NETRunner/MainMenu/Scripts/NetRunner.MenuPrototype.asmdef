@@ -1,0 +1,6 @@
+{
+    "name": "NetRunner.MenuPrototype",
+    "rootNamespace": "NetRunner.MenuPrototype",
+    "references": ["Unity.InputSystem"],
+    "autoReferenced": true
+}
