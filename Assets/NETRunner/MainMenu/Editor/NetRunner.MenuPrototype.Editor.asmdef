@@ -1,0 +1,6 @@
+{
+    "name": "NetRunner.MenuPrototype.Editor",
+    "rootNamespace": "NetRunner.MenuPrototype.Editor",
+    "references": ["NetRunner.MenuPrototype", "Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime"],
+    "includePlatforms": ["Editor"]
+}

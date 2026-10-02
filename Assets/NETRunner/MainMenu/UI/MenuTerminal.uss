@@ -1,0 +1,50 @@
+.terminal-root { position: absolute; left: 0; top: 0; right: 0; bottom: 0; font-size: 15px; -unity-font-style: normal; }
+.feed-shade { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.left-wash { position: absolute; left: 0; top: 0; bottom: 0; width: 37%; background-color: rgba(7, 12, 14, 0.82); border-right-width: 1px; border-right-color: rgba(119, 148, 150, 0.15); }
+.footer-wash { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; background-color: rgba(7, 12, 14, 0.72); }
+.header { position: absolute; top: 35px; left: 60px; right: 60px; flex-direction: row; justify-content: space-between; border-bottom-width: 1px; border-bottom-color: rgba(177, 192, 189, 0.2); padding-bottom: 20px; }
+.micro { font-size: 12px; letter-spacing: 2px; white-space: normal; }
+.quiet { color: rgb(133, 151, 151); }
+.accent { color: rgb(112, 179, 186); }
+.warning { color: rgb(191, 133, 69); }
+.camera-strip { position: absolute; top: 106px; right: 60px; align-items: flex-end; }
+.camera-strip > Label { margin-bottom: 7px; }
+.menu { position: absolute; top: 26%; left: 7%; width: 470px; }
+.eyebrow { font-size: 13px; letter-spacing: 3px; color: rgb(116, 166, 171); margin-bottom: 20px; }
+.title { font-size: 65px; -unity-font-style: bold; letter-spacing: 2px; margin-left: -4px; }
+.subtitle { font-size: 12px; letter-spacing: 4px; margin-top: 6px; margin-bottom: 36px; color: rgb(157, 173, 172); }
+.actions { width: 420px; }
+.menu-button { height: 48px; margin: 0 0 5px 0; padding-left: 15px; padding-right: 12px; border-left-width: 2px; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-color: rgba(112, 179, 186, 0); border-radius: 0; background-color: rgba(14, 22, 25, 0.12); color: rgb(208, 215, 211); font-size: 15px; letter-spacing: 2px; -unity-text-align: middle-left; transition-property: background-color, border-left-color, color; transition-duration: 0.12s; }
+.menu-button:hover, .menu-button:focus { background-color: rgba(91, 143, 151, 0.13); border-left-color: rgb(112, 179, 186); color: rgb(239, 244, 240); }
+.menu-button:active { background-color: rgba(91, 143, 151, 0.30); }
+.menu-footnote { margin-top: 29px; font-size: 10px; }
+.status { position: absolute; bottom: 106px; left: 7%; right: 60px; flex-direction: row; justify-content: space-between; border-top-width: 1px; border-top-color: rgba(177, 192, 189, 0.23); padding-top: 24px; }
+.status-block { margin-right: 32px; }
+.status-value { font-size: 15px; letter-spacing: 2px; margin-top: 9px; }
+.bottom-strip { position: absolute; bottom: 35px; left: 60px; right: 60px; flex-direction: row; justify-content: space-between; }
+.fullscreen { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.terminal { background-color: rgb(5, 9, 11); justify-content: center; }
+.boot-content { margin-left: 14%; margin-right: 14%; }
+.boot-text { font-size: 22px; white-space: normal; -unity-paragraph-spacing: 10px; letter-spacing: 2px; min-height: 170px; }
+.small-button { font-size: 11px; margin-top: 35px; width: 380px; color: rgb(126, 149, 149); }
+.loading { background-color: rgba(5, 10, 13, 0.97); justify-content: center; align-items: center; }
+.loading-content { width: 1040px; }
+.loading-title { font-size: 34px; letter-spacing: 2px; }
+.network-map { position: relative; height: 190px; margin-bottom: 25px; border-top-width: 1px; border-bottom-width: 1px; border-top-color: rgba(112, 179, 186, 0.2); border-bottom-color: rgba(112, 179, 186, 0.2); }
+.network-node { position: absolute; width: 72px; height: 22px; border-width: 1px; border-color: rgb(76, 117, 123); background-color: rgb(24, 34, 37); }
+.node-text { font-size: 10px; letter-spacing: 1px; -unity-text-align: middle-center; }
+.network-wire { position: absolute; width: 125px; height: 1px; background-color: rgba(112, 179, 186, 0.35); }
+.vertical { width: 1px; height: 33px; }
+.progress-label { font-size: 18px; letter-spacing: 2px; margin-bottom: 17px; }
+.segments { flex-direction: row; height: 8px; margin-bottom: 34px; }
+.segment { flex-grow: 1; margin-right: 5px; background-color: rgb(33, 43, 46); }
+.logs { flex-direction: row; min-height: 245px; }
+.system-log { width: 52%; white-space: normal; font-size: 17px; -unity-paragraph-spacing: 8px; }
+.archive { width: 48%; font-size: 14px; padding-left: 45px; border-left-width: 1px; border-left-color: rgba(112, 179, 186, 0.2); }
+.modal { background-color: rgba(4, 8, 10, 0.86); justify-content: center; align-items: center; }
+.modal-card { width: 670px; padding: 46px; background-color: rgb(14, 21, 24); border-top-width: 2px; border-top-color: rgb(85, 129, 135); }
+.modal-title { font-size: 27px; letter-spacing: 2px; margin-bottom: 24px; }
+.modal-copy { font-size: 16px; white-space: normal; -unity-paragraph-spacing: 8px; margin-bottom: 26px; }
+.modal-card .menu-button { margin-top: 18px; }
+.modal-card Slider, .modal-card Toggle { margin-top: 28px; margin-bottom: 16px; color: rgb(208, 215, 211); }
+.signal { background-color: rgba(143, 163, 164, 0.28); border-top-width: 8px; border-bottom-width: 5px; border-top-color: rgba(173, 189, 189, 0.2); border-bottom-color: rgba(173, 189, 189, 0.3); }
