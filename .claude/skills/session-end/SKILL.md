@@ -17,14 +17,19 @@ description: Close a NET.runner-92 work session by verifying the work, updating 
    Append only; do not rewrite earlier rows.
 3. Update `docs/`:
    - the `docs/systems/` note for every system whose behaviour or API changed,
-   - `docs/backlog.md` (tick off, add follow-ups with tags),
-   - a new ADR in `docs/decisions/` if a real decision was made,
    - a dated entry at the top of `docs/journal.md`, including what Samuel
      learned or found confusing on YOU WRITE and PAIR tasks.
-4. Before staging, leave out editor-generated changes that the team has not
+4. Update the decision issues on GitHub:
+   - answers given in chat become comments on their issue, with the labels
+     updated (`needs …` removed, `status: accepted` when nobody is missing),
+   - a new next step or decision becomes a new `decision` issue with the ten
+     sections of `docs/decisions/README.md`,
+   - a finished step's pull request says `Closes #<n>`, and its box in the
+     Roadmap issue (#5) is ticked once merged.
+5. Before staging, leave out editor-generated changes that the team has not
    agreed to commit (see "Known platform quirks" in
    `docs/architecture/tooling.md`). Stage files by name, not `git add -A`.
-5. Commit on the feature branch. Push and open or update the PR only if the
+6. Commit on the feature branch. Push and open or update the PR only if the
    user asked for it in this session.
-6. Summarise: what is done, what is verified, what is left, what needs a
+7. Summarise: what is done, what is verified, what is left, what needs a
    decision from Samuel or AdaM404.

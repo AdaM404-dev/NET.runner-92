@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# List the decision issues (next steps and open decisions) from GitHub.
+# Usage: bin/decisions          the open ones, foundation steps first, in order
+#        bin/decisions --all    also the closed ones (done or rejected)
+# Needs the GitHub CLI (gh), logged in. How the system works: docs/decisions/README.md
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+state=open
+[[ "${1:-}" == "--all" ]] && state=all
+
+gh issue list --label decision --state "$state" --limit 200 \
+  --json number,title,state,stateReason,labels,assignees \
+  | python3 -c '
+import json
+import re
+import sys
+
+rows = json.load(sys.stdin)
+
+
+def status(row):
+    if row["state"] == "CLOSED":
+        return "done" if (row.get("stateReason") or "").upper() == "COMPLETED" else "rejected"
+    names = {label["name"] for label in row["labels"]}
+    for name in ("in progress", "accepted", "proposed"):
+        if "status: " + name in names:
+            return name
+    return "no status"
+
+
+def pick(row, prefix):
+    found = [l["name"][len(prefix):] for l in row["labels"] if l["name"].startswith(prefix)]
+    return ", ".join(found) or "-"
+
+
+def builds(row):
+    names = [l["name"] for l in row["labels"] if l["name"] in ("YOU WRITE", "PAIR", "CLAUDE", "ART")]
+    return ", ".join(names) or "-"
+
+
+def order(row):
+    step = re.match(r"Step (\d+)", row["title"])
+    return (0, int(step.group(1))) if step else (1, row["number"])
+
+
+table = [("#", "status", "waiting for", "builds", "size", "title")]
+for row in sorted(rows, key=order):
+    table.append(("#%d" % row["number"], status(row), pick(row, "needs "), builds(row),
+                  pick(row, "size "), row["title"]))
+widths = [max(len(r[i]) for r in table) for i in range(5)]
+for r in table:
+    print("  ".join(r[i].ljust(widths[i]) for i in range(5)) + "  " + r[5])
+if len(table) == 1:
+    print("(no decision issues)")
+'

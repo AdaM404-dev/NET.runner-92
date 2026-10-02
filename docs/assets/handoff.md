@@ -1,7 +1,8 @@
 # Art handoff and ownership
 
-**Status: proposal, not yet agreed with AdaM404.** Until it is agreed, treat
-it as the default and ask before crossing a boundary.
+**Status: proposal, not yet agreed with AdaM404**; the question is open in
+[issue #18](https://github.com/AdaM404-dev/NET.runner-92/issues/18). Until it is agreed, treat it as the default and ask
+before crossing a boundary.
 
 ## Who owns what
 
@@ -24,10 +25,10 @@ it as the default and ask before crossing a boundary.
 - Source attribution and licences go in `Assets/Documentation/`.
 - Source packages that Unity must not import (Blender files, generator
   scripts) go under `ArtSource/`, like the K7 robot.
-- Proposed (decision D6 in [[architecture/before-new-scripts]]): export
+- Proposed ([issue #16](https://github.com/AdaM404-dev/NET.runner-92/issues/16)): export
   doors shut. Today 71 of 113 swing doors arrive standing open and the door
   script treats that pose as "closed"; see [[systems/doors-and-interaction]].
-- Proposed (decision D3): the warehouse becomes a prefab owned by art, which
+- Proposed ([issue #8](https://github.com/AdaM404-dev/NET.runner-92/issues/8)): the warehouse becomes a prefab owned by art, which
   both the preview scene and our gameplay scene place.
 
 ## Platforms
@@ -45,9 +46,8 @@ Samuel works on Linux, AdaM404 on Windows. Consequences:
 
 ## Open questions for the team
 
-1. **Git LFS.** The repository has no LFS; binaries up to 24 MB are in normal
-   history (about 155 MB after nine commits). Moving existing files into LFS
-   rewrites history and needs a fresh clone by everyone, which is cheapest to
-   do now. The alternative is LFS for new files only.
-2. **Branching.** Proposed: feature branches and PRs, no direct pushes to `main`.
-3. **Visibility.** The repository is public; is that intended?
+These are GitHub issues now, with the full reasoning; answer there.
+
+- Git LFS: move existing art into LFS, or new files only? [Issue #17](https://github.com/AdaM404-dev/NET.runner-92/issues/17)
+- Who owns which folders, branching, and whether the repository stays
+  public: [issue #18](https://github.com/AdaM404-dev/NET.runner-92/issues/18)

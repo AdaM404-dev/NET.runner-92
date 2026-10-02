@@ -1,0 +1,74 @@
+name: Decision or next step
+description: Write down a next step or a decision, with why it is needed and what will change.
+title: "Decide · "
+labels: ["decision", "status: proposed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One issue per next step or decision. Write what you know; Claude or Codex can fill in the rest.
+        A complete example: #6 (Step 1 · Name the layers). How the labels and statuses work: `docs/decisions/README.md`.
+        For a foundation step, start the title with "Step N · " instead of "Decide · ".
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What is wrong or missing today? Give evidence (files, numbers, what you saw).
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision
+      description: What we will do. For an open question, write "Proposed:" and the recommendation.
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: What will change
+      description: Files, scenes, prefabs, settings and docs, and what players and the other person will notice.
+    validations:
+      required: true
+  - type: textarea
+    id: unchanged
+    attributes:
+      label: What stays the same
+      description: What does not change, so nobody has to worry about it.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and how to undo
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: In order. The last one is a pull request that says "Closes #<this issue's number>".
+  - type: textarea
+    id: check
+    attributes:
+      label: How we check it worked
+      description: Commands, Play-mode checks, screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives we rejected
+  - type: input
+    id: depends
+    attributes:
+      label: Depends on
+      description: Issue numbers, for example "#6, #9", or "Nothing".
+  - type: textarea
+    id: docs
+    attributes:
+      label: Related docs
+  - type: checkboxes
+    id: agree
+    attributes:
+      label: Who must agree
+      description: Also add the matching "needs Samuel" or "needs AdaM404" label.
+      options:
+        - label: Samuel
+        - label: AdaM404
