@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "duration": 28.67,
+  "summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "NetRunner.MenuPrototype.Tests.MenuPrototypeTests.BootCanBeSkippedThroughFocusedButton",
+      "Status": "Passed",
+      "Duration": 0.2855591,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "NetRunner.MenuPrototype.Tests.MenuPrototypeTests.BootPanelsSettingsEventsAndBothLoadingEntriesStayInPrototype",
+      "Status": "Passed",
+      "Duration": 28.3476208,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}
