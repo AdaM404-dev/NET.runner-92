@@ -1,6 +1,6 @@
 # Camera
 
-**Purpose.** The game's only camera. It shows the world either from the
+**Purpose.** The legacy gameplay camera. It shows the world either from the
 player's eyes (first person) or from behind the player (third person).
 
 **Status.** Works. Its position is recalculated in code every frame, so most
@@ -23,7 +23,9 @@ scripted Play-mode checks.
 | View switching | `NexusPlayer.SetView()`, lines 39–50, called by the Tab key |
 | Look angles | `yaw` (left/right) and `pitch` (up/down), updated from the mouse in `Update()`, line 60 |
 
-There is no separate camera script, no Cinemachine and no second camera.
+The legacy player has no separate camera script or Cinemachine. The independent
+menu uses four surveillance cameras, with only one enabled at a time; see
+[[systems/main-menu]].
 
 ## How the camera is placed
 
@@ -105,10 +107,11 @@ body is on screen.
 - The camera logic lives inside the player script, so any new camera
   behaviour (aiming, cutscenes, hacking view) has to be added there.
 
-## Open questions
+## Recorded design direction (2026-10-02)
 
-- Is third person part of the game or only a debug view? The game is
-  planned as first-person.
-- Full body in first person (today) or arms only? An arms-only model exists,
-  `Assets/Prefabs/NEXUS_FirstPerson_Arms.prefab`, but is not used; see
-  [[systems/character-and-animation]].
+AdaM404 specified first person as the default gameplay perspective and third
+person only for debugging in issue #13. Issue #14 records keeping the full body
+for now and retaining the unused arms-only prefab for possible later needs.
+See [[design/README]] for the source comments and agreement status. These are
+design instructions; the legacy Tab switch and serialized scene defaults have
+not been changed by this documentation update.

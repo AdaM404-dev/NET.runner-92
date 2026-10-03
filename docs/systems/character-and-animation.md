@@ -141,6 +141,9 @@ doubles its memory use), materials remapped to `Assets/Materials/NEXUS/`.
 
 ## Open questions
 
-- Full body in first person (today) or the arms-only model?
+- AdaM404's 2026-10-02 direction in issue #14 is to keep the full body for
+  now and retain the arms-only model for possible aiming/weapons needs.
+  Team agreement and later animation requirements are tracked there; see
+  [[design/README]].
 - Which animations does the game need (crouch, interact, hack, hit, death),
   and who makes them?

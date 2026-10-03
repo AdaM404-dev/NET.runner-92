@@ -3,7 +3,7 @@
 How the code is organised today, and the structure it is moving to. For
 where every file and object is, see [[architecture/project-map]].
 
-## Current state (2026-09-30)
+## Current state (2026-10-02)
 
 All gameplay code is two MonoBehaviours in `Assets/Scripts/`, in the global
 namespace, with no assembly definitions and no tests:
@@ -18,6 +18,12 @@ namespace, with no assembly definitions and no tests:
 Scene setup (doors, colliders, lights) lives inside the `MainTest` scene;
 there is no gameplay scene of our own yet. What has to change before new
 scripts are added is listed, in order, in [[architecture/before-new-scripts]].
+
+The independent main-menu prototype merged in PR #22 lives under
+`Assets/NETRunner/MainMenu/`, with runtime, editor and PlayMode test assemblies.
+It uses UI Toolkit and has two recorded passing PlayMode tests. It does not
+implement the planned Core/Gameplay structure or connect to the player, saves
+or scene loading. See [[systems/main-menu]].
 
 ## Target structure
 

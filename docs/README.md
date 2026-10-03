@@ -47,6 +47,7 @@ System notes:
 | [[systems/doors-and-interaction]] | doors and the E key |
 | [[systems/level-warehouse]] | the warehouse scene, its areas, collision, lights |
 | [[systems/rendering]] | URP settings, materials, why the scene looks dark |
+| [[systems/main-menu]] | isolated surveillance terminal, UI, simulated loading, tuning and validation |
 | [[systems/enemy-k7]] | the K7 robot package, not imported yet |
 
 ## Conventions
