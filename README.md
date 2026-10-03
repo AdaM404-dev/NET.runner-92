@@ -22,7 +22,13 @@ Development status and agent handoff notes are tracked in [agent.md](agent.md).
 
 Copy `Assets/Characters`, `Assets/Environment`, `Assets/Materials`, `Assets/Animations`, `Assets/Prefabs`, and `Assets/Scripts` into the other project's `Assets` folder. Include their `.meta` files and keep the same relative paths so prefab and material references retain their Unity GUIDs. Copy `Assets/Documentation` for attribution and the two NEXUS scenes from `Assets/Scenes` if you also want the previews. Check for folder or filename conflicts before copying into an existing project.
 
-For the playable character, drag `Assets/Prefabs/NEXUS_Player.prefab` into a scene with a collidable floor. The model-only prefab is `Assets/Prefabs/NEXUS_Character.prefab`. The player script uses Unity's legacy `Input` API, so set **Active Input Handling** to **Both** in Player Settings if the destination project uses the new Input System. The materials were authored with the Built-in Standard shader; convert them for URP if they appear magenta.
+For the playable character, drag `Assets/Prefabs/NEXUS_Player.prefab` into a scene with a collidable floor. The model-only prefab is `Assets/Prefabs/NEXUS_Character.prefab`. The player script uses Unity's legacy `Input` API, so set **Active Input Handling** to **Both** in Player Settings if the destination project uses the new Input System. The committed preview materials were converted to URP Lit on 2026-09-30. Keep URP shaders when importing into another URP project.
+
+## Standalone main-menu prototype
+
+Open `Assets/NETRunner/MainMenu/Scenes/NETRunner_MainMenu_Prototype.unity` and press Play. This surveillance terminal has four camera feeds, rare facility events, UI Toolkit panels and simulated network loading. Continue and New Session return to the terminal after the demonstration; gameplay and saves are not connected. The scene is deliberately absent from Build Settings.
+
+See [the system note](docs/systems/main-menu.md), [asset guide](Assets/NETRunner/MainMenu/README.md) and [validation record](MAIN_MENU_PROGRESS.md).
 
 ## Included assets
 
@@ -42,6 +48,6 @@ Copy the `FBX`, `Textures` and `Unity` folders from `ArtSource/K7_Industrial_Rob
 
 The upload preserves the original package. The K7 prefab has not been generated or tested in this repository; its AI, movement and combat behavior still need game integration. See the package README for setup instructions and the original validation limits.
 
-The imported preview materials were authored with the Built-in Standard shader. Convert them to URP materials in the Unity editor if they appear magenta in this URP project.
+The committed preview materials already use URP Lit; future source exports should also target URP.
 
 end of README.md

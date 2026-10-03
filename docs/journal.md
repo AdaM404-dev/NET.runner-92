@@ -4,6 +4,30 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-10-03 — Documentation audit of October 2
+
+- Checked the October 2 main-branch history (Europe/Budapest): PR #20
+  merged the existing issue workflow, PR #21 corrected warehouse doors,
+  and PR #22 added the independent main menu.
+- Door/warehouse system notes and art handoff already documented the
+  closed-door revision. Added the missing menu system note and links,
+  refreshed architecture/project map, and corrected stale README/status text.
+- Recorded AdaM404's first-person/full-body direction from issue comments
+  #13 and #14, preserving the distinction between direction and implemented
+  behavior. No gameplay or Unity settings changed; Unity tests were not rerun.
+
+## 2026-10-02 — Warehouse revision and standalone terminal
+
+- PR #21 closes all 119 warehouse doors and adds editable warehouse art
+  under `ArtSource/Warehouse_NearFuture`; 71 previously open leaves were
+  corrected. Its recorded validation passed 594 Unity assertions; see
+  [[systems/doors-and-interaction]] and [[systems/level-warehouse]].
+- PR #22 adds a standalone surveillance menu with boot, four feeds,
+  environmental events, session settings and simulated transfer/return.
+  Its recorded validation passed two PlayMode tests; see [[systems/main-menu]].
+- PR #20 merged the issue workflow authored on October 1. Decisions and
+  next steps remain in GitHub Issues rather than a second docs backlog.
+
 ## 2026-10-01 — Decisions move to GitHub issues
 
 - Samuel asked for one place where every next step is written with why it

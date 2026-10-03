@@ -1,7 +1,8 @@
 # Project map
 
 Where everything is, what uses it, and who owns it. Start here when you are
-looking for something. As of commit `df3a31d` (2026-09-30).
+looking for something. Gameplay measurements are from `df3a31d` (2026-09-30); repository additions
+were checked through merged PRs #20–#22 on 2026-10-03.
 
 Ownership follows the proposal in [[assets/handoff]], which AdaM404 has not
 confirmed yet.
@@ -13,7 +14,7 @@ NET.runner-92/
 ├─ Assets/            everything Unity imports: the game itself
 ├─ Packages/          which Unity packages the project uses (manifest.json)
 ├─ ProjectSettings/   project-wide settings: layers, quality, input, build list, …
-├─ ArtSource/         source art that Unity does not import (the K7 robot package)
+├─ ArtSource/         source art that Unity does not import (K7 robot and editable warehouse packages)
 ├─ docs/              this knowledge base; open the folder in Obsidian
 ├─ bin/               terminal helpers: unity-compile, unity-test, unity-build, unity-shot, unity-inspect
 ├─ tools/inspect/     the read-only reports behind bin/unity-inspect, and the floor-plan generator
@@ -35,7 +36,8 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `Materials/` | 27 environment and 24 character materials, the preview floor, one reflection cubemap | 53 | AdaM404 |
 | `Prefabs/` | seven prefabs, see below | 7 | shared |
 | `Scenes/` | three scenes, see below | 3 | AdaM404 (previews); ours once a gameplay scene exists |
-| `Scripts/` | `NexusPlayer.cs`, `NexusDoor.cs`: **all the game's code** | 2 | Samuel |
+| `Scripts/` | `NexusPlayer.cs`, `NexusDoor.cs`: legacy player/door gameplay code | 2 | Samuel |
+| `NETRunner/MainMenu/` | isolated menu scene, scripts, UI, art, builder and PlayMode tests; see [[systems/main-menu]] | — | prototype; ownership not yet agreed |
 | `Settings/` | URP pipeline assets and post-processing profiles | 7 | shared, change by pull request |
 | `InputSystem_Actions.inputactions` | Unity's default input actions; not used by any script | 1 | Samuel |
 | `TutorialInfo/`, `Readme.asset` | leftovers from Unity's project template | 8 | nobody: to delete |
@@ -55,6 +57,10 @@ move or be renamed together with its `.meta`.
 F1 switches between `MainTest` and `CharacterPreview` in Play mode. The build
 order is set in **File > Build Profiles > Scene List**.
 
+The standalone `Assets/NETRunner/MainMenu/Scenes/NETRunner_MainMenu_Prototype.unity`
+scene is opened directly, is absent from Build Settings, and returns to itself
+after simulated loading. It does not alter the build order above.
+
 ## Prefabs (`Assets/Prefabs/`)
 
 | Prefab | What it contains | Used by |
@@ -73,7 +79,9 @@ order is set in **File > Build Profiles > Scene List**.
 | `Assets/TutorialInfo/Readme.cs`, `Editor/ReadmeEditor.cs` | | Unity template leftovers | `Readme.asset` |
 | `ArtSource/K7_Industrial_Robot/Unity/*.cs` | | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
 
-The code has no namespaces, no assembly definitions and no tests.
+The legacy player/door code has no namespaces, assembly definitions or
+Core/Gameplay tests. The independent menu has runtime, editor and test
+assemblies and two recorded passing PlayMode tests.
 
 ## Settings assets (`Assets/Settings/`)
 
@@ -106,7 +114,7 @@ Details in [[systems/rendering]].
 | --- | --- | --- |
 | Universal RP 17.6.0 | the render pipeline | yes |
 | Input System 1.20.0 | modern input with action maps | installed, not used by code |
-| Test Framework 1.8.0 | automated tests | no tests yet |
+| Test Framework 1.8.0 | automated tests | two standalone-menu PlayMode tests; gameplay/Core tests remain pending |
 | AI Navigation 2.0.14 | navigation meshes for enemies | not yet |
 | Timeline, uGUI, Visual Scripting | cutscenes, UI, node-based scripting | not used by any asset |
 | Pipeline 0.8 (experimental) | lets the `unity` terminal tool drive the editor | yes, by our tooling |
@@ -132,6 +140,8 @@ NEXUS_Player.prefab ───── NEXUS_Character.prefab, NexusPlayer.cs      
 
 | I want to change | Open |
 | --- | --- |
+| menu layout, timing, surveillance feeds or simulated loading | `Assets/NETRunner/MainMenu/README.md` and [[systems/main-menu]] |
+| editable warehouse source and closed-door exports | `ArtSource/Warehouse_NearFuture/README.md` and [[systems/level-warehouse]] |
 | walking or running speed | `NEXUS_Player` → Nexus Player → Walk Speed / Run Speed, **in each scene**; also the blend tree thresholds ([[systems/character-and-animation]]) |
 | mouse sensitivity | the same component → Sensitivity |
 | jump height or gravity | `NexusPlayer.cs` lines 72–73 |
