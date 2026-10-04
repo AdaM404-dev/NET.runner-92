@@ -9,7 +9,12 @@ for gameplay; see [[architecture/before-new-scripts]].
 
 Verified 2026-09-30 on commit `df3a31d` (Unity 6000.6.2f1, Linux) with
 `bin/unity-inspect player` and scripted Play-mode checks. The checks called
-the same methods the keys call; nobody pressed the keys by hand.
+the same methods the keys call; nobody pressed the keys by hand. On
+2026-10-04 (Step 4, [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9))
+the script moved to its feature folder, got a namespace and one statement per
+line, and handed gravity and jumping to `VerticalMotion` in `Core`, without a
+change in behaviour: the PlayMode tests below measure the same walk, run and
+jump values.
 
 New to Unity words like *component* or *prefab*? Read
 [[guide/01-unity-in-this-project]] first.
@@ -20,7 +25,9 @@ New to Unity words like *component* or *prefab*? Read
 | --- | --- |
 | Prefab | `Assets/Prefabs/NEXUS_Player.prefab`, tagged `Player`: **the** player |
 | Gameplay scene | `Assets/Scenes/Game/Warehouse.unity` → `NEXUS_Player`, an instance of the prefab |
-| Script | [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs), 144 lines, one class |
+| Script | [`Assets/NETRunner/Player/Scripts/NexusPlayer.cs`](../../Assets/NETRunner/Player/Scripts/NexusPlayer.cs), one class, `NetRunner.Player.NexusPlayer` |
+| Gravity and jump maths | [`Assets/NETRunner/Core/Scripts/VerticalMotion.cs`](../../Assets/NETRunner/Core/Scripts/VerticalMotion.cs), plain C#, called by `Simulate()` |
+| Tests | `Assets/NETRunner/Player/Tests/PlayMode/` and `Assets/NETRunner/Core/Tests/EditMode/`, see "Tests" below |
 | Preview copies | `MainTest` → `NEXUS_Player` and `CharacterPreview` → `Character_Preview` (with `previewMode` on): older copies of the same setup in AdaM404's preview scenes, **not** linked to the prefab |
 
 Change the prefab, not the preview copies: only the gameplay scene follows
@@ -77,31 +84,36 @@ The model and its animation are described in
 
 **Numbers written in the code**, not reachable from the Inspector:
 
-| Number | Value | Line |
+| Number | Value | Where |
 | --- | --- | --- |
-| Gravity | 14 m/s² (Unity's own physics gravity of 9.81 is not used) | 82 |
-| Jump speed | 4.4 m/s upward; measured jump 0.66 m high, 0.62 s in the air | 81 |
-| Ground stick | −2 m/s while standing, keeps the capsule pressed to the floor | 80 |
-| Look up/down limit | ±78°, starting at 8° down | 69, 28 |
-| Third-person turn rate | 12 (higher = the body turns faster toward movement) | 78 |
-| Animation smoothing | 0.15 s | 83 |
-| Fall limit | below y = −12 the player is put back at the start | 84 |
-| Interaction distance | 3.5 m from the camera | 101 |
+| Gravity | 14 m/s² (Unity's own physics gravity of 9.81 is not used) | `VerticalMotion.Gravity` |
+| Jump speed | 4.4 m/s upward; measured jump 0.66 m high, 0.62 s in the air | `VerticalMotion.JumpSpeed` |
+| Ground stick | −2 m/s while standing, keeps the capsule pressed to the floor | `VerticalMotion.GroundStick` |
+| Look up/down limit | ±78°, starting at 8° down | `NexusPlayer.Update()`; the start value is the `pitch` field |
+| Third-person turn rate | 12 (higher = the body turns faster toward movement) | `NexusPlayer.Simulate()` |
+| Animation smoothing | 0.15 s | `NexusPlayer.Simulate()` |
+| Fall limit | below y = −12 the player is put back at the start | `NexusPlayer.Simulate()` |
+| Interaction distance | 3.5 m from the camera | `NexusPlayer.Interact()` |
+
+The docs name methods and constants instead of line numbers, because line
+numbers change with every edit.
 
 ## Keys
 
-| Key | What it does | Line |
-| --- | --- | --- |
-| W A S D, arrow keys, gamepad stick | move (legacy axes `Horizontal`, `Vertical`) | 70 |
-| Mouse | look | 69 |
-| Left Shift | run | 71 |
-| Space | jump | 71 |
-| E | interact; today that means doors only, see [[systems/doors-and-interaction]] | 68 |
-| Tab | switch first / third person | 65 |
-| F1 | load the other scene (`MainTest` ↔ `CharacterPreview`) | 66 |
-| R | back to the start position | 67 |
-| Esc | release or recapture the mouse cursor; no movement while released | 63 |
-| Left click | recapture the cursor | 64 |
+All keys are read in `NexusPlayer.Update()`.
+
+| Key | What it does |
+| --- | --- |
+| W A S D, arrow keys, gamepad stick | move (legacy axes `Horizontal`, `Vertical`) |
+| Mouse | look |
+| Left Shift | run |
+| Space | jump |
+| E | interact; today that means doors only, see [[systems/doors-and-interaction]] |
+| Tab | switch first / third person |
+| F1 | load the other scene (`MainTest` ↔ `CharacterPreview`) |
+| R | back to the start position |
+| Esc | release or recapture the mouse cursor; no movement while released |
+| Left click | recapture the cursor |
 
 All of these are read with Unity's old `Input` class. The project also
 contains an Input System actions asset (`Assets/InputSystem_Actions.inputactions`
@@ -113,28 +125,28 @@ Unity calls these methods by itself; nothing in the project calls them.
 
 ```
 once, when the scene starts
-  Awake()        line 36   find the CharacterController, remember the start
-                           position, collect the model's renderers, apply the
-                           starting view, lock the mouse cursor
-  Start()        line 46   start the auto-test if it was requested
+  Awake()        find the CharacterController, remember the start position,
+                 collect the model's renderers, apply the starting view,
+                 lock the mouse cursor
 
 every frame, in this order
-  Update()       line 60   read keys and mouse
+  Update()       read keys and mouse
     ├─ Esc, click, Tab, F1, R, E
     ├─ mouse → yaw and pitch (the two look angles)
-    └─ Simulate(input, run, jump, dt)        line 73
+    └─ Simulate(input, run, jump, dt)
          1. input + yaw → a direction in the world
          2. turn the body: first person faces where you look,
             third person turns toward the movement direction
-         3. gravity and jump change verticalSpeed
+         3. VerticalMotion.Step(...) works out the new verticalSpeed:
+            ground stick, jump, gravity (plain maths in Core)
          4. CharacterController.Move(...)  ← the only place the player moves
          5. tell the Animator the speed (from the input, not from real movement)
          6. fell too far → Respawn()
 
   (Unity's Animator then poses the skeleton)
 
-  LateUpdate()   line 87   put the camera in place, after the body has moved
-  OnGUI()        line 104  draw the text in the top-left corner and the notices
+  LateUpdate()   put the camera in place, after the body has moved
+  OnGUI()        draw the text in the top-left corner and the notices
 ```
 
 The movement maths inside `Simulate` is explained line by line in
@@ -157,39 +169,59 @@ plays the forward walk animation, because only forward clips exist; and
 walking into a wall keeps the walk animation playing, because the animation
 speed comes from the keys rather than from real movement.
 
-## Two extra jobs hidden in the script
+## An extra job hidden in the script
 
 **Preview mode.** With `previewMode` on, movement input is ignored, jumping is
 off, the top-left text changes and F1 leads back to the warehouse. The
 `CharacterPreview` scene relies on this to show the model on a small stage.
 
-**Auto-test** (lines 112–143). When the game is started with the command-line
-argument `-nexus-autotest`, the script ignores the keyboard and runs a
-scripted sequence: walk forward, jump, switch to first person, look down,
-toggle one door, then load `CharacterPreview`. It saves four screenshots and
-`RuntimeValidation.json` into `../../QA/Runtime` relative to `Assets/`, which
-is a folder **next to** the repository, not inside it.
+Until 2026-10-04 the script also had a command-line auto-test
+(`-nexus-autotest`) that saved screenshots into a folder next to the
+repository. The PlayMode tests below replaced it.
 
 ## What other scripts can call
 
 `Simulate(Vector2 input, bool run, bool jump, float dt)`, `SetView(bool firstPerson)`,
 `Respawn()`, the read-only `Grounded` and `Position`, and the public fields
-listed above. Everything else is private.
+listed above. Everything else is private. Other assemblies need a reference
+to `NetRunner.Player` and `using NetRunner.Player;` to see the class.
 
 ## Tests
 
-None. The auto-test above is the only automated check and it is not part of
-Unity's test runner.
+Added 2026-10-04 (Step 4). Run them with `bin/unity-test edit` and
+`bin/unity-test play` (editor closed) or through the editor bridge; see
+[[architecture/tooling]].
+
+**EditMode**, `Assets/NETRunner/Core/Tests/EditMode/VerticalMotionTests.cs`:
+six tests of `VerticalMotion.Step()` without a scene: gravity takes 14 m/s
+off every second, standing replaces a falling speed with the ground stick, a
+jump from the floor starts at 4.4 m/s, a jump in the air or with jumping
+switched off does nothing, and a jump rises about 0.66 m.
+
+**PlayMode**, `Assets/NETRunner/Player/Tests/PlayMode/PlayerPlayModeTests.cs`:
+each test loads the gameplay scene `Warehouse`, switches the script off so
+it does not read the keyboard, lets the player settle for 90 frames, then
+calls `Simulate()` itself, one frame at a time:
+
+| Test | Checks |
+| --- | --- |
+| `PlayerStandsWalksAndRunsAtTheMeasuredSpeeds` | standing on the floor; 2 s of walking = 3.3 m (±0.1); 0.5 s of running = 1.625 m (±0.1); saves `Logs/PlayModeTests/walked-third-person.png` |
+| `PlayerJumpsAboutTwoThirdsOfAMetreAndLands` | jump height 0.66 m (±0.06), standing again afterwards |
+| `ADoorNearTheStartOpensWhenToggled` | `DOOR_Hall_X-18_4` reports open and has turned 95° (±1) after one second |
+
+Step 6 ([#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11))
+splits this script up; these tests have to pass before and after.
 
 ## Known problems
 
 Each of these is explained, with the proposed fix, in
 [[architecture/before-new-scripts]].
 
-- One class has ten jobs: input, movement, two camera modes, interaction, the
-  text HUD, cursor handling, debug keys, respawn, preview mode, auto-test.
+- One class has nine jobs: input, movement, two camera modes, interaction,
+  the text HUD, cursor handling, debug keys, respawn, preview mode.
 - The two preview scenes still hold their own copies of the player.
-- Tunable numbers are buried in the code.
+- Most tunable numbers are written into the code; gravity and jump are
+  named constants in `VerticalMotion`, but still not in the Inspector.
 - `Awake` stops with an error if `Visual` is not assigned; `Interact` does the
   same if `View Camera` is missing.
 - The script sets `Application.runInBackground = true` for the whole game.

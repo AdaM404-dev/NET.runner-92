@@ -85,8 +85,8 @@ walking underneath.
 
 | Code (`NexusPlayer.cs`) | Effect |
 | --- | --- |
-| `animator.SetFloat("Speed", speed, 0.15f, dt)`, line 83 | `speed` = walk or run speed × how far the stick or keys are pushed, smoothed over 0.15 s |
-| `animator.SetLayerWeight(1, value ? 1 : 0)`, line 51 | Tab raises (first person) or lowers (third person) the arms layer |
+| `animator.SetFloat("Speed", speed, 0.15f, dt)` in `Simulate()` | `speed` = walk or run speed × how far the stick or keys are pushed, smoothed over 0.15 s |
+| `animator.SetLayerWeight(1, value ? 1 : 0)` in `SetView()` | Tab raises (first person) or lowers (third person) the arms layer |
 
 The thresholds 1.65 and 3.25 in the blend tree are the same numbers as
 `Walk Speed` and `Run Speed` in the Inspector. Changing a speed in one place

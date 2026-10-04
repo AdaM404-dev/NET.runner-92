@@ -20,7 +20,9 @@ unity command console --level error
 unity command recompile            # then poll: unity command recompile_status
 unity command open_scene --path Assets/Scenes/MainTest.unity
 unity command editor_play          # and editor_stop
-unity command run_tests            # tests inside the open editor
+unity command run_tests --mode editor   # EditMode tests inside the open editor
+unity command run_tests --mode playmode --async_tests true   # PlayMode tests; then
+unity command test_status          # poll until "completed"; prints every result
 unity command eval 'return Application.unityVersion;'
 bin/unity-shot maintest            # Game view -> Logs/shots/maintest.png
 bin/unity-shot layout scene        # Scene view
@@ -49,6 +51,14 @@ Notes from first use:
 - Asset commands (`create_prefab`, `save_prefab_contents`,
   `set_material_properties`, `move_asset`, ...) are the way to change scenes,
   prefabs and materials. They keep GUIDs and `.meta` files correct.
+- PlayMode tests need the asynchronous form above. On 2026-10-04 a waiting
+  `run_tests --mode PlayMode` returned "0 tests" without running anything;
+  `--mode playmode --async_tests true` followed by `test_status` ran all
+  five (35 s). While they run, the editor is in Play mode: do not edit
+  scripts until `test_status` says `completed`.
+- Tests live next to their code: `Assets/NETRunner/<Feature>/Tests/EditMode/`
+  and `Tests/PlayMode/`, one test assembly each ([[architecture/overview]]).
+  Screenshots saved by PlayMode tests go to `Logs/PlayModeTests/`.
 - `.claude/skills/unity-cli/` is the CLI's own reference, installed with
   `unity skill install claude-code --local`. Refresh it after upgrading the
   CLI with `unity skill refresh`.

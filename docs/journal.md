@@ -4,6 +4,29 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-10-04 — Foundation steps 1 to 4
+
+- Steps 1 to 3 (PRs #23 and #24): named layers and `LayerMask` fields,
+  template leftovers removed, company name `NET.runner`, PC only, the
+  warehouse as a prefab and a gameplay scene of our own.
+- Step 4 (#9), as PAIR: the code moved into feature folders under
+  `Assets/NETRunner/` (`Core`, `World`, `Player`), like the main menu, with
+  one assembly definition and namespace each. Samuel picked feature folders
+  over the issue's original `Assets/Scripts/Core…` layout. See
+  [[architecture/overview]].
+- First tests for the gameplay code: the gravity and jump maths moved into
+  `VerticalMotion` in `Core` with six EditMode tests; three PlayMode tests
+  walk, run and jump the player in the gameplay scene and open a door. They
+  replace the old command-line auto-test.
+- Learned: moving a script through the editor keeps its GUID, so every scene
+  and prefab still finds it. An assembly definition cannot use code from
+  Unity's default assembly, so scripts that arrive with art need their own
+  assembly definition before our code can call them (the K7 robot). PlayMode
+  tests in the open editor only ran in the asynchronous form
+  (`--async_tests true`, then `test_status`).
+- Next: Samuel's follow-up for Step 4 (move the door's easing formula into
+  `Core` with a test), then Step 5 (#10), which Samuel writes.
+
 ## 2026-10-03 — Documentation audit of October 2
 
 - Checked the October 2 main-branch history (Europe/Budapest): PR #20
