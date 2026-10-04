@@ -74,7 +74,7 @@ after simulated loading. It does not alter the build order above.
 
 | File | Lines | What it does | Used by |
 | --- | ---: | --- | --- |
-| `Assets/Scripts/NexusPlayer.cs` | 135 | input, movement, camera, interaction, HUD, debug keys, auto-test ([[systems/player]]) | `MainTest`, `CharacterPreview`, `NEXUS_Player` prefab |
+| `Assets/Scripts/NexusPlayer.cs` | 144 | input, movement, camera, interaction, HUD, debug keys, auto-test ([[systems/player]]) | `MainTest`, `CharacterPreview`, `NEXUS_Player` prefab |
 | `Assets/Scripts/NexusDoor.cs` | 16 | swings or lifts one door ([[systems/doors-and-interaction]]) | 119 doors in `MainTest` |
 | `Assets/TutorialInfo/Readme.cs`, `Editor/ReadmeEditor.cs` | | Unity template leftovers | `Readme.asset` |
 | `ArtSource/K7_Industrial_Robot/Unity/*.cs` | | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
@@ -99,7 +99,7 @@ Details in [[systems/rendering]].
 
 | Setting | Value | Where |
 | --- | --- | --- |
-| Layers | only Unity's built-in names; **8 and 9 are used but unnamed** | Project Settings > Tags and Layers |
+| Layers | 8 `Player`, 9 `World`, 10 `Enemy` and 11 `Interactable` (10 and 11 reserved for later), plus Unity's built-in ones | Project Settings > Tags and Layers |
 | Tags | Unity's defaults; only `MainCamera` is used | same |
 | Active input handling | **Both** (old Input Manager and new Input System) | Project Settings > Player > Other Settings |
 | Company name | `DefaultCompany` (decides where save files go) | Project Settings > Player |
@@ -144,14 +144,14 @@ NEXUS_Player.prefab ───── NEXUS_Character.prefab, NexusPlayer.cs      
 | editable warehouse source and closed-door exports | `ArtSource/Warehouse_NearFuture/README.md` and [[systems/level-warehouse]] |
 | walking or running speed | `NEXUS_Player` → Nexus Player → Walk Speed / Run Speed, **in each scene**; also the blend tree thresholds ([[systems/character-and-animation]]) |
 | mouse sensitivity | the same component → Sensitivity |
-| jump height or gravity | `NexusPlayer.cs` lines 72–73 |
-| which key does what | `NexusPlayer.cs` `Update()`, lines 54–62 |
-| third-person camera distance or height | `NexusPlayer.cs` line 85 |
-| first-person eye height or field of view | `NexusPlayer.cs` line 82 |
-| what pressing E does | `NexusPlayer.cs` `Interact()`, lines 90–94 |
+| jump height or gravity | `NexusPlayer.cs` lines 81–82 |
+| which key does what | `NexusPlayer.cs` `Update()`, lines 63–71 |
+| third-person camera distance or height | `NexusPlayer.cs` line 94 |
+| first-person eye height or field of view | `NexusPlayer.cs` line 91 |
+| what pressing E does | `NexusPlayer.cs` `Interact()`, lines 99–103 |
 | how fast doors move | `NexusDoor.cs` line 12 |
 | how far one door swings or lifts | that door → Nexus Door → Angle / Lift |
-| the text on screen | `NexusPlayer.cs` `OnGUI()`, lines 95–102 |
+| the text on screen | `NexusPlayer.cs` `OnGUI()`, lines 104–111 |
 | where the player starts | `NEXUS_Player` → Transform → Position |
 | which scene a built game opens | File > Build Profiles > Scene List |
 | the character's animations | select `LOD0`, then Window > Animation > Animator |

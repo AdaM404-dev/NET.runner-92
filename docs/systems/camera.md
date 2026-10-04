@@ -19,9 +19,9 @@ scripted Play-mode checks.
 | What | Where |
 | --- | --- |
 | Object | `MainTest` → `NEXUS_Player/Player_Camera` (same name in `CharacterPreview` and in `NEXUS_Player.prefab`) |
-| Placement code | `NexusPlayer.LateUpdate()`, [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs) lines 78–89 |
-| View switching | `NexusPlayer.SetView()`, lines 39–50, called by the Tab key |
-| Look angles | `yaw` (left/right) and `pitch` (up/down), updated from the mouse in `Update()`, line 60 |
+| Placement code | `NexusPlayer.LateUpdate()`, [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs) lines 87–98 |
+| View switching | `NexusPlayer.SetView()`, lines 48–59, called by the Tab key |
+| Look angles | `yaw` (left/right) and `pitch` (up/down), updated from the mouse in `Update()`, line 69 |
 
 The legacy player has no separate camera script or Cinemachine. The independent
 menu uses four surveillance cameras, with only one enabled at a time; see
@@ -32,7 +32,7 @@ menu uses four surveillance cameras, with only one enabled at a time; see
 `LateUpdate` runs after all movement of the frame, so the camera never lags a
 frame behind the body.
 
-**First person** (line 82)
+**First person** (line 91)
 
 ```
 camera position = player position + 1.66 m up + 0.17 m forward
@@ -44,14 +44,14 @@ The eye point is fixed to the capsule, not to the head bone, so the view
 does not bob with the walk animation. The capsule is 1.78 m tall; the eyes
 sit at 1.66 m.
 
-**Third person** (lines 85–87)
+**Third person** (lines 94–96)
 
 ```
 focus point     = player position + 1.34 m up         (about chest height)
 wanted offset   = 0.36 m right, 0.14 m up, 3.15 m back, turned by pitch and yaw
                   → 3.17 m from the focus point
 wall check      = a sphere of radius 0.14 m is swept from the focus point
-                  toward the camera, hitting only layer 9 (the level);
+                  toward the camera, hitting only the Camera Collision Layers (World);
                   if it hits, the camera moves in to (hit distance − 0.08 m),
                   but never closer than 0.45 m
 camera          = placed on that line, then turned to look at the focus point

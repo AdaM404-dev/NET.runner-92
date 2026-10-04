@@ -31,7 +31,7 @@ Samuel reviews).
 
 ### 1. Name the layers and stop using layer numbers in code
 
-Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6)
+Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6). **Done 2026-10-04**: layers named, `NexusPlayer` uses two `LayerMask` fields.
 
 | | |
 | --- | --- |

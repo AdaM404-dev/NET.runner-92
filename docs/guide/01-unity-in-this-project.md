@@ -146,14 +146,22 @@ a thick ray (a sphere cast) to avoid ending up inside walls.
 
 ## 11. Layers and tags
 
-A **layer** is a number from 0 to 31 on every GameObject. Physics queries
-and cameras can include or ignore layers. Here layer **8** is the player and
-layer **9** is the whole warehouse, but neither has a name in Project Settings
-> Tags and Layers. The code picks layers with bit masks:
+A **layer** is a number from 0 to 31 on every GameObject, and can have a
+name (Edit > Project Settings > Tags and Layers). Physics queries and cameras
+can include or ignore layers. Here layer 8 is **`Player`** (the player's
+objects) and layer 9 is **`World`** (the whole warehouse); 10 `Enemy` and 11
+`Interactable` are reserved for later.
+
+Scripts choose layers with a **`LayerMask`** field, which the Inspector shows
+as a dropdown of layer names. `NexusPlayer` has two: **Camera Collision
+Layers** (World) and **Interaction Layers** (everything except Player, so the
+E ray ignores the player's own body). Under the hood a mask is a 32-bit
+number with one bit per layer; that is why the code's default values are
+written like this:
 
 ```csharp
-1 << 9       // only layer 9: the camera's wall check
-~(1 << 8)    // every layer except 8: the E ray ignores the player's own body
+1 << 9       // only layer 9 (World)
+~(1 << 8)    // every layer except 8 (Player)
 ```
 
 A **tag** is a text label. Only `MainCamera` is used, on `Player_Camera`.
