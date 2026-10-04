@@ -16,7 +16,7 @@ and scripted Play-mode checks (reach, timing, collisions).
 | What | Where |
 | --- | --- |
 | Door script | [`Assets/Scripts/NexusDoor.cs`](../../Assets/Scripts/NexusDoor.cs), 16 lines |
-| Interaction code | `NexusPlayer.Interact()`, [`NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs) lines 90–94; the E key at line 59; the notice text at line 101 |
+| Interaction code | `NexusPlayer.Interact()`, [`NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs) lines 99–103; the E key at line 68; the notice text at line 110 |
 | Door objects | `MainTest` → `Warehouse_NearFuture/Warehouse_NearFuture_Geometry/DOOR_*` (119 of them) |
 | Setup | stored in `MainTest.unity` as changes to the imported model; there is no door prefab |
 
@@ -26,7 +26,7 @@ or run `unity command find_gameobjects --type NexusDoor`.
 ## One door, as built
 
 ```
-DOOR_Hall_X-18_4          layer 9, not static
+DOOR_Hall_X-18_4          layer 9 World, not static
 │  MeshFilter + MeshRenderer   the door leaf you see
 │  NexusDoor                   the script
 │  BoxCollider                 solid (not a trigger), blocks the player
@@ -63,7 +63,7 @@ whatever `IsOpen` says.
 ## How pressing E reaches a door
 
 ```
-E pressed (Update, line 59)
+E pressed (Update, line 68)
  └─ Interact()
       ray from the camera, straight ahead, 3.5 m long,
       hitting every layer except 8 (the player)

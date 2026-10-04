@@ -85,8 +85,8 @@ walking underneath.
 
 | Code (`NexusPlayer.cs`) | Effect |
 | --- | --- |
-| `animator.SetFloat("Speed", speed, 0.15f, dt)`, line 74 | `speed` = walk or run speed × how far the stick or keys are pushed, smoothed over 0.15 s |
-| `animator.SetLayerWeight(1, value ? 1 : 0)`, line 42 | Tab raises (first person) or lowers (third person) the arms layer |
+| `animator.SetFloat("Speed", speed, 0.15f, dt)`, line 83 | `speed` = walk or run speed × how far the stick or keys are pushed, smoothed over 0.15 s |
+| `animator.SetLayerWeight(1, value ? 1 : 0)`, line 51 | Tab raises (first person) or lowers (third person) the arms layer |
 
 The thresholds 1.65 and 3.25 in the blend tree are the same numbers as
 `Walk Speed` and `Run Speed` in the Inspector. Changing a speed in one place
@@ -116,7 +116,6 @@ which may suit hacking later; nobody has checked them in the game yet.
 
 | Asset | What it is |
 | --- | --- |
-| `NEXUS_FullBody_LOD0.prefab` … `LOD3.prefab` | one prefab per detail level, each a variant of its model file |
 | `NEXUS_FirstPerson_Arms.prefab` | a separate arms-only model (13 parts, 90,816 triangles, its own rig `NEXUS_FP_Rig`, one 2 s clip) meant for an arms-only first-person view |
 
 None of them is referenced by any scene or other prefab.

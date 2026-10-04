@@ -29,8 +29,11 @@ Material (per surface)             shader "Universal Render Pipeline/Lit"
 
 | Level | URP asset | LOD bias | Used |
 | --- | --- | ---: | --- |
-| Mobile | `Mobile_RPAsset` + `Mobile_Renderer` | 1 | no platform uses it |
-| **PC** | `PC_RPAsset` + `PC_Renderer` | 2 | default for Windows, Linux and macOS, and active in the editor |
+| **PC** | `PC_RPAsset` + `PC_Renderer` | 2 | the only level: every platform, and the editor |
+
+The game targets **PC only (Windows and Linux)**, decided in
+[issue #15](https://github.com/AdaM404-dev/NET.runner-92/issues/15). The Mobile level from Unity's template and its two URP
+assets were removed on 2026-10-04.
 
 `Project Settings > Graphics` has no pipeline of its own; the quality level
 decides.
@@ -103,11 +106,9 @@ player's full-detail model 188,001.
 
 - Camera post-processing and anti-aliasing are off.
 - No shadows, probes or baked light (an art task).
-- The Mobile quality level and its two assets are unused unless mobile is a target.
 - GPU Resident Drawer is enabled but unsupported here, producing a console
   warning on every Play.
 
 ## Open questions
 
-- Target platforms: PC only (Windows and Linux)?
 - What look is wanted? A lighting pass needs reference images from the team.

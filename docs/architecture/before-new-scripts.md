@@ -31,7 +31,7 @@ Samuel reviews).
 
 ### 1. Name the layers and stop using layer numbers in code
 
-Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6)
+Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6). **Done 2026-10-04**: layers named, `NexusPlayer` uses two `LayerMask` fields.
 
 | | |
 | --- | --- |
@@ -42,7 +42,7 @@ Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6)
 
 ### 2. Remove template leftovers and set the project's identity
 
-Issue: [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7)
+Issue: [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7). **Done 2026-10-04**: template files and the four `NEXUS_FullBody_LOD*` prefabs deleted, company name `NET.runner`.
 
 | | |
 | --- | --- |
@@ -153,7 +153,7 @@ Not blocking, but cheap if done early:
 | D1 | Third person: part of the game or a debug view? | Debug view only; the game is first-person. It keeps the camera work small. | Samuel | [#13](https://github.com/AdaM404-dev/NET.runner-92/issues/13) |
 | D2 | First person: full body (today) or the arms-only model? | Keep the full body for now (it works and shows the cybernetic arm); decide again when aiming or weapons arrive. Keep the arms prefab until then. | Samuel, AdaM404 | [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) |
 | D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
-| D4 | Target platforms | PC only (Windows and Linux); remove the Mobile quality level. | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
+| D4 | Target platforms | **Decided 2026-10-04: PC only (Windows and Linux); the Mobile quality level is removed.** | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
 | D5 | Company name and code namespace | Pick the team name for the company; namespace `NetRunner`. | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
 | D6 | Doors that are exported open | The door script works out from the frame which pose is shut; later, export doors shut. | Samuel, AdaM404 | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 

@@ -19,7 +19,7 @@ New to Unity words like *component* or *prefab*? Read
 | What | Where |
 | --- | --- |
 | Scene object | scene `MainTest` → `NEXUS_Player`, at the top level of the Hierarchy |
-| Script | [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs), 135 lines, one class |
+| Script | [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs), 144 lines, one class |
 | Prefab | `Assets/Prefabs/NEXUS_Player.prefab`: the same setup, but **no scene uses it** |
 | Second copy | scene `CharacterPreview` → `Character_Preview`: the same script with `previewMode` switched on |
 
@@ -29,7 +29,7 @@ change the others.
 ## The object tree
 
 ```
-NEXUS_Player              layer 8 (unnamed), position (0, 0.03, 12), tag Untagged
+NEXUS_Player              layer 8 Player, position (0, 0.03, 12), tag Untagged
 │  Transform
 │  CharacterController      the capsule that collides with the world
 │  NexusPlayer              the script
@@ -71,35 +71,36 @@ The model and its animation are described in
 | Walk Speed | 1.65 m/s | measured: 3.30 m in 2 s |
 | Run Speed | 3.25 m/s | measured: 6.50 m in 2 s |
 | Sensitivity | 2 | degrees of turn per unit of mouse movement |
+| Camera Collision Layers | World | what the third-person camera treats as walls |
+| Interaction Layers | everything except Player | what the E ray can hit; leaving out Player makes it ignore your own body |
 
 **Numbers written in the code**, not reachable from the Inspector:
 
 | Number | Value | Line |
 | --- | --- | --- |
-| Gravity | 14 m/s² (Unity's own physics gravity of 9.81 is not used) | 73 |
-| Jump speed | 4.4 m/s upward; measured jump 0.66 m high, 0.62 s in the air | 72 |
-| Ground stick | −2 m/s while standing, keeps the capsule pressed to the floor | 71 |
-| Look up/down limit | ±78°, starting at 8° down | 60, 19 |
-| Third-person turn rate | 12 (higher = the body turns faster toward movement) | 69 |
-| Animation smoothing | 0.15 s | 74 |
-| Fall limit | below y = −12 the player is put back at the start | 75 |
-| Interaction distance | 3.5 m from the camera | 92 |
-| Layers | `1<<9` = world, `~(1<<8)` = everything except the player | 86, 92 |
+| Gravity | 14 m/s² (Unity's own physics gravity of 9.81 is not used) | 82 |
+| Jump speed | 4.4 m/s upward; measured jump 0.66 m high, 0.62 s in the air | 81 |
+| Ground stick | −2 m/s while standing, keeps the capsule pressed to the floor | 80 |
+| Look up/down limit | ±78°, starting at 8° down | 69, 28 |
+| Third-person turn rate | 12 (higher = the body turns faster toward movement) | 78 |
+| Animation smoothing | 0.15 s | 83 |
+| Fall limit | below y = −12 the player is put back at the start | 84 |
+| Interaction distance | 3.5 m from the camera | 101 |
 
 ## Keys
 
 | Key | What it does | Line |
 | --- | --- | --- |
-| W A S D, arrow keys, gamepad stick | move (legacy axes `Horizontal`, `Vertical`) | 61 |
-| Mouse | look | 60 |
-| Left Shift | run | 62 |
-| Space | jump | 62 |
-| E | interact; today that means doors only, see [[systems/doors-and-interaction]] | 59 |
-| Tab | switch first / third person | 56 |
-| F1 | load the other scene (`MainTest` ↔ `CharacterPreview`) | 57 |
-| R | back to the start position | 58 |
-| Esc | release or recapture the mouse cursor; no movement while released | 54 |
-| Left click | recapture the cursor | 55 |
+| W A S D, arrow keys, gamepad stick | move (legacy axes `Horizontal`, `Vertical`) | 70 |
+| Mouse | look | 69 |
+| Left Shift | run | 71 |
+| Space | jump | 71 |
+| E | interact; today that means doors only, see [[systems/doors-and-interaction]] | 68 |
+| Tab | switch first / third person | 65 |
+| F1 | load the other scene (`MainTest` ↔ `CharacterPreview`) | 66 |
+| R | back to the start position | 67 |
+| Esc | release or recapture the mouse cursor; no movement while released | 63 |
+| Left click | recapture the cursor | 64 |
 
 All of these are read with Unity's old `Input` class. The project also
 contains an Input System actions asset (`Assets/InputSystem_Actions.inputactions`
@@ -111,16 +112,16 @@ Unity calls these methods by itself; nothing in the project calls them.
 
 ```
 once, when the scene starts
-  Awake()        line 27   find the CharacterController, remember the start
+  Awake()        line 36   find the CharacterController, remember the start
                            position, collect the model's renderers, apply the
                            starting view, lock the mouse cursor
-  Start()        line 37   start the auto-test if it was requested
+  Start()        line 46   start the auto-test if it was requested
 
 every frame, in this order
-  Update()       line 51   read keys and mouse
+  Update()       line 60   read keys and mouse
     ├─ Esc, click, Tab, F1, R, E
     ├─ mouse → yaw and pitch (the two look angles)
-    └─ Simulate(input, run, jump, dt)        line 64
+    └─ Simulate(input, run, jump, dt)        line 73
          1. input + yaw → a direction in the world
          2. turn the body: first person faces where you look,
             third person turns toward the movement direction
@@ -131,8 +132,8 @@ every frame, in this order
 
   (Unity's Animator then poses the skeleton)
 
-  LateUpdate()   line 78   put the camera in place, after the body has moved
-  OnGUI()        line 95   draw the text in the top-left corner and the notices
+  LateUpdate()   line 87   put the camera in place, after the body has moved
+  OnGUI()        line 104  draw the text in the top-left corner and the notices
 ```
 
 The movement maths inside `Simulate` is explained line by line in
@@ -161,7 +162,7 @@ speed comes from the keys rather than from real movement.
 off, the top-left text changes and F1 leads back to the warehouse. The
 `CharacterPreview` scene relies on this to show the model on a small stage.
 
-**Auto-test** (lines 103–134). When the game is started with the command-line
+**Auto-test** (lines 112–143). When the game is started with the command-line
 argument `-nexus-autotest`, the script ignores the keyboard and runs a
 scripted sequence: walk forward, jump, switch to first person, look down,
 toggle one door, then load `CharacterPreview`. It saves four screenshots and
@@ -187,7 +188,6 @@ Each of these is explained, with the proposed fix, in
 - One class has ten jobs: input, movement, two camera modes, interaction, the
   text HUD, cursor handling, debug keys, respawn, preview mode, auto-test.
 - The player exists three times (two scenes and an unused prefab).
-- Layers are used by number only; layers 8 and 9 have no names.
 - Tunable numbers are buried in the code.
 - `Awake` stops with an error if `Visual` is not assigned; `Interact` does the
   same if `View Camera` is missing.
