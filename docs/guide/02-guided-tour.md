@@ -11,12 +11,15 @@ where things are, and the notes under `systems/` for the details.
 ## 0. Before you start (2 min)
 
 1. Open the project in Unity Hub with Unity **6000.6.2f1**.
-2. In the **Project** window open `Assets/Scenes/MainTest`.
+2. In the **Project** window open `Assets/Scenes/Game/Warehouse`, the
+   gameplay scene. (`MainTest` shows the same warehouse; it is AdaM404's
+   preview scene.)
 3. Arrange the windows so you can see Hierarchy, Scene or Game, Inspector,
    Project and Console at once.
 4. If the scene name in the Hierarchy shows a `*` although you changed
-   nothing, that is URP adding helper components on its own. Whenever Unity
-   asks whether to save `MainTest`, answer **Don't Save** for now.
+   nothing, that is URP adding helper components on its own. In the gameplay
+   scene that is harmless. If Unity asks whether to save `MainTest` or
+   `CharacterPreview`, answer **Don't Save**: they are AdaM404's scenes.
 
 ## 1. Play it (4 min)
 
@@ -52,7 +55,9 @@ the first E closed it.) Press **Play** again to stop.
 
 ## 2. The Hierarchy (5 min)
 
-The Hierarchy has two top-level objects:
+The Hierarchy has two top-level objects, both shown with a blue cube icon
+because they are **prefab instances**: the scene only places them, the
+prefab files hold their contents.
 
 - `Warehouse_NearFuture`, with three children: `Warehouse_NearFuture_Geometry`
   (everything you see), `Static_Collision` (invisible walls for physics) and
@@ -188,7 +193,8 @@ bin/unity-shot mytest                # screenshot of the Game view into Logs/sho
    nothing change when you play `MainTest`?
 
    > Answer: the player in `MainTest` is a separate copy, not an instance of
-   > that prefab. Only instances follow the prefab.
+   > that prefab. Only instances follow the prefab; the one in the gameplay
+   > scene `Game/Warehouse` is an instance, so there the change shows.
 
 3. Why is Player left out of the Interaction Layers field?
 
@@ -214,8 +220,9 @@ bin/unity-shot mytest                # screenshot of the Game view into Logs/sho
 6. Where is the setting that decides which scene a built game opens first,
    and what is wrong with it?
 
-   > Answer: File > Build Profiles > Scene List. The empty `SampleScene` is
-   > first, so the built game shows only sky.
+   > Answer: File > Build Profiles > Scene List. Until 2026-10-04 the empty
+   > `SampleScene` was first, so a built game showed only sky; now the
+   > gameplay scene `Game/Warehouse` is first.
 
 7. Which object has the Animator, and why does that matter for LOD1–3?
 

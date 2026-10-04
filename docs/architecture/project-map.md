@@ -35,7 +35,7 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `Environment/Warehouse_NearFuture/` | the warehouse models (visual and collision), 29 textures, metadata | 32 | AdaM404 |
 | `Materials/` | 27 environment and 24 character materials, the preview floor, one reflection cubemap | 53 | AdaM404 |
 | `Prefabs/` | three prefabs, see below | 3 | shared |
-| `Scenes/` | three scenes, see below | 3 | AdaM404 (previews); ours once a gameplay scene exists |
+| `Scenes/` | the gameplay scene `Game/Warehouse` and two preview scenes, see below | 3 | `Game/` Samuel; the previews AdaM404 |
 | `Scripts/` | `NexusPlayer.cs`, `NexusDoor.cs`: legacy player/door gameplay code | 2 | Samuel |
 | `NETRunner/MainMenu/` | isolated menu scene, scripts, UI, art, builder and PlayMode tests; see [[systems/main-menu]] | — | prototype; ownership not yet agreed |
 | `Settings/` | URP pipeline assets and post-processing profiles | 5 | shared, change by pull request |
@@ -49,8 +49,8 @@ move or be renamed together with its `.meta`.
 
 | Build order | Scene | What it is | Contents |
 | ---: | --- | --- | --- |
-| 0 | `SampleScene` | Unity's empty template | camera, sun, post-processing volume. **A built game starts here and shows only sky.** |
-| 1 | `MainTest` | the warehouse with a playable NEXUS | 3,080 objects; see [[systems/level-warehouse]] |
+| 0 | `Game/Warehouse` | **the gameplay scene**: a built game starts here | the warehouse prefab and the player prefab; see [[systems/level-warehouse]] |
+| 1 | `MainTest` | AdaM404's preview of the warehouse with a playable NEXUS | the same warehouse prefab and an older copy of the player |
 | 2 | `CharacterPreview` | NEXUS on a small lit stage | player set-up in preview mode, stage, three lights |
 
 F1 switches between `MainTest` and `CharacterPreview` in Play mode. The build
@@ -65,8 +65,10 @@ after simulated loading. It does not alter the build order above.
 | Prefab | What it contains | Used by |
 | --- | --- | --- |
 | `NEXUS_Character` | LOD group with the four full-body models; Animator on LOD0 | `NEXUS_Player` prefab, `MainTest`, `CharacterPreview` |
-| `NEXUS_Player` | CharacterController, `NexusPlayer` script, `NEXUS_Character`, camera | **nothing** (both scenes have their own copy) |
+| `NEXUS_Player` | CharacterController, `NexusPlayer` script, `NEXUS_Character`, camera; tag `Player` | the gameplay scene (the preview scenes keep their own copies) |
 | `NEXUS_FirstPerson_Arms` | arms-only model for a first-person view | nothing |
+
+The warehouse prefab lives with its art: `Assets/Environment/Warehouse_NearFuture/Warehouse_NearFuture.prefab` (geometry, collision, 119 doors, 106 lights), used by the gameplay scene and `MainTest`.
 
 ## Code
 
@@ -121,15 +123,16 @@ Details in [[systems/rendering]].
 ## What uses what
 
 ```
-MainTest.unity
-├─ NEXUS_Character.prefab ─┬─ NEXUS_FullBody_LOD0…3.fbx ── NEXUS materials ── textures
-│                          └─ NEXUS_Locomotion.controller ── clips in LOD0.fbx, arm mask
-├─ Warehouse_NearFuture_Geometry.fbx ── environment materials ── textures
-├─ Warehouse_NearFuture_Collision.fbx
-├─ NexusPlayer.cs, NexusDoor.cs
+Game/Warehouse.unity
+├─ Warehouse_NearFuture.prefab ─┬─ Warehouse_NearFuture_Geometry.fbx ── environment materials ── textures
+│                               ├─ Warehouse_NearFuture_Collision.fbx
+│                               └─ NexusDoor.cs (119 doors)
+├─ NEXUS_Player.prefab ─┬─ NEXUS_Character.prefab ─┬─ NEXUS_FullBody_LOD0…3.fbx ── NEXUS materials ── textures
+│                       │                          └─ NEXUS_Locomotion.controller ── clips in LOD0.fbx, arm mask
+│                       └─ NexusPlayer.cs
 └─ NEXUS_NeutralReflection.cubemap
+MainTest.unity ────────── Warehouse_NearFuture.prefab, NEXUS_Character.prefab, NexusPlayer.cs, cubemap
 CharacterPreview.unity ── NEXUS_Character.prefab, NexusPlayer.cs, Preview_Stage.mat, cubemap
-NEXUS_Player.prefab ───── NEXUS_Character.prefab, NexusPlayer.cs          (used by nothing)
 ```
 
 ## I want to … → open this

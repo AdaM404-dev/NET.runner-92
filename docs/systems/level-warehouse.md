@@ -22,7 +22,8 @@ environment map` in the open editor.
 
 | What | Where |
 | --- | --- |
-| Scene | `Assets/Scenes/MainTest.unity` (2 MB; second in the build list) |
+| Prefab | `Assets/Environment/Warehouse_NearFuture/Warehouse_NearFuture.prefab` (2 MB): geometry, collision, doors and lights together |
+| Scenes | `Assets/Scenes/Game/Warehouse.unity` (the gameplay scene, first in the build list) and `Assets/Scenes/MainTest.unity` (AdaM404's preview); both place the prefab |
 | Visual model | `Assets/Environment/Warehouse_NearFuture/Models/Warehouse_NearFuture_Geometry.fbx` |
 | Collision model | `Assets/Environment/Warehouse_NearFuture/Models/Warehouse_NearFuture_Collision.fbx` |
 | Textures | `Assets/Environment/Warehouse_NearFuture/Textures/` (29 images) |
@@ -33,18 +34,23 @@ These are art assets owned by AdaM404 (see [[assets/handoff]]).
 
 ## Scene structure
 
-`MainTest` holds 3,080 objects under two roots:
+The gameplay scene and `MainTest` each hold 3,080 objects under two roots:
 
 ```
-Warehouse_NearFuture                 plain object (not a prefab), 2,647 objects
+Warehouse_NearFuture                 instance of Warehouse_NearFuture.prefab, 2,647 objects
 ├─ Warehouse_NearFuture_Geometry     the visual model: 1,827 meshes, 1,078,212 triangles
-│    ├─ 119 DOOR_* leaves              + NexusDoor + BoxCollider, added in this scene
+│    ├─ 119 DOOR_* leaves              + NexusDoor + BoxCollider, stored in the prefab
 │    └─ everything else you see
 ├─ Static_Collision                  the collision model: 710 invisible shapes
-│    └─ 704 COL_* objects              + MeshCollider, added in this scene
-└─ Facility_Lighting                 106 point lights, created in this scene
+│    └─ 704 COL_* objects              + MeshCollider, stored in the prefab
+└─ Facility_Lighting                 106 point lights, stored in the prefab
 NEXUS_Player                         the player, see [[systems/player]]
 ```
+
+Since 2026-10-04 ([#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8)) everything above `NEXUS_Player` lives in the
+warehouse **prefab**; before, it existed only inside `MainTest.unity`. Scene-wide
+settings (fog, ambient light, reflections) are not part of a prefab: the
+gameplay scene has copies of `MainTest`'s values.
 
 The two models are **instances of the imported FBX files**. Everything added
 on top of them (door scripts, colliders) is stored in `MainTest.unity` as a
@@ -187,15 +193,16 @@ parts that never move. Doors, colliders and lights are not.
 - **`CharacterPreview`**: a 12 × 12 m stage (`Preview_Stage`, layer 9 World), three
   point lights *with* soft shadows, no fog, and the player setup as
   `Character_Preview` with Preview Mode on. F1 switches between the two scenes.
-- **`SampleScene`**: Unity's empty template scene (a camera, a sun, a
-  post-processing volume). It is **first** in the build list, so a built game
-  starts in it and shows only an empty sky.
+- **`Game/Warehouse`**: the gameplay scene, first in the build list. It holds
+  only the warehouse prefab and the player prefab; gameplay objects are added
+  here, not in `MainTest`.
+- Unity's empty `SampleScene` was deleted on 2026-10-04.
 
 ## Known problems
 
-- The setup of doors and collision lives only in this 2 MB scene, as changes
-  to model instances. Every new gameplay component would be added the same
-  way, inside the teammate's preview scene.
+- Door scripts and colliders are still attached to objects inside the
+  imported models (now inside the prefab). A re-export that renames objects
+  can detach them.
 - No navigation mesh yet: enemies such as the K7 cannot find paths.
 - 106 realtime lights without shadows and nothing baked: flat, dark lighting.
 - Occlusion flags are set but the occlusion data was never generated.
