@@ -75,10 +75,14 @@ hacking at `HackPoint`, and animations: a walk cycle at minimum.
 
 ## Decisions before importing
 
-- Where its scripts live: they would compile into the game's default code
-  assembly, under a different namespace (`Hexacorp.K7`) than ours.
-  [[architecture/before-new-scripts]] proposes giving asset helpers their own
-  assembly.
+- Where its scripts live. Copied in as they are, they would compile into
+  Unity's default assembly (`Assembly-CSharp`). Since Step 4 (2026-10-04) our
+  code is in assembly definitions (`NetRunner.*`), and an assembly definition
+  cannot reference the default assembly, so no `NetRunner` script could call
+  `K7Robot.SetState()`. The K7 scripts therefore need their own assembly
+  definition next to the asset (for example `Hexacorp.K7`), which our enemy
+  code then references, plus an Editor-only one for `K7AssetSetup.cs`. See
+  [[architecture/overview]].
 - Which layer enemies use, so the player's rays and the camera treat them
   correctly.
 - 4K or 2K textures: the 4K set is 35 MB of image files, the 2K set 14 MB.

@@ -15,10 +15,11 @@ and scripted Play-mode checks (reach, timing, collisions).
 
 | What | Where |
 | --- | --- |
-| Door script | [`Assets/Scripts/NexusDoor.cs`](../../Assets/Scripts/NexusDoor.cs), 16 lines |
-| Interaction code | `NexusPlayer.Interact()`, [`NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs) lines 99–103; the E key at line 68; the notice text at line 110 |
-| Door objects | `MainTest` → `Warehouse_NearFuture/Warehouse_NearFuture_Geometry/DOOR_*` (119 of them) |
-| Setup | stored in `MainTest.unity` as changes to the imported model; there is no door prefab |
+| Door script | [`Assets/NETRunner/World/Scripts/NexusDoor.cs`](../../Assets/NETRunner/World/Scripts/NexusDoor.cs), `NetRunner.World.NexusDoor` |
+| Interaction code | `NexusPlayer.Interact()` in [`NexusPlayer.cs`](../../Assets/NETRunner/Player/Scripts/NexusPlayer.cs); the E key is read in `Update()`, the notice text is drawn in `OnGUI()` |
+| Door objects | `Warehouse_NearFuture.prefab` → `Warehouse_NearFuture_Geometry/DOOR_*` (119 of them), placed in the gameplay scene and in `MainTest` |
+| Setup | stored in `Warehouse_NearFuture.prefab` (since 2026-10-04) as additions to the imported model; there is no door prefab |
+| Test | `ADoorNearTheStartOpensWhenToggled` in `Assets/NETRunner/Player/Tests/PlayMode/`: `DOOR_Hall_X-18_4` turns 95° in one second |
 
 To find doors in the editor: type `t:NexusDoor` in the Hierarchy search box,
 or run `unity command find_gameobjects --type NexusDoor`.
@@ -63,7 +64,7 @@ whatever `IsOpen` says.
 ## How pressing E reaches a door
 
 ```
-E pressed (Update, line 68)
+E pressed (read in Update)
  └─ Interact()
       ray from the camera, straight ahead, 3.5 m long,
       hitting every layer except 8 (the player)
@@ -128,8 +129,8 @@ Each is explained, with a proposed fix, in [[architecture/before-new-scripts]].
   says "Access granted".
 - No sound, no event other scripts can listen to, no saved state.
 - Moving colliders without a Rigidbody; doors can shove the player.
-- The 119 door setups live only in `MainTest.unity`; there is no door prefab
-  to change them all at once.
+- The 119 door setups are 119 separate additions inside the warehouse
+  prefab; there is no door prefab to change them all at once.
 
 ## Open questions
 
