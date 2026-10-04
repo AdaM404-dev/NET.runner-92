@@ -123,7 +123,7 @@ instance.
 - A prefab placed inside another is a **nested prefab**: `NEXUS_Character`
   sits inside the `NEXUS_Player` prefab.
 - A **variant** is a prefab that inherits from another and changes a few
-  things: `NEXUS_FullBody_LOD0.prefab` is a variant of its FBX model.
+  things: `NEXUS_FirstPerson_Arms.prefab` is a variant of its FBX model.
 
 > Watch out: the player in `MainTest` is **not** an instance of
 > `NEXUS_Player.prefab`; it is a separate copy. Editing the prefab does not

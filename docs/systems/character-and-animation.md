@@ -116,7 +116,6 @@ which may suit hacking later; nobody has checked them in the game yet.
 
 | Asset | What it is |
 | --- | --- |
-| `NEXUS_FullBody_LOD0.prefab` … `LOD3.prefab` | one prefab per detail level, each a variant of its model file |
 | `NEXUS_FirstPerson_Arms.prefab` | a separate arms-only model (13 parts, 90,816 triangles, its own rig `NEXUS_FP_Rig`, one 2 s clip) meant for an arms-only first-person view |
 
 None of them is referenced by any scene or other prefab.
