@@ -18,13 +18,14 @@ New to Unity words like *component* or *prefab*? Read
 
 | What | Where |
 | --- | --- |
-| Scene object | scene `MainTest` → `NEXUS_Player`, at the top level of the Hierarchy |
+| Prefab | `Assets/Prefabs/NEXUS_Player.prefab`, tagged `Player`: **the** player |
+| Gameplay scene | `Assets/Scenes/Game/Warehouse.unity` → `NEXUS_Player`, an instance of the prefab |
 | Script | [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs), 144 lines, one class |
-| Prefab | `Assets/Prefabs/NEXUS_Player.prefab`: the same setup, but **no scene uses it** |
-| Second copy | scene `CharacterPreview` → `Character_Preview`: the same script with `previewMode` switched on |
+| Preview copies | `MainTest` → `NEXUS_Player` and `CharacterPreview` → `Character_Preview` (with `previewMode` on): older copies of the same setup in AdaM404's preview scenes, **not** linked to the prefab |
 
-The three copies currently hold identical values. Changing one does not
-change the others.
+Change the prefab, not the preview copies: only the gameplay scene follows
+it. The copies hold the same values today; they are replaced when the player
+is split up in Step 6 ([#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11)).
 
 ## The object tree
 
@@ -187,7 +188,7 @@ Each of these is explained, with the proposed fix, in
 
 - One class has ten jobs: input, movement, two camera modes, interaction, the
   text HUD, cursor handling, debug keys, respawn, preview mode, auto-test.
-- The player exists three times (two scenes and an unused prefab).
+- The two preview scenes still hold their own copies of the player.
 - Tunable numbers are buried in the code.
 - `Awake` stops with an error if `Visual` is not assigned; `Interact` does the
   same if `View Camera` is missing.

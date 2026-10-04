@@ -86,10 +86,10 @@ code.
 ## 6. Scenes
 
 A **scene** is a file (`.unity`) holding a set of GameObjects: a level, a
-menu or a test room. This project has three: `SampleScene` (empty template),
-`MainTest` (the warehouse) and `CharacterPreview`. A built game opens the
-first scene of the list in **File > Build Profiles > Scene List**, which is
-currently the empty `SampleScene`.
+menu or a test room. This project's game scene is `Game/Warehouse`;
+`MainTest` (the same warehouse) and `CharacterPreview` are AdaM404's preview
+scenes, and the main menu prototype has its own. A built game opens the first
+scene of the list in **File > Build Profiles > Scene List**: `Game/Warehouse`.
 
 ## 7. Assets and `.meta` files
 

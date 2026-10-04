@@ -53,7 +53,7 @@ Issue: [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7). **Done 2026-
 
 ### 3. A gameplay scene of our own, the warehouse as a prefab, one player prefab
 
-Issue: [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8)
+Issue: [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8). **Done 2026-10-04**: `Warehouse_NearFuture.prefab`, gameplay scene `Assets/Scenes/Game/Warehouse.unity` first in the build list, `NEXUS_Player.prefab` tagged `Player`, `SampleScene` deleted. The preview scenes keep their player copies until Step 6.
 
 | | |
 | --- | --- |
