@@ -42,7 +42,7 @@ Issue: [#6](https://github.com/AdaM404-dev/NET.runner-92/issues/6). **Done 2026-
 
 ### 2. Remove template leftovers and set the project's identity
 
-Issue: [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7)
+Issue: [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7). **Done 2026-10-04**: template files and the four `NEXUS_FullBody_LOD*` prefabs deleted, company name `NET.runner`.
 
 | | |
 | --- | --- |

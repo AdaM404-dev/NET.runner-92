@@ -34,13 +34,12 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `Documentation/` | art sources and licences | 3 | AdaM404 |
 | `Environment/Warehouse_NearFuture/` | the warehouse models (visual and collision), 29 textures, metadata | 32 | AdaM404 |
 | `Materials/` | 27 environment and 24 character materials, the preview floor, one reflection cubemap | 53 | AdaM404 |
-| `Prefabs/` | seven prefabs, see below | 7 | shared |
+| `Prefabs/` | three prefabs, see below | 3 | shared |
 | `Scenes/` | three scenes, see below | 3 | AdaM404 (previews); ours once a gameplay scene exists |
 | `Scripts/` | `NexusPlayer.cs`, `NexusDoor.cs`: legacy player/door gameplay code | 2 | Samuel |
 | `NETRunner/MainMenu/` | isolated menu scene, scripts, UI, art, builder and PlayMode tests; see [[systems/main-menu]] | — | prototype; ownership not yet agreed |
 | `Settings/` | URP pipeline assets and post-processing profiles | 7 | shared, change by pull request |
 | `InputSystem_Actions.inputactions` | Unity's default input actions; not used by any script | 1 | Samuel |
-| `TutorialInfo/`, `Readme.asset` | leftovers from Unity's project template | 8 | nobody: to delete |
 
 Every file in `Assets/` has a `.meta` file next to it holding its unique id
 (GUID). Scenes and prefabs refer to assets by that id, so a file must always
@@ -67,7 +66,6 @@ after simulated loading. It does not alter the build order above.
 | --- | --- | --- |
 | `NEXUS_Character` | LOD group with the four full-body models; Animator on LOD0 | `NEXUS_Player` prefab, `MainTest`, `CharacterPreview` |
 | `NEXUS_Player` | CharacterController, `NexusPlayer` script, `NEXUS_Character`, camera | **nothing** (both scenes have their own copy) |
-| `NEXUS_FullBody_LOD0` … `LOD3` | one model each, as a variant of its FBX | nothing |
 | `NEXUS_FirstPerson_Arms` | arms-only model for a first-person view | nothing |
 
 ## Code
@@ -76,7 +74,6 @@ after simulated loading. It does not alter the build order above.
 | --- | ---: | --- | --- |
 | `Assets/Scripts/NexusPlayer.cs` | 144 | input, movement, camera, interaction, HUD, debug keys, auto-test ([[systems/player]]) | `MainTest`, `CharacterPreview`, `NEXUS_Player` prefab |
 | `Assets/Scripts/NexusDoor.cs` | 16 | swings or lifts one door ([[systems/doors-and-interaction]]) | 119 doors in `MainTest` |
-| `Assets/TutorialInfo/Readme.cs`, `Editor/ReadmeEditor.cs` | | Unity template leftovers | `Readme.asset` |
 | `ArtSource/K7_Industrial_Robot/Unity/*.cs` | | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
 
 The legacy player/door code has no namespaces, assembly definitions or
@@ -102,7 +99,7 @@ Details in [[systems/rendering]].
 | Layers | 8 `Player`, 9 `World`, 10 `Enemy` and 11 `Interactable` (10 and 11 reserved for later), plus Unity's built-in ones | Project Settings > Tags and Layers |
 | Tags | Unity's defaults; only `MainCamera` is used | same |
 | Active input handling | **Both** (old Input Manager and new Input System) | Project Settings > Player > Other Settings |
-| Company name | `DefaultCompany` (decides where save files go) | Project Settings > Player |
+| Company name | `NET.runner` (decides where save files go) | Project Settings > Player |
 | Product name, version | `NET.runner-92`, 0.1.0 | same |
 | Default window | 1024 × 768, full-screen window | same |
 | Physics gravity | −9.81 (the player script uses its own 14) | Project Settings > Physics |

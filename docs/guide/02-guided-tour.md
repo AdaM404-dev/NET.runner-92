@@ -39,15 +39,16 @@ hall's south wall. The top-left text lists the keys.
 
 ![The view after pressing Play](../img/view-third-person.jpg)
 
-**The first door.** Ahead and a little to the left, about 6 m away, a door
-stands open in the south wall: `DOOR_Hall_X-18_4`. Switch to first person
-(Tab), walk to within 3 m, look at the door and press **E**. It swings
-*shut*, and the screen says "Access granted". Press E again: it opens and
-says "Door closed". Now press Tab for third person and try E from a step
-away: nothing happens until you touch the door.
+**The first door.** Ahead and a little to the left, about 6 m away, is a
+door in the south wall: `DOOR_Hall_X-18_4`. Switch to first person (Tab),
+walk to within 3 m, look at the door and press **E**: it swings open and the
+screen says "Access granted". Press E again and it closes ("Door closed").
+Now press Tab for third person and try E from a step away: nothing happens
+until you touch the door.
 
-You have just found two bugs; [[systems/doors-and-interaction]] explains
-both. Press **Play** again to stop.
+That last part is a bug; [[systems/doors-and-interaction]] explains it.
+(Until the art update of 2026-10-02 this door stood open at the start, and
+the first E closed it.) Press **Play** again to stop.
 
 ## 2. The Hierarchy (5 min)
 
@@ -156,9 +157,9 @@ results include every package):
 
 | Search | Finds |
 | --- | --- |
-| `t:Prefab` | the seven prefabs; five of them are used by nothing |
+| `t:Prefab` | four prefabs: three NEXUS ones and the main menu's service bay; `NEXUS_Player` and the arms-only model are not used by any scene yet |
 | `t:Scene` | the three scenes |
-| `t:Script` | our two scripts and the two template leftovers |
+| `t:Script` | the two gameplay scripts in `Assets/Scripts/`, and the main menu prototype's scripts under `Assets/NETRunner/MainMenu/` |
 | `t:AnimatorController` | `NEXUS_Locomotion` |
 
 Right-click `NexusDoor` in the Project window and choose **Find References
