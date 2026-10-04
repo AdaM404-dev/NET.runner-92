@@ -38,7 +38,7 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `Scenes/` | three scenes, see below | 3 | AdaM404 (previews); ours once a gameplay scene exists |
 | `Scripts/` | `NexusPlayer.cs`, `NexusDoor.cs`: legacy player/door gameplay code | 2 | Samuel |
 | `NETRunner/MainMenu/` | isolated menu scene, scripts, UI, art, builder and PlayMode tests; see [[systems/main-menu]] | — | prototype; ownership not yet agreed |
-| `Settings/` | URP pipeline assets and post-processing profiles | 7 | shared, change by pull request |
+| `Settings/` | URP pipeline assets and post-processing profiles | 5 | shared, change by pull request |
 | `InputSystem_Actions.inputactions` | Unity's default input actions; not used by any script | 1 | Samuel |
 
 Every file in `Assets/` has a `.meta` file next to it holding its unique id
@@ -85,7 +85,6 @@ assemblies and two recorded passing PlayMode tests.
 | Asset | Role |
 | --- | --- |
 | `PC_RPAsset`, `PC_Renderer` | URP settings for the PC quality level (the one in use) |
-| `Mobile_RPAsset`, `Mobile_Renderer` | URP settings for the Mobile quality level (unused) |
 | `SampleSceneProfile` | post-processing profile of the pipeline: bloom, vignette, tonemapping |
 | `DefaultVolumeProfile` | URP's global default profile |
 | `UniversalRenderPipelineGlobalSettings` | URP's project-wide settings |
