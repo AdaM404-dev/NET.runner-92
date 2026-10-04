@@ -82,7 +82,9 @@ Select `NEXUS_Player`. Read the Inspector from top to bottom:
    scene file, not in the code.
 
 Look at the **Layer** box at the top of the Inspector: the player sits on
-layer 8, which has no name. Remember that for the list of changes.
+layer **Player**. Further down, Nexus Player has **Camera Collision Layers**
+(World) and **Interaction Layers** (everything except Player): they decide
+what the camera treats as walls and what the E ray can hit.
 
 **Try it in Play mode:**
 
@@ -105,14 +107,14 @@ with [[systems/player]] open next to it:
 
 | Lines | Part | Question to answer while reading |
 | --- | --- | --- |
-| 10–23 | the fields | which ones appear in the Inspector, and why? |
-| 27–36 | `Awake()` | what does the script look up once, at the start? |
-| 51–63 | `Update()` | which line reads each key from the table in step 1? |
-| 64–76 | `Simulate()` | where does the player actually move? |
-| 78–89 | `LateUpdate()` | why is the camera placed here and not in `Update()`? |
-| 90–94 | `Interact()` | why does E only work on doors? |
-| 95–102 | `OnGUI()` | where does "Access granted" come from? |
-| 103–134 | auto-test | who starts it, and where does it save its files? |
+| 10–32 | the fields | which ones appear in the Inspector, and why? |
+| 36–45 | `Awake()` | what does the script look up once, at the start? |
+| 60–72 | `Update()` | which line reads each key from the table in step 1? |
+| 73–85 | `Simulate()` | where does the player actually move? |
+| 87–98 | `LateUpdate()` | why is the camera placed here and not in `Update()`? |
+| 99–103 | `Interact()` | why does E only work on doors? |
+| 104–111 | `OnGUI()` | where does "Access granted" come from? |
+| 112–143 | auto-test | who starts it, and where does it save its files? |
 
 Then open `NexusDoor.cs` (16 lines) and read all of it. The comments in
 [[systems/doors-and-interaction]] walk through it.
@@ -177,7 +179,7 @@ bin/unity-shot mytest                # screenshot of the Game view into Logs/sho
 
 1. Where is the code that moves the camera, and why is it in that method?
 
-   > Answer: `NexusPlayer.LateUpdate()`, lines 78–89. `LateUpdate` runs after
+   > Answer: `NexusPlayer.LateUpdate()`, lines 87–98. `LateUpdate` runs after
    > all movement and animation of the frame, so the camera follows the body
    > without lagging a frame behind.
 
@@ -187,10 +189,12 @@ bin/unity-shot mytest                # screenshot of the Game view into Logs/sho
    > Answer: the player in `MainTest` is a separate copy, not an instance of
    > that prefab. Only instances follow the prefab.
 
-3. What does `~(1 << 8)` mean in `Interact()`?
+3. Why is Player left out of the Interaction Layers field?
 
-   > Answer: every layer except layer 8, so the ray ignores the player's own
-   > body.
+   > Answer: the E ray starts at the camera. In third person it passes
+   > through the player's body; in first person it starts right at the head.
+   > If the Player layer were not left out, the first thing it hit would be
+   > the player.
 
 4. Why does E not open a door from a step away in third person?
 
