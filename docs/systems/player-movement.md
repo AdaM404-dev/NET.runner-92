@@ -1,6 +1,6 @@
 # Coding NEXUS character movement
 
-This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](../../Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
+This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/NETRunner/Player/Scripts/NexusPlayer.cs`](../../Assets/NETRunner/Player/Scripts/NexusPlayer.cs); the gravity and jump maths is in [`Assets/NETRunner/Core/Scripts/VerticalMotion.cs`](../../Assets/NETRunner/Core/Scripts/VerticalMotion.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](../../Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
 
 > Note (updated 2026-10-04): the gameplay scene `Assets/Scenes/Game/Warehouse.unity` uses `NEXUS_Player.prefab`. `MainTest` and `CharacterPreview` still hold their own copies of the player, so a change to the prefab does not show in those two scenes. The whole player object, its keys and its frame order are described in [[systems/player]]; the plan to fix the copies is step 3 of [[architecture/before-new-scripts]].
 
@@ -48,24 +48,26 @@ The prefab exposes `walkSpeed` (1.65 m/s) and `runSpeed` (3.25 m/s). `Simulate` 
 
 ## 3. Apply gravity and jumping
 
-The controller stores vertical velocity in `verticalSpeed`. When grounded and falling, it holds the character against the floor at −2 m/s. A grounded jump sets vertical velocity to 4.4 m/s, then gravity subtracts `14 * dt` every frame:
+The controller stores vertical velocity in `verticalSpeed`. Working out its next value is plain maths, so it lives in `NetRunner.Core` as `VerticalMotion.Step()`, where EditMode tests check it without a scene. When grounded and falling, it holds the character against the floor at −2 m/s (`GroundStick`). A grounded jump sets vertical velocity to 4.4 m/s (`JumpSpeed`), then gravity subtracts `14 * dt` every frame (`Gravity`):
 
 ```csharp
-if (motor.isGrounded && verticalSpeed < 0f) verticalSpeed = -2f;
-if (jump && motor.isGrounded && !previewMode) verticalSpeed = 4.4f;
-verticalSpeed -= 14f * dt;
+// VerticalMotion.Step, in Core
+if (grounded && verticalSpeed < 0f) verticalSpeed = GroundStick;
+if (jumpPressed && grounded && canJump) verticalSpeed = JumpSpeed;
+return verticalSpeed - Gravity * dt;
 
-motor.Move((direction * (run ? runSpeed : walkSpeed)
-    + Vector3.up * verticalSpeed) * dt);
+// NexusPlayer.Simulate
+verticalSpeed = VerticalMotion.Step(verticalSpeed, motor.isGrounded, jump, !previewMode, dt);
+motor.Move((direction * (run ? runSpeed : walkSpeed) + Vector3.up * verticalSpeed) * dt);
 ```
 
-Keep the horizontal and vertical movement in the same `Move` call so collision handling sees the combined displacement. `CharacterController` does not apply gravity by itself. Tune jump impulse and gravity together; both are currently constants in `Simulate`. `Grounded` exposes the controller's grounded state, and `Respawn()` resets both position and vertical velocity.
+Keep the horizontal and vertical movement in the same `Move` call so collision handling sees the combined displacement. `CharacterController` does not apply gravity by itself. Tune jump impulse and gravity together; both are constants in `VerticalMotion`, and its test `AJumpRisesAboutTwoThirdsOfAMetre` shows at once what a change does to the jump height. `Grounded` exposes the controller's grounded state, and `Respawn()` resets both position and vertical velocity.
 
 ## 4. Match animation and camera to motion
 
 The Animator controller has a `Speed` float. `Simulate` sets it to the selected speed multiplied by input magnitude, with 0.15 seconds of damping. When you introduce acceleration, use actual horizontal velocity for this value so the animation follows the character's movement.
 
-`SetView(bool)` switches the first-person animation layer, forces LOD 0 in first person, and makes head renderers cast shadows without drawing in the camera view. `LateUpdate()` then places the camera at the first-person eye position or behind the character in third person. The third-person camera spherecasts against layer 9 to shorten its offset near walls. Preserve this order if you change the camera: move the character in `Update`, then place the camera in `LateUpdate`.
+`SetView(bool)` switches the first-person animation layer, forces LOD 0 in first person, and makes head renderers cast shadows without drawing in the camera view. `LateUpdate()` then places the camera at the first-person eye position or behind the character in third person. The third-person camera spherecasts against its Camera Collision Layers (`World`) to shorten its offset near walls. Preserve this order if you change the camera: move the character in `Update`, then place the camera in `LateUpdate`.
 
 ## 5. Replace or extend the input source
 
@@ -80,4 +82,4 @@ The project includes `Assets/InputSystem_Actions.inputactions` with `Player/Move
 
 ## Verify a movement change
 
-Use `Assets/Scenes/MainTest.unity` for a quick integration check. Confirm that idle input leaves the player still, diagonal input does not increase speed, the character turns correctly in both views, a jump starts only while grounded and lands, the Animator follows actual motion, and the third-person camera moves closer near a layer-9 wall. Check `CharacterPreview.unity` separately if you touched `previewMode` or `SetView`.
+Run the tests first: `bin/unity-test edit` checks the `VerticalMotion` maths, `bin/unity-test play` walks, runs and jumps the player in the gameplay scene and compares the distances with the measured values (see "Tests" in [[systems/player]]). Then use `Assets/Scenes/Game/Warehouse.unity` for a quick check by hand. Confirm that idle input leaves the player still, diagonal input does not increase speed, the character turns correctly in both views, a jump starts only while grounded and lands, the Animator follows actual motion, and the third-person camera moves closer near a `World` wall. Check `CharacterPreview.unity` separately if you touched `previewMode` or `SetView`.

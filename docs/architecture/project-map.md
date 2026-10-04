@@ -2,7 +2,8 @@
 
 Where everything is, what uses it, and who owns it. Start here when you are
 looking for something. Gameplay measurements are from `df3a31d` (2026-09-30); repository additions
-were checked through merged PRs #20–#22 on 2026-10-03.
+were checked through merged PRs #20–#22 on 2026-10-03; the code layout is the
+one from Step 4 (2026-10-04).
 
 Ownership follows the proposal in [[assets/handoff]], which AdaM404 has not
 confirmed yet.
@@ -36,7 +37,9 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `Materials/` | 27 environment and 24 character materials, the preview floor, one reflection cubemap | 53 | AdaM404 |
 | `Prefabs/` | three prefabs, see below | 3 | shared |
 | `Scenes/` | the gameplay scene `Game/Warehouse` and two preview scenes, see below | 3 | `Game/` Samuel; the previews AdaM404 |
-| `Scripts/` | `NexusPlayer.cs`, `NexusDoor.cs`: legacy player/door gameplay code | 2 | Samuel |
+| `NETRunner/Core/` | rules in plain C# (`VerticalMotion.cs`) and their EditMode tests, two assembly definitions | 4 | Samuel |
+| `NETRunner/World/` | things in the level: `NexusDoor.cs`, one assembly definition | 2 | Samuel |
+| `NETRunner/Player/` | `NexusPlayer.cs` and its PlayMode tests, two assembly definitions | 4 | Samuel |
 | `NETRunner/MainMenu/` | isolated menu scene, scripts, UI, art, builder and PlayMode tests; see [[systems/main-menu]] | — | prototype; ownership not yet agreed |
 | `Settings/` | URP pipeline assets and post-processing profiles | 5 | shared, change by pull request |
 | `InputSystem_Actions.inputactions` | Unity's default input actions; not used by any script | 1 | Samuel |
@@ -72,15 +75,22 @@ The warehouse prefab lives with its art: `Assets/Environment/Warehouse_NearFutur
 
 ## Code
 
-| File | Lines | What it does | Used by |
-| --- | ---: | --- | --- |
-| `Assets/Scripts/NexusPlayer.cs` | 144 | input, movement, camera, interaction, HUD, debug keys, auto-test ([[systems/player]]) | `MainTest`, `CharacterPreview`, `NEXUS_Player` prefab |
-| `Assets/Scripts/NexusDoor.cs` | 16 | swings or lifts one door ([[systems/doors-and-interaction]]) | 119 doors in `MainTest` |
-| `ArtSource/K7_Industrial_Robot/Unity/*.cs` | | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
+Everything is under `Assets/NETRunner/`, one folder per feature; why, and
+where a new script goes: [[architecture/overview]].
 
-The legacy player/door code has no namespaces, assembly definitions or
-Core/Gameplay tests. The independent menu has runtime, editor and test
-assemblies and two recorded passing PlayMode tests.
+| File | Assembly | What it does | Used by |
+| --- | --- | --- | --- |
+| `Player/Scripts/NexusPlayer.cs` | `NetRunner.Player` | input, movement, camera, interaction, HUD, debug keys ([[systems/player]]) | `NEXUS_Player` prefab, `MainTest`, `CharacterPreview` |
+| `World/Scripts/NexusDoor.cs` | `NetRunner.World` | swings or lifts one door ([[systems/doors-and-interaction]]) | 119 doors in `Warehouse_NearFuture.prefab` |
+| `Core/Scripts/VerticalMotion.cs` | `NetRunner.Core` | gravity, jump and ground stick for one frame ([[systems/player-movement]]) | `NexusPlayer.Simulate()` |
+| `Core/Tests/EditMode/VerticalMotionTests.cs` | `NetRunner.Core.Tests.EditMode` | 6 tests of `VerticalMotion` | the test runner |
+| `Player/Tests/PlayMode/PlayerPlayModeTests.cs` | `NetRunner.Player.Tests.PlayMode` | 3 tests: walk and run speed, jump height, a door opening | the test runner |
+| `MainMenu/…` | `NetRunner.MenuPrototype` (+ `.Editor`, `.PlayModeTests`) | the standalone menu ([[systems/main-menu]]) | its own scene |
+| `ArtSource/K7_Industrial_Robot/Unity/*.cs` | none yet | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
+
+Tests: 6 EditMode and 5 PlayMode (3 player, 2 menu), all passing on
+2026-10-04. Formatting rules for new code: `.editorconfig` at the repository
+root.
 
 ## Settings assets (`Assets/Settings/`)
 
@@ -112,7 +122,7 @@ Details in [[systems/rendering]].
 | --- | --- | --- |
 | Universal RP 17.6.0 | the render pipeline | yes |
 | Input System 1.20.0 | modern input with action maps | installed, not used by code |
-| Test Framework 1.8.0 | automated tests | two standalone-menu PlayMode tests; gameplay/Core tests remain pending |
+| Test Framework 1.8.0 | automated tests | yes: 6 EditMode tests (`Core`), 3 player and 2 menu PlayMode tests |
 | AI Navigation 2.0.14 | navigation meshes for enemies | not yet |
 | Timeline, uGUI, Visual Scripting | cutscenes, UI, node-based scripting | not used by any asset |
 | Pipeline 0.8 (experimental) | lets the `unity` terminal tool drive the editor | yes, by our tooling |
@@ -143,14 +153,14 @@ CharacterPreview.unity ── NEXUS_Character.prefab, NexusPlayer.cs, Preview_St
 | editable warehouse source and closed-door exports | `ArtSource/Warehouse_NearFuture/README.md` and [[systems/level-warehouse]] |
 | walking or running speed | `NEXUS_Player` → Nexus Player → Walk Speed / Run Speed, **in each scene**; also the blend tree thresholds ([[systems/character-and-animation]]) |
 | mouse sensitivity | the same component → Sensitivity |
-| jump height or gravity | `NexusPlayer.cs` lines 81–82 |
-| which key does what | `NexusPlayer.cs` `Update()`, lines 63–71 |
-| third-person camera distance or height | `NexusPlayer.cs` line 94 |
-| first-person eye height or field of view | `NexusPlayer.cs` line 91 |
-| what pressing E does | `NexusPlayer.cs` `Interact()`, lines 99–103 |
-| how fast doors move | `NexusDoor.cs` line 12 |
+| jump height or gravity | `VerticalMotion.cs` (`Core`): `JumpSpeed`, `Gravity`; then run `bin/unity-test edit` |
+| which key does what | `NexusPlayer.cs` `Update()` |
+| third-person camera distance or height | `NexusPlayer.cs` `LateUpdate()`, the `else` branch (`focus`, `offset`) |
+| first-person eye height or field of view | `NexusPlayer.cs` `LateUpdate()`, the `if (firstPerson)` branch |
+| what pressing E does | `NexusPlayer.cs` `Interact()` |
+| how fast doors move | `NexusDoor.cs` `Update()`, first line (1.3 per second swing, 0.45 lift) |
 | how far one door swings or lifts | that door → Nexus Door → Angle / Lift |
-| the text on screen | `NexusPlayer.cs` `OnGUI()`, lines 104–111 |
+| the text on screen | `NexusPlayer.cs` `OnGUI()` |
 | where the player starts | `NEXUS_Player` → Transform → Position |
 | which scene a built game opens | File > Build Profiles > Scene List |
 | the character's animations | select `LOD0`, then Window > Animation > Animator |
@@ -180,5 +190,5 @@ bin/unity-inspect doors            # every door: exported open or shut
 unity command find_gameobjects --name DOOR_Entry_Main
 unity command find_gameobjects --type NexusDoor
 unity command find_assets --type Prefab
-grep -rn "Interact" Assets/Scripts # plain text search in the code
+grep -rn "Interact" Assets/NETRunner --include=*.cs   # plain text search in the code
 ```

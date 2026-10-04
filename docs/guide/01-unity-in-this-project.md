@@ -61,7 +61,7 @@ write `new NexusPlayer()`.
 | Method | When Unity calls it | What `NexusPlayer` does in it |
 | --- | --- | --- |
 | `Awake()` | once, when the object is created | finds its CharacterController, remembers the start position |
-| `Start()` | once, before the first frame | starts the auto-test if asked |
+| `Start()` | once, before the first frame | it has none; scripts use `Start()` for set-up that needs every object's `Awake()` to have run first |
 | `Update()` | every frame | reads keys and mouse, moves the player |
 | `LateUpdate()` | every frame, after all `Update()`s and animations | places the camera |
 | `OnGUI()` | several times per frame | draws the text in the corner |
@@ -227,8 +227,10 @@ decides to keep those, answer **Don't Save** when Unity asks.
 ## 18. Coroutines
 
 A **coroutine** is a method that can pause (`yield return`) and continue in a
-later frame. The auto-test in `NexusPlayer` is one: it walks for 120 frames,
-waits, takes a screenshot, and so on.
+later frame. The PlayMode tests in `Assets/NETRunner/Player/Tests/PlayMode/`
+are built the same way: a test walks the player for 120 frames, with one
+`yield return null` ("continue next frame") per frame, then checks the
+distance and saves a screenshot.
 
 ## Where a change ends up
 

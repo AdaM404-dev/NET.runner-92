@@ -43,7 +43,7 @@ var sf = new System.Collections.Generic.SortedDictionary<string, int>();
 foreach (var t in all) { string k = UnityEditor.GameObjectUtility.GetStaticEditorFlags(t.gameObject).ToString(); sf[k] = sf.ContainsKey(k) ? sf[k] + 1 : 1; }
 foreach (var kv in sf) sb.AppendLine("staticFlags [" + kv.Key + "]: " + kv.Value);
 // doors
-var doors = UnityEngine.Object.FindObjectsByType<NexusDoor>(UnityEngine.FindObjectsInactive.Include);
+var doors = UnityEngine.Object.FindObjectsByType<NetRunner.World.NexusDoor>(UnityEngine.FindObjectsInactive.Include);
 int loading = 0; var angles = new System.Collections.Generic.SortedDictionary<string, int>();
 var doorLayers = new System.Collections.Generic.SortedDictionary<int, int>();
 int trig = 0, withMeshCol = 0; var childNames = new System.Collections.Generic.SortedDictionary<string, int>();

@@ -7,7 +7,7 @@ var sb = new System.Text.StringBuilder();
 var groups = new System.Collections.Generic.SortedDictionary<string, int>();
 var examples = new System.Collections.Generic.Dictionary<string, string>();
 int noFrame = 0;
-foreach (var d in UnityEngine.Object.FindObjectsByType<NexusDoor>(FindObjectsInactive.Include))
+foreach (var d in UnityEngine.Object.FindObjectsByType<NetRunner.World.NexusDoor>(FindObjectsInactive.Include))
 {
     if (d.loadingDoor) continue;
     var frame = GameObject.Find(d.name + "_Frame");

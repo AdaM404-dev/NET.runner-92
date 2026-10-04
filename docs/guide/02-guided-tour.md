@@ -108,22 +108,28 @@ In the Nexus Player component, double-click the greyed-out **Script** field.
 `NexusPlayer.cs` opens in your code editor (Rider, if it is set under
 Edit > Preferences > External Tools).
 
-The lines are dense (several statements per line). Read it in this order,
-with [[systems/player]] open next to it:
+The file is `Assets/NETRunner/Player/Scripts/NexusPlayer.cs`. Read it in
+this order, with [[systems/player]] open next to it:
 
-| Lines | Part | Question to answer while reading |
-| --- | --- | --- |
-| 10–32 | the fields | which ones appear in the Inspector, and why? |
-| 36–45 | `Awake()` | what does the script look up once, at the start? |
-| 60–72 | `Update()` | which line reads each key from the table in step 1? |
-| 73–85 | `Simulate()` | where does the player actually move? |
-| 87–98 | `LateUpdate()` | why is the camera placed here and not in `Update()`? |
-| 99–103 | `Interact()` | why does E only work on doors? |
-| 104–111 | `OnGUI()` | where does "Access granted" come from? |
-| 112–143 | auto-test | who starts it, and where does it save its files? |
+| Part | Question to answer while reading |
+| --- | --- |
+| the fields at the top | which ones appear in the Inspector, and why? |
+| `Awake()` | what does the script look up once, at the start? |
+| `Update()` | which line reads each key from the table in step 1? |
+| `Simulate()` | where does the player actually move? |
+| `LateUpdate()` | why is the camera placed here and not in `Update()`? |
+| `Interact()` | why does E only work on doors? |
+| `OnGUI()` | where does "Access granted" come from? |
 
-Then open `NexusDoor.cs` (16 lines) and read all of it. The comments in
-[[systems/doors-and-interaction]] walk through it.
+`Simulate()` hands gravity and jumping to `VerticalMotion.Step()`. Ctrl-click
+it to open `Assets/NETRunner/Core/Scripts/VerticalMotion.cs`: why does that
+file not need `using UnityEngine;`? Its tests are in
+`Assets/NETRunner/Core/Tests/EditMode/`; each test name is a sentence that
+says what it checks.
+
+Then open `NexusDoor.cs` (in `Assets/NETRunner/World/Scripts/`) and read all
+of it; it is short. The comments in [[systems/doors-and-interaction]] walk
+through it.
 
 ## 5. The camera (3 min)
 
@@ -164,7 +170,7 @@ results include every package):
 | --- | --- |
 | `t:Prefab` | four prefabs: three NEXUS ones and the main menu's service bay; `NEXUS_Player` and the arms-only model are not used by any scene yet |
 | `t:Scene` | the three scenes |
-| `t:Script` | the two gameplay scripts in `Assets/Scripts/`, and the main menu prototype's scripts under `Assets/NETRunner/MainMenu/` |
+| `t:Script` | every C# file under `Assets/NETRunner/`: the player, door and movement code in `Player/`, `World/` and `Core/`, their tests, and the main menu prototype's scripts in `MainMenu/` |
 | `t:AnimatorController` | `NEXUS_Locomotion` |
 
 Right-click `NexusDoor` in the Project window and choose **Find References
@@ -185,7 +191,7 @@ bin/unity-shot mytest                # screenshot of the Game view into Logs/sho
 
 1. Where is the code that moves the camera, and why is it in that method?
 
-   > Answer: `NexusPlayer.LateUpdate()`, lines 87–98. `LateUpdate` runs after
+   > Answer: `NexusPlayer.LateUpdate()`. `LateUpdate` runs after
    > all movement and animation of the frame, so the camera follows the body
    > without lagging a frame behind.
 
