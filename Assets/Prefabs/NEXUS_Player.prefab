@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4893241679972100727}
   m_Layer: 8
   m_Name: NEXUS_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,6 +173,12 @@ MonoBehaviour:
   walkSpeed: 1.65
   runSpeed: 3.25
   sensitivity: 2
+  cameraCollisionLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!1001 &7799615947341530424
 PrefabInstance:
   m_ObjectHideFlags: 0

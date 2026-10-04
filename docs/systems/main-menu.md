@@ -10,7 +10,7 @@ and simulated network access. Merged into main on 2026-10-02 in
 
 The prototype is complete. It has no gameplay, save or real network integration.
 Continue and New Session run a simulated transfer and return to observation.
-It is absent from Build Settings; SampleScene remains the startup scene.
+It is absent from Build Settings; the startup scene is the gameplay scene `Game/Warehouse`.
 
 ## Where it lives
 

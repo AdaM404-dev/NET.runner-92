@@ -2,7 +2,7 @@
 
 This guide explains how the NEXUS movement code works and where to change it. The implementation lives in [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs). [`Assets/Prefabs/NEXUS_Player.prefab`](../../Assets/Prefabs/NEXUS_Player.prefab) already connects that script to a `CharacterController`, camera, animator, LOD group, and character visual. Start from that prefab when developing movement; `NEXUS_Character.prefab` contains the visual without the player controller.
 
-> Note (2026-09-30): no scene uses `NEXUS_Player.prefab` yet. `MainTest` and `CharacterPreview` each hold their own copy of the player, so a change to the prefab does not show when you play those scenes. The whole player object, its keys and its frame order are described in [[systems/player]]; the plan to fix the copies is step 3 of [[architecture/before-new-scripts]].
+> Note (updated 2026-10-04): the gameplay scene `Assets/Scenes/Game/Warehouse.unity` uses `NEXUS_Player.prefab`. `MainTest` and `CharacterPreview` still hold their own copies of the player, so a change to the prefab does not show in those two scenes. The whole player object, its keys and its frame order are described in [[systems/player]]; the plan to fix the copies is step 3 of [[architecture/before-new-scripts]].
 
 ## Movement pipeline
 

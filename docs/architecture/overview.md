@@ -15,8 +15,9 @@ namespace, with no assembly definitions and no tests:
 - `NexusDoor.cs`: a door that swings or lifts when toggled. See
   [[systems/doors-and-interaction]].
 
-Scene setup (doors, colliders, lights) lives inside the `MainTest` scene;
-there is no gameplay scene of our own yet. What has to change before new
+Doors, colliders and lights live in the warehouse prefab, and gameplay
+objects go into the gameplay scene `Assets/Scenes/Game/Warehouse.unity`
+(since 2026-10-04). What has to change before new
 scripts are added is listed, in order, in [[architecture/before-new-scripts]].
 
 The independent main-menu prototype merged in PR #22 lives under

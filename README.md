@@ -37,7 +37,7 @@ See [the system note](docs/systems/main-menu.md), [asset guide](Assets/NETRunner
 - `Assets/Environment/Warehouse_NearFuture/`: the futuristic warehouse visual and collision FBX models, textures, and Unity metadata.
 - `Assets/Characters/NEXUS/`: the refined NEXUS character, first-person arms, LOD models, textures, and Unity metadata.
 - `Assets/Materials/NEXUS/`, `Assets/Prefabs/`, and `Assets/Animations/`: materials and prefabs for the imported models.
-- `Assets/Scenes/MainTest.unity` and `Assets/Scenes/CharacterPreview.unity`: asset preview scenes. `SampleScene.unity` remains the startup scene.
+- `Assets/Scenes/Game/Warehouse.unity`: the gameplay scene and the startup scene of a build; it places the warehouse prefab and `NEXUS_Player.prefab`. `Assets/Scenes/MainTest.unity` and `Assets/Scenes/CharacterPreview.unity`: asset preview scenes.
 - `Assets/Documentation/`: warehouse source notes and character asset attribution.
 
 The preview controller uses Unity's legacy Input API, so the project enables both input backends. Unity-generated `Library`, `Temp`, `Logs`, and similar directories are excluded from Git. NEXUS Blender sources and packaged archives remain outside this project. The complete K7 and warehouse source packages are included under `ArtSource`, outside Unity's automatically imported `Assets` folder.
