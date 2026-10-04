@@ -175,8 +175,8 @@ How this looks and performs is covered in [[systems/rendering]].
 
 | Layer | Objects | Used for |
 | --- | ---: | --- |
-| 9 (no name) | 2,540 | everything in the warehouse; the camera's wall check hits only this layer |
-| 8 (no name) | 432 | the player; the interaction ray ignores it |
+| 9 `World` | 2,540 | everything in the warehouse; the camera's wall check hits only this layer |
+| 8 `Player` | 432 | the player; the interaction ray ignores it |
 | 0 Default | 108 | the lights and the camera |
 
 1,589 objects are marked **static** (Occluder, Occludee, Batching): the
@@ -184,7 +184,7 @@ parts that never move. Doors, colliders and lights are not.
 
 ## Other scenes
 
-- **`CharacterPreview`**: a 12 × 12 m stage (`Preview_Stage`, layer 9), three
+- **`CharacterPreview`**: a 12 × 12 m stage (`Preview_Stage`, layer 9 World), three
   point lights *with* soft shadows, no fog, and the player setup as
   `Character_Preview` with Preview Mode on. F1 switches between the two scenes.
 - **`SampleScene`**: Unity's empty template scene (a camera, a sun, a
@@ -199,7 +199,6 @@ parts that never move. Doors, colliders and lights are not.
 - No navigation mesh yet: enemies such as the K7 cannot find paths.
 - 106 realtime lights without shadows and nothing baked: flat, dark lighting.
 - Occlusion flags are set but the occlusion data was never generated.
-- Layers 8 and 9 have no names.
 
 ## Open questions
 

@@ -14,6 +14,15 @@ public sealed class NexusPlayer : MonoBehaviour
     public bool firstPerson;
     public bool previewMode;
     public float walkSpeed=1.65f, runSpeed=3.25f, sensitivity=2f;
+
+    // Defaults match the masks this script used before the layers had names,
+    // so scenes saved earlier keep working without being re-saved.
+    [Tooltip("Layers the third-person camera treats as walls.")]
+    [SerializeField] LayerMask cameraCollisionLayers = 1 << 9; // World
+
+    [Tooltip("Layers the interaction ray (E) can hit. Player is left out so the ray ignores your own body.")]
+    [SerializeField] LayerMask interactionLayers = ~(1 << 8); // everything except Player
+
     CharacterController motor;
     Renderer[] renderers;
     float yaw, pitch=8f, verticalSpeed;
@@ -83,13 +92,13 @@ public sealed class NexusPlayer : MonoBehaviour
         else
         {
             Vector3 focus=transform.position+Vector3.up*1.34f;Vector3 offset=rotation*new Vector3(.36f,.14f,-3.15f);float distance=offset.magnitude;
-            if(Physics.SphereCast(focus,.14f,offset.normalized,out var hit,distance,1<<9,QueryTriggerInteraction.Ignore))distance=Mathf.Max(.45f,hit.distance-.08f);
+            if(Physics.SphereCast(focus,.14f,offset.normalized,out var hit,distance,cameraCollisionLayers,QueryTriggerInteraction.Ignore))distance=Mathf.Max(.45f,hit.distance-.08f);
             viewCamera.transform.position=focus+offset.normalized*distance;viewCamera.transform.LookAt(focus);viewCamera.fieldOfView=53;
         }
     }
     void Interact()
     {
-        if(Physics.Raycast(viewCamera.transform.position,viewCamera.transform.forward,out var hit,3.5f,~(1<<8)))
+        if(Physics.Raycast(viewCamera.transform.position,viewCamera.transform.forward,out var hit,3.5f,interactionLayers))
         {var door=hit.collider.GetComponentInParent<NexusDoor>();if(door){door.Toggle();notice=door.IsOpen?"Access granted":"Door closed";noticeUntil=Time.time+2;}}
     }
     void OnGUI()
