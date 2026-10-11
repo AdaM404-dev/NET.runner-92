@@ -2,8 +2,8 @@
 
 The game runs, but what exists was built to preview the art, not to grow a
 game on. This page lists what should change before new gameplay scripts are
-added, why, in which order, and who does it. Nothing on this page has been
-done yet.
+added, why, in which order, and who does it. Steps 1 to 4 are done (marked
+below); the rest is still to do.
 
 **Each step and each decision is now a GitHub issue** with the full
 reasoning (why, what will change, what stays the same, risks, checks), linked
@@ -64,7 +64,7 @@ Issue: [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8). **Done 2026-
 
 ### 4. Give the code a structure and a first test
 
-Issue: [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9)
+Issue: [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9). **Done 2026-10-04**, with feature folders instead of the folders below (Samuel's choice): `Assets/NETRunner/Core`, `World` and `Player`, one assembly and namespace each (`NetRunner.Core`, …), `VerticalMotion` in `Core` with 6 EditMode tests, 3 PlayMode tests that replace the auto-test, `.editorconfig`, both scripts reformatted. See [[architecture/overview]].
 
 | | |
 | --- | --- |
@@ -90,7 +90,7 @@ Issue: [#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11)
 
 | | |
 | --- | --- |
-| Now | One 135-line class handles input, movement, two camera modes, interaction, the HUD, cursor locking, debug keys, respawn, preview mode and an auto-test. |
+| Now | One class handles input, movement, two camera modes, interaction, the HUD, cursor locking, debug keys, respawn and preview mode. (Step 4 removed the auto-test and moved the gravity and jump maths to `Core`.) |
 | Why it blocks | Crouching, stamina, health, a hacking tool or aiming would all go into the same class. It would soon be impossible to change one part without breaking another. |
 | Change | Same behaviour, new shape: `PlayerInput` (reads input), `PlayerMotor` (moves the CharacterController; its maths testable in `Core`), `PlayerCamera` (first- and third-person placement), `PlayerInteractor` (from step 5), `PlayerHud` (temporary), `DebugKeys` (Tab, F1, R, development builds only). Tunable numbers move into a settings asset (see "Should do soon"). The PlayMode test from step 4 must pass before and after. |
 | Size, tag | L, PAIR. Depends on 4 and 5. |
@@ -154,7 +154,7 @@ Not blocking, but cheap if done early:
 | D2 | First person: full body (today) or the arms-only model? | Keep the full body for now (it works and shows the cybernetic arm); decide again when aiming or weapons arrive. Keep the arms prefab until then. | Samuel, AdaM404 | [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) |
 | D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
 | D4 | Target platforms | **Decided 2026-10-04: PC only (Windows and Linux); the Mobile quality level is removed.** | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
-| D5 | Company name and code namespace | Pick the team name for the company; namespace `NetRunner`. | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
+| D5 | Company name and code namespace | **Decided 2026-10-04: company name `NET.runner`; namespaces `NetRunner.<Feature>`.** | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
 | D6 | Doors that are exported open | The door script works out from the frame which pose is shut; later, export doors shut. | Samuel, AdaM404 | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 
 ## After these steps
