@@ -16,6 +16,7 @@ and scripted Play-mode checks (reach, timing, collisions).
 | What | Where |
 | --- | --- |
 | Door script | [`Assets/NETRunner/World/Scripts/NexusDoor.cs`](../../Assets/NETRunner/World/Scripts/NexusDoor.cs), `NetRunner.World.NexusDoor` |
+| Easing curve | `Easing.SmoothStep01()` in [`Assets/NETRunner/Core/Scripts/Easing.cs`](../../Assets/NETRunner/Core/Scripts/Easing.cs), with 4 EditMode tests in `EasingTests.cs` |
 | Interaction code | `NexusPlayer.Interact()` in [`NexusPlayer.cs`](../../Assets/NETRunner/Player/Scripts/NexusPlayer.cs); the E key is read in `Update()`, the notice text is drawn in `OnGUI()` |
 | Door objects | `Warehouse_NearFuture.prefab` → `Warehouse_NearFuture_Geometry/DOOR_*` (119 of them), placed in the gameplay scene and in `MainTest` |
 | Setup | stored in `Warehouse_NearFuture.prefab` (since 2026-10-04) as additions to the imported model; there is no door prefab |
@@ -53,7 +54,8 @@ void Toggle()  // IsOpen = !IsOpen; nothing moves yet
 void Update()  // every frame, move 'progress' toward 1 (open) or 0 (closed)
                //   swing: 1.3 per second  → 0.77 s to open
                //   lift:  0.45 per second → 2.2 s to open
-               // eased = progress² × (3 − 2 × progress)   (slow start, slow end)
+               // eased = Easing.SmoothStep01(progress), from Core:
+               //   progress² × (3 − 2 × progress)   (slow start, slow end)
                // swing: turn the leaf angle × eased around the world's up axis
                // lift:  raise the leaf lift × eased metres
 ```

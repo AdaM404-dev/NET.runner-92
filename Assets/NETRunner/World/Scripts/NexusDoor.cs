@@ -1,3 +1,4 @@
+using NetRunner.Core;
 using UnityEngine;
 
 namespace NetRunner.World
@@ -27,7 +28,7 @@ namespace NetRunner.World
         void Update()
         {
             progress = Mathf.MoveTowards(progress, IsOpen ? 1 : 0, Time.deltaTime * (loadingDoor ? 0.45f : 1.3f));
-            float eased = progress * progress * (3 - 2 * progress);
+            float eased = Easing.SmoothStep01(progress);
             if (loadingDoor)
             {
                 transform.position = closedPosition + Vector3.up * (lift * eased);
