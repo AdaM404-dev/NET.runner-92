@@ -10,7 +10,7 @@ before crossing a boundary.
 | --- | --- |
 | `Assets/Characters`, `Assets/Environment`, `Assets/Materials`, `Assets/Animations`, `Assets/Documentation` | AdaM404 |
 | Preview scenes (`CharacterPreview.unity`, `MainTest.unity` as an asset preview) | AdaM404 |
-| `Assets/Scripts`, gameplay scenes, `docs/`, `bin/` | Samuel |
+| Gameplay code in `Assets/NETRunner/` (`Core`, `World`, `Player` and later features; the `MainMenu` prototype's owner is not agreed yet), gameplay scenes, `docs/`, `bin/` | Samuel |
 | `Assets/Prefabs` | Shared: art prefabs are AdaM404's; gameplay prefabs wrap them as variants or nested prefabs |
 | `ProjectSettings/`, `Packages/` | Shared: change by PR only |
 

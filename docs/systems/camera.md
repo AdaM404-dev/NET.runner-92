@@ -19,9 +19,9 @@ scripted Play-mode checks.
 | What | Where |
 | --- | --- |
 | Object | `MainTest` → `NEXUS_Player/Player_Camera` (same name in `CharacterPreview` and in `NEXUS_Player.prefab`) |
-| Placement code | `NexusPlayer.LateUpdate()`, [`Assets/Scripts/NexusPlayer.cs`](../../Assets/Scripts/NexusPlayer.cs) lines 87–98 |
-| View switching | `NexusPlayer.SetView()`, lines 48–59, called by the Tab key |
-| Look angles | `yaw` (left/right) and `pitch` (up/down), updated from the mouse in `Update()`, line 69 |
+| Placement code | `NexusPlayer.LateUpdate()` in [`Assets/NETRunner/Player/Scripts/NexusPlayer.cs`](../../Assets/NETRunner/Player/Scripts/NexusPlayer.cs) |
+| View switching | `NexusPlayer.SetView()`, called by the Tab key |
+| Look angles | `yaw` (left/right) and `pitch` (up/down), updated from the mouse in `Update()` |
 
 The legacy player has no separate camera script or Cinemachine. The independent
 menu uses four surveillance cameras, with only one enabled at a time; see
@@ -32,7 +32,7 @@ menu uses four surveillance cameras, with only one enabled at a time; see
 `LateUpdate` runs after all movement of the frame, so the camera never lags a
 frame behind the body.
 
-**First person** (line 91)
+**First person** (the `if (firstPerson)` branch of `LateUpdate()`)
 
 ```
 camera position = player position + 1.66 m up + 0.17 m forward
@@ -44,7 +44,7 @@ The eye point is fixed to the capsule, not to the head bone, so the view
 does not bob with the walk animation. The capsule is 1.78 m tall; the eyes
 sit at 1.66 m.
 
-**Third person** (lines 94–96)
+**Third person** (the `else` branch of `LateUpdate()`)
 
 ```
 focus point     = player position + 1.34 m up         (about chest height)

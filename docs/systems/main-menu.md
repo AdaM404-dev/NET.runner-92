@@ -44,9 +44,10 @@ editor it returns to the terminal; a player build quits.
   Settings affect ambience, attenuation and camera cycling for this session.
 
 The environment is original primitive geometry with URP materials and a
-scene-local volume. Runtime, editor and test code have separate assemblies;
-this does not complete the planned Core/Gameplay refactor in
-[[architecture/overview]].
+scene-local volume. Runtime, editor and test code have separate assemblies.
+Its folder, `Assets/NETRunner/MainMenu/`, was the model for the feature
+folders the gameplay code moved into on 2026-10-04 ([[architecture/overview]]);
+the menu itself does not use the gameplay assemblies.
 
 ## Tuning and rebuilding
 

@@ -4,6 +4,46 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-10-11 — First code in Core: the door's easing curve
+
+- Samuel started the Step 4 follow-up in Rider; Claude finished it on the
+  same pull request (#25). The door's slow-start, slow-end formula is now
+  `Easing.SmoothStep01` in `Core`, with four EditMode tests.
+- What tripped us up, all differences from Java and JavaScript:
+  - Unity compiles C# 9, so the one-line `namespace X;` form (C# 10)
+    does not compile; use `namespace X { … }`.
+  - A method has to live inside a class.
+  - `using` names a namespace (`using NetRunner.Core;`), not a file.
+  - A local variable takes a type (`float eased = …`), not an access
+    modifier like `private`.
+- Learned: Unity compiles assemblies in order and stops at the first one
+  that fails, so an error in `Core` hides the errors in `World` and the
+  tests until it is fixed. Rider creates the `.meta` file for a new script
+  itself; commit it with the script.
+
+## 2026-10-04 — Foundation steps 1 to 4
+
+- Steps 1 to 3 (PRs #23 and #24): named layers and `LayerMask` fields,
+  template leftovers removed, company name `NET.runner`, PC only, the
+  warehouse as a prefab and a gameplay scene of our own.
+- Step 4 (#9), as PAIR: the code moved into feature folders under
+  `Assets/NETRunner/` (`Core`, `World`, `Player`), like the main menu, with
+  one assembly definition and namespace each. Samuel picked feature folders
+  over the issue's original `Assets/Scripts/Core…` layout. See
+  [[architecture/overview]].
+- First tests for the gameplay code: the gravity and jump maths moved into
+  `VerticalMotion` in `Core` with six EditMode tests; three PlayMode tests
+  walk, run and jump the player in the gameplay scene and open a door. They
+  replace the old command-line auto-test.
+- Learned: moving a script through the editor keeps its GUID, so every scene
+  and prefab still finds it. An assembly definition cannot use code from
+  Unity's default assembly, so scripts that arrive with art need their own
+  assembly definition before our code can call them (the K7 robot). PlayMode
+  tests in the open editor only ran in the asynchronous form
+  (`--async_tests true`, then `test_status`).
+- Next: Samuel's follow-up for Step 4 (move the door's easing formula into
+  `Core` with a test), then Step 5 (#10), which Samuel writes.
+
 ## 2026-10-03 — Documentation audit of October 2
 
 - Checked the October 2 main-branch history (Europe/Budapest): PR #20

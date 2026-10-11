@@ -20,7 +20,7 @@ Development status and agent handoff notes are tracked in [agent.md](agent.md).
 
 ### Bring the assets into another Unity project
 
-Copy `Assets/Characters`, `Assets/Environment`, `Assets/Materials`, `Assets/Animations`, `Assets/Prefabs`, and `Assets/Scripts` into the other project's `Assets` folder. Include their `.meta` files and keep the same relative paths so prefab and material references retain their Unity GUIDs. Copy `Assets/Documentation` for attribution and the two NEXUS scenes from `Assets/Scenes` if you also want the previews. Check for folder or filename conflicts before copying into an existing project.
+Copy `Assets/Characters`, `Assets/Environment`, `Assets/Materials`, `Assets/Animations`, `Assets/Prefabs`, and the code folders `Assets/NETRunner/Core`, `Assets/NETRunner/World` and `Assets/NETRunner/Player` into the other project's `Assets` folder. Include their `.meta` files and keep the same relative paths so prefab and material references retain their Unity GUIDs. Copy `Assets/Documentation` for attribution and the two NEXUS scenes from `Assets/Scenes` if you also want the previews. Check for folder or filename conflicts before copying into an existing project.
 
 For the playable character, drag `Assets/Prefabs/NEXUS_Player.prefab` into a scene with a collidable floor. The model-only prefab is `Assets/Prefabs/NEXUS_Character.prefab`. The player script uses Unity's legacy `Input` API, so set **Active Input Handling** to **Both** in Player Settings if the destination project uses the new Input System. The committed preview materials were converted to URP Lit on 2026-09-30. Keep URP shaders when importing into another URP project.
 

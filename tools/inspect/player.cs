@@ -6,7 +6,7 @@
 var sb = new System.Text.StringBuilder();
 System.Func<UnityEngine.Transform, string> path = null;
 path = t => t.parent == null ? t.name : path(t.parent) + "/" + t.name;
-var player = UnityEngine.Object.FindFirstObjectByType<NexusPlayer>(UnityEngine.FindObjectsInactive.Include);
+var player = UnityEngine.Object.FindFirstObjectByType<NetRunner.Player.NexusPlayer>(UnityEngine.FindObjectsInactive.Include);
 if (player == null) return "no NexusPlayer in open scene";
 var go = player.gameObject;
 sb.AppendLine("PLAYER " + go.name + " tag=" + go.tag + " layer=" + go.layer + " static=" + go.isStatic + " pos=" + go.transform.position + " rot=" + go.transform.eulerAngles + " scale=" + go.transform.localScale);

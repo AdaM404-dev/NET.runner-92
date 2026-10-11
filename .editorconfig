@@ -1,0 +1,31 @@
+# Formatting rules for the files we write by hand. Rider and Visual Studio
+# apply them while typing and with "Reformat Code".
+# Unity's own YAML files (.unity, .prefab, .asset, .meta, ...) are left alone.
+root = true
+
+[*.{cs,asmdef,json,md,py,sh,uss,uxml,tss}]
+charset = utf-8
+insert_final_newline = true
+
+[*.{cs,asmdef,json}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.cs]
+# One statement per line, braces on their own lines (see CLAUDE.md).
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_preserve_single_line_statements = false
+csharp_preserve_single_line_blocks = true
+csharp_prefer_braces = true:suggestion
+
+# Spaces around operators and after keywords: a + b, if (x).
+csharp_space_around_binary_operators = before_and_after
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_after_cast = false
+
+# `using` lines: System first, then the rest in alphabetical order.
+dotnet_sort_system_directives_first = true

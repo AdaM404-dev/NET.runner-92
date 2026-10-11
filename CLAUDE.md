@@ -59,7 +59,9 @@ Editor open (Unity CLI bridge through `com.unity.pipeline`):
 unity status                          # connected and "ready"?
 unity command console --level error   # read the console
 unity command recompile               # then: unity command recompile_status
-unity command run_tests
+unity command run_tests --mode editor                        # EditMode tests
+unity command run_tests --mode playmode --async_tests true   # PlayMode tests, then
+unity command test_status                                    # poll until "completed"
 bin/unity-shot <name> [game|scene]    # screenshot into Logs/shots/
 bin/unity-inspect [player|scene|environment|animation|doors|map]  # read-only facts
 ```
@@ -96,19 +98,21 @@ ideas briefly the first time they come up.
 
 ## Code conventions
 
-- Gameplay code lives in `Assets/Scripts/`. Keep that path; prefabs and the
-  teammate's docs reference it.
+- Code lives in feature folders, `Assets/NETRunner/<Feature>/` (today
+  `Core`, `World`, `Player` and the `MainMenu` prototype). Each has
+  `Scripts/` with one assembly definition and namespace `NetRunner.<Feature>`,
+  and its tests next to it in `Tests/EditMode/` or `Tests/PlayMode/`, each
+  with its own test assembly. A new feature gets a new folder. References
+  point one way, towards `Core`; `Core` references no other feature. Layout,
+  rules and "where does my new script go": `docs/architecture/overview.md`.
 - Game rules (stats, inventory, quests, dialogue, hacking, saves) are plain C#
-  with no `UnityEngine` scene dependency, covered by EditMode tests.
-  MonoBehaviours stay thin: read input, call the rules, show the result.
+  with no `UnityEngine` scene dependency, live in `Core` and are covered by
+  EditMode tests. MonoBehaviours stay thin: read input, call the rules, show
+  the result.
 - Content is data (ScriptableObjects), not code.
-- Target layout: namespaces and assembly definitions `NetRunner.Core`,
-  `NetRunner.Gameplay`, `NetRunner.UI`, `NetRunner.Editor`,
-  `NetRunner.Tests.EditMode`, `NetRunner.Tests.PlayMode`. Not created yet;
-  see `docs/architecture/overview.md` for current status.
 - Use the Input System package for new input code, not legacy `Input`.
 - One statement per line, braces on their own lines, spaces around operators.
-  The two existing scripts predate this and are to be refactored.
+  `.editorconfig` holds these rules for Rider and Visual Studio.
 
 ## Unity rules
 
