@@ -4,6 +4,23 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-10-11 — First code in Core: the door's easing curve
+
+- Samuel started the Step 4 follow-up in Rider; Claude finished it on the
+  same pull request (#25). The door's slow-start, slow-end formula is now
+  `Easing.SmoothStep01` in `Core`, with four EditMode tests.
+- What tripped us up, all differences from Java and JavaScript:
+  - Unity compiles C# 9, so the one-line `namespace X;` form (C# 10)
+    does not compile; use `namespace X { … }`.
+  - A method has to live inside a class.
+  - `using` names a namespace (`using NetRunner.Core;`), not a file.
+  - A local variable takes a type (`float eased = …`), not an access
+    modifier like `private`.
+- Learned: Unity compiles assemblies in order and stops at the first one
+  that fails, so an error in `Core` hides the errors in `World` and the
+  tests until it is fixed. Rider creates the `.meta` file for a new script
+  itself; commit it with the script.
+
 ## 2026-10-04 — Foundation steps 1 to 4
 
 - Steps 1 to 3 (PRs #23 and #24): named layers and `LayerMask` fields,

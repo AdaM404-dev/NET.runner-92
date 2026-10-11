@@ -15,7 +15,8 @@ into it in Step 4 ([#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9)).
 Assets/NETRunner/
 ├─ Core/                          NetRunner.Core: rules in plain C#, no scene objects
 │  ├─ Scripts/VerticalMotion.cs     gravity, jump and ground stick for one frame
-│  └─ Tests/EditMode/               6 tests, run in a fraction of a second
+│  ├─ Scripts/Easing.cs             the slow-start, slow-end curve the doors use
+│  └─ Tests/EditMode/               10 tests, run in a fraction of a second
 ├─ World/                         NetRunner.World: things that live in the level
 │  └─ Scripts/NexusDoor.cs          a door that swings or lifts when toggled
 ├─ Player/                        NetRunner.Player: the player you control
@@ -61,7 +62,7 @@ out. How to run them: [[architecture/tooling]].
 
 | The script… | Goes into | Example |
 | --- | --- | --- |
-| decides something without needing a scene: a rule, a formula, a state machine | `Core/Scripts/`, with an EditMode test | `VerticalMotion`, later stats, inventory, hacking rules, `IInteractable` |
+| decides something without needing a scene: a rule, a formula, a state machine | `Core/Scripts/`, with an EditMode test | `VerticalMotion`, `Easing`, later stats, inventory, hacking rules, `IInteractable` |
 | is a thing placed in the level | `World/Scripts/` | `NexusDoor`, later terminals, access readers, pickups |
 | belongs to the player | `Player/Scripts/` | `NexusPlayer`, later `PlayerMotor`, `PlayerCamera` (Step 6) |
 | starts a new feature (enemies, hacking UI, saves) | a new folder `Assets/NETRunner/<Feature>/` with `Scripts/` and an assembly definition `NetRunner.<Feature>` | the K7 enemy's gameplay code would be `Enemy/` |

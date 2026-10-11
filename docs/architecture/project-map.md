@@ -37,7 +37,7 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `Materials/` | 27 environment and 24 character materials, the preview floor, one reflection cubemap | 53 | AdaM404 |
 | `Prefabs/` | three prefabs, see below | 3 | shared |
 | `Scenes/` | the gameplay scene `Game/Warehouse` and two preview scenes, see below | 3 | `Game/` Samuel; the previews AdaM404 |
-| `NETRunner/Core/` | rules in plain C# (`VerticalMotion.cs`) and their EditMode tests, two assembly definitions | 4 | Samuel |
+| `NETRunner/Core/` | rules in plain C# (`VerticalMotion.cs`, `Easing.cs`) and their EditMode tests, two assembly definitions | 6 | Samuel |
 | `NETRunner/World/` | things in the level: `NexusDoor.cs`, one assembly definition | 2 | Samuel |
 | `NETRunner/Player/` | `NexusPlayer.cs` and its PlayMode tests, two assembly definitions | 4 | Samuel |
 | `NETRunner/MainMenu/` | isolated menu scene, scripts, UI, art, builder and PlayMode tests; see [[systems/main-menu]] | — | prototype; ownership not yet agreed |
@@ -83,13 +83,15 @@ where a new script goes: [[architecture/overview]].
 | `Player/Scripts/NexusPlayer.cs` | `NetRunner.Player` | input, movement, camera, interaction, HUD, debug keys ([[systems/player]]) | `NEXUS_Player` prefab, `MainTest`, `CharacterPreview` |
 | `World/Scripts/NexusDoor.cs` | `NetRunner.World` | swings or lifts one door ([[systems/doors-and-interaction]]) | 119 doors in `Warehouse_NearFuture.prefab` |
 | `Core/Scripts/VerticalMotion.cs` | `NetRunner.Core` | gravity, jump and ground stick for one frame ([[systems/player-movement]]) | `NexusPlayer.Simulate()` |
+| `Core/Scripts/Easing.cs` | `NetRunner.Core` | `SmoothStep01`: slow start, slow end ([[systems/doors-and-interaction]]) | `NexusDoor.Update()` |
 | `Core/Tests/EditMode/VerticalMotionTests.cs` | `NetRunner.Core.Tests.EditMode` | 6 tests of `VerticalMotion` | the test runner |
+| `Core/Tests/EditMode/EasingTests.cs` | `NetRunner.Core.Tests.EditMode` | 4 tests of `Easing` | the test runner |
 | `Player/Tests/PlayMode/PlayerPlayModeTests.cs` | `NetRunner.Player.Tests.PlayMode` | 3 tests: walk and run speed, jump height, a door opening | the test runner |
 | `MainMenu/…` | `NetRunner.MenuPrototype` (+ `.Editor`, `.PlayModeTests`) | the standalone menu ([[systems/main-menu]]) | its own scene |
 | `ArtSource/K7_Industrial_Robot/Unity/*.cs` | none yet | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
 
-Tests: 6 EditMode and 5 PlayMode (3 player, 2 menu), all passing on
-2026-10-04. Formatting rules for new code: `.editorconfig` at the repository
+Tests: 10 EditMode and 5 PlayMode (3 player, 2 menu), all passing on
+2026-10-11. Formatting rules for new code: `.editorconfig` at the repository
 root.
 
 ## Settings assets (`Assets/Settings/`)
@@ -122,7 +124,7 @@ Details in [[systems/rendering]].
 | --- | --- | --- |
 | Universal RP 17.6.0 | the render pipeline | yes |
 | Input System 1.20.0 | modern input with action maps | installed, not used by code |
-| Test Framework 1.8.0 | automated tests | yes: 6 EditMode tests (`Core`), 3 player and 2 menu PlayMode tests |
+| Test Framework 1.8.0 | automated tests | yes: 10 EditMode tests (`Core`), 3 player and 2 menu PlayMode tests |
 | AI Navigation 2.0.14 | navigation meshes for enemies | not yet |
 | Timeline, uGUI, Visual Scripting | cutscenes, UI, node-based scripting | not used by any asset |
 | Pipeline 0.8 (experimental) | lets the `unity` terminal tool drive the editor | yes, by our tooling |
