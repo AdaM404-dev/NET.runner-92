@@ -155,7 +155,7 @@ Not blocking, but cheap if done early:
 | D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
 | D4 | Target platforms | **Decided 2026-10-04: PC only (Windows and Linux); the Mobile quality level is removed.** | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
 | D5 | Company name and code namespace | **Decided 2026-10-04: company name `NET.runner`; namespaces `NetRunner.<Feature>`.** | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
-| D6 | Doors that are exported open | The door script works out from the frame which pose is shut; later, export doors shut. | Samuel, AdaM404 | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
+| D6 | Doors that are exported open | **Decided 2026-10-15: doors are exported shut (done in PR #21); a test in #10 fails if any warehouse door does not start shut. No runtime detection.** | both | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 
 ## After these steps
 
