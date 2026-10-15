@@ -150,12 +150,12 @@ Not blocking, but cheap if done early:
 
 | # | Question | Recommendation | Who | Issue |
 | --- | --- | --- | --- | --- |
-| D1 | Third person: part of the game or a debug view? | Debug view only; the game is first-person. It keeps the camera work small. | Samuel | [#13](https://github.com/AdaM404-dev/NET.runner-92/issues/13) |
-| D2 | First person: full body (today) or the arms-only model? | Keep the full body for now (it works and shows the cybernetic arm); decide again when aiming or weapons arrive. Keep the arms prefab until then. | Samuel, AdaM404 | [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) |
+| D1 | Third person: part of the game or a debug view? | **Decided 2026-10-15: debug view only; the game is first person.** | both | [#13](https://github.com/AdaM404-dev/NET.runner-92/issues/13) |
+| D2 | First person: full body (today) or the arms-only model? | **Decided 2026-10-15: arms-only model in first person; the full body stays for the debug view and previews.** | both | [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) |
 | D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
 | D4 | Target platforms | **Decided 2026-10-04: PC only (Windows and Linux); the Mobile quality level is removed.** | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
 | D5 | Company name and code namespace | **Decided 2026-10-04: company name `NET.runner`; namespaces `NetRunner.<Feature>`.** | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
-| D6 | Doors that are exported open | The door script works out from the frame which pose is shut; later, export doors shut. | Samuel, AdaM404 | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
+| D6 | Doors that are exported open | **Decided 2026-10-15: doors are exported shut (done in PR #21); a test in #10 fails if any warehouse door does not start shut. No runtime detection.** | both | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 
 ## After these steps
 

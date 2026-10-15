@@ -140,9 +140,10 @@ doubles its memory use), materials remapped to `Assets/Materials/NEXUS/`.
 
 ## Open questions
 
-- AdaM404's 2026-10-02 direction in issue #14 is to keep the full body for
-  now and retain the arms-only model for possible aiming/weapons needs.
-  Team agreement and later animation requirements are tracked there; see
+- Decided 2026-10-15 in issue #14: first person switches to the arms-only
+  model (`NEXUS_FP_Rig`); new first-person clips are made for that rig, and
+  the full body keeps only locomotion for the debug view and previews. Not
+  yet built (see #11). Does the arms model include the cybernetic arm? See
   [[design/README]].
 - Which animations does the game need (crouch, interact, hack, hit, death),
   and who makes them?

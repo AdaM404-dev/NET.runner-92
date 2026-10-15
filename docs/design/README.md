@@ -6,14 +6,20 @@ still need design work.
 
 ## Perspective direction recorded 2026-10-02
 
-- AdaM404 confirmed first person as the default and primary perspective;
-  third person is only a debug/development view ([issue #13 comment](https://github.com/AdaM404-dev/NET.runner-92/issues/13#issuecomment-5952922014)).
-- Keep the full-body NEXUS model and one skeleton for now, including the
-  visible cybernetic arm. Retain the arms-only prefab and reconsider it if
-  aiming/weapons require tighter animation control ([issue #14 comment](https://github.com/AdaM404-dev/NET.runner-92/issues/14#issuecomment-5952876378)).
-- These comments record AdaM404's direction; issue #14 still has proposed /
-  needs-agreement labels at this audit. No camera, scene or animation behavior
-  was changed by documenting them. See [[systems/camera]] and
+- **Decided 2026-10-15 (#13):** the game is first person. Third person is
+  only a debug/development view (Tab, editor and development builds), with no
+  polish. AdaM404 proposed it ([comment](https://github.com/AdaM404-dev/NET.runner-92/issues/13#issuecomment-5952922014)),
+  Samuel agreed ([comment](https://github.com/AdaM404-dev/NET.runner-92/issues/13#issuecomment-6185718508)).
+- **Decided 2026-10-15 (#14):** first person uses the **arms-only model**
+  (`NEXUS_FirstPerson_Arms.prefab`), attached to the camera; the full body is
+  hidden in first person. The full body stays for the third-person debug view,
+  `CharacterPreview` and cutscenes, with no first-person animation work. New
+  first-person clips (idle, interact, hack, grip) are made for the arms rig
+  `NEXUS_FP_Rig`. Samuel proposed it ([comment](https://github.com/AdaM404-dev/NET.runner-92/issues/14#issuecomment-6187313523)), AdaM404 agreed on the
+  issue. This replaces AdaM404's earlier "full body for now" answer.
+- Open from #14: whether the arms model includes the cybernetic left arm, and
+  which first-person clips AdaM404 makes first.
+- No camera, scene or animation behavior was changed by documenting these. See [[systems/camera]] and
   [[systems/character-and-animation]].
 
 ## To settle at the kickoff
