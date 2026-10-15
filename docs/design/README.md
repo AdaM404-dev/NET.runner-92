@@ -6,13 +6,14 @@ still need design work.
 
 ## Perspective direction recorded 2026-10-02
 
-- AdaM404 confirmed first person as the default and primary perspective;
-  third person is only a debug/development view ([issue #13 comment](https://github.com/AdaM404-dev/NET.runner-92/issues/13#issuecomment-5952922014)).
+- **Decided 2026-10-15 (#13):** the game is first person. Third person is
+  only a debug/development view (Tab, editor and development builds), with no
+  polish. AdaM404 proposed it ([comment](https://github.com/AdaM404-dev/NET.runner-92/issues/13#issuecomment-5952922014)),
+  Samuel agreed ([comment](https://github.com/AdaM404-dev/NET.runner-92/issues/13#issuecomment-6185718508)).
 - Keep the full-body NEXUS model and one skeleton for now, including the
   visible cybernetic arm. Retain the arms-only prefab and reconsider it if
   aiming/weapons require tighter animation control ([issue #14 comment](https://github.com/AdaM404-dev/NET.runner-92/issues/14#issuecomment-5952876378)).
-- These comments record AdaM404's direction; issue #14 still has proposed /
-  needs-agreement labels at this audit. No camera, scene or animation behavior
+- Issue #14 (full body) still has proposed / needs-agreement labels. No camera, scene or animation behavior
   was changed by documenting them. See [[systems/camera]] and
   [[systems/character-and-animation]].
 
