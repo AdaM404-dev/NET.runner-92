@@ -109,9 +109,11 @@ body is on screen.
 
 ## Recorded design direction (2026-10-02)
 
-AdaM404 specified first person as the default gameplay perspective and third
-person only for debugging in issue #13. Issue #14 records keeping the full body
-for now and retaining the unused arms-only prefab for possible later needs.
+Decided 2026-10-15 in issue #13 (AdaM404 and Samuel): the game is first
+person; third person stays only as an unpolished debug view, and its Tab key
+moves into `DebugKeys` in #11. Decided 2026-10-15 in issue #14: first
+person will use the arms-only model attached to the camera, with the full
+body hidden; that change lands with `PlayerCamera` in #11.
 See [[design/README]] for the source comments and agreement status. These are
 design instructions; the legacy Tab switch and serialized scene defaults have
 not been changed by this documentation update.

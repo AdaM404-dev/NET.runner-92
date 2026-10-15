@@ -28,9 +28,10 @@ before crossing a boundary.
 - AdaM404 requested all warehouse doors closed on 2026-10-02. The updated
   art export has all 113 hinged leaves shut and six shutters fully lowered;
   `close_doors.py` preserves this rule after rebuilding the source. Keep
-  doors closed in future art exports. The broader code/art decision in
-  [issue #16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) remains
-  open; see [[systems/doors-and-interaction]].
+  doors closed in future art exports: this is the agreed rule of
+  [issue #16](https://github.com/AdaM404-dev/NET.runner-92/issues/16)
+  (decided 2026-10-15). A test added in #10 fails if any warehouse door does
+  not start shut; see [[systems/doors-and-interaction]].
 - Proposed ([issue #8](https://github.com/AdaM404-dev/NET.runner-92/issues/8)): the warehouse becomes a prefab owned by art, which
   both the preview scene and our gameplay scene place.
 
