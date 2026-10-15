@@ -102,9 +102,11 @@ The first toggle is intended to open each door. The source and FBX checks
 are in `ArtSource/Warehouse_NearFuture/Door_closure_validation.json` and
 `Export_validation.json`.
 
-The code still assumes an imported starting pose is closed. General state
-detection for future incorrectly posed assets remains part of issue #16
-and the gameplay work in #10; neither issue is completed by this art edit.
+The code assumes an imported starting pose is closed, and keeps doing so.
+Decided 2026-10-15 in issue #16 (Samuel and AdaM404): doors are exported
+shut, and instead of detecting the pose at runtime, a test (written in #10)
+loads `Warehouse_NearFuture.prefab` and fails if any door does not start
+shut.
 
 Run `bin/unity-inspect doors` for the exact list per group. The floor plan
 in [[systems/level-warehouse]] shows where every door is.
