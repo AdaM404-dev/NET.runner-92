@@ -17,8 +17,7 @@ description: Close a NET.runner-92 work session by verifying the work, updating 
    Append only; do not rewrite earlier rows.
 3. Update `docs/`:
    - the `docs/systems/` note for every system whose behaviour or API changed,
-   - a dated entry at the top of `docs/journal.md`, including what Samuel
-     learned or found confusing on YOU WRITE and PAIR tasks.
+   - a dated entry at the top of `docs/journal.md`.
 4. Update the decision issues on GitHub:
    - answers given in chat become comments on their issue, with the labels
      updated (`needs …` removed, `status: accepted` when nobody is missing),

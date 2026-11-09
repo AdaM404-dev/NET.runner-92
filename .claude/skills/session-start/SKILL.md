@@ -21,7 +21,7 @@ description: Load the current state of NET.runner-92 at the beginning of a work 
 5. Report in a few lines: what was last done, what is in progress (including
    rows another agent left in Active work), the next foundation step with its
    status, and which decisions wait for whom.
-6. Once the task is agreed, confirm its tag (YOU WRITE, PAIR or CLAUDE).
-   Work on a planned change only if its issue has `status: accepted` or
-   Samuel says to go ahead; set `status: in progress`. Add a row to
+6. Once the task is agreed (Claude writes all code; Samuel reviews), work
+   on a planned change only if its issue has `status: accepted` or Samuel
+   says to go ahead; set `status: in progress`. Add a row to
    `agent.md` under Active work, and create a branch if on `main`.

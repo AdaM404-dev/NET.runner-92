@@ -38,7 +38,7 @@ GitHub or by an AI agent. [Issue #6](https://github.com/AdaM404-dev/NET.runner-9
 | `status: accepted` | everyone needed has agreed; the work can start |
 | `status: in progress` | being worked on |
 | `needs Samuel`, `needs AdaM404` | whose answer or agreement is still missing |
-| `YOU WRITE`, `PAIR`, `CLAUDE`, `ART` | who builds it (see the work split in `CLAUDE.md`); `ART` is AdaM404's work |
+| `CLAUDE`, `ART` | who builds it: `CLAUDE` is code (Claude writes all code since 2026-11-09), `ART` is AdaM404's work |
 | `size S`, `size M`, `size L` | under an hour, about one session, several sessions |
 
 The **assignee** is whoever must act next: answer, or do the work. The
