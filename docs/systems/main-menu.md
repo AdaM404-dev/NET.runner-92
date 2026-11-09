@@ -17,7 +17,7 @@ It is absent from Build Settings; the startup scene is the gameplay scene `Game/
 | What | Path under `Assets/NETRunner/MainMenu/` |
 | --- | --- |
 | Scene | `Scenes/NETRunner_MainMenu_Prototype.unity` |
-| Runtime | `Scripts/` (`NetRunner.MenuPrototype` assembly) |
+| Runtime | `Scripts/` (`NetRunner.MainMenu` assembly and namespace; called `NetRunner.MenuPrototype` until 2026-11-09) |
 | Timing, colors, text, facility data | `UI/MenuPrototypeSettings.asset` |
 | UI presentation | `UI/MenuTerminal.uss` |
 | Grading and effects | `VFX/SurveillanceVolume.asset` |

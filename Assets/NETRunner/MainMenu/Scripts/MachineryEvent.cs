@@ -1,16 +1,33 @@
 using System.Collections;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// Facility event: a ventilation rotor spins up and down with its sound.
+    /// </summary>
     public sealed class MachineryEvent : FacilityEvent
     {
-        public Transform rotor;
-        public MenuAudioController audioController;
-        [Min(0.1f)] public float duration = 7f;
+        [SerializeField] internal Transform rotor;
+        [SerializeField] internal MenuAudioController audioController;
+        [Min(0.1f)] [SerializeField] private float duration = 7f;
+
         private Quaternion originalRotation;
 
         private void Awake() => originalRotation = rotor.localRotation;
+
+        private void OnDisable()
+        {
+            if (audioController != null)
+            {
+                audioController.StopMachinery();
+            }
+
+            if (rotor != null)
+            {
+                rotor.localRotation = originalRotation;
+            }
+        }
 
         public override IEnumerator Run()
         {
@@ -22,19 +39,8 @@ namespace NetRunner.MenuPrototype
                 rotor.Rotate(Vector3.forward, Mathf.Sin(fraction * Mathf.PI) * 190 * Time.unscaledDeltaTime, Space.Self);
                 yield return null;
             }
-            audioController.StopMachinery();
-        }
 
-        private void OnDisable()
-        {
-            if (audioController != null)
-            {
-                audioController.StopMachinery();
-            }
-            if (rotor != null)
-            {
-                rotor.localRotation = originalRotation;
-            }
+            audioController.StopMachinery();
         }
     }
 }

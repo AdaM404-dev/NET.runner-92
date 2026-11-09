@@ -3,33 +3,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
-    // Owns presentation only. Controllers own sequence timing and menu state.
+    /// <summary>
+    /// Builds and updates the UI Toolkit interface. Owns presentation only;
+    /// controllers own sequence timing and menu state.
+    /// </summary>
     [RequireComponent(typeof(UIDocument))]
     public sealed class MenuView : MonoBehaviour
     {
-        public StyleSheet styleSheet;
-        public MenuPrototypeSettings settings;
-        public event Action<string> ActionSelected;
-        public event Action<float> VolumeChanged;
-        public event Action<float> FeedBrightnessChanged;
-        public event Action<bool> CameraCycleChanged;
-        public VisualElement Root { get; private set; }
-        public VisualElement Menu { get; private set; }
-        public VisualElement Loading { get; private set; }
-        public VisualElement Terminal { get; private set; }
-        public VisualElement Modal { get; private set; }
-        public Label BootText { get; private set; }
-        public Label Title { get; private set; }
-        public Label ProgressText { get; private set; }
-        public Label LoadingLog { get; private set; }
-        public Label ArchiveLog { get; private set; }
-        public Label CameraText { get; private set; }
-        public Label SignalText { get; private set; }
-        public Label ActivityText { get; private set; }
-        public VisualElement Signal { get; private set; }
-        public VisualElement FeedShade { get; private set; }
+        [SerializeField] internal StyleSheet styleSheet;
+        [SerializeField] internal MenuPrototypeSettings settings;
+
         private VisualElement segments;
         private VisualElement network;
         private Label facility;
@@ -41,6 +26,46 @@ namespace NetRunner.MenuPrototype
         private float volume = 0.35f;
         private float brightness = 0.12f;
         private bool cycle = true;
+
+        public event Action<string> ActionSelected;
+        public event Action<float> VolumeChanged;
+        public event Action<float> FeedBrightnessChanged;
+        public event Action<bool> CameraCycleChanged;
+
+        public VisualElement Root { get; private set; }
+
+        public VisualElement Menu { get; private set; }
+
+        public VisualElement Loading { get; private set; }
+
+        public VisualElement Terminal { get; private set; }
+
+        public VisualElement Modal { get; private set; }
+
+        public Label BootText { get; private set; }
+
+        public Label Title { get; private set; }
+
+        public Label ProgressText { get; private set; }
+
+        public Label LoadingLog { get; private set; }
+
+        public Label ArchiveLog { get; private set; }
+
+        public Label CameraText { get; private set; }
+
+        public Label SignalText { get; private set; }
+
+        public Label ActivityText { get; private set; }
+
+        public VisualElement Signal { get; private set; }
+
+        public VisualElement FeedShade { get; private set; }
+
+        private void OnDisable()
+        {
+            clock?.Pause();
+        }
 
         public void Build()
         {
@@ -105,6 +130,7 @@ namespace NetRunner.MenuPrototype
                     wire.style.left = 104 + (i % 3) * 195;
                     wire.style.top = 33 + (i / 3) * 52;
                 }
+
                 if (i < 6)
                 {
                     var wire = Element(network, "network-wire vertical");
@@ -112,12 +138,14 @@ namespace NetRunner.MenuPrototype
                     wire.style.top = 43 + (i / 3) * 52;
                 }
             }
+
             ProgressText = Label(loadingContent, "NETWORK ACCESS: 0%", "progress-label");
             segments = Element(loadingContent, "segments");
             for (int i = 0; i < 32; i++)
             {
                 Element(segments, "segment");
             }
+
             var logs = Element(loadingContent, "logs");
             LoadingLog = Label(logs, "", "system-log");
             ArchiveLog = Label(logs, "", "system-log archive quiet");
@@ -138,15 +166,6 @@ namespace NetRunner.MenuPrototype
             SetVisible(Modal, false);
             Signal.style.opacity = 0;
             Root.RegisterCallback<KeyDownEvent>(OnKey);
-        }
-
-        private void OnKey(KeyDownEvent evt)
-        {
-            if (evt.keyCode == KeyCode.Escape)
-            {
-                ActionSelected?.Invoke("back");
-                evt.StopPropagation();
-            }
         }
 
         public void SetFacilityStatus(string state, string connection, string active, string draw)
@@ -214,6 +233,7 @@ namespace NetRunner.MenuPrototype
                 Label(card, "Release the remote access channel and disconnect from the facility.", "modal-copy");
                 AddButton(card, "confirm-disconnect", "CONFIRM DISCONNECT");
             }
+
             AddButton(card, "close-modal", "RETURN TO OBSERVATION");
             Focus(kind == "disconnect" ? "confirm-disconnect" : "close-modal");
         }
@@ -231,6 +251,7 @@ namespace NetRunner.MenuPrototype
             {
                 segments[i].style.backgroundColor = i < Mathf.FloorToInt(progress * 32) ? settings.accent : new Color(0.13f, 0.17f, 0.18f);
             }
+
             for (int i = 0; i < 9; i++)
             {
                 var node = network.Q("node-" + i);
@@ -239,7 +260,9 @@ namespace NetRunner.MenuPrototype
         }
 
         public void SetFeedBrightness(float value) => FeedShade.style.backgroundColor = new Color(0, 0, 0, value);
+
         public void Focus(string name) => Root.Q<Button>(name)?.Focus();
+
         public static void SetVisible(VisualElement element, bool visible) => element.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
 
         public static IEnumerator Fade(VisualElement element, float from, float to, float duration)
@@ -251,6 +274,15 @@ namespace NetRunner.MenuPrototype
                 yield return null;
             } while (Time.unscaledTime - start < duration);
             element.style.opacity = to;
+        }
+
+        private void OnKey(KeyDownEvent evt)
+        {
+            if (evt.keyCode == KeyCode.Escape)
+            {
+                ActionSelected?.Invoke("back");
+                evt.StopPropagation();
+            }
         }
 
         private Button AddButton(VisualElement parent, string action, string title)
@@ -268,6 +300,7 @@ namespace NetRunner.MenuPrototype
             {
                 element.AddToClassList(token);
             }
+
             parent.Add(element);
             return element;
         }
@@ -279,6 +312,7 @@ namespace NetRunner.MenuPrototype
             {
                 label.AddToClassList(token);
             }
+
             parent.Add(label);
             return label;
         }
@@ -288,11 +322,6 @@ namespace NetRunner.MenuPrototype
             var block = Element(parent, "status-block");
             Label(block, heading, "micro quiet");
             return Label(block, value, "status-value");
-        }
-
-        private void OnDisable()
-        {
-            clock?.Pause();
         }
     }
 }

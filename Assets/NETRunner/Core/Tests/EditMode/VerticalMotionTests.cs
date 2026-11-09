@@ -6,10 +6,10 @@ namespace NetRunner.Core.Tests
     /// EditMode tests: they run in a fraction of a second, without a scene,
     /// because VerticalMotion is plain maths.
     /// </summary>
-    public class VerticalMotionTests
+    public sealed class VerticalMotionTests
     {
-        const float Frame = 1f / 60f;
-        const float OneFrameOfGravity = VerticalMotion.Gravity * Frame;
+        private const float Frame = 1f / 60f;
+        private const float OneFrameOfGravity = VerticalMotion.Gravity * Frame;
 
         [Test]
         public void GravityTakesFourteenMetresPerSecondOffEverySecond()

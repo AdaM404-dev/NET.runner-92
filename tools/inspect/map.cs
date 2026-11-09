@@ -7,7 +7,7 @@ var sb = new System.Text.StringBuilder();
 foreach (var d in UnityEngine.Object.FindObjectsByType<NetRunner.World.NexusDoor>(FindObjectsInactive.Include))
 {
     var b = d.GetComponent<BoxCollider>().bounds;
-    sb.AppendLine("DOOR|" + d.name + "|" + b.center.x.ToString("0.00") + "|" + b.center.y.ToString("0.00") + "|" + b.center.z.ToString("0.00") + "|" + b.size.x.ToString("0.00") + "|" + b.size.z.ToString("0.00") + "|" + (d.loadingDoor ? 1 : 0) + "|" + d.transform.position.x.ToString("0.00") + "|" + d.transform.position.z.ToString("0.00"));
+    sb.AppendLine("DOOR|" + d.name + "|" + b.center.x.ToString("0.00") + "|" + b.center.y.ToString("0.00") + "|" + b.center.z.ToString("0.00") + "|" + b.size.x.ToString("0.00") + "|" + b.size.z.ToString("0.00") + "|" + (d.IsLoadingDoor ? 1 : 0) + "|" + d.transform.position.x.ToString("0.00") + "|" + d.transform.position.z.ToString("0.00"));
 }
 var geo = GameObject.Find("Warehouse_NearFuture_Geometry");
 foreach (Transform t in geo.transform)

@@ -21,9 +21,9 @@ if (isInstance)
 }
 var cc = go.GetComponent<UnityEngine.CharacterController>();
 sb.AppendLine("CharacterController height=" + cc.height + " radius=" + cc.radius + " center=" + cc.center + " slopeLimit=" + cc.slopeLimit + " stepOffset=" + cc.stepOffset + " skinWidth=" + cc.skinWidth + " minMoveDistance=" + cc.minMoveDistance);
-sb.AppendLine("NexusPlayer viewCamera=" + (player.viewCamera ? path(player.viewCamera.transform) : "null") + " animator=" + (player.animator ? path(player.animator.transform) : "null") + " lodGroup=" + (player.lodGroup ? path(player.lodGroup.transform) : "null") + " visual=" + (player.visual ? path(player.visual) : "null"));
-sb.AppendLine("NexusPlayer firstPerson=" + player.firstPerson + " previewMode=" + player.previewMode + " walkSpeed=" + player.walkSpeed + " runSpeed=" + player.runSpeed + " sensitivity=" + player.sensitivity + " enabled=" + player.enabled);
-var cam = player.viewCamera;
+sb.AppendLine("NexusPlayer viewCamera=" + (player.ViewCamera ? path(player.ViewCamera.transform) : "null") + " animator=" + (player.Animator ? path(player.Animator.transform) : "null") + " lodGroup=" + (player.LodGroup ? path(player.LodGroup.transform) : "null") + " visual=" + (player.Visual ? path(player.Visual) : "null"));
+sb.AppendLine("NexusPlayer firstPerson=" + player.FirstPerson + " previewMode=" + player.PreviewMode + " walkSpeed=" + player.WalkSpeed + " runSpeed=" + player.RunSpeed + " sensitivity=" + player.Sensitivity + " enabled=" + player.enabled);
+var cam = player.ViewCamera;
 if (cam != null)
 {
     sb.AppendLine("CAMERA " + cam.name + " tag=" + cam.tag + " layer=" + cam.gameObject.layer + " localPos=" + cam.transform.localPosition + " localRot=" + cam.transform.localEulerAngles + " fov=" + cam.fieldOfView + " near=" + cam.nearClipPlane + " far=" + cam.farClipPlane + " cullingMask=" + cam.cullingMask + " clearFlags=" + cam.clearFlags + " bg=" + cam.backgroundColor + " depth=" + cam.depth + " hdr=" + cam.allowHDR + " msaa=" + cam.allowMSAA + " ortho=" + cam.orthographic);
@@ -36,7 +36,7 @@ if (cam != null)
     }
     var al = cam.GetComponent<UnityEngine.AudioListener>(); sb.AppendLine("  AudioListener enabled=" + (al && al.enabled));
 }
-var lg = player.lodGroup;
+var lg = player.LodGroup;
 if (lg != null)
 {
     sb.AppendLine("LODGROUP on " + path(lg.transform) + " size=" + lg.size + " localRefPoint=" + lg.localReferencePoint + " fadeMode=" + lg.fadeMode + " animateCrossFading=" + lg.animateCrossFading + " enabled=" + lg.enabled + " lodCount=" + lg.lodCount);
@@ -50,7 +50,7 @@ if (lg != null)
 }
 foreach (var an in go.GetComponentsInChildren<UnityEngine.Animator>(true))
     sb.AppendLine("ANIMATOR on " + path(an.transform) + " controller=" + (an.runtimeAnimatorController ? UnityEditor.AssetDatabase.GetAssetPath(an.runtimeAnimatorController) : "null") + " avatar=" + (an.avatar ? an.avatar.name + " (" + UnityEditor.AssetDatabase.GetAssetPath(an.avatar) + ") human=" + an.avatar.isHuman + " valid=" + an.avatar.isValid : "null") + " applyRootMotion=" + an.applyRootMotion + " updateMode=" + an.updateMode + " cullingMode=" + an.cullingMode + " enabled=" + an.enabled);
-var visual = player.visual;
+var visual = player.Visual;
 for (int i = 0; visual != null && i < visual.childCount; i++)
 {
     var lod = visual.GetChild(i);

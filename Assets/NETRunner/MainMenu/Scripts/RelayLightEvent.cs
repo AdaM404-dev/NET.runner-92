@@ -1,15 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// Facility event: a dormant relay light flares up, then returns to normal.
+    /// </summary>
     public sealed class RelayLightEvent : FacilityEvent
     {
-        public Light target;
-        public Renderer indicator;
-        public Material offMaterial;
-        public Material onMaterial;
-        [Min(0.1f)] public float holdDuration = 4.5f;
+        [SerializeField] internal Light target;
+        [SerializeField] internal Renderer indicator;
+        [SerializeField] internal Material offMaterial;
+        [SerializeField] internal Material onMaterial;
+        [Min(0.1f)] [SerializeField] private float holdDuration = 4.5f;
+
         private float originalIntensity;
         private Material originalMaterial;
 
@@ -18,6 +22,8 @@ namespace NetRunner.MenuPrototype
             originalIntensity = target.intensity;
             originalMaterial = indicator.sharedMaterial;
         }
+
+        private void OnDisable() => Restore();
 
         public override IEnumerator Run()
         {
@@ -33,12 +39,11 @@ namespace NetRunner.MenuPrototype
             {
                 target.intensity = originalIntensity;
             }
+
             if (indicator != null)
             {
                 indicator.sharedMaterial = originalMaterial;
             }
         }
-
-        private void OnDisable() => Restore();
     }
 }

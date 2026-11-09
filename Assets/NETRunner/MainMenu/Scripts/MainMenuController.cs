@@ -1,21 +1,34 @@
 using System.Collections;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// The menu's state machine: boot, observation, modal panels, loading and disconnect.
+    /// </summary>
     public sealed class MainMenuController : MonoBehaviour
     {
-        public enum MenuState { Booting, Observation, Modal, Loading, Disconnected }
-        public MenuView view;
-        public MenuBootSequence boot;
-        public LoadingScreenController loading;
-        public SurveillanceCameraController surveillance;
-        public FacilityEventController facilityEvents;
-        public MenuAudioController audioController;
-        public MenuState State { get; private set; } = MenuState.Booting;
+        public enum MenuState
+        {
+            Booting,
+            Observation,
+            Modal,
+            Loading,
+            Disconnected
+        }
+
+        [SerializeField] internal MenuView view;
+        [SerializeField] internal MenuBootSequence boot;
+        [SerializeField] internal LoadingScreenController loading;
+        [SerializeField] internal SurveillanceCameraController surveillance;
+        [SerializeField] internal FacilityEventController facilityEvents;
+        [SerializeField] internal MenuAudioController audioController;
+
         private string lastAction;
         private CursorLockMode previousLock;
         private bool previousCursorVisible;
+
+        public MenuState State { get; private set; } = MenuState.Booting;
 
         private IEnumerator Start()
         {
@@ -37,14 +50,18 @@ namespace NetRunner.MenuPrototype
             ResumeObservation();
         }
 
-        private void SetCameraCycle(bool enabled) => surveillance.AutomaticCycling = enabled;
-
-        private void ResumeObservation()
+        private void OnDisable()
         {
-            State = MenuState.Observation;
-            surveillance.Suspended = false;
-            facilityEvents.Suspended = false;
-            view.ShowMenu();
+            if (view != null)
+            {
+                view.ActionSelected -= HandleAction;
+                view.VolumeChanged -= audioController.SetVolume;
+                view.FeedBrightnessChanged -= view.SetFeedBrightness;
+                view.CameraCycleChanged -= SetCameraCycle;
+            }
+
+            Cursor.lockState = previousLock;
+            Cursor.visible = previousCursorVisible;
         }
 
         public void HandleAction(string action)
@@ -55,12 +72,15 @@ namespace NetRunner.MenuPrototype
                 {
                     boot.Skip();
                 }
+
                 return;
             }
+
             if (State == MenuState.Loading || State == MenuState.Disconnected)
             {
                 return;
             }
+
             audioController.Click();
             if (State == MenuState.Modal)
             {
@@ -74,8 +94,10 @@ namespace NetRunner.MenuPrototype
                 {
                     StartCoroutine(Disconnect());
                 }
+
                 return;
             }
+
             if (action == "continue" || action == "new-session")
             {
                 State = MenuState.Loading;
@@ -87,6 +109,16 @@ namespace NetRunner.MenuPrototype
                 State = MenuState.Modal;
                 view.ShowModal(action);
             }
+        }
+
+        private void SetCameraCycle(bool enabled) => surveillance.AutomaticCycling = enabled;
+
+        private void ResumeObservation()
+        {
+            State = MenuState.Observation;
+            surveillance.Suspended = false;
+            facilityEvents.Suspended = false;
+            view.ShowMenu();
         }
 
         private IEnumerator LoadPrototype(string entry)
@@ -117,19 +149,6 @@ namespace NetRunner.MenuPrototype
             {
                 Application.Quit();
             }
-        }
-
-        private void OnDisable()
-        {
-            if (view != null)
-            {
-                view.ActionSelected -= HandleAction;
-                view.VolumeChanged -= audioController.SetVolume;
-                view.FeedBrightnessChanged -= view.SetFeedBrightness;
-                view.CameraCycleChanged -= SetCameraCycle;
-            }
-            Cursor.lockState = previousLock;
-            Cursor.visible = previousCursorVisible;
         }
     }
 }

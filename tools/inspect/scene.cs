@@ -49,8 +49,8 @@ var doorLayers = new System.Collections.Generic.SortedDictionary<int, int>();
 int trig = 0, withMeshCol = 0; var childNames = new System.Collections.Generic.SortedDictionary<string, int>();
 foreach (var d in doors)
 {
-    if (d.loadingDoor) loading++;
-    string k = "loading=" + d.loadingDoor + " angle=" + d.angle + " lift=" + d.lift; angles[k] = angles.ContainsKey(k) ? angles[k] + 1 : 1;
+    if (d.IsLoadingDoor) loading++;
+    string k = "loading=" + d.IsLoadingDoor + " angle=" + d.SwingAngle + " lift=" + d.LiftHeight; angles[k] = angles.ContainsKey(k) ? angles[k] + 1 : 1;
     int l = d.gameObject.layer; doorLayers[l] = doorLayers.ContainsKey(l) ? doorLayers[l] + 1 : 1;
     var bc = d.GetComponent<UnityEngine.BoxCollider>(); if (bc != null && bc.isTrigger) trig++;
     if (d.GetComponent<UnityEngine.MeshCollider>() != null) withMeshCol++;

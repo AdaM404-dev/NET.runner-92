@@ -28,7 +28,7 @@ New to the project or to Unity? Read in this order:
 | --- | --- |
 | `guide/` | Learning path for people new to the project or to Unity |
 | [[design/README\|design/]] | The game: pillars, core loop, RPG systems, world, netrunning |
-| [[architecture/overview\|architecture/]] | How the project is organised: [[architecture/project-map]], [[architecture/overview]] (code structure), [[architecture/before-new-scripts]], [[architecture/tooling]] (build, test, editor bridge) |
+| [[architecture/overview\|architecture/]] | How the project is organised: [[architecture/project-map]], [[architecture/overview]] (code structure), [[architecture/coding-standards]] (how every script is written), [[architecture/before-new-scripts]], [[architecture/tooling]] (build, test, editor bridge) |
 | `systems/` | One note per system, see below |
 | [[decisions/README\|decisions/]] | How decisions and next steps work: they are GitHub issues labelled `decision`, starting from the pinned [Roadmap #5](https://github.com/AdaM404-dev/NET.runner-92/issues/5) |
 | [[assets/handoff\|assets/]] | Art pipeline, naming, and who owns which folders |

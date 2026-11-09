@@ -22,7 +22,7 @@ Assets/NETRunner/
 ├─ Player/                        NetRunner.Player: the player you control
 │  ├─ Scripts/NexusPlayer.cs        input, movement, camera, interaction, HUD
 │  └─ Tests/PlayMode/               3 tests: walk, run, jump, open a door
-└─ MainMenu/                      NetRunner.MenuPrototype: the standalone menu
+└─ MainMenu/                      NetRunner.MainMenu: the standalone menu
 ```
 
 Each `Scripts/` folder has an **assembly definition** (`.asmdef` file). Unity
@@ -38,7 +38,7 @@ follow from that:
   ones that reference it, not the whole project.
 
 The namespace matches the assembly: `NetRunner.Core`, `NetRunner.World`,
-`NetRunner.Player`. Namespaces are what packages are in Java: the full name
+`NetRunner.Player`, `NetRunner.MainMenu`. Namespaces are what packages are in Java: the full name
 of the door script is `NetRunner.World.NexusDoor`.
 
 ```
@@ -78,17 +78,12 @@ our code. Today no script is outside an assembly definition.
 
 ## Principles
 
-- **Rules in plain C#.** Anything that can be decided without a scene lives
-  in `Core` and is tested in EditMode, which runs in seconds.
-- **Thin MonoBehaviours.** They gather input, call `Core`, and present results.
-  `NexusPlayer.Simulate()` does this for gravity and jumping: it hands the
-  numbers to `VerticalMotion.Step()` and only moves the CharacterController.
-- **Content as data.** Items, abilities, enemies, quests and tuning values
-  are ScriptableObjects; adding content should not require new code.
-- **Input System package** for all new input.
-- **Named layers and `LayerMask` fields**, never layer numbers in code.
-- **One statement per line**, braces on their own lines; `.editorconfig` at
-  the repository root holds the rules for Rider and Visual Studio.
+The rules for writing code (paradigm, fields and access, naming, member
+order, layout, formatting, tests) are in [[architecture/coding-standards]].
+In one line: rules in plain C# in `Core` with EditMode tests, thin
+MonoBehaviours, content as ScriptableObjects. For example,
+`NexusPlayer.Simulate()` hands the numbers to `VerticalMotion.Step()` and
+only moves the CharacterController.
 
 ## Why feature folders, not one folder per kind of code
 

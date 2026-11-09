@@ -29,3 +29,37 @@ csharp_space_after_cast = false
 
 # `using` lines: System first, then the rest in alphabetical order.
 dotnet_sort_system_directives_first = true
+
+# Coding standards (docs/architecture/coding-standards.md), as far as an
+# editor can check them. Unity compiles C# 9, so namespaces stay block-scoped.
+csharp_style_namespace_declarations = block_scoped:warning
+dotnet_style_require_accessibility_modifiers = always:warning
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = when_on_single_line:suggestion
+
+# Naming: PascalCase for types and members, I-prefix for interfaces,
+# camelCase without prefix for fields, parameters and locals.
+dotnet_naming_symbols.types_and_members.applicable_kinds = class, struct, enum, delegate, method, property, event, namespace
+dotnet_naming_symbols.constants.applicable_kinds = field
+dotnet_naming_symbols.constants.required_modifiers = const
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_symbols.fields_and_locals.applicable_kinds = field, parameter, local
+
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+dotnet_naming_style.interface_style.capitalization = pascal_case
+dotnet_naming_style.interface_style.required_prefix = I
+dotnet_naming_style.camel_case.capitalization = camel_case
+
+dotnet_naming_rule.interfaces_start_with_i.symbols = interfaces
+dotnet_naming_rule.interfaces_start_with_i.style = interface_style
+dotnet_naming_rule.interfaces_start_with_i.severity = warning
+dotnet_naming_rule.constants_are_pascal_case.symbols = constants
+dotnet_naming_rule.constants_are_pascal_case.style = pascal_case
+dotnet_naming_rule.constants_are_pascal_case.severity = warning
+dotnet_naming_rule.types_and_members_are_pascal_case.symbols = types_and_members
+dotnet_naming_rule.types_and_members_are_pascal_case.style = pascal_case
+dotnet_naming_rule.types_and_members_are_pascal_case.severity = warning
+dotnet_naming_rule.fields_and_locals_are_camel_case.symbols = fields_and_locals
+dotnet_naming_rule.fields_and_locals_are_camel_case.style = camel_case
+dotnet_naming_rule.fields_and_locals_are_camel_case.severity = warning

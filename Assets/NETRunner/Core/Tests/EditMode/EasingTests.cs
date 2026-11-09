@@ -5,7 +5,7 @@ namespace NetRunner.Core.Tests
     /// <summary>
     /// EditMode tests of the easing curve the doors use.
     /// </summary>
-    public class EasingTests
+    public sealed class EasingTests
     {
         [Test]
         public void StartsAtZeroAndEndsAtOne()
