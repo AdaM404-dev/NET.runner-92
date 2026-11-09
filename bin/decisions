@@ -35,7 +35,7 @@ def pick(row, prefix):
 
 
 def builds(row):
-    names = [l["name"] for l in row["labels"] if l["name"] in ("YOU WRITE", "PAIR", "CLAUDE", "ART")]
+    names = [l["name"] for l in row["labels"] if l["name"] in ("CLAUDE", "ART")]
     return ", ".join(names) or "-"
 
 

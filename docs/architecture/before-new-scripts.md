@@ -23,9 +23,8 @@ Written 2026-09-30 from the inspection described in the `systems/` notes
 - **The basic choices are sound** and stay: see "What is fine" below.
 
 Sizes: **S** = under an hour, **M** = about one session, **L** = several
-sessions. Tags: **YOU WRITE** (Samuel writes it, Claude reviews), **PAIR**
-(Claude writes and explains, Samuel follows up), **CLAUDE** (Claude builds,
-Samuel reviews).
+sessions. Tag: **CLAUDE** (Claude builds,
+Samuel reviews) for every step; since 2026-11-09 Claude writes all code.
 
 ## Must do first, in this order
 
@@ -71,7 +70,7 @@ Issue: [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9). **Done 2026-
 | Now | Two scripts in `Assets/Scripts/`, no namespaces, no assembly definitions, no tests. The K7 robot's scripts would land in the same code bucket under another namespace. |
 | Why it blocks | A new script needs an obvious home, compile times grow with every script in one assembly, and without tests a refactor cannot show it kept behaviour. |
 | Change | Folders `Core/` (plain C# rules with no scene objects, testable), `Gameplay/`, `UI/`, `Editor/`, `Tests/EditMode/`, `Tests/PlayMode/`; namespaces `NetRunner.Core` and so on; one assembly definition per folder; asset helper scripts (such as the K7's) in their own assembly next to their asset. Add an `.editorconfig` so new code is formatted one way. One real EditMode test and one PlayMode test that walks the player (the current auto-test, moved into Unity's test runner and saving inside the project). |
-| Size, tag | M, PAIR |
+| Size, tag | M, CLAUDE (planned as PAIR before 2026-11-09) |
 
 ### 5. One way to interact with anything
 
@@ -82,7 +81,7 @@ Issue: [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)
 | Now | `Interact()` looks for a `NexusDoor` and nothing else. It casts from the camera, so in third person it reaches 0.3 m. The 2026-10-02 warehouse export closes all doors; the code still assumes any imported pose is closed. Every door says "Access granted". |
 | Why it blocks | Terminals, access readers, pickups, people and hack points all need "look at it, press E". Without a shared contract, each one means editing the player script. |
 | Change | An interface in `Core`: `IInteractable` with a prompt text, `CanInteract` and `Interact`. A `PlayerInteractor` component casts from the eyes (not from the camera) using a `LayerMask`, shows the prompt, and calls `Interact`. `NexusDoor` implements the interface, works out from its frame whether it is really open, and reports locked or unlocked. |
-| Size, tag | M, **YOU WRITE**: a small, self-contained first script for Samuel that touches the core Unity ideas (raycasts, interfaces, `GetComponent`, the Inspector). Claude writes the spec and test names. |
+| Size, tag | M, CLAUDE |
 
 ### 6. Split `NexusPlayer` into small components
 
@@ -93,7 +92,7 @@ Issue: [#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11)
 | Now | One class handles input, movement, two camera modes, interaction, the HUD, cursor locking, debug keys, respawn and preview mode. (Step 4 removed the auto-test and moved the gravity and jump maths to `Core`.) |
 | Why it blocks | Crouching, stamina, health, a hacking tool or aiming would all go into the same class. It would soon be impossible to change one part without breaking another. |
 | Change | Same behaviour, new shape: `PlayerInput` (reads input), `PlayerMotor` (moves the CharacterController; its maths testable in `Core`), `PlayerCamera` (first- and third-person placement), `PlayerInteractor` (from step 5), `PlayerHud` (temporary), `DebugKeys` (Tab, F1, R, development builds only). Tunable numbers move into a settings asset (see "Should do soon"). The PlayMode test from step 4 must pass before and after. |
-| Size, tag | L, PAIR. Depends on 4 and 5. |
+| Size, tag | L, CLAUDE. Depends on 4 and 5. |
 
 ### 7. Switch to the Input System
 
@@ -104,7 +103,7 @@ Issue: [#12](https://github.com/AdaM404-dev/NET.runner-92/issues/12)
 | Now | The code reads keys with the old `Input` class. The project already has an Input System actions asset with Move, Look, Jump, Sprint, Interact, Crouch and Attack, and "Active Input Handling" is set to **Both**. |
 | Why it blocks | Every new action (crouch, hack, open the map) would add another hard-coded key. The actions asset gives rebinding, gamepad support and menus for free. Running both systems invites bugs. |
 | Change | `PlayerInput` reads the actions asset; then set Active Input Handling to the Input System only. |
-| Size, tag | M, PAIR. Depends on 6. |
+| Size, tag | M, CLAUDE. Depends on 6. |
 
 ## Should do soon
 
