@@ -48,10 +48,28 @@ Samuel works on Linux, AdaM404 on Windows. Consequences:
 - Line endings are normalised by `.gitattributes`; Unity YAML and `.meta`
   files are always LF.
 
+## Git LFS (since 2026-11-09)
+
+Art and other large binaries are stored in Git LFS ([#17](https://github.com/AdaM404-dev/NET.runner-92/issues/17)):
+`png`, `jpg`, `jpeg`, `tga`, `psd`, `exr`, `hdr`, `tif`, `tiff`, `fbx`, `obj`,
+`blend`, `wav`, `ogg`, `mp3`, `mp4`, `ttf`, `otf` (the list is in
+`.gitattributes`). The whole history was moved into LFS on 2026-11-09, so
+every copy cloned before that date is out of date: do not push from it.
+
+- Run `git lfs install` once per machine, then clone normally. Commit art as
+  usual; `.gitattributes` sends it to LFS. `git lfs ls-files` lists what is
+  in LFS.
+- A new art type (for example `.fbm` or `.sbsar`) gets a line in
+  `.gitattributes` **before** its first commit:
+  `git lfs track "*.sbsar"`, and commit `.gitattributes` with it.
+- Unity scenes, prefabs, materials and `.meta` files stay in normal Git: they
+  are text, so changes to them can be merged.
+- LFS storage counts against the repository owner's GitHub quota (about
+  0.5 GB in use after the migration).
+
 ## Open questions for the team
 
 These are GitHub issues now, with the full reasoning; answer there.
 
-- Git LFS: move existing art into LFS, or new files only? [Issue #17](https://github.com/AdaM404-dev/NET.runner-92/issues/17)
 - Who owns which folders, branching, and whether the repository stays
   public: [issue #18](https://github.com/AdaM404-dev/NET.runner-92/issues/18)

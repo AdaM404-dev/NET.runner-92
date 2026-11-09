@@ -4,6 +4,18 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-11-09 — Art moved into Git LFS
+
+- The whole history was rewritten so that art files are stored in Git LFS
+  (#17, option A). The Git history went from 338 MB to about 1 MB; the 221
+  art files (424 MB over all versions) are in LFS. Every file on `main` is
+  unchanged.
+- Everyone clones again: Samuel's copy is now `~/Projects/NET.runner-92`.
+  AdaM404 commits his new art from his fresh clone.
+- Learned: the GitHub ZIP download and clones without `git lfs install` get
+  pointer files, not art; GitHub keeps old pull-request refs, so the size it
+  shows may stay high even though new clones are small.
+
 ## 2026-11-09 — Claude writes all code from now on
 
 - Samuel changed the work split: no more YOU WRITE or PAIR tasks; Claude
