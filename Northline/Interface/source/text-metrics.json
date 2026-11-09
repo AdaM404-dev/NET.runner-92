@@ -1,0 +1,2064 @@
+{
+  "01-main-menu": [
+    {
+      "text": "ARCHÍVUM  /  B–07",
+      "width": 142.1953125,
+      "ascent": 13,
+      "descent": 2
+    },
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "MŰVELETI TERMINÁL",
+      "width": 146.2841796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "HELYI KAPCSOLAT",
+      "width": 116.46597290039062,
+      "ascent": 9,
+      "descent": 0
+    },
+    {
+      "text": "NR—OS  /  V.01",
+      "width": 84.6220703125,
+      "ascent": 8,
+      "descent": 1
+    },
+    {
+      "text": "NODE_92  /  TITKOSÍTOTT CSATORNA",
+      "width": 225.4833984375,
+      "ascent": 10,
+      "descent": 2
+    },
+    {
+      "text": "INTERAKTÍV FELÜLETTERV  •  2026",
+      "width": 187.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELET  /  001",
+      "width": 115.677734375,
+      "ascent": 12,
+      "descent": 1
+    },
+    {
+      "text": "LÉPJ BE.",
+      "width": 269.185546875,
+      "ascent": 77,
+      "descent": 1
+    },
+    {
+      "text": "MARADJ REJTVE.",
+      "width": 452.248046875,
+      "ascent": 48,
+      "descent": 1
+    },
+    {
+      "text": "Egy hozzáférési pont. Egyetlen nyom nélkül.",
+      "width": 365.64208984375,
+      "ascent": 14,
+      "descent": 4
+    },
+    {
+      "text": "MŰVELET INDÍTÁSA",
+      "width": 191.3222198486328,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELETI TÉRKÉP",
+      "width": 159.05386352539062,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "BEÁLLÍTÁSOK",
+      "width": 117.47457885742188,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "IRÁNYÍTÁS ÉS A FELÜLET HASZNÁLATA",
+      "width": 252.39013671875,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "NEXUS  /  OPERÁTOR 092",
+      "width": 145.55078125,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "KÖVETKEZŐ CÉLPONT",
+      "width": 142.7900390625,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Csendes behatolás",
+      "width": 261.71875,
+      "ascent": 24,
+      "descent": 0
+    },
+    {
+      "text": "B–07  /  RAKTÁRKOMPLEXUM",
+      "width": 181.74609375,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "RAKTÁR 01",
+      "width": 57.2235107421875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "ARCHÍVUM",
+      "width": 52.82057189941406,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "HÁLÓZAT",
+      "width": 44.417633056640625,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "SERVIS",
+      "width": 38.01469421386719,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "MAG",
+      "width": 18.805877685546875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "ÁTJÁRÓ",
+      "width": 40.01469421386719,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "DOK 01",
+      "width": 38.01469421386719,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "KIJÁRAT",
+      "width": 44.417633056640625,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "B SZINT",
+      "width": 42.287109375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "N",
+      "width": 6,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "BELÉPÉSI PONT",
+      "width": 78.57421875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "ARCHÍVUM",
+      "width": 50.3349609375,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "K7 JÁRŐR",
+      "width": 48.3349609375,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "07 / 18",
+      "width": 46.5859375,
+      "ascent": 8,
+      "descent": 1
+    }
+  ],
+  "02-gameplay-hud": [
+    {
+      "text": "ARCHÍVUM  /  B–07",
+      "width": 142.1953125,
+      "ascent": 13,
+      "descent": 2
+    },
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "B–07 / RAKTÁRKOMPLEXUM",
+      "width": 155.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "É",
+      "width": 7,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "315",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "045",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    },
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    }
+  ],
+  "03-pause": [
+    {
+      "text": "ARCHÍVUM  /  B–07",
+      "width": 142.1953125,
+      "ascent": 13,
+      "descent": 2
+    },
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "B–07 / RAKTÁRKOMPLEXUM",
+      "width": 155.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "É",
+      "width": 7,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "315",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "045",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    },
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELET / 001",
+      "width": 96.256591796875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Szünet.",
+      "width": 158.6484375,
+      "ascent": 40,
+      "descent": 1
+    },
+    {
+      "text": "A kapcsolat biztonságban vár.",
+      "width": 224.56396484375,
+      "ascent": 13,
+      "descent": 4
+    },
+    {
+      "text": "MŰVELET FOLYTATÁSA",
+      "width": 218.5132293701172,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELETI TÉRKÉP",
+      "width": 159.05386352539062,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "BEÁLLÍTÁSOK",
+      "width": 117.47457885742188,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "VISSZA A FŐMENÜBE",
+      "width": 188.165771484375,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "B–07 / ARCHÍVUMSZINT",
+      "width": 120.9091796875,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / Érd el a központi terminált.",
+      "width": 207.78515625,
+      "ascent": 14,
+      "descent": 3
+    },
+    {
+      "text": "ESC",
+      "width": 20.294921875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Vissza a művelethez",
+      "width": 107.21875,
+      "ascent": 9,
+      "descent": 0
+    }
+  ],
+  "04-settings": [
+    {
+      "text": "ARCHÍVUM  /  B–07",
+      "width": 142.1953125,
+      "ascent": 13,
+      "descent": 2
+    },
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "B–07 / RAKTÁRKOMPLEXUM",
+      "width": 155.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "É",
+      "width": 7,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "315",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "045",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    },
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "RENDSZER / KONFIGURÁCIÓ",
+      "width": 184.5260009765625,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "A te beállításaid.",
+      "width": 306.3828125,
+      "ascent": 36,
+      "descent": 1
+    },
+    {
+      "text": "A változtatások az előnézetben azonnal láthatók.",
+      "width": 343.7109375,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "HANG ÉS KÉP",
+      "width": 83.724609375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Hangerő",
+      "width": 79.126953125,
+      "ascent": 15,
+      "descent": 5
+    },
+    {
+      "text": "Az előnézet válaszjelzéseinek hangereje.",
+      "width": 230.64306640625,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "70%",
+      "width": 26.59375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "HUD mérete",
+      "width": 114.2822265625,
+      "ascent": 15,
+      "descent": 0
+    },
+    {
+      "text": "A játék közbeni jelzések mérete.",
+      "width": 184.02587890625,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "−",
+      "width": 12,
+      "ascent": 8,
+      "descent": -6
+    },
+    {
+      "text": "+",
+      "width": 13,
+      "ascent": 13,
+      "descent": -1
+    },
+    {
+      "text": "100%",
+      "width": 39.689453125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "Erős kontraszt",
+      "width": 129.0263671875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "Erősebb panelhátterek és vonalak.",
+      "width": 195.2705078125,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "KI",
+      "width": 12.59765625,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Mozgáscsökkentés",
+      "width": 173.375,
+      "ascent": 16,
+      "descent": 5
+    },
+    {
+      "text": "Az átmenetek és a pásztázás kikapcsolása.",
+      "width": 241.8720703125,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "KI",
+      "width": 12.59765625,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "KÉSZ",
+      "width": 46.55702209472656,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "HELYBEN MENTVE  /  OFFLINE ELŐNÉZET",
+      "width": 211.626953125,
+      "ascent": 10,
+      "descent": 1
+    }
+  ],
+  "05-hacking": [
+    {
+      "text": "ARCHÍVUM  /  B–07",
+      "width": 142.1953125,
+      "ascent": 13,
+      "descent": 2
+    },
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "B–07 / RAKTÁRKOMPLEXUM",
+      "width": 155.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "É",
+      "width": 7,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "315",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "045",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    },
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "HOZZÁFÉRÉSI PROTOKOLL",
+      "width": 169.380615234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Nyisd meg az utat.",
+      "width": 352.0390625,
+      "ascent": 36,
+      "descent": 12
+    },
+    {
+      "text": "Karbantartási terminál  /  NODE_92 → ARCHIVE_B07",
+      "width": 364.625,
+      "ascent": 12,
+      "descent": 2
+    },
+    {
+      "text": "AES / 256",
+      "width": 60.78125,
+      "ascent": 8,
+      "descent": 1
+    },
+    {
+      "text": "OPERÁTOR",
+      "width": 70.666015625,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "NEXUS_092",
+      "width": 49.984375,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "ÁTJÁTSZÓ",
+      "width": 65.48828125,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "NODE_92",
+      "width": 38.98828125,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "ARCHÍVUM",
+      "width": 73.79296875,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "B07 / ZÁROLT",
+      "width": 66.478515625,
+      "ascent": 8,
+      "descent": 1
+    },
+    {
+      "text": "BIZTONSÁGOS CSATORNA FELÉPÍTÉSE",
+      "width": 187.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "00%",
+      "width": 29.79296875,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "A kapcsolat felépítése helyi bemutató.",
+      "width": 218.55712890625,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "Nincs tényleges hálózati vagy játékkapcsolat.",
+      "width": 256.78564453125,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "CSATLAKOZÁS",
+      "width": 139.39645385742188,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 20.294921875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Megszakítás",
+      "width": 74.7470703125,
+      "ascent": 10,
+      "descent": 3
+    }
+  ],
+  "06-mission-map": [
+    {
+      "text": "ARCHÍVUM  /  B–07",
+      "width": 142.1953125,
+      "ascent": 13,
+      "descent": 2
+    },
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "B–07 / RAKTÁRKOMPLEXUM",
+      "width": 155.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "É",
+      "width": 7,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "315",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "045",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    },
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELETI TÉRKÉP",
+      "width": 117.2994384765625,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Ismerd az útvonalat.",
+      "width": 312.6171875,
+      "ascent": 30,
+      "descent": 1
+    },
+    {
+      "text": "B–07 / B SZINT",
+      "width": 92.76953125,
+      "ascent": 8,
+      "descent": 1
+    },
+    {
+      "text": "RAKTÁR 01",
+      "width": 53.80859375,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "ARCHÍVUM",
+      "width": 48.83251953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "HÁLÓZAT",
+      "width": 41.8564453125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "SERVIS",
+      "width": 35.88037109375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "MAG",
+      "width": 18.9521484375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "ÁTJÁRÓ",
+      "width": 36.88037109375,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "DOK 01",
+      "width": 35.88037109375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "KIJÁRAT",
+      "width": 41.8564453125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "KIJELÖLT CSOMÓPONT",
+      "width": 141.45166015625,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Központi archívum",
+      "width": 235.43603515625,
+      "ascent": 22,
+      "descent": 7
+    },
+    {
+      "text": "01 / ELSŐDLEGES CÉL",
+      "width": 125.7578125,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a karbantartási terminált,",
+      "width": 246.1142578125,
+      "ascent": 17,
+      "descent": 2
+    },
+    {
+      "text": "majd nyiss hozzáférést az archívumhoz.",
+      "width": 310.2568359375,
+      "ascent": 14,
+      "descent": 4
+    },
+    {
+      "text": "TÁVOLSÁG",
+      "width": 65.66455078125,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "38 M",
+      "width": 38.689453125,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "KOCKÁZAT",
+      "width": 65.12451171875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "MÉRSÉKELT",
+      "width": 73.9765625,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "VISSZA",
+      "width": 70.67771911621094,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "VÁLASSZ CSOMÓPONTOT A TÉRKÉPEN.",
+      "width": 187.435546875,
+      "ascent": 10,
+      "descent": 0
+    }
+  ],
+  "ability-bar": [
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    }
+  ],
+  "button-primary-disabled": [
+    {
+      "text": "FOLYTATÁS",
+      "width": 105.8343505859375,
+      "ascent": 19,
+      "descent": 0
+    }
+  ],
+  "button-primary-focus": [
+    {
+      "text": "FOLYTATÁS",
+      "width": 105.8343505859375,
+      "ascent": 19,
+      "descent": 0
+    }
+  ],
+  "button-primary-hover": [
+    {
+      "text": "FOLYTATÁS",
+      "width": 105.8343505859375,
+      "ascent": 19,
+      "descent": 0
+    }
+  ],
+  "button-primary-pressed": [
+    {
+      "text": "FOLYTATÁS",
+      "width": 105.8343505859375,
+      "ascent": 19,
+      "descent": 0
+    }
+  ],
+  "button-primary": [
+    {
+      "text": "FOLYTATÁS",
+      "width": 105.8343505859375,
+      "ascent": 19,
+      "descent": 0
+    }
+  ],
+  "button-secondary": [
+    {
+      "text": "FOLYTATÁS",
+      "width": 95.8109130859375,
+      "ascent": 17,
+      "descent": 0
+    }
+  ],
+  "hacking-panel": [
+    {
+      "text": "HOZZÁFÉRÉSI PROTOKOLL",
+      "width": 169.380615234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Nyisd meg az utat.",
+      "width": 352.0390625,
+      "ascent": 36,
+      "descent": 12
+    },
+    {
+      "text": "Karbantartási terminál  /  NODE_92 → ARCHIVE_B07",
+      "width": 364.625,
+      "ascent": 12,
+      "descent": 2
+    },
+    {
+      "text": "AES / 256",
+      "width": 60.78125,
+      "ascent": 8,
+      "descent": 1
+    },
+    {
+      "text": "OPERÁTOR",
+      "width": 70.666015625,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "NEXUS_092",
+      "width": 49.984375,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "ÁTJÁTSZÓ",
+      "width": 65.48828125,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "NODE_92",
+      "width": 38.98828125,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "ARCHÍVUM",
+      "width": 73.79296875,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "B07 / ZÁROLT",
+      "width": 66.478515625,
+      "ascent": 8,
+      "descent": 1
+    },
+    {
+      "text": "BIZTONSÁGOS CSATORNA FELÉPÍTÉSE",
+      "width": 187.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "00%",
+      "width": 29.79296875,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "A kapcsolat felépítése helyi bemutató.",
+      "width": 218.55712890625,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "Nincs tényleges hálózati vagy játékkapcsolat.",
+      "width": 256.78564453125,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "CSATLAKOZÁS",
+      "width": 139.39645385742188,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 20.294921875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Megszakítás",
+      "width": 74.7470703125,
+      "ascent": 10,
+      "descent": 3
+    }
+  ],
+  "hud-overlay": [
+    {
+      "text": "NET.runner",
+      "width": 123.83544921875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "/ 92",
+      "width": 43.98828125,
+      "ascent": 14,
+      "descent": 2
+    },
+    {
+      "text": "B–07 / RAKTÁRKOMPLEXUM",
+      "width": 155.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "É",
+      "width": 7,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "315",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "045",
+      "width": 16.99609375,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    },
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Q",
+      "width": 7,
+      "ascent": 7,
+      "descent": 2
+    },
+    {
+      "text": "IMPULZUS",
+      "width": 60.42138671875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "TAB",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "TÉRKÉP",
+      "width": 44.0234375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "ESC",
+      "width": 18.095703125,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "SZÜNET",
+      "width": 45.3642578125,
+      "ascent": 11,
+      "descent": 0
+    }
+  ],
+  "icon-arrow": [],
+  "icon-check": [],
+  "icon-energy": [],
+  "icon-exit": [],
+  "icon-eye": [],
+  "icon-gear": [],
+  "icon-health": [],
+  "icon-lock": [],
+  "icon-map": [],
+  "icon-pulse": [],
+  "icon-target": [],
+  "interaction-prompt": [
+    {
+      "text": "E",
+      "width": 6,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Terminál elérése",
+      "width": 153.6318359375,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "KARBANTARTÁSI CSOMÓPONT · 2,4 M",
+      "width": 170.94140625,
+      "ascent": 8,
+      "descent": 2
+    }
+  ],
+  "main-menu-panel": [
+    {
+      "text": "MŰVELET  /  001",
+      "width": 115.677734375,
+      "ascent": 12,
+      "descent": 1
+    },
+    {
+      "text": "LÉPJ BE.",
+      "width": 269.185546875,
+      "ascent": 77,
+      "descent": 1
+    },
+    {
+      "text": "MARADJ REJTVE.",
+      "width": 452.248046875,
+      "ascent": 48,
+      "descent": 1
+    },
+    {
+      "text": "Egy hozzáférési pont. Egyetlen nyom nélkül.",
+      "width": 365.64208984375,
+      "ascent": 14,
+      "descent": 4
+    },
+    {
+      "text": "MŰVELET INDÍTÁSA",
+      "width": 191.3222198486328,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELETI TÉRKÉP",
+      "width": 159.05386352539062,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "BEÁLLÍTÁSOK",
+      "width": 117.47457885742188,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "IRÁNYÍTÁS ÉS A FELÜLET HASZNÁLATA",
+      "width": 252.39013671875,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "NEXUS  /  OPERÁTOR 092",
+      "width": 145.55078125,
+      "ascent": 11,
+      "descent": 1
+    }
+  ],
+  "objective-panel": [
+    {
+      "text": "01 / AKTÍV CÉL",
+      "width": 92.6171875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Érd el a központi terminált.",
+      "width": 256.041015625,
+      "ascent": 19,
+      "descent": 5
+    },
+    {
+      "text": "ARCHÍVUMSZINT  /  38 M",
+      "width": 135.0048828125,
+      "ascent": 10,
+      "descent": 1
+    }
+  ],
+  "panel-blank": [],
+  "pause-panel": [
+    {
+      "text": "MŰVELET / 001",
+      "width": 96.256591796875,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "Szünet.",
+      "width": 158.6484375,
+      "ascent": 40,
+      "descent": 1
+    },
+    {
+      "text": "A kapcsolat biztonságban vár.",
+      "width": 224.56396484375,
+      "ascent": 13,
+      "descent": 4
+    },
+    {
+      "text": "MŰVELET FOLYTATÁSA",
+      "width": 218.5132293701172,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "MŰVELETI TÉRKÉP",
+      "width": 159.05386352539062,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "BEÁLLÍTÁSOK",
+      "width": 117.47457885742188,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "VISSZA A FŐMENÜBE",
+      "width": 188.165771484375,
+      "ascent": 17,
+      "descent": 0
+    },
+    {
+      "text": "B–07 / ARCHÍVUMSZINT",
+      "width": 120.9091796875,
+      "ascent": 10,
+      "descent": 1
+    },
+    {
+      "text": "01 / Érd el a központi terminált.",
+      "width": 207.78515625,
+      "ascent": 14,
+      "descent": 3
+    },
+    {
+      "text": "ESC",
+      "width": 20.294921875,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Vissza a művelethez",
+      "width": 107.21875,
+      "ascent": 9,
+      "descent": 0
+    }
+  ],
+  "progress-fill": [],
+  "progress-track": [],
+  "settings-panel": [
+    {
+      "text": "RENDSZER / KONFIGURÁCIÓ",
+      "width": 184.5260009765625,
+      "ascent": 11,
+      "descent": 1
+    },
+    {
+      "text": "A te beállításaid.",
+      "width": 306.3828125,
+      "ascent": 36,
+      "descent": 1
+    },
+    {
+      "text": "A változtatások az előnézetben azonnal láthatók.",
+      "width": 343.7109375,
+      "ascent": 12,
+      "descent": 0
+    },
+    {
+      "text": "HANG ÉS KÉP",
+      "width": 83.724609375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "Hangerő",
+      "width": 79.126953125,
+      "ascent": 15,
+      "descent": 5
+    },
+    {
+      "text": "Az előnézet válaszjelzéseinek hangereje.",
+      "width": 230.64306640625,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "70%",
+      "width": 26.59375,
+      "ascent": 11,
+      "descent": 0
+    },
+    {
+      "text": "HUD mérete",
+      "width": 114.2822265625,
+      "ascent": 15,
+      "descent": 0
+    },
+    {
+      "text": "A játék közbeni jelzések mérete.",
+      "width": 184.02587890625,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "−",
+      "width": 12,
+      "ascent": 8,
+      "descent": -6
+    },
+    {
+      "text": "+",
+      "width": 13,
+      "ascent": 13,
+      "descent": -1
+    },
+    {
+      "text": "100%",
+      "width": 39.689453125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "Erős kontraszt",
+      "width": 129.0263671875,
+      "ascent": 16,
+      "descent": 0
+    },
+    {
+      "text": "Erősebb panelhátterek és vonalak.",
+      "width": 195.2705078125,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "KI",
+      "width": 12.59765625,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "Mozgáscsökkentés",
+      "width": 173.375,
+      "ascent": 16,
+      "descent": 5
+    },
+    {
+      "text": "Az átmenetek és a pásztázás kikapcsolása.",
+      "width": 241.8720703125,
+      "ascent": 10,
+      "descent": 3
+    },
+    {
+      "text": "KI",
+      "width": 12.59765625,
+      "ascent": 8,
+      "descent": 0
+    },
+    {
+      "text": "KÉSZ",
+      "width": 46.55702209472656,
+      "ascent": 19,
+      "descent": 0
+    },
+    {
+      "text": "HELYBEN MENTVE  /  OFFLINE ELŐNÉZET",
+      "width": 211.626953125,
+      "ascent": 10,
+      "descent": 1
+    }
+  ],
+  "stealth-panel": [
+    {
+      "text": "REJTETT",
+      "width": 77.0078125,
+      "ascent": 13,
+      "descent": 0
+    },
+    {
+      "text": "12%",
+      "width": 20.1953125,
+      "ascent": 8,
+      "descent": 0
+    }
+  ],
+  "vitals-panel": [
+    {
+      "text": "ÁLLAPOT",
+      "width": 49.435546875,
+      "ascent": 10,
+      "descent": 0
+    },
+    {
+      "text": "100",
+      "width": 35.19140625,
+      "ascent": 14,
+      "descent": 0
+    },
+    {
+      "text": "ENERGIA",
+      "width": 47.013671875,
+      "ascent": 7,
+      "descent": 0
+    },
+    {
+      "text": "72",
+      "width": 18.3466796875,
+      "ascent": 11,
+      "descent": 0
+    }
+  ]
+}

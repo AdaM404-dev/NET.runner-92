@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="NET.runner 92 — icon-lock">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Interface-1" data-layer="Interface">
+<polyline points="16.0,21.439999999999998 16.0,14.4 20.8,9.92 27.2,9.92 32.0,14.4 32.0,21.439999999999998" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<rect x="11.84" y="21.439999999999998" width="24.32" height="16.0" fill="none" stroke="#8ce6cf" stroke-width="1"/>
+<line x1="24.0" y1="26.56" x2="24.0" y2="32.32" stroke="#8ce6cf" stroke-width="1.6"/>
+</g>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="708" height="734" viewBox="0 0 708 734" role="img" aria-label="NET.runner 92 — pause-panel">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Pause-panel-1" data-layer="Pause-panel">
+<rect x="4" y="4" width="700" height="726" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<rect x="4" y="4" width="700" height="2" fill="#8ce6cf"/>
+<text x="56" y="59" font-size="11" fill="#8ce6cf" font-weight="600" letter-spacing="1.8" text-anchor="start">MŰVELET / 001</text>
+<text x="56" y="124" font-size="56" fill="#edf3ef" font-weight="300" letter-spacing="-1" text-anchor="start">Szünet.</text>
+<text x="56" y="163" font-size="17" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">A kapcsolat biztonságban vár.</text>
+<line x1="56" y1="200" x2="652" y2="200" stroke="#34464d" stroke-width="1"/>
+<g class="action" data-action="resume" role="button" tabindex="0" aria-label="MŰVELET FOLYTATÁSA">
+<rect x="56" y="237" width="596" height="72" fill="#ffffff" opacity="0"/>
+<rect x="56" y="237" width="596" height="72" fill="#8ce6cf"/>
+<text x="80" y="281" font-size="20" fill="#090f13" font-weight="600" letter-spacing="0.7" text-anchor="start">MŰVELET FOLYTATÁSA</text>
+<line x1="600" y1="273.0" x2="624" y2="273.0" stroke="#090f13" stroke-width="2"/>
+<polyline points="616,266.0 624,273.0 616,280.0" fill="none" stroke="#090f13" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="map" role="button" tabindex="0" aria-label="MŰVELETI TÉRKÉP">
+<rect x="56" y="323" width="596" height="62" fill="#ffffff" opacity="0"/>
+<rect x="56" y="323" width="596" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="80" y="361" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">MŰVELETI TÉRKÉP</text>
+<line x1="600" y1="354.0" x2="624" y2="354.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="616,347.0 624,354.0 616,361.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="settings" role="button" tabindex="0" aria-label="BEÁLLÍTÁSOK">
+<rect x="56" y="397" width="596" height="62" fill="#ffffff" opacity="0"/>
+<rect x="56" y="397" width="596" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="80" y="435" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">BEÁLLÍTÁSOK</text>
+<line x1="600" y1="428.0" x2="624" y2="428.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="616,421.0 624,428.0 616,435.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="home-confirm" role="button" tabindex="0" aria-label="VISSZA A FŐMENÜBE">
+<rect x="56" y="471" width="596" height="62" fill="#ffffff" opacity="0"/>
+<rect x="56" y="471" width="596" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="80" y="509" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">VISSZA A FŐMENÜBE</text>
+<line x1="600" y1="502.0" x2="624" y2="502.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="616,495.0 624,502.0 616,509.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<text x="56" y="600" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">B–07 / ARCHÍVUMSZINT</text>
+<text id="pause-objective" x="56" y="628" font-size="15" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="start">01 / Érd el a központi terminált.</text>
+<rect x="56" y="665" width="42" height="30" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="77.0" y="685" font-size="13" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ESC</text>
+<text x="112" y="686" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Vissza a művelethez</text>
+</g>
+</svg>

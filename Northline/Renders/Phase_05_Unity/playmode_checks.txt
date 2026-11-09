@@ -1,0 +1,34 @@
+PASS Player and atmosphere present in Play Mode.
+PASS Player has no renderable body.
+Focused keyboard and mouse require a foreground Game or Player window.
+PASS Sprint/normal travel in one second 4,84/3,24 m.
+PASS Continuous exterior-to-reception route.
+PASS Ambulance apron to emergency department.
+PASS Closed gate blocks outward sprint.
+PASS Perimeter blocks lateral sprint.
+PASS Gravity settles onto the original ground slab.
+PASS West core L1 to L2; settled Y=4,234, expected 4,20.
+PASS East core L2 to L3; settled Y=8,434, expected 8,40.
+PASS West core L3 to L4; settled Y=12,634, expected 12,60.
+PASS West core L4 to L3; settled Y=8,434, expected 8,40.
+PASS East core L3 to L2; settled Y=4,234, expected 4,20.
+PASS West core L2 to L1; settled Y=0,034, expected 0,00.
+PASS Walked levels 1→4→1 using west/east/west, without jumping.
+PASS East core L1 to L2; settled Y=4,234, expected 4,20.
+PASS West core L2 to L3; settled Y=8,434, expected 8,40.
+PASS East core L3 to L4; settled Y=12,634, expected 12,60.
+PASS East core L4 to L3; settled Y=8,434, expected 8,40.
+PASS West core L3 to L2; settled Y=4,234, expected 4,20.
+PASS East core L2 to L1; settled Y=0,034, expected 0,00.
+PASS Walked the complementary east/west/east circuit in both directions.
+PASS Largest vertical delta per 1/90-second motion step 0,026 m.
+PASS Four concourse slabs align at 0.0, 4.2, 8.4 and 12.6 m.
+Room sweep: L1 22/22 (16615 accessible samples); L2 34/34 (14456 accessible samples); L3 28/28 (14743 accessible samples); L4 24/24 (14550 accessible samples)
+PASS Major reception desk blocks chest-height movement.
+PASS Concourse wall blocks a lateral route.
+PASS 3 distinct transparent window/water materials.
+PASS Rain emitted outdoors (769 new drops).
+PASS Roof-height rejection registered (106 probes).
+PASS Interior ambience blend reached 1,00.
+Graphics NVIDIA GeForce RTX 3060 Ti, Direct3D11, VRAM reported 8024 MB.
+Player-camera HDRP begin-render callbacks: 6.

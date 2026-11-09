@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Engine-independent display binding reference; current preview uses local demonstration data.",
+  "referenceResolution": [1920, 1080],
+  "coordinateOrigin": "top-left",
+  "componentPlacement": "source/layouts.json: width, height, sourcePosition; cropped components include 4px transparent padding",
+  "fields": {
+    "objective": {"type": "string", "svgId": "objective", "example": "Érd el a központi terminált."},
+    "objectiveLocation": {"type": "string", "svgId": "distance", "example": "ARCHÍVUMSZINT / 38 M"},
+    "pauseObjective": {"type": "string", "svgId": "pause-objective"},
+    "energy": {"type": "number", "range": [0, 100], "labelId": "energy-value", "fillId": "energy-bar", "fillWidthPixelsAt100": 160},
+    "detection": {"type": "number", "range": [0, 100], "labelId": "trace-value", "fillId": "trace-bar", "fillWidthPixelsAt100": 280},
+    "stealthLabel": {"type": "string", "svgId": "stealth", "examples": ["REJTETT", "KERESÉS ALATT"]},
+    "interaction": {"type": "string", "svgId": "interaction-title"},
+    "pulseState": {"type": "string", "svgId": "pulse-label", "examples": ["IMPULZUS", "TÖLTÉS / 6 S"]},
+    "hackProgress": {"type": "number", "range": [0, 100], "labelId": "hack-percent", "segmentIdPrefix": "hack-segment-", "segmentCount": 48},
+    "hackStatus": {"type": "string", "svgId": "hack-status"},
+    "mapSelection": {"type": "object", "svgIds": ["node-title", "node-type", "node-line1", "node-line2", "node-distance", "node-risk"]}
+  },
+  "actions": ["start", "pause", "resume", "map", "settings", "hack", "connect", "back", "pulse", "home-confirm", "volume", "scale-up", "scale-down", "contrast", "motion", "node-archive", "node-entry", "node-patrol", "about"],
+  "actionAttribute": "data-action",
+  "notes": [
+    "SVG identifiers are local to one screen or component file.",
+    "The preview is a state demonstration, not a game runtime or network client.",
+    "Health is a static 100 reference value in the supplied layout; bind health behavior in the eventual host application.",
+    "The compass, map geometry, distances and camera background are fixed presentation examples.",
+    "Use layout geometry or separate progress-fill.svg and progress-track.svg when rebuilding dynamic bars in another application."
+  ]
+}

@@ -1,0 +1,7 @@
+NVIDIA GeForce RTX 3060 Ti; Direct3D11; 1920x1080; Ultra
+Zone;Samples;AvgFPS;P95FrameMs;P95GPUms;MeanDrawCalls;MeanTriangles
+South checkpoint;205;19.5;33.29;22.48;0;12743926
+Reception;340;75.4;16.85;12.82;0;8748929
+Ward;285;63.4;21.09;17.80;0;9886649
+Surgery;353;78.3;16.70;13.12;0;7603089
+Research;495;109.8;12.49;11.19;0;3910794

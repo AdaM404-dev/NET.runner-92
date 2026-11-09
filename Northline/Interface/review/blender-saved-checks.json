@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "scenes": [
+    {
+      "scene": "01-main-menu",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 34,
+      "allTextEditable": true
+    },
+    {
+      "scene": "02-gameplay-hud",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 25,
+      "allTextEditable": true
+    },
+    {
+      "scene": "03-pause",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 36,
+      "allTextEditable": true
+    },
+    {
+      "scene": "04-settings",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 45,
+      "allTextEditable": true
+    },
+    {
+      "scene": "05-hacking",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 42,
+      "allTextEditable": true
+    },
+    {
+      "scene": "06-mission-map",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 47,
+      "allTextEditable": true
+    },
+    {
+      "scene": "hud-overlay",
+      "camera": true,
+      "orthographic": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "textObjects": 24,
+      "allTextEditable": true
+    }
+  ]
+}

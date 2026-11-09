@@ -1,0 +1,35 @@
+[
+  {
+    "target_uv": [
+      0.16667,
+      0.31579
+    ],
+    "sampled_pad_uv": [
+      0.16667,
+      0.31579
+    ],
+    "sampled_pad_gap_mm": 1.0
+  },
+  {
+    "target_uv": [
+      0.38,
+      0.35526
+    ],
+    "sampled_pad_uv": [
+      0.38,
+      0.35526
+    ],
+    "sampled_pad_gap_mm": 1.0
+  },
+  {
+    "target_uv": [
+      0.76,
+      0.31579
+    ],
+    "sampled_pad_uv": [
+      0.76,
+      0.31579
+    ],
+    "sampled_pad_gap_mm": 1.0
+  }
+]

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="450" height="96" viewBox="0 0 450 96" role="img" aria-label="NET.runner 92 — interaction-prompt">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Interaction-1" data-layer="Interaction">
+<rect x="4" y="4" width="442" height="88" fill="#090f13" opacity="0.88"/>
+<g class="action" data-action="hack" role="button" tabindex="0" aria-label="Terminál elérése, E">
+<rect x="4" y="4" width="442" height="88" fill="#ffffff" opacity="0"/>
+<rect x="25" y="25" width="36" height="30" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="43.0" y="45" font-size="13" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">E</text>
+<text id="interaction-title" x="79" y="38" font-size="21" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="start">Terminál elérése</text>
+<text x="79" y="65" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">KARBANTARTÁSI CSOMÓPONT · 2,4 M</text>
+</g>
+</g>
+</svg>

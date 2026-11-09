@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="572" height="88" viewBox="0 0 572 88" role="img" aria-label="NET.runner 92 — ability-bar">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Abilities-1" data-layer="Abilities">
+<g class="action" data-action="pulse" role="button" tabindex="0" aria-label="IMPULZUS">
+<rect x="4" y="4" width="172" height="80" fill="#ffffff" opacity="0"/>
+<rect x="4" y="4" width="172" height="80" fill="#090f13" stroke="#34464d" stroke-width="1" opacity="0.94"/>
+<polyline points="20,30.549999999999955 25.25,30.549999999999955 28.40000000000009,22.149999999999977 32.59999999999991,36.85000000000002 35.75,30.549999999999955 41,30.549999999999955" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="160" y="37" font-size="11" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">Q</text>
+<text id="pulse-label" x="20" y="66" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">IMPULZUS</text>
+</g>
+<g class="action" data-action="map" role="button" tabindex="0" aria-label="TÉRKÉP">
+<rect x="200" y="4" width="172" height="80" fill="#ffffff" opacity="0"/>
+<rect x="200" y="4" width="172" height="80" fill="#090f13" stroke="#34464d" stroke-width="1" opacity="0.94"/>
+<polyline points="216,22.779999999999973 222.29999999999995,19.840000000000032 229.6500000000001,23.200000000000045 237,19.840000000000032 237,36.22000000000003 229.6500000000001,39.15999999999997 222.29999999999995,35.799999999999955 216,39.15999999999997 216,22.779999999999973" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="356" y="37" font-size="11" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">TAB</text>
+<text x="216" y="66" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">TÉRKÉP</text>
+</g>
+<g class="action" data-action="pause" role="button" tabindex="0" aria-label="SZÜNET">
+<rect x="396" y="4" width="172" height="80" fill="#ffffff" opacity="0"/>
+<rect x="396" y="4" width="172" height="80" fill="#090f13" stroke="#34464d" stroke-width="1" opacity="0.94"/>
+<circle cx="422.5" cy="29.5" r="6.72" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="422.5" cy="29.5" r="2.52" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="429.6400000000001" y1="29.5" x2="432.5799999999999" y2="29.5" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="427.548742417672" y1="34.548742417671974" x2="429.62763635436045" y2="36.62763635436045" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="422.5" y1="36.639999999999986" x2="422.5" y2="39.58000000000004" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="417.451257582328" y1="34.548742417671974" x2="415.37236364563955" y2="36.62763635436045" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="415.3599999999999" y1="29.5" x2="412.4200000000001" y2="29.5" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="417.451257582328" y1="24.451257582328026" x2="415.37236364563955" y2="22.372363645639552" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="422.5" y1="22.360000000000014" x2="422.5" y2="19.41999999999996" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="427.548742417672" y1="24.451257582328026" x2="429.62763635436045" y2="22.372363645639552" stroke="#8ce6cf" stroke-width="1.6"/>
+<text x="552" y="37" font-size="11" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ESC</text>
+<text x="412" y="66" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">SZÜNET</text>
+</g>
+</g>
+</svg>

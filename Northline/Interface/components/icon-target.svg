@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="NET.runner 92 — icon-target">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Interface-1" data-layer="Interface">
+<circle cx="24.0" cy="24.0" r="9.92" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="24.0" cy="24.0" r="2.56" fill="#8ce6cf"/>
+<line x1="8" y1="24.0" x2="14.4" y2="24.0" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="33.6" y1="24.0" x2="40" y2="24.0" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="24.0" y1="8" x2="24.0" y2="14.4" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="24.0" y1="33.6" x2="24.0" y2="40" stroke="#8ce6cf" stroke-width="1.6"/>
+</g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="NET.runner 92 — icon-gear">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Interface-1" data-layer="Interface">
+<circle cx="24.0" cy="24.0" r="10.24" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="24.0" cy="24.0" r="3.84" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="34.88" y1="24.0" x2="39.36" y2="24.0" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="31.69332177930964" y1="31.69332177930964" x2="34.861160159025374" y2="34.861160159025374" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="24.0" y1="34.88" x2="24.0" y2="39.36" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="16.30667822069036" y1="31.69332177930964" x2="13.138839840974631" y2="34.861160159025374" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="13.12" y1="24.0" x2="8.64" y2="24.000000000000004" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="16.30667822069036" y1="16.30667822069036" x2="13.138839840974628" y2="13.138839840974631" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="24.0" y1="13.12" x2="23.999999999999996" y2="8.64" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="31.693321779309635" y1="16.30667822069036" x2="34.86116015902537" y2="13.138839840974628" stroke="#8ce6cf" stroke-width="1.6"/>
+</g>
+</svg>

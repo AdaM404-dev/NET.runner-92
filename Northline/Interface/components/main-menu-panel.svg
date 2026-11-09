@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="560" height="758" viewBox="0 0 560 758" role="img" aria-label="NET.runner 92 — main-menu-panel">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Main-menu-1" data-layer="Main-menu">
+<text x="14" y="26" font-size="12" fill="#8ce6cf" font-weight="600" letter-spacing="2" text-anchor="start">MŰVELET  /  001</text>
+<text x="10" y="121" font-size="82" fill="#edf3ef" font-weight="600" letter-spacing="-2" text-anchor="start">LÉPJ BE.</text>
+<text x="10" y="215" font-size="68" fill="#edf3ef" font-weight="300" letter-spacing="-2" text-anchor="start">MARADJ REJTVE.</text>
+<line x1="14" y1="256" x2="74" y2="256" stroke="#8ce6cf" stroke-width="2"/>
+<text x="14" y="295" font-size="19" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Egy hozzáférési pont. Egyetlen nyom nélkül.</text>
+<g class="action" data-action="start" role="button" tabindex="0" aria-label="MŰVELET INDÍTÁSA">
+<rect x="14" y="358" width="532" height="72" fill="#ffffff" opacity="0"/>
+<rect x="14" y="358" width="532" height="72" fill="#8ce6cf"/>
+<text x="38" y="402" font-size="20" fill="#090f13" font-weight="600" letter-spacing="0.7" text-anchor="start">MŰVELET INDÍTÁSA</text>
+<line x1="494" y1="394.0" x2="518" y2="394.0" stroke="#090f13" stroke-width="2"/>
+<polyline points="510,387.0 518,394.0 510,401.0" fill="none" stroke="#090f13" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="map" role="button" tabindex="0" aria-label="MŰVELETI TÉRKÉP">
+<rect x="14" y="446" width="532" height="62" fill="#ffffff" opacity="0"/>
+<rect x="14" y="446" width="532" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="38" y="484" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">MŰVELETI TÉRKÉP</text>
+<line x1="494" y1="477.0" x2="518" y2="477.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="510,470.0 518,477.0 510,484.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="settings" role="button" tabindex="0" aria-label="BEÁLLÍTÁSOK">
+<rect x="14" y="520" width="532" height="62" fill="#ffffff" opacity="0"/>
+<rect x="14" y="520" width="532" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="38" y="558" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">BEÁLLÍTÁSOK</text>
+<line x1="494" y1="551.0" x2="518" y2="551.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="510,544.0 518,551.0 510,558.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="about" role="button" tabindex="0" aria-label="A felület használata">
+<rect x="14" y="614" width="532" height="44" fill="#ffffff" opacity="0"/>
+<text x="14" y="641" font-size="12" fill="#96aab2" font-weight="600" letter-spacing="1.2" text-anchor="start">IRÁNYÍTÁS ÉS A FELÜLET HASZNÁLATA</text>
+</g>
+<text x="14" y="740" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">NEXUS  /  OPERÁTOR 092</text>
+</g>
+</svg>

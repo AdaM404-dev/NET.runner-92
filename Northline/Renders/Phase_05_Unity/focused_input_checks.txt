@@ -1,0 +1,4 @@
+PASS Focused W advanced 1,51 m.
+PASS Focused mouse delta rotated the camera.
+PASS Escape released the cursor.
+PASS Left click restored cursor lock.

@@ -1,0 +1,46 @@
+{
+  "scenes": [
+    {
+      "scene": "01-main-menu",
+      "objects": 500,
+      "layers": 5
+    },
+    {
+      "scene": "02-gameplay-hud",
+      "objects": 422,
+      "layers": 9
+    },
+    {
+      "scene": "03-pause",
+      "objects": 474,
+      "layers": 11
+    },
+    {
+      "scene": "04-settings",
+      "objects": 483,
+      "layers": 11
+    },
+    {
+      "scene": "05-hacking",
+      "objects": 728,
+      "layers": 11
+    },
+    {
+      "scene": "06-mission-map",
+      "objects": 710,
+      "layers": 13
+    },
+    {
+      "scene": "hud-overlay",
+      "objects": 324,
+      "layers": 8
+    }
+  ],
+  "fonts": [
+    "regular",
+    "medium",
+    "light",
+    "mono"
+  ],
+  "source": "source/layouts.json"
+}

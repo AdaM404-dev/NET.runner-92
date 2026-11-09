@@ -1,0 +1,11 @@
+PASS Generic avatar and nine skinned assemblies.
+PASS Hack_Equip: 0.500 s at 60 Hz.
+PASS Hack_Idle: 2.000 s at 60 Hz.
+PASS Hack_Interact: 0.800 s at 60 Hz.
+PASS Hack_Success: 0.800 s at 60 Hz.
+PASS Hack_Failed: 0.600 s at 60 Hz.
+PASS Hack_Unequip: 0.400 s at 60 Hz.
+PASS Hack_Cancel: 0.250 s at 60 Hz.
+PASS Screen 150.0 × 76.0 mm, front visible at 16:9 reference and 4:3 hospital framing.
+PASS Eye-relative model orientation is (0.00, 0.00, 0.00).
+PASS Four distinct 0–1 screen UV corners.

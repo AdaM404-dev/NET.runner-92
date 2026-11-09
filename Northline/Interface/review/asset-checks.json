@@ -1,0 +1,667 @@
+{
+  "vectorChecks": [
+    {
+      "file": "screens\\01-main-menu.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "screens\\02-gameplay-hud.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "screens\\03-pause.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "screens\\04-settings.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "screens\\05-hacking.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "screens\\06-mission-map.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\ability-bar.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\button-primary-disabled.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\button-primary-focus.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\button-primary-hover.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\button-primary-pressed.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\button-primary.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\button-secondary.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\hacking-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\hud-overlay.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-arrow.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-check.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-energy.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-exit.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-eye.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-gear.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-health.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-lock.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-map.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-pulse.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\icon-target.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\interaction-prompt.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\main-menu-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\objective-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\panel-blank.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\pause-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\progress-fill.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\progress-track.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\settings-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\stealth-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    },
+    {
+      "file": "components\\vitals-panel.svg",
+      "validXml": true,
+      "uniqueIds": true
+    }
+  ],
+  "pngAlphaChecks": [
+    {
+      "file": "ability-bar.png",
+      "size": [
+        572,
+        88
+      ],
+      "transparent": true
+    },
+    {
+      "file": "ability-bar@2x.png",
+      "size": [
+        1144,
+        176
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-disabled.png",
+      "size": [
+        540,
+        80
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-disabled@2x.png",
+      "size": [
+        1080,
+        160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-focus.png",
+      "size": [
+        540,
+        80
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-focus@2x.png",
+      "size": [
+        1080,
+        160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-hover.png",
+      "size": [
+        540,
+        80
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-hover@2x.png",
+      "size": [
+        1080,
+        160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-pressed.png",
+      "size": [
+        540,
+        80
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary-pressed@2x.png",
+      "size": [
+        1080,
+        160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary.png",
+      "size": [
+        540,
+        80
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-primary@2x.png",
+      "size": [
+        1080,
+        160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-secondary.png",
+      "size": [
+        540,
+        80
+      ],
+      "transparent": true
+    },
+    {
+      "file": "button-secondary@2x.png",
+      "size": [
+        1080,
+        160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "hacking-panel.png",
+      "size": [
+        1168,
+        684
+      ],
+      "transparent": true
+    },
+    {
+      "file": "hacking-panel@2x.png",
+      "size": [
+        2336,
+        1368
+      ],
+      "transparent": true
+    },
+    {
+      "file": "hud-overlay.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "transparent": true
+    },
+    {
+      "file": "hud-overlay@2x.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-arrow.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-arrow@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-check.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-check@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-energy.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-energy@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-exit.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-exit@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-eye.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-eye@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-gear.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-gear@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-health.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-health@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-lock.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-lock@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-map.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-map@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-pulse.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-pulse@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-target.png",
+      "size": [
+        48,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "icon-target@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "interaction-prompt.png",
+      "size": [
+        450,
+        96
+      ],
+      "transparent": true
+    },
+    {
+      "file": "interaction-prompt@2x.png",
+      "size": [
+        900,
+        192
+      ],
+      "transparent": true
+    },
+    {
+      "file": "main-menu-panel.png",
+      "size": [
+        560,
+        758
+      ],
+      "transparent": true
+    },
+    {
+      "file": "main-menu-panel@2x.png",
+      "size": [
+        1120,
+        1516
+      ],
+      "transparent": true
+    },
+    {
+      "file": "objective-panel.png",
+      "size": [
+        432,
+        132
+      ],
+      "transparent": true
+    },
+    {
+      "file": "objective-panel@2x.png",
+      "size": [
+        864,
+        264
+      ],
+      "transparent": true
+    },
+    {
+      "file": "panel-blank.png",
+      "size": [
+        540,
+        240
+      ],
+      "transparent": true
+    },
+    {
+      "file": "panel-blank@2x.png",
+      "size": [
+        1080,
+        480
+      ],
+      "transparent": true
+    },
+    {
+      "file": "pause-panel.png",
+      "size": [
+        708,
+        734
+      ],
+      "transparent": true
+    },
+    {
+      "file": "pause-panel@2x.png",
+      "size": [
+        1416,
+        1468
+      ],
+      "transparent": true
+    },
+    {
+      "file": "progress-fill.png",
+      "size": [
+        540,
+        24
+      ],
+      "transparent": true
+    },
+    {
+      "file": "progress-fill@2x.png",
+      "size": [
+        1080,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "progress-track.png",
+      "size": [
+        540,
+        24
+      ],
+      "transparent": true
+    },
+    {
+      "file": "progress-track@2x.png",
+      "size": [
+        1080,
+        48
+      ],
+      "transparent": true
+    },
+    {
+      "file": "settings-panel.png",
+      "size": [
+        1080,
+        776
+      ],
+      "transparent": true
+    },
+    {
+      "file": "settings-panel@2x.png",
+      "size": [
+        2160,
+        1552
+      ],
+      "transparent": true
+    },
+    {
+      "file": "stealth-panel.png",
+      "size": [
+        328,
+        102
+      ],
+      "transparent": true
+    },
+    {
+      "file": "stealth-panel@2x.png",
+      "size": [
+        656,
+        204
+      ],
+      "transparent": true
+    },
+    {
+      "file": "vitals-panel.png",
+      "size": [
+        396,
+        104
+      ],
+      "transparent": true
+    },
+    {
+      "file": "vitals-panel@2x.png",
+      "size": [
+        792,
+        208
+      ],
+      "transparent": true
+    }
+  ],
+  "passed": true
+}

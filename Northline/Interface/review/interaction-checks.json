@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Six authored SVG screens",
+      "passed": true
+    },
+    {
+      "name": "Start enters HUD",
+      "passed": true
+    },
+    {
+      "name": "Pulse consumes energy",
+      "passed": true
+    },
+    {
+      "name": "Cooldown prevents repeated consumption",
+      "passed": true
+    },
+    {
+      "name": "Escape pauses",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes telemetry and cooldown",
+      "passed": true
+    },
+    {
+      "name": "Settings opens over pause",
+      "passed": true
+    },
+    {
+      "name": "HUD scale is adjustable",
+      "passed": true
+    },
+    {
+      "name": "Contrast applied",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion applied",
+      "passed": true
+    },
+    {
+      "name": "Keyboard slider works",
+      "passed": true
+    },
+    {
+      "name": "Settings returns to pause",
+      "passed": true
+    },
+    {
+      "name": "Resume returns to HUD",
+      "passed": true
+    },
+    {
+      "name": "HUD Tab opens map",
+      "passed": true
+    },
+    {
+      "name": "Map node selection",
+      "passed": true
+    },
+    {
+      "name": "Map restores HUD",
+      "passed": true
+    },
+    {
+      "name": "Hacking starts",
+      "passed": true
+    },
+    {
+      "name": "Cancel stops hacking timer",
+      "passed": true
+    },
+    {
+      "name": "Hacking completes and updates objective",
+      "passed": true
+    },
+    {
+      "name": "Home confirmation is a real modal",
+      "passed": true
+    },
+    {
+      "name": "Home clears demo state",
+      "passed": true
+    },
+    {
+      "name": "No duplicate SVG IDs",
+      "passed": true
+    }
+  ]
+}

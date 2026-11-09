@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="540" height="80" viewBox="0 0 540 80" role="img" aria-label="NET.runner 92 — button-primary-hover">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Interface-1" data-layer="Interface">
+<rect x="4" y="4" width="532" height="72" fill="#b2f3e1"/>
+<text x="28" y="48" font-size="20" fill="#090f13" font-weight="600" letter-spacing="0.7" text-anchor="start">FOLYTATÁS</text>
+<polyline points="492.8,32.8 507.2,32.8 507.2,47.2" fill="none" stroke="#090f13" stroke-width="1.6" stroke-linejoin="miter"/>
+<polyline points="507.2,32.8 490.88,49.120000000000005" fill="none" stroke="#090f13" stroke-width="1.6" stroke-linejoin="miter"/>
+</g>
+</svg>

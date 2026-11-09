@@ -1,0 +1,31 @@
+PASS Focused W advanced 1.54 m in the expected direction.
+PASS Focused A advanced 1.53 m in the expected direction.
+PASS Focused S advanced 1.56 m in the expected direction.
+PASS Focused D advanced 1.55 m in the expected direction.
+PASS Focused W+D advanced 1.50 m in the expected direction.
+PASS Focused Shift+W advanced 2.16 m in the expected direction.
+PASS Diagonal walking is normalized.
+PASS Sprint input increases travel speed.
+PASS Focused mouse delta rotated the camera.
+PASS Escape released the cursor.
+PASS Left click restored cursor lock.
+PASS The public entrance starts closed and can be targeted.
+PASS Focused E opened the public entrance.
+PASS Focused E closed the public entrance again.
+PASS Focused E on the west call button opened the aligned lift landing.
+PASS Focused Q deployed LATCH-07.
+PASS Focused E operated the tablet and left the aimed-at world door closed.
+PASS Focused R canceled and hid LATCH-07.
+PASS Focused aim acquired the service relay.
+PASS Focused E linked the service relay.
+PASS Focused Q played unequip and returned to exploration.
+PASS Focused 1 leaves CCTV locked before the reception breach.
+PASS Focused aim acquired the counter's right monitor.
+PASS Focused E opened the terminal puzzle.
+PASS Focused Enter rejected the mismatched signature.
+PASS Focused arrows and Enter unlocked CCTV from the terminal.
+PASS Focused 1 opened live camera 01 on the tablet.
+PASS Focused Right switched to the next feed.
+PASS Focused Left and Up wrapped to the last feed.
+PASS Focused Down wrapped to the first feed.
+PASS Focused 1 closed CCTV and stopped the feed camera.
