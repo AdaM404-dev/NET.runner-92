@@ -59,8 +59,10 @@ no story progression or network connection behind this API yet.
 | MenuPrototypeSettings | Inspector-editable timing and content |
 | Editor/MenuPrototypeBuilder | Reproducible geometry, assets and scene generation |
 
-All runtime code is in the isolated `NetRunner.MenuPrototype` assembly. Editor
-authoring and PlayMode tests have separate assemblies. The builder is available
+All runtime code is in the isolated `NetRunner.MainMenu` assembly (namespace
+`NetRunner.MainMenu`; it was `NetRunner.MenuPrototype` until 2026-11-09). Editor
+authoring and PlayMode tests have separate assemblies; both may set the
+`[SerializeField] internal` fields (see `Scripts/AssemblyInfo.cs`). The builder is available
 from **NET.runner > Menu Prototype > Create or rebuild standalone scene**. It
 replaces this prototype scene; preserve manual scene edits before rebuilding.
 Existing settings, WAVs, texture, theme and volume assets are retained. The
@@ -78,7 +80,7 @@ is accepted by the tests; other unexpected messages fail the run.
 Run through Test Runner or from a connected editor:
 
 ```text
-unity command run_tests --mode playmode --filter NetRunner.MenuPrototype --async_tests true
+unity command run_tests --mode playmode --filter NetRunner.MainMenu --async_tests true
 unity command test_status
 ```
 

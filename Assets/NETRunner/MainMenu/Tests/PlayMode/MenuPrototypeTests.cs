@@ -7,13 +7,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UIElements;
 
-namespace NetRunner.MenuPrototype.Tests
+namespace NetRunner.MainMenu.Tests
 {
+    /// <summary>
+    /// PlayMode tests of the standalone menu prototype: boot, panels,
+    /// settings, facility events and both loading entries.
+    /// </summary>
     public sealed class MenuPrototypeTests
     {
+        private const string ScenePath = "Assets/NETRunner/MainMenu/Scenes/NETRunner_MainMenu_Prototype.unity";
+
         private MainMenuController menu;
         private MenuPrototypeSettings runtimeSettings;
-        private const string ScenePath = "Assets/NETRunner/MainMenu/Scenes/NETRunner_MainMenu_Prototype.unity";
 
         [UnitySetUp]
         public IEnumerator OpenPrototype()
@@ -26,7 +31,7 @@ namespace NetRunner.MenuPrototype.Tests
             Assert.That(menu.State, Is.EqualTo(MainMenuController.MenuState.Booting));
             Assert.That(menu.view.Menu.resolvedStyle.display, Is.EqualTo(DisplayStyle.None));
             Assert.That(menu.surveillance.feeds.Length, Is.EqualTo(4));
-            Assert.That(Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<AudioListener>().Length, Is.EqualTo(1));
             Assert.That(SceneManager.sceneCount, Is.EqualTo(1));
             Assert.That(SceneManager.GetActiveScene().path, Is.EqualTo(ScenePath));
             // Clone only in Play mode; tests never mutate the configuration asset.
@@ -68,6 +73,7 @@ namespace NetRunner.MenuPrototype.Tests
             {
                 menu.view.Root.SendEvent(escape);
             }
+
             yield return null;
             Assert.That(menu.State, Is.EqualTo(MainMenuController.MenuState.Observation));
 
@@ -104,16 +110,18 @@ namespace NetRunner.MenuPrototype.Tests
                 {
                     yield return null;
                 }
+
                 yield return menu.facilityEvents.RunEvent(i);
                 Assert.That(menu.facilityEvents.CompletedEvents, Is.GreaterThan(completed));
             }
+
             Assert.That(relay.target.intensity, Is.EqualTo(initialIntensity));
             Assert.That(relay.indicator.sharedMaterial, Is.SameAs(initialMaterial));
             Assert.That(Vector3.Distance(shutter.shutter.localPosition, initialPosition), Is.LessThan(0.001f));
             Assert.That(menu.audioController.machinery.isPlaying, Is.False);
             // Natural 18–27 s timer has elapsed during the interaction/event sequence.
             Assert.That(menu.surveillance.SwitchCount, Is.GreaterThanOrEqualTo(2));
-            Assert.That(Object.FindObjectsByType<Camera>(FindObjectsSortMode.None).Length, Is.EqualTo(4));
+            Assert.That(Object.FindObjectsByType<Camera>().Length, Is.EqualTo(4));
             int enabledCameras = 0;
             foreach (var feed in menu.surveillance.feeds)
             {
@@ -122,6 +130,7 @@ namespace NetRunner.MenuPrototype.Tests
                     enabledCameras++;
                 }
             }
+
             Assert.That(enabledCameras, Is.EqualTo(1));
 
             Submit("disconnect");
@@ -144,6 +153,23 @@ namespace NetRunner.MenuPrototype.Tests
             LogAssert.NoUnexpectedReceived();
         }
 
+        [UnityTearDown]
+        public IEnumerator CleanUpWithoutSavingScenes()
+        {
+            var prototype = SceneManager.GetSceneByPath(ScenePath);
+            var cleanup = SceneManager.CreateScene("Menu test cleanup");
+            SceneManager.SetActiveScene(cleanup);
+            if (prototype.IsValid() && prototype.isLoaded)
+            {
+                yield return SceneManager.UnloadSceneAsync(prototype);
+            }
+
+            Object.Destroy(runtimeSettings);
+            yield return null;
+            LogAssert.NoUnexpectedReceived();
+            Application.logMessageReceived -= AcceptUnrelatedEditorAccountWarning;
+        }
+
         private void Submit(string name)
         {
             var button = menu.view.Root.Q<Button>(name);
@@ -162,24 +188,9 @@ namespace NetRunner.MenuPrototype.Tests
             {
                 yield return null;
             }
+
             Assert.That(menu.State, Is.EqualTo(expected));
             yield return null;
-        }
-
-        [UnityTearDown]
-        public IEnumerator CleanUpWithoutSavingScenes()
-        {
-            var prototype = SceneManager.GetSceneByPath(ScenePath);
-            var cleanup = SceneManager.CreateScene("Menu test cleanup");
-            SceneManager.SetActiveScene(cleanup);
-            if (prototype.IsValid() && prototype.isLoaded)
-            {
-                yield return SceneManager.UnloadSceneAsync(prototype);
-            }
-            Object.Destroy(runtimeSettings);
-            yield return null;
-            LogAssert.NoUnexpectedReceived();
-            Application.logMessageReceived -= AcceptUnrelatedEditorAccountWarning;
         }
 
         private static void AcceptUnrelatedEditorAccountWarning(string message, string trace, LogType type)

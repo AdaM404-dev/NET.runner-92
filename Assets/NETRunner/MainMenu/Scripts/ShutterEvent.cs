@@ -1,16 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// Facility event: a distant shutter drops and rises again.
+    /// </summary>
     public sealed class ShutterEvent : FacilityEvent
     {
-        public Transform shutter;
-        public float travel = 1.6f;
-        public float duration = 5f;
+        [SerializeField] internal Transform shutter;
+        [SerializeField] private float travel = 1.6f;
+        [SerializeField] private float duration = 5f;
+
         private Vector3 restingPosition;
 
         private void Awake() => restingPosition = shutter.localPosition;
+
+        private void OnDisable()
+        {
+            if (shutter != null)
+            {
+                shutter.localPosition = restingPosition;
+            }
+        }
 
         public override IEnumerator Run()
         {
@@ -21,15 +33,8 @@ namespace NetRunner.MenuPrototype
                 shutter.localPosition = restingPosition + Vector3.down * travel * Mathf.SmoothStep(0, 1, Mathf.Sin(fraction * Mathf.PI));
                 yield return null;
             }
-            shutter.localPosition = restingPosition;
-        }
 
-        private void OnDisable()
-        {
-            if (shutter != null)
-            {
-                shutter.localPosition = restingPosition;
-            }
+            shutter.localPosition = restingPosition;
         }
     }
 }

@@ -87,12 +87,12 @@ where a new script goes: [[architecture/overview]].
 | `Core/Tests/EditMode/VerticalMotionTests.cs` | `NetRunner.Core.Tests.EditMode` | 6 tests of `VerticalMotion` | the test runner |
 | `Core/Tests/EditMode/EasingTests.cs` | `NetRunner.Core.Tests.EditMode` | 4 tests of `Easing` | the test runner |
 | `Player/Tests/PlayMode/PlayerPlayModeTests.cs` | `NetRunner.Player.Tests.PlayMode` | 3 tests: walk and run speed, jump height, a door opening | the test runner |
-| `MainMenu/…` | `NetRunner.MenuPrototype` (+ `.Editor`, `.PlayModeTests`) | the standalone menu ([[systems/main-menu]]) | its own scene |
+| `MainMenu/…` | `NetRunner.MainMenu` (+ `.Editor`, `.Tests.PlayMode`) | the standalone menu ([[systems/main-menu]]) | its own scene |
 | `ArtSource/K7_Industrial_Robot/Unity/*.cs` | none yet | K7 robot helpers; not compiled because they are outside `Assets/` ([[systems/enemy-k7]]) | nothing yet |
 
 Tests: 10 EditMode and 5 PlayMode (3 player, 2 menu), all passing on
-2026-10-11. Formatting rules for new code: `.editorconfig` at the repository
-root.
+2026-10-11. How code is written: [[architecture/coding-standards]]; the formatting part
+is in `.editorconfig` at the repository root.
 
 ## Settings assets (`Assets/Settings/`)
 

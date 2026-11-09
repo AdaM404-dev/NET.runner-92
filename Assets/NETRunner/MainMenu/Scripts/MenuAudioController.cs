@@ -1,16 +1,30 @@
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// The menu's ambience and interface sounds, scaled by one master volume.
+    /// </summary>
     public sealed class MenuAudioController : MonoBehaviour
     {
         [Header("Replace these original synthesized placeholders with authored audio later")]
-        public AudioSource electricalHum;
-        public AudioSource ventilation;
-        public AudioSource machinery;
-        public AudioSource uiRelay;
-        public AudioSource signalInterference;
-        [Range(0, 1)] public float masterVolume = 0.35f;
+        [SerializeField] internal AudioSource electricalHum;
+        [SerializeField] internal AudioSource ventilation;
+        [SerializeField] internal AudioSource machinery;
+        [SerializeField] internal AudioSource uiRelay;
+        [SerializeField] internal AudioSource signalInterference;
+        [Range(0, 1)] [SerializeField] internal float masterVolume = 0.35f;
+
+        private void OnDisable()
+        {
+            foreach (var source in new[] { electricalHum, ventilation, machinery, uiRelay, signalInterference })
+            {
+                if (source != null)
+                {
+                    source.Stop();
+                }
+            }
+        }
 
         public void Begin()
         {
@@ -30,19 +44,11 @@ namespace NetRunner.MenuPrototype
         }
 
         public void Click() => uiRelay.Play();
-        public void Signal() => signalInterference.Play();
-        public void StartMachinery() => machinery.Play();
-        public void StopMachinery() => machinery.Stop();
 
-        private void OnDisable()
-        {
-            foreach (var source in new[] { electricalHum, ventilation, machinery, uiRelay, signalInterference })
-            {
-                if (source != null)
-                {
-                    source.Stop();
-                }
-            }
-        }
+        public void Signal() => signalInterference.Play();
+
+        public void StartMachinery() => machinery.Play();
+
+        public void StopMachinery() => machinery.Stop();
     }
 }

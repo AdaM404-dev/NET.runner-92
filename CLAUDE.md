@@ -98,14 +98,13 @@ explains its non-obvious choices so the review is quick.
   with its own test assembly. A new feature gets a new folder. References
   point one way, towards `Core`; `Core` references no other feature. Layout,
   rules and "where does my new script go": `docs/architecture/overview.md`.
-- Game rules (stats, inventory, quests, dialogue, hacking, saves) are plain C#
-  with no `UnityEngine` scene dependency, live in `Core` and are covered by
-  EditMode tests. MonoBehaviours stay thin: read input, call the rules, show
-  the result.
-- Content is data (ScriptableObjects), not code.
-- Use the Input System package for new input code, not legacy `Input`.
-- One statement per line, braces on their own lines, spaces around operators.
-  `.editorconfig` holds these rules for Rider and Visual Studio.
+- Every script follows `docs/architecture/coding-standards.md`: rules in
+  plain C# in `Core` (compiled without engine references) with EditMode
+  tests; thin MonoBehaviours; content as ScriptableObjects; no public
+  mutable fields (`[SerializeField] private`, read-only properties); fixed
+  member order; Input System only for new input. Read it before writing code
+  and keep every change consistent with it. `.editorconfig` holds the
+  formatting part for Rider and Visual Studio.
 
 ## Unity rules
 

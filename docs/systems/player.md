@@ -66,7 +66,7 @@ The model and its animation are described in
 | Step Offset | 0.32 m | ledges up to this height are climbed without jumping (stairs) |
 | Skin Width | 0.035 m | small buffer that keeps the capsule from getting stuck in walls |
 
-**NexusPlayer** (fields visible in the Inspector)
+**NexusPlayer** (fields visible in the Inspector; since 2026-11-09 they are `[SerializeField] private`, and other code reads them through read-only properties of the same name in PascalCase, such as `ViewCamera` and `WalkSpeed`)
 
 | Field | Value | Meaning |
 | --- | --- | --- |
