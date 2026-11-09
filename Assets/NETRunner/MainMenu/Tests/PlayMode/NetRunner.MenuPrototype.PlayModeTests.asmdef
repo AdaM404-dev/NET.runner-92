@@ -1,7 +1,0 @@
-{
-    "name": "NetRunner.MenuPrototype.PlayModeTests",
-    "references": ["NetRunner.MenuPrototype"],
-    "optionalUnityReferences": ["TestAssemblies"],
-    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
-    "autoReferenced": false
-}

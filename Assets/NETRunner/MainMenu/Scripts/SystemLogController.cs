@@ -1,10 +1,15 @@
+using System.Text;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// Picks the archive text and builds the access log shown while loading.
+    /// </summary>
     public sealed class SystemLogController : MonoBehaviour
     {
-        public MenuPrototypeSettings settings;
+        [SerializeField] internal MenuPrototypeSettings settings;
+
         private int previous = -1;
 
         public string ChooseArchive()
@@ -13,11 +18,13 @@ namespace NetRunner.MenuPrototype
             {
                 return "INTERNAL ARCHIVE / UNAVAILABLE";
             }
+
             int index = Random.Range(0, settings.internalLogs.Length);
             if (settings.internalLogs.Length > 1 && index == previous)
             {
                 index = (index + 1) % settings.internalLogs.Length;
             }
+
             previous = index;
             return settings.internalLogs[index];
         }
@@ -25,11 +32,12 @@ namespace NetRunner.MenuPrototype
         public string AccessLog(float progress)
         {
             int count = Mathf.Min(settings.loadingLines.Length, 1 + Mathf.FloorToInt(progress * settings.loadingLines.Length));
-            var output = new System.Text.StringBuilder();
+            var output = new StringBuilder();
             for (int i = 0; i < count; i++)
             {
                 output.Append("> ").Append(settings.loadingLines[i]).Append('\n');
             }
+
             return output.ToString();
         }
     }

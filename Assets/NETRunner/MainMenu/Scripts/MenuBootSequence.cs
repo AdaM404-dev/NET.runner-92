@@ -1,12 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// Types the boot lines, shows the title and hands over to the menu; can be skipped.
+    /// </summary>
     public sealed class MenuBootSequence : MonoBehaviour
     {
-        public MenuPrototypeSettings settings;
+        [SerializeField] internal MenuPrototypeSettings settings;
+
         private bool skipRequested;
+
         public void Skip() => skipRequested = true;
 
         public IEnumerator Run(MenuView view, SurveillanceCameraController feeds)
@@ -22,6 +27,7 @@ namespace NetRunner.MenuPrototype
                 {
                     break;
                 }
+
                 view.BootText.text += line + "\n";
                 float until = Time.unscaledTime + settings.bootLineDuration;
                 while (!skipRequested && Time.unscaledTime < until)
@@ -29,6 +35,7 @@ namespace NetRunner.MenuPrototype
                     yield return null;
                 }
             }
+
             if (!skipRequested)
             {
                 yield return MenuView.Fade(view.Terminal, 1, 0, settings.fadeDuration);
@@ -38,6 +45,7 @@ namespace NetRunner.MenuPrototype
                 yield return new WaitForSecondsRealtime(settings.titleDuration);
                 yield return feeds.InterruptSignal();
             }
+
             view.Title.text = "NET.RUNNER";
             view.Title.style.fontSize = 65;
             view.ShowMenu();

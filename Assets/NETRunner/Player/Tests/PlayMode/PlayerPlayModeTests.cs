@@ -13,11 +13,11 @@ namespace NetRunner.Player.Tests
     /// pressing Play. They replace the old "-nexus-autotest" command-line test.
     /// Screenshots go to Logs/PlayModeTests/ (not committed).
     /// </summary>
-    public class PlayerPlayModeTests
+    public sealed class PlayerPlayModeTests
     {
-        const float Frame = 1f / 60f;
+        private const float Frame = 1f / 60f;
 
-        NexusPlayer player;
+        private NexusPlayer player;
 
         [UnitySetUp]
         public IEnumerator LoadTheGameplayScene()
@@ -103,7 +103,7 @@ namespace NetRunner.Player.Tests
             Assert.That(Quaternion.Angle(closed, door.transform.rotation), Is.EqualTo(95f).Within(1f), "swing angle");
         }
 
-        IEnumerator SaveScreenshot(string fileName)
+        private IEnumerator SaveScreenshot(string fileName)
         {
             // Let the script place the camera for one frame (LateUpdate).
             player.enabled = true;
@@ -112,7 +112,7 @@ namespace NetRunner.Player.Tests
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            Camera camera = player.viewCamera;
+            Camera camera = player.ViewCamera;
             var target = new RenderTexture(1280, 720, 24);
             camera.targetTexture = target;
             camera.Render();

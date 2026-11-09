@@ -9,7 +9,7 @@ var examples = new System.Collections.Generic.Dictionary<string, string>();
 int noFrame = 0;
 foreach (var d in UnityEngine.Object.FindObjectsByType<NetRunner.World.NexusDoor>(FindObjectsInactive.Include))
 {
-    if (d.loadingDoor) continue;
+    if (d.IsLoadingDoor) continue;
     var frame = GameObject.Find(d.name + "_Frame");
     var box = d.GetComponent<BoxCollider>();
     // leaf direction: the long horizontal axis of the leaf's local box, in world space
@@ -22,7 +22,7 @@ foreach (var d in UnityEngine.Object.FindObjectsByType<NetRunner.World.NexusDoor
         var fb = frame.GetComponent<Renderer>().bounds;
         Vector3 wallDir = fb.size.x >= fb.size.z ? Vector3.right : Vector3.forward;
         float a0 = Vector3.Angle(leafDir, wallDir); if (a0 > 90) a0 = 180 - a0;
-        var opened = Quaternion.AngleAxis(d.angle, Vector3.up) * leafDir;
+        var opened = Quaternion.AngleAxis(d.SwingAngle, Vector3.up) * leafDir;
         float a1 = Vector3.Angle(opened, wallDir); if (a1 > 90) a1 = 180 - a1;
         pose = "asExported=" + (a0 < 20 ? "SHUT" : a0 > 60 ? "STANDING OPEN" : "AJAR") + "(" + a0.ToString("0") + " deg off the wall) afterToggle=" + (a1 < 20 ? "SHUT" : a1 > 60 ? "OPEN" : "AJAR") + "(" + a1.ToString("0") + " deg)";
     }

@@ -9,8 +9,15 @@ what was confusing. The authoritative record of changes is the work log in
 - Samuel changed the work split: no more YOU WRITE or PAIR tasks; Claude
   writes all code, Samuel decides and reviews, AdaM404 does the art. Steps
   5 to 7 (#10–#12) are now tagged `CLAUDE`.
-- Planned next: one written coding standard applied to all existing code,
-  then moving the art into Git LFS (#17, option A, agreed by both).
+- One coding standard for every script: [[architecture/coding-standards]].
+  The existing code now follows it: no public fields (Inspector values are
+  `[SerializeField] private`, or `internal` where the menu's own builder and
+  tests set them), members in a fixed order, the menu's namespace renamed
+  from `NetRunner.MenuPrototype` to `NetRunner.MainMenu`, and `Core`
+  compiled without engine references so it cannot reach scene objects.
+  Behaviour unchanged; all 15 tests pass.
+- Next: moving the art into Git LFS (#17, option A, agreed by both), once
+  AdaM404 has pushed everything.
 
 ## 2026-10-11 — First code in Core: the door's easing curve
 

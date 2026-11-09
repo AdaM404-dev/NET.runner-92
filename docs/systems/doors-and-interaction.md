@@ -45,19 +45,21 @@ targets later.
 ## The door script, line by line
 
 ```csharp
-public bool loadingDoor;                 // false: swings. true: slides up (loading bay)
-public float angle = 95, lift = 3.8f;    // how far it swings (degrees) or lifts (metres)
-public bool IsOpen { get; private set; } // flipped by Toggle()
+[SerializeField] private bool loadingDoor;   // false: swings. true: slides up (loading bay)
+[SerializeField] private float angle = 95;   // how far it swings (degrees)
+[SerializeField] private float lift = 3.8f;  // how far it lifts (metres)
+public bool IsOpen { get; private set; }     // flipped by Toggle()
+public bool IsLoadingDoor, float SwingAngle, float LiftHeight  // read-only views of the three fields
 
 void Awake()   // remember the pose from the model file as the "closed" pose
-void Toggle()  // IsOpen = !IsOpen; nothing moves yet
 void Update()  // every frame, move 'progress' toward 1 (open) or 0 (closed)
-               //   swing: 1.3 per second  → 0.77 s to open
-               //   lift:  0.45 per second → 2.2 s to open
+               //   swing: SwingOpenSpeed 1.3 per second → 0.77 s to open
+               //   lift:  LiftOpenSpeed 0.45 per second → 2.2 s to open
                // eased = Easing.SmoothStep01(progress), from Core:
                //   progress² × (3 − 2 × progress)   (slow start, slow end)
                // swing: turn the leaf angle × eased around the world's up axis
                // lift:  raise the leaf lift × eased metres
+void Toggle()  // IsOpen = !IsOpen; nothing moves yet
 ```
 
 The door does not decide anything on its own: it only animates toward

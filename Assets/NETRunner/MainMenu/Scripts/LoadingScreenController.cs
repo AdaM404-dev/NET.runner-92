@@ -1,13 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-namespace NetRunner.MenuPrototype
+namespace NetRunner.MainMenu
 {
+    /// <summary>
+    /// Plays the simulated network-loading sequence and returns to the menu.
+    /// </summary>
     public sealed class LoadingScreenController : MonoBehaviour
     {
-        public MenuPrototypeSettings settings;
-        public SystemLogController logs;
+        [SerializeField] internal MenuPrototypeSettings settings;
+        [SerializeField] internal SystemLogController logs;
+
         public float Progress { get; private set; }
+
         public int CompletedSequences { get; private set; }
 
         public IEnumerator Run(MenuView view, SurveillanceCameraController feeds, string entry)
@@ -38,6 +43,7 @@ namespace NetRunner.MenuPrototype
                     view.LoadingLog.text = logs.AccessLog(Progress);
                     previousPercent = percent;
                 }
+
                 yield return null;
             } while (Progress < 1);
             view.SetProgress(1);

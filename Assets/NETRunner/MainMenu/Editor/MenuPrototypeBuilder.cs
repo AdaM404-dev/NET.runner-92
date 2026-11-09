@@ -7,9 +7,12 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
-namespace NetRunner.MenuPrototype.Editor
+namespace NetRunner.MainMenu.Editor
 {
-    // Rebuilds only this prototype scene. Existing scene/build settings are never saved.
+    /// <summary>
+    /// Editor menu that rebuilds the standalone menu prototype scene from code.
+    /// Rebuilds only this prototype scene; existing scene and build settings are never saved.
+    /// </summary>
     public static class MenuPrototypeBuilder
     {
         public const string Folder = "Assets/NETRunner/MainMenu";
@@ -31,6 +34,7 @@ namespace NetRunner.MenuPrototype.Editor
             {
                 throw new InvalidOperationException("Stop Play mode before rebuilding the prototype.");
             }
+
             // Refuse dirty scenes rather than saving or discarding unrelated work.
             for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
             {
@@ -39,10 +43,12 @@ namespace NetRunner.MenuPrototype.Editor
                     throw new InvalidOperationException("Save or close your unsaved scene before rebuilding. This tool never saves existing scenes.");
                 }
             }
+
             foreach (string child in new[] { "Scenes", "Materials", "UI", "Audio", "VFX", "Prefabs" })
             {
                 Directory.CreateDirectory(Folder + "/" + child);
             }
+
             AssetDatabase.Refresh();
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             scene.name = "NETRunner_MainMenu_Prototype";
@@ -59,6 +65,7 @@ namespace NetRunner.MenuPrototype.Editor
                 File.WriteAllText(themePath, "@import url(\"unity-theme://default\");\n");
                 AssetDatabase.ImportAsset(themePath);
             }
+
             panel.themeStyleSheet = AssetDatabase.LoadAssetAtPath<ThemeStyleSheet>(themePath);
             EditorUtility.SetDirty(panel);
             PrepareMaterials();
@@ -102,6 +109,7 @@ namespace NetRunner.MenuPrototype.Editor
             {
                 feed.camera.transform.SetParent(root.transform);
             }
+
             var boot = root.AddComponent<MenuBootSequence>();
             boot.settings = settings;
             var logs = root.AddComponent<SystemLogController>();
@@ -153,6 +161,7 @@ namespace NetRunner.MenuPrototype.Editor
                 asset = ScriptableObject.CreateInstance<T>();
                 AssetDatabase.CreateAsset(asset, path);
             }
+
             return asset;
         }
 
@@ -165,6 +174,7 @@ namespace NetRunner.MenuPrototype.Editor
                 material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 AssetDatabase.CreateAsset(material, path);
             }
+
             material.SetColor("_BaseColor", color);
             material.SetFloat("_Metallic", metallic);
             material.SetFloat("_Smoothness", smoothness);
@@ -173,6 +183,7 @@ namespace NetRunner.MenuPrototype.Editor
                 material.EnableKeyword("_EMISSION");
                 material.SetColor("_EmissionColor", color * emission);
             }
+
             EditorUtility.SetDirty(material);
             return material;
         }
@@ -201,6 +212,7 @@ namespace NetRunner.MenuPrototype.Editor
                         pixels[y * 256 + x] = new Color(noise, noise, noise);
                     }
                 }
+
                 texture.SetPixels(pixels);
                 texture.Apply();
                 File.WriteAllBytes(path, texture.EncodeToPNG());
@@ -210,6 +222,7 @@ namespace NetRunner.MenuPrototype.Editor
                 importer.wrapMode = TextureWrapMode.Repeat;
                 importer.SaveAndReimport();
             }
+
             concrete.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(path));
             concrete.SetTextureScale("_BaseMap", new Vector2(5, 5));
             EditorUtility.SetDirty(concrete);
@@ -255,17 +268,21 @@ namespace NetRunner.MenuPrototype.Editor
                     Box("Column foot", new Vector3(side * 5.7f, 0.12f, z), new Vector3(0.56f, 0.24f, 0.69f), graphite);
                     Box("Impact marker", new Vector3(side * 5.48f, 0.8f, z), new Vector3(0.055f, 0.18f, 0.5f), rust);
                 }
+
                 Box("Ceiling crossbeam", new Vector3(0, 4.8f, z), new Vector3(11.7f, 0.24f, 0.18f), steel);
                 Box("Slab expansion joint", new Vector3(0, 0.005f, z), new Vector3(11.7f, 0.01f, 0.016f), graphite);
             }
+
             for (int x = -4; x <= 4; x += 4)
             {
                 Box("Longitudinal expansion joint", new Vector3(x, 0.005f, 0), new Vector3(0.016f, 0.01f, 19), graphite);
             }
+
             foreach (float x in new[] { -3.7f, 2.5f })
             {
                 Box("Service lane paint", new Vector3(x, 0.012f, 0), new Vector3(0.07f, 0.01f, 17), rust);
             }
+
             for (int i = 0; i < 3; i++)
             {
                 var pipe = Cylinder("Overhead utility pipe", new Vector3(-4.5f + i * 0.35f, 4.45f, 0), new Vector3(0.14f, 9, 0.14f), steel);
@@ -276,29 +293,35 @@ namespace NetRunner.MenuPrototype.Editor
                     collar.transform.localRotation = Quaternion.Euler(90, 0, 0);
                 }
             }
+
             foreach (float x in new[] { 3.8f, 4.5f })
             {
                 Box("Cable tray side rail", new Vector3(x, 4.25f, 0), new Vector3(0.06f, 0.18f, 18), steel);
             }
+
             for (int z = -8; z <= 8; z++)
             {
                 Box("Cable tray rung", new Vector3(4.15f, 4.21f, z), new Vector3(0.7f, 0.04f, 0.07f), graphite);
             }
+
             for (int i = 0; i < 4; i++)
             {
                 Box("Bundled cable", new Vector3(3.95f + i * 0.11f, 4.22f, 0), new Vector3(0.055f, 0.055f, 18), graphite);
             }
+
             for (int i = 0; i < 3; i++)
             {
                 Box("Service crate", new Vector3(-4.7f, 0.36f + i * 0.73f, 5.5f), new Vector3(1.2f, 0.7f, 1.1f), graphite);
                 Box("Crate latch", new Vector3(-4.09f, 0.36f + i * 0.73f, 5.5f), new Vector3(0.02f, 0.13f, 0.22f), steel);
             }
+
             Box("Restricted access lintel", new Vector3(0, 3.8f, 7.7f), new Vector3(3.6f, 0.4f, 0.5f), steel);
             foreach (int side in new[] { -1, 1 })
             {
                 Box("Restricted access jamb", new Vector3(side * 1.9f, 1.9f, 7.7f), new Vector3(0.3f, 3.8f, 0.5f), steel);
                 Cylinder("Protective bollard", new Vector3(side * 2.5f, 0.6f, 6.9f), new Vector3(0.17f, 0.6f, 0.17f), rust);
             }
+
             Text("SECTOR 04", new Vector3(2.8f, 3.4f, 9.82f), Quaternion.identity, 0.075f, new Color(0.62f, 0.63f, 0.57f));
             Text("RESTRICTED ACCESS", new Vector3(-1.4f, 3.65f, 7.39f), Quaternion.identity, 0.036f, new Color(0.68f, 0.60f, 0.41f));
             Text("POWER DISTRIBUTION\nAUTHORIZED PERSONNEL ONLY", new Vector3(5.83f, 3.35f, 1.4f), Quaternion.Euler(0, -90, 0), 0.038f, new Color(0.58f, 0.60f, 0.57f));
@@ -322,6 +345,7 @@ namespace NetRunner.MenuPrototype.Editor
             {
                 Box("Shutter slat", new Vector3(0, -0.83f + i * 0.14f, -0.08f), new Vector3(3.38f, 0.026f, 0.04f), steel, pivot);
             }
+
             Box("Door threshold", new Vector3(0, 0.025f, 7.6f), new Vector3(3.5f, 0.05f, 0.3f), steel);
             Point("Distant utility light", new Vector3(0, 2.4f, 9.3f), new Color(0.56f, 0.61f, 0.53f), 8.8f, 5);
             return pivot;
@@ -341,10 +365,12 @@ namespace NetRunner.MenuPrototype.Editor
                 var blade = Box("Fan blade", Quaternion.Euler(0, 0, i * 90) * new Vector3(0.3f, 0, 0), new Vector3(0.55f, 0.15f, 0.035f), steel, rotor);
                 blade.transform.localRotation = Quaternion.Euler(0, 0, i * 90 + 20);
             }
+
             for (int i = 0; i < 10; i++)
             {
                 Box("Protective grille", new Vector3(-5.48f + i * 0.15f, 2.15f, -2.03f), new Vector3(0.022f, 1.4f, 0.025f), graphite);
             }
+
             Box("Duct riser", new Vector3(-4.8f, 4.05f, -0.5f), new Vector3(1.1f, 1.25f, 1.25f), steel);
             Box("Maintenance placard", new Vector3(-4.8f, 0.85f, -1.87f), new Vector3(0.6f, 0.2f, 0.02f), rust);
             Text("EXTRACTION / 04", new Vector3(-5.3f, 0.9f, -1.91f), Quaternion.identity, 0.022f, Color.black);
@@ -364,8 +390,10 @@ namespace NetRunner.MenuPrototype.Editor
                 {
                     Box("Cabinet cooling slot", new Vector3(4.52f, 0.39f + j * 0.08f, z), new Vector3(0.02f, 0.025f, 0.77f), steel);
                 }
+
                 Box("Power conduit", new Vector3(5.15f, 3.5f, z), new Vector3(0.14f, 1.45f, 0.14f), graphite);
             }
+
             var lamp = Cylinder("Amber warning lens", new Vector3(3.6f, 2.7f, 7.4f), new Vector3(0.12f, 0.08f, 0.12f), amber);
             lamp.transform.localRotation = Quaternion.Euler(90, 0, 0);
             Point("Status lamp spill", new Vector3(3.6f, 2.7f, 7.2f), new Color(0.77f, 0.36f, 0.11f), 10.4f, 3.5f);
@@ -383,6 +411,7 @@ namespace NetRunner.MenuPrototype.Editor
                 {
                     Box("Fluorescent tube", new Vector3(0, 4.62f, z + x), new Vector3(1.95f, 0.05f, 0.05f), lightStrip);
                 }
+
                 var go = new GameObject("Overhead pool " + z);
                 go.transform.SetParent(environment);
                 go.transform.position = new Vector3(0, 4.48f, z);
@@ -446,6 +475,7 @@ namespace NetRunner.MenuPrototype.Editor
                 material.renderQueue = 3000;
                 AssetDatabase.CreateAsset(material, Folder + "/VFX/NR_Dust.mat");
             }
+
             var go = new GameObject("Sparse suspended dust / max 35 particles");
             go.transform.SetParent(environment);
             go.transform.position = new Vector3(0, 2.5f, 1);
@@ -509,8 +539,10 @@ namespace NetRunner.MenuPrototype.Editor
                 {
                     AssetDatabase.AddObjectToAsset(component, profile);
                 }
+
                 EditorUtility.SetDirty(profile);
             }
+
             var go = new GameObject("Local surveillance grading / no project settings changes");
             go.transform.SetParent(parent);
             var volume = go.AddComponent<Volume>();
@@ -573,11 +605,13 @@ namespace NetRunner.MenuPrototype.Editor
                             double envelope = Math.Exp(-t * (mode == 3 ? 85 : 38));
                             sample = (mode == 3 ? Math.Sin(t * Math.PI * 1800) * 0.12 + noise * 0.15 : noise * 0.18) * envelope;
                         }
+
                         // Fade loop boundaries to avoid periodic clicks.
                         double edge = loop ? Math.Min(1, Math.Min(t, duration - t) / 0.05) : 1;
                         writer.Write((short)(sample * edge * 32767));
                     }
                 }
+
                 AssetDatabase.ImportAsset(path);
                 var importer = (AudioImporter)AssetImporter.GetAtPath(path);
                 var sampleSettings = importer.defaultSampleSettings;
@@ -587,6 +621,7 @@ namespace NetRunner.MenuPrototype.Editor
                 importer.forceToMono = true;
                 importer.SaveAndReimport();
             }
+
             var go = new GameObject(name);
             go.transform.SetParent(parent);
             var source = go.AddComponent<AudioSource>();
