@@ -84,17 +84,10 @@ look at a screenshot; do not report a visual result that was not seen.
 
 ## How we split work
 
-Every backlog task carries one tag, agreed before starting:
-
-- **YOU WRITE** — Samuel implements it to learn. Give the spec, signatures and
-  test names; hints in stages (concept, then API, then a small snippet). Full
-  solution only on request. Review what he writes.
-- **PAIR** — Claude writes it live and explains the non-obvious lines, then
-  leaves Samuel a small follow-up change.
-- **CLAUDE** — Claude builds it; Samuel reviews the result.
-
-Samuel's background is JavaScript and Java. Explain C#- or Unity-specific
-ideas briefly the first time they come up.
+Claude writes all code (tag **CLAUDE**); Samuel decides what gets built and
+reviews the pull request; AdaM404 does the art (tag **ART**). Decided
+2026-11-09, replacing the earlier YOU WRITE and PAIR tags. Each pull request
+explains its non-obvious choices so the review is quick.
 
 ## Code conventions
 

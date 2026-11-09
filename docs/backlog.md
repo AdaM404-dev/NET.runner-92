@@ -11,9 +11,8 @@ needed and what will change. How the system works: [[decisions/README]].
   issues #6 to #12.
 - **Decisions waiting for an answer**: issues #13 to #18.
 
-Work tags: **YOU WRITE** (Samuel implements, Claude reviews), **PAIR** (Claude
-writes and explains, Samuel follows up), **CLAUDE** (Claude builds, Samuel
-reviews), **ART** (AdaM404).
+Work tags: **CLAUDE** (Claude writes all code, Samuel reviews), **ART**
+(AdaM404). Since 2026-11-09 there are no YOU WRITE or PAIR tasks.
 
 Smaller follow-ups that do not have an issue yet are listed under "Should do
 soon" and "Can wait" in [[architecture/before-new-scripts]]; each gets an
