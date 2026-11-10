@@ -11,8 +11,9 @@ to reach the target of [#36](https://github.com/AdaM404-dev/NET.runner-92/issues
 2026-11-10: measured. Alpha test 1 lagged on the test machine; alpha test
 2 added quality levels ([[systems/quality-settings]]); alpha test 3 is the
 measurement build, and its results are below ([#38](https://github.com/AdaM404-dev/NET.runner-92/issues/38)).
-The test machine has integrated Intel graphics, which makes the 60 FPS
-target on Medium unrealistic; the target is being reconsidered on #36. The
+The test machine has integrated Intel graphics (8–14 FPS); Samuel's laptop
+with an RTX 4050 already runs Medium at 119–179 FPS. The target is being
+reconsidered on #36. The
 optimizations come after #31 PR B (decided on #36).
 
 ## What the scene contains
@@ -117,7 +118,34 @@ What the numbers say:
 - **60 FPS needs a frame six times faster than Low today.** That is not
   reachable on this chip with HDRP and this scene; 30 FPS on Low might
   be, once geometry is culled and the fixed costs are cut.
-- The route stopped at the L2→L3 stair: the walker missed a waypoint by
-  1 m and hit its time limit. At about 10 FPS it moves 0.7 m per frame
-  and the waypoint tolerance is 7 cm, so this is most likely the benchmark
-  walker, not the stairs; not yet checked.
+- The route stopped at the L2→L3 stair: the walker stood about 1 m short
+  of the stair's exit waypoint until its time limit ran out. The laptop
+  run below stopped the same way at the L1→L2 stair at 180 FPS, so it is
+  not the frame rate; something holds the walker at the stair core
+  (x = ±32). Not yet investigated; it comes up again when #31 PR B turns
+  the route checks into tests.
+
+### Alpha test 3 build, Samuel's laptop (2026-11-10)
+
+AMD Ryzen 7 7435HS, **NVIDIA GeForce RTX 4050 Laptop GPU** (driver
+615.78.08), 32 GB, Linux, Vulkan, 1920×1080 full screen. Same build and
+options as the Windows run.
+
+Fixed views, average FPS (P95 GPU time in ms in brackets):
+
+| View | Low | Medium | High |
+| --- | --- | --- | --- |
+| South checkpoint | 130 (6.4) | 119 (8.3) | 96 (10.7) |
+| Reception | 177 (5.1) | 153 (6.6) | 114 (9.2) |
+| Ward | 139 (7.0) | 119 (9.0) | 100 (10.1) |
+| Surgery | 165 (5.8) | 142 (7.2) | 113 (9.0) |
+| Research | 207 (4.3) | 179 (5.7) | 131 (7.7) |
+
+Route on Medium (forecourt to the L1→L2 stair, 5,974 frames): 178 FPS on
+average, P95 frame 8.1 ms, P95 main thread 4.8 ms; no frame over 16.7 ms.
+
+- **On a separate graphics card the 60 FPS target is already met**, on
+  every level, with room to spare: the slowest view on High is 96 FPS.
+- The same scene is about 13–15 times slower on the UHD 630 (Medium,
+  South checkpoint: 8.3 ms against 131 ms of GPU time). The gap between
+  the two machines, not the scene alone, is the problem.
