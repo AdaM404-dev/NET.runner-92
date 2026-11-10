@@ -59,9 +59,9 @@ body.
 - **Camera:** objects on layer 8 (`Near-detail geometry`) are culled beyond
   `detailCullDistance` (34 m by default).
 - **Interaction:** each frame `HospitalInteraction` casts a ray from the
-  eyes, 2.65 m long, ignoring layer 2 (`Ignore Raycast`). It finds a
-  `HospitalInteractable` (doors, lift buttons, terminal) and shows its
-  prompt. E calls `Use(player)`. While the reception terminal is open,
+  eyes, 2.65 m long, ignoring layer 2 (`Ignore Raycast`). It finds an
+  `IInteractable` (doors, lift buttons, terminal, relay) and shows its
+  prompt. E calls `Interact(player)`. While the reception terminal is open,
   movement and look pause. See [[systems/doors-and-interaction]].
 - **Lift:** the lift moves the controller with the cabin
   (`FollowPlatform`) and keeps the view direction.

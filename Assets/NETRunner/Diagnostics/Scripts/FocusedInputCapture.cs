@@ -131,7 +131,7 @@ namespace NetRunner.Diagnostics
             player.Warp(new Vector3(target.x, .04f, target.z - 1.48f), Quaternion.identity);
             player.Look(new Vector2(0f, -Mathf.Atan2(player.Eyes.transform.position.y - target.y, 1.48f) * Mathf.Rad2Deg / .13f));
             Physics.SyncTransforms();
-            Report(results, interaction.TargetInView() == relay, "Focused aim acquired the service relay.");
+            Report(results, interaction.TargetInView() as UnityEngine.Object == relay, "Focused aim acquired the service relay.");
             yield return Press(keyboard, Key.Q, .82f);
             yield return Press(keyboard, Key.E, 1.05f);
             Report(results, relay.Linked && latch.Current == LatchViewmodel.Phase.Success, "Focused E linked the service relay.");
@@ -166,7 +166,7 @@ namespace NetRunner.Diagnostics
             player.Warp(new Vector3(target.x, .04f, target.z + 1.88f), Quaternion.Euler(0, 180f, 0));
             player.Look(new Vector2(0f, -Mathf.Atan2(player.Eyes.transform.position.y - target.y, 1.88f) * Mathf.Rad2Deg / .13f));
             Physics.SyncTransforms();
-            Report(results, interaction.TargetInView() == terminal, "Focused aim acquired the counter's right monitor.");
+            Report(results, interaction.TargetInView() as UnityEngine.Object == terminal, "Focused aim acquired the counter's right monitor.");
             yield return Press(keyboard, Key.E, .22f);
             Report(results, terminal.IsOpen && interaction.TerminalActive, "Focused E opened the terminal puzzle.");
             ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(OutputPath()), "10_Reception_Puzzle.png"));

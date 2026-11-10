@@ -45,7 +45,7 @@ namespace NetRunner.Player
             Stow();
         }
 
-        public bool ReadInput(Keyboard keyboard, HospitalInteractable target)
+        public bool ReadInput(Keyboard keyboard, IInteractable target)
         {
             bool owned = Active;
             if (keyboard == null) return owned;

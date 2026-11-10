@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NetRunner.World
 {
-    public sealed class ReceptionSecurityTerminal : HospitalTerminal
+    public sealed class ReceptionSecurityTerminal : MonoBehaviour, ITerminal
     {
         static readonly int Emission = Shader.PropertyToID("_EmissiveColor");
         static readonly int[] Signature = { 3, 1, 4 };
@@ -19,7 +19,7 @@ namespace NetRunner.World
         bool mismatch;
 
         public bool IsOpen => operatorInput;
-        public override string Prompt => cctv.Unlocked ? "CCTV unlocked   /   1  Live cameras" : "E  Breach reception CCTV terminal";
+        public string Prompt => cctv.Unlocked ? "CCTV unlocked   /   1  Live cameras" : "E  Breach reception CCTV terminal";
 
         public void Configure(SecurityCctv network, Renderer indicator)
         {
@@ -27,7 +27,7 @@ namespace NetRunner.World
             linkIndicator = indicator;
         }
 
-        public override void Use(FirstPersonController player)
+        public void Interact(FirstPersonController player)
         {
             if (cctv.Unlocked || IsOpen) return;
             operatorInput = player.GetComponent<HospitalInteraction>();
@@ -71,13 +71,13 @@ namespace NetRunner.World
             return true;
         }
 
-        public override void Close()
+        public void Close()
         {
             if (operatorInput) operatorInput.EndTerminal(this);
             operatorInput = null;
         }
 
-        public override void ReadInput(Keyboard keyboard)
+        public void ReadInput(Keyboard keyboard)
         {
             if (keyboard == null) return;
             if (keyboard.leftArrowKey.wasPressedThisFrame) Select(-1);

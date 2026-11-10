@@ -19,8 +19,9 @@ Written 2026-09-30 from the inspection described in the `systems/` notes
 > were deleted, so much of the "Now" text below describes code that is
 > gone. What changes for the steps:
 >
-> - **Step 5 (#10)** stays, rewritten against the hospital's
->   `HospitalInteraction` and `HospitalDoor`.
+> - **Step 5 (#10)** done 2026-11-10, rewritten against the hospital's
+>   `HospitalInteraction` and `HospitalDoor`: interfaces `IInteractable`
+>   and `ITerminal`, locked doors, the door tests.
 > - **Step 6 (#11)** is closed as obsolete: the hospital's
 >   `FirstPersonController` replaces `NexusPlayer`.
 > - **Step 7 (#12)** is done by #31 PR A: the hospital code uses the
@@ -173,7 +174,7 @@ Not blocking, but cheap if done early:
 | D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. (The warehouse is deleted since #31; the hospital scene's ownership follows [[assets/handoff]].) | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
 | D4 | Target platforms | **Decided 2026-10-04: PC only (Windows and Linux); the Mobile quality level is removed.** | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
 | D5 | Company name and code namespace | **Decided 2026-10-04: company name `NET.runner`; namespaces `NetRunner.<Feature>`.** | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
-| D6 | Doors that are exported open | **Decided 2026-10-15: doors are exported shut (done in PR #21); a test in #10 fails if any warehouse door does not start shut. No runtime detection.** Since #31 the test applies to the hospital doors. | both | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
+| D6 | Doors that are exported open | **Decided 2026-10-15: doors are exported shut (done in PR #21); a test in #10 fails if any warehouse door does not start shut. No runtime detection.** Since #31 the test applies to the hospital doors; it exists since #10 (`EveryDoorStartsShut`). | both | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 
 ## After these steps
 

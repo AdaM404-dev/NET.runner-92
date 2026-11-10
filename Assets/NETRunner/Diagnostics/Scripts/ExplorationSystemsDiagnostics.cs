@@ -68,7 +68,7 @@ namespace NetRunner.Diagnostics
                 call = player.GetComponent<HospitalInteraction>().TargetInView() as HospitalLiftButton;
             }
             Check(call, "West lift call button can be targeted from the lobby.");
-            if (call) call.Use(player);
+            if (call) call.Interact(player);
             else lift.Request(0, false);
             yield return new WaitForSeconds(.82f);
             bool entered = Travel("Lift cabin boarding", new[] { P(-2f, 5.45f), P(-2f, 7.25f) });
@@ -82,9 +82,9 @@ namespace NetRunner.Diagnostics
                 var angle = Quaternion.LookRotation(button.transform.position - eye.position).eulerAngles;
                 player.Look(new Vector2(Mathf.DeltaAngle(eye.eulerAngles.y, angle.y), Mathf.DeltaAngle(angle.x, eye.eulerAngles.x)) / .13f);
                 Physics.SyncTransforms();
-                bool aimed = player.GetComponent<HospitalInteraction>().TargetInView() == button;
+                bool aimed = player.GetComponent<HospitalInteraction>().TargetInView() as UnityEngine.Object == button;
                 Check(aimed, $"Cabin level {target + 1} button is reachable from inside.");
-                if (aimed) button.Use(player);
+                if (aimed) button.Interact(player);
                 else lift.Request(target, true);
                 float end = Time.realtimeSinceStartup + 12f;
                 while (lift.Floor != target && Time.realtimeSinceStartup < end)
@@ -108,7 +108,7 @@ namespace NetRunner.Diagnostics
             var doors = ArchitectureDoors().Where(d => !d.LiftOnly).ToArray();
             foreach (var door in doors)
             {
-                if (!door.Open) door.Use(player);
+                if (!door.Open) door.Interact(player);
                 door.Advance(1f);
             }
             Physics.SyncTransforms();
@@ -147,7 +147,7 @@ namespace NetRunner.Diagnostics
                 if (Vector3.Distance(before[i], patrols[i].transform.position) > .1f && legs[i]
                     && Quaternion.Angle(pose[i], legs[i].localRotation) > .25f) moving++;
             Check(patrols.Length == 4 && moving == 4 && patrols.All(p =>
-                p.GetComponentInChildren<LODGroup>()?.lodCount == 4 && !p.GetComponentInChildren<HospitalInteractable>()),
+                p.GetComponentInChildren<LODGroup>()?.lodCount == 4 && p.GetComponentInChildren<IInteractable>() == null),
                 $"{moving} K-7 patrols moved and animated their original rig. All have four LODs and no interaction target.");
             if (patrols.Length > 1)
             {
