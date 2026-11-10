@@ -13,20 +13,25 @@ gameplay code moved into it in Step 4 ([#9](https://github.com/AdaM404-dev/NET.r
 **State since #31 PR B (2026-11-10):** the warehouse code and the
 `MainMenu/` prototype were deleted in PR A; playtest 2 added `Settings/`;
 PR B moved the hospital code in, behaviour unchanged; #41 brought `Enemy`
-to the coding standard:
+and #42 `Atmosphere` to the coding standard:
 
 ```
 Assets/NETRunner/
 ├─ Core/                          NetRunner.Core: rules in plain C#, no scene objects
 │  ├─ Scripts/VerticalMotion.cs     gravity, jump and ground stick for one frame
-│  ├─ Scripts/Easing.cs             a slow-start, slow-end curve
+│  ├─ Scripts/Easing.cs             a straight line and a slow-start, slow-end curve
 │  ├─ Scripts/QualityChoice.cs      next quality level, start level
 │  ├─ Scripts/StartResolution.cs    first-start screen size, capped at 1080p
 │  ├─ Scripts/FrameRateMeter.cs     averaged frames per second
 │  ├─ Scripts/LaunchArguments.cs    reads the game's command-line options
 │  ├─ Scripts/Patrol.cs             walking a route back and forth: turn, walk, wait at the ends
 │  ├─ Scripts/K7Gait.cs             the K-7's leg, arm and head angles as it walks
-│  └─ Tests/EditMode/               56 tests, run in a fraction of a second
+│  ├─ Scripts/ZoneBlend.cs          how much a point is inside an atmosphere zone
+│  ├─ Scripts/Ambience.cs           interior blend, ambience volumes, dust, steam
+│  ├─ Scripts/RainField.cs          rain streaks around the listener
+│  ├─ Scripts/AmbientEvents.cs      lightning, thunder, monitor beeps, creaks
+│  ├─ Scripts/LightPulse.cs         emergency and intermittent light levels
+│  └─ Tests/EditMode/               113 tests, run in a fraction of a second
 ├─ Settings/                      NetRunner.Settings: graphics quality for players
 │  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
 │  └─ Tests/PlayMode/               5 tests
@@ -36,7 +41,8 @@ Assets/NETRunner/
 │  └─ Editor/                       NetRunner.World.Editor: the hospital scene builders
 ├─ Enemy/                         NetRunner.Enemy: K7Patrol (moves the robot, turns its bones)
 │  └─ Tests/PlayMode/               5 tests on a stand-in robot
-├─ Atmosphere/                    NetRunner.Atmosphere: fog zones, ambience, light pulses
+├─ Atmosphere/                    NetRunner.Atmosphere: zones, weather and ambience, pulsing lights
+│  └─ Tests/PlayMode/               15 tests on a stand-in site
 └─ Diagnostics/                   NetRunner.Diagnostics: the 95 hospital checks, benchmark modes
    └─ Tests/PlayMode/               1 test that runs the 95 checks
 ```
@@ -73,7 +79,8 @@ NetRunner.Diagnostics ──→ World, Enemy, Atmosphere, Player
 NetRunner.World ────────→ NetRunner.Player
 NetRunner.Settings ─────→ NetRunner.Core
 NetRunner.Enemy ────────→ NetRunner.Core
-NetRunner.Player, Atmosphere: none of ours
+NetRunner.Atmosphere ───→ NetRunner.Core
+NetRunner.Player: none of ours
 ```
 
 **`World` uses `Player`**: doors, lift and stairs take a
@@ -114,9 +121,10 @@ definition.
 The rules for writing code (paradigm, fields and access, naming, member
 order, layout, formatting, tests) are in [[architecture/coding-standards]].
 In one line: rules in plain C# in `Core` with EditMode tests, thin
-MonoBehaviours, content as ScriptableObjects. `Enemy` follows it since #41;
-the rest of the hospital code does not yet, and #42–#45 bring it in line,
-one feature each (Atmosphere, Player, World, Diagnostics).
+MonoBehaviours, content as ScriptableObjects. `Enemy` (#41) and
+`Atmosphere` (#42) follow it; the rest of the hospital code does not yet,
+and #43–#45 bring it in line, one feature each (Player, World,
+Diagnostics).
 
 ## Why feature folders, not one folder per kind of code
 
