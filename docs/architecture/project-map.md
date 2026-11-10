@@ -3,9 +3,9 @@
 Where everything is, what uses it, and who owns it. Start here when you are
 looking for something. Rewritten on 2026-11-10 for #31 PR A: the Northline
 hospital is the main map, the project uses HDRP, and the warehouse, the
-main-menu prototype and `NexusPlayer` are gone. #31 PR B moves the hospital
-code from `Assets/NETRunner92/` into feature folders; this map changes
-again then.
+main-menu prototype and `NexusPlayer` are gone. Updated for #31 PR B: the
+hospital code moved from `Assets/NETRunner92/` into feature folders under
+`Assets/NETRunner/`; `Assets/NETRunner92/` now holds only art and scenes.
 
 Ownership follows the proposal in [[assets/handoff]], which AdaM404 has not
 confirmed yet.
@@ -71,30 +71,34 @@ move or be renamed together with its `.meta`.
 
 ## Code
 
-The hospital code is all in namespace `NETRunner92`, compiled into Unity's
-default `Assembly-CSharp` (no assembly definitions yet), so it does not
-follow [[architecture/overview]] and [[architecture/coding-standards]] yet;
-#31 PR B and C fix that.
+Since #31 PR B the hospital code is in feature folders, each with its own
+assembly and namespace `NetRunner.<Feature>` ([[architecture/overview]]).
+The code itself is unchanged from Northline and does not follow
+[[architecture/coding-standards]] yet; #31 PR C fixes that feature by
+feature. Paths below are under `Assets/NETRunner/`.
 
 | File | What it does | Note |
 | --- | --- | --- |
-| `NETRunner92/Player/Scripts/FirstPersonController.cs` | movement, mouse look, cursor | [[systems/player]] |
-| `NETRunner92/Core/HospitalInteraction.cs` | aiming ray, prompt, E key; base class `HospitalInteractable` | [[systems/doors-and-interaction]] |
-| `NETRunner92/Core/HospitalDoor.cs`, `HospitalLift.cs`, `HospitalLiftButton.cs`, `StairAccess.cs` | doors, lift, first-ascent rules | [[systems/doors-and-interaction]] |
-| `NETRunner92/Core/ReceptionSecurityTerminal.cs`, `Player/Scripts/SecurityCctv.cs` | reception puzzle and live CCTV | [[systems/doors-and-interaction]] |
-| `NETRunner92/Player/Scripts/Latch*.cs` | LATCH-07 tablet | [[systems/player]] |
-| `NETRunner92/Core/K7Patrol.cs` | K-7 patrol walk | [[systems/enemy-k7]] |
-| `NETRunner92/Atmosphere/*.cs`, `Core/ResidualPower.cs` | fog zones, ambience, flickering lights | [[systems/level-hospital]] |
-| `NETRunner92/Core/*Diagnostics.cs`, `*Capture.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | Play-mode checks and captures run by the validator; `PerformanceCapture` and `RoutePerformanceCapture` are also the built game's benchmark modes | [[systems/performance]] |
-| `NETRunner92/Editor/*.cs` | scene builders and `PlayModeValidation` | [[systems/level-hospital]] |
+| `Player/Scripts/FirstPersonController.cs` | movement, mouse look, cursor | [[systems/player]] |
+| `Player/Scripts/HospitalInteraction.cs` | aiming ray, prompt, E key; base classes `HospitalInteractable` and `HospitalTerminal` | [[systems/doors-and-interaction]] |
+| `Player/Scripts/Latch*.cs`, `SecurityCctv.cs` | LATCH-07 tablet and live CCTV | [[systems/player]] |
+| `Player/Editor/LatchViewmodelBuilder.cs` | LATCH-07 import check scene | [[systems/player]] |
+| `World/Scripts/HospitalDoor.cs`, `HospitalLift.cs`, `HospitalLiftButton.cs`, `StairAccess.cs` | doors, lift, first-ascent rules | [[systems/doors-and-interaction]] |
+| `World/Scripts/ReceptionSecurityTerminal.cs` | reception puzzle that unlocks CCTV | [[systems/doors-and-interaction]] |
+| `World/Scripts/ResidualPower.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | flickering emergency power; room plan and stair route used by the checks | [[systems/level-hospital]] |
+| `Enemy/Scripts/K7Patrol.cs` | K-7 patrol walk | [[systems/enemy-k7]] |
+| `Atmosphere/Scripts/*.cs` | fog zones, ambience, light pulses | [[systems/level-hospital]] |
+| `Diagnostics/Scripts/*Diagnostics.cs` | the hospital's 95 Play-mode checks (editor only) | [[systems/level-hospital]] |
+| `Diagnostics/Scripts/PerformanceCapture.cs`, `RoutePerformanceCapture.cs`, `FocusedInputCapture.cs` | the built game's benchmark and input-check modes | [[systems/performance]] |
+| `Diagnostics/Tests/PlayMode/HospitalChecksTests.cs` | runs the 95 checks as one NUnit test | [[architecture/tooling]] |
+| `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`) and `PlayModeValidation` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/VerticalMotion.cs`, `Easing.cs` | plain C# rules; currently unused by the hospital | — |
 | `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` | rules behind the quality switch | [[systems/quality-settings]] |
 | `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
 | `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 34 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 34 EditMode (`Core`) and 5 PlayMode (`Settings`). The hospital's 95 Play-mode checks run through
-`PlayModeValidation`, not the test runner, until #31 PR B turns them into
-NUnit tests.
+Tests: 34 EditMode (`Core`) and 6 PlayMode (5 in `Settings`, 1 in
+`Diagnostics` that runs the hospital's 95 checks in about 45 seconds).
 
 ## Project settings that matter
 

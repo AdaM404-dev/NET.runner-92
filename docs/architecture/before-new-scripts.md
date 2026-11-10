@@ -20,13 +20,14 @@ Written 2026-09-30 from the inspection described in the `systems/` notes
 > gone. What changes for the steps:
 >
 > - **Step 5 (#10)** stays, rewritten against the hospital's
->   `HospitalInteraction` and `HospitalDoor` after #31 PR B.
+>   `HospitalInteraction` and `HospitalDoor`.
 > - **Step 6 (#11)** is closed as obsolete: the hospital's
 >   `FirstPersonController` replaces `NexusPlayer`.
 > - **Step 7 (#12)** is done by #31 PR A: the hospital code uses the
 >   Input System, and Active Input Handling is Input System only.
-> - New first: #31 PR B moves the hospital code into feature folders with
->   assemblies and NUnit tests; PR C brings it to the coding standard.
+> - Done: #31 PR B moved the hospital code into feature folders with
+>   assemblies and an NUnit test; next, PR C brings it to the coding
+>   standard.
 >
 > "Should do soon" items S3, S5, S6 and S7 were about the warehouse player
 > and no longer apply as written.

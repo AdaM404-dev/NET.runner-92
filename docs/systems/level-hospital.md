@@ -12,8 +12,10 @@ Built by AdaM404 with Codex as the separate "Northline Phase 07" project
 (PR #30), then moved into the root project by #31 PR A. Its 95-check
 PlayMode validator passed on Windows (Direct3D 11) before the move; for the
 Linux run after the move, see the work log in [`agent.md`](../../agent.md).
-The code still sits in `Assets/NETRunner92/` in one namespace
-(`NETRunner92`) without assemblies; #31 PR B moves it into feature folders.
+#31 PR B moved its code into feature folders under `Assets/NETRunner/`
+([[architecture/project-map]]); the art and scenes stay in
+`Assets/NETRunner92/`. The 95 checks now also run as an NUnit PlayMode test
+(`bin/unity-test play`).
 
 ## Where it lives
 
@@ -24,7 +26,7 @@ The code still sits in `Assets/NETRunner92/` in one namespace
 | Hospital and exterior geometry | `Assets/NETRunner92/Environment/Hospital`, `Exterior` (meshes in `MeshData.bytes`, Git LFS) |
 | Materials (HDRP Lit) | `Assets/NETRunner92/Environment/Materials` |
 | Fog, lighting, audio, VFX | `Assets/NETRunner92/Atmosphere/` |
-| Scene builders (editor menu **NET.runner-92**) | `Assets/NETRunner92/Editor/` |
+| Scene builders (editor menu **NET.runner-92**) | `Assets/NETRunner/World/Editor/` |
 | Blender sources, renders, cinematic, design notes | [`Northline/`](../../Northline/README.md) |
 
 ## How it works

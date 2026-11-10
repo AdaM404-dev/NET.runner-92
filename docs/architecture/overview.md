@@ -10,9 +10,9 @@ feature folder holds its own scripts, its own tests and, later, its own
 prefabs, UI and art, so everything about one feature is in one place. The
 gameplay code moved into it in Step 4 ([#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9)).
 
-**State since #31 PR A (2026-11-10):** the warehouse code (`World/`,
-`Player/`) and the `MainMenu/` prototype were deleted. Playtest 2 added
-`Settings/`:
+**State since #31 PR B (2026-11-10):** the warehouse code and the
+`MainMenu/` prototype were deleted in PR A; playtest 2 added `Settings/`;
+PR B moved the hospital code in, behaviour unchanged:
 
 ```
 Assets/NETRunner/
@@ -22,48 +22,63 @@ Assets/NETRunner/
 │  ├─ Scripts/QualityChoice.cs      next quality level, start level
 │  ├─ Scripts/StartResolution.cs    first-start screen size, capped at 1080p
 │  ├─ Scripts/FrameRateMeter.cs     averaged frames per second
-│  └─ Tests/EditMode/               28 tests, run in a fraction of a second
+│  └─ Tests/EditMode/               34 tests, run in a fraction of a second
 └─ Settings/                      NetRunner.Settings: graphics quality for players
-   ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
-   └─ Tests/PlayMode/               5 tests
+│  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
+│  └─ Tests/PlayMode/               5 tests
+├─ Player/                        NetRunner.Player: FirstPersonController, interaction, LATCH-07, CCTV
+│  └─ Editor/                       NetRunner.Player.Editor: LATCH-07 import check
+├─ World/                         NetRunner.World: doors, lift, stairs, terminal, emergency power
+│  └─ Editor/                       NetRunner.World.Editor: the hospital scene builders
+├─ Enemy/                         NetRunner.Enemy: K7Patrol
+├─ Atmosphere/                    NetRunner.Atmosphere: fog zones, ambience, light pulses
+└─ Diagnostics/                   NetRunner.Diagnostics: the 95 hospital checks, benchmark modes
+   └─ Tests/PlayMode/               1 test that runs the 95 checks
 ```
 
-The hospital's code is still in `Assets/NETRunner92/` in one namespace,
-`NETRunner92`, outside any assembly definition (see
-[[architecture/project-map]]). #31 PR B moves it into this layout, behaviour
-unchanged: `Player/` (`FirstPersonController`, LATCH-07, CCTV), `World/`
-(doors, lift, stairs, interaction, terminal), a new `Enemy/` (`K7Patrol`),
-a new `Atmosphere/`, and an `Editor/` assembly per feature for the scene
-builders.
+Two choices differ from the plan on #31, both to keep behaviour unchanged:
+
+- **One editor assembly for the scene builders**, in `World/Editor/`, not
+  one per feature. The builders are a single `partial class
+  HospitalSceneBuilder` spread over eight files, and C# cannot split one
+  class across assemblies. Splitting it is #31 PR C work.
+- **A `Diagnostics` feature** for the hospital's checks and the benchmark
+  modes. They use every other feature, and the benchmark modes have to
+  ship in the built game, so they cannot live in a test assembly. The
+  checks stay usable from `PlayModeValidation` (AdaM404's workflow) and from
+  the NUnit test.
 
 Each `Scripts/` folder has an **assembly definition** (`.asmdef` file). Unity
 compiles every assembly definition into its own DLL, and a script can only
 use code from assemblies its own assembly lists as references. Two things
 follow from that:
 
-- **Dependencies point one way.** `Player` may use `World` and `Core`;
-  `World` may use `Core`; `Core` uses nothing of ours. If `Core` tried to use
-  the player script, it would not compile. That keeps the rules in `Core`
-  testable without a scene.
+- **Dependencies point one way.** `Core` uses nothing of ours. If `Core`
+  tried to use the player script, it would not compile. That keeps the
+  rules in `Core` testable without a scene.
 - **Faster compiles.** Changing a file recompiles its own assembly and the
   ones that reference it, not the whole project.
 
 The namespace matches the assembly: `NetRunner.Core`, `NetRunner.World`,
-`NetRunner.Player`. Namespaces are what packages are in Java: after #31 PR B
-the full name of the door script will be `NetRunner.World.HospitalDoor`.
+`NetRunner.Player`. Namespaces are what packages are in Java: the full name
+of the door script is `NetRunner.World.HospitalDoor`.
 
 ```
-NetRunner.Player ──→ NetRunner.World ──→ NetRunner.Core
-        │                                       ↑
-        └───────────────────────────────────────┘
+NetRunner.Diagnostics ──→ World, Enemy, Atmosphere, Player
+NetRunner.World ────────→ NetRunner.Player
+NetRunner.Settings ─────→ NetRunner.Core
+NetRunner.Player, Enemy, Atmosphere: none of ours
 ```
 
-In the hospital code the interaction base class (`HospitalInteractable`)
-takes the player type as a parameter, so `World` and `Player` would need
-each other. #31 PR B has to break that cycle; the planned way is
+Today **`World` uses `Player`**: doors, lift and stairs take a
+`FirstPersonController` (`HospitalInteractable.Use(FirstPersonController)`).
+The player used to need `World` back for one thing, the reception
+terminal taking over the keyboard; PR B broke that cycle with an abstract
+`HospitalTerminal` base class in `Player` that the terminal derives from.
+The longer-term plan is
 [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10): an
 interaction interface in `Core`, so the player talks to "anything
-interactable".
+interactable" and neither side names the other.
 
 **Tests sit next to the code they test**, in `Tests/EditMode/` (no scene,
 runs in milliseconds; for `Core`) and `Tests/PlayMode/` (loads a scene and
@@ -79,7 +94,7 @@ out. How to run them: [[architecture/tooling]].
 | is a thing placed in the level | `World/Scripts/` | `HospitalDoor`, `HospitalLift`, terminals, pickups |
 | belongs to the player | `Player/Scripts/` | `FirstPersonController`, `LatchViewmodel` |
 | starts a new feature (enemies, hacking UI, saves) | a new folder `Assets/NETRunner/<Feature>/` with `Scripts/` and an assembly definition `NetRunner.<Feature>` | `K7Patrol` goes into `Enemy/` |
-| is an editor tool | `<Feature>/Editor/`, with an assembly definition limited to the Editor platform | the hospital's scene builders, after #31 PR B |
+| is an editor tool | `<Feature>/Editor/`, with an assembly definition limited to the Editor platform | the hospital's scene builders in `World/Editor/` |
 
 Asset helper scripts delivered with art (for example the K7 robot's) keep
 their own assembly next to their asset; see [[systems/enemy-k7]].
@@ -87,8 +102,8 @@ their own assembly next to their asset; see [[systems/enemy-k7]].
 A script that ends up outside any assembly definition compiles into Unity's
 default assembly (`Assembly-CSharp`), and **no assembly definition can
 reference that one**. So a stray script in a random folder cannot be used by
-our code. Today the hospital code in `Assets/NETRunner92/` is outside any
-assembly definition; #31 PR B fixes that.
+our code. Since #31 PR B no script of ours is outside an assembly
+definition.
 
 ## Principles
 
@@ -110,8 +125,8 @@ folder, for rules that several features use.
 ## Next refactors
 
 From [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31): PR B
-moves the hospital code into feature folders with assemblies and turns its
-95 Play-mode checks into NUnit tests (behaviour unchanged, the checks pass
+moved the hospital code into feature folders with assemblies and runs its
+95 Play-mode checks as an NUnit test (behaviour unchanged, the checks pass
 before and after); PR C and later bring each feature in line with
 [[architecture/coding-standards]], including the interaction contract of
 [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10). The switch
