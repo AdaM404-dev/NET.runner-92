@@ -26,7 +26,7 @@ unity command test_status          # poll until "completed"; prints every result
 unity command eval 'return Application.unityVersion;'
 bin/unity-shot hospital            # Game view -> Logs/shots/hospital.png
 bin/unity-shot layout scene        # Scene view
-bin/unity-inspect                  # read-only reports: scene, environment, animation
+bin/unity-inspect                  # read-only reports: scene, environment
 ```
 
 `bin/unity-inspect` runs the C# snippets in `tools/inspect/` inside the

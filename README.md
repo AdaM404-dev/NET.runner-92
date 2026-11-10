@@ -39,8 +39,6 @@ On Linux the editor must run on **Vulkan** (HDRP does not support OpenGL); the p
 - `Assets/NETRunner/Core/`: plain C# rules and their tests.
 - `Northline/`: the hospital's Blender sources, cinematic, renders, interface prototype and design notes.
 - `ArtSource/K7_Industrial_Robot/`: the complete K7 robot source package (Blender source, FBX LODs, 2K/4K textures, previews, validation reports). The hospital already uses its FBX with HDRP materials. See its [README](ArtSource/K7_Industrial_Robot/README.md).
-- `Assets/Characters/NEXUS/`, `Assets/Materials/`, `Assets/Animations/`, `Assets/Prefabs/`: the NEXUS character. It is not used by the hospital and its materials are still URP (they render magenta); whether it stays is open on #31.
-- `Assets/Documentation/`: character asset attribution.
 
 Unity-generated `Library`, `Temp`, `Logs`, and similar directories are excluded from Git.
 

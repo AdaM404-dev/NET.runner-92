@@ -64,7 +64,7 @@ unity command run_tests --mode editor                        # EditMode tests
 unity command run_tests --mode playmode --async_tests true   # PlayMode tests, then
 unity command test_status                                    # poll until "completed"
 bin/unity-shot <name> [game|scene]    # screenshot into Logs/shots/
-bin/unity-inspect [scene|environment|animation]  # read-only facts
+bin/unity-inspect [scene|environment]  # read-only facts
 ```
 
 Decisions on GitHub (needs `gh`):

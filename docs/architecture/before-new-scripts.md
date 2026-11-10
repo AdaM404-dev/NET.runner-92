@@ -158,12 +158,12 @@ Not blocking, but cheap if done early:
   step per frame: simple, predictable and testable. The new `PlayerMotor`
   keeps the idea.
 - **Camera placement in `LateUpdate`**: the right moment.
-- **The NEXUS model**: humanoid rig, LODs, clean import reports.
+- **The NEXUS model**: humanoid rig, LODs, clean import reports. (Deleted in #46.)
 - **URP with the Forward+ renderer**: handles the 106 lights. (Replaced by HDRP in #31.)
 - **A separate, simple collision model** (40,680 triangles instead of 1.08
   million) and **static flags** on the building.
 - **The naming scheme** (`DOOR_`, `FLOOR_`, `NF_`, …) and the object hierarchy.
-- **The 52 URP materials.** (The warehouse's were deleted in #31; the NEXUS ones wait for AdaM404.)
+- **The 52 URP materials.** (The warehouse's were deleted in #31, the NEXUS ones in #46.)
 
 ## Decisions needed
 

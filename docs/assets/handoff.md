@@ -8,10 +8,8 @@ before crossing a boundary.
 
 | Area | Owner |
 | --- | --- |
-| `Assets/Characters`, `Assets/Environment`, `Assets/Materials`, `Assets/Animations`, `Assets/Documentation` | AdaM404 |
 | Hospital art in `Assets/NETRunner92/` (`Environment/`, `Atmosphere/` audio and VFX, `Player/Latch07/` models and materials, `Rendering/`) and `Northline/` | AdaM404 |
 | Gameplay code in `Assets/NETRunner/` (`Core` and later features) (since #31 PR B also the hospital code), gameplay scenes, `docs/`, `bin/` | Claude writes it, Samuel reviews |
-| `Assets/Prefabs` | Shared: art prefabs are AdaM404's; gameplay prefabs wrap them as variants or nested prefabs |
 | `ProjectSettings/`, `Packages/` | Shared: change by PR only |
 
 ## How art arrives
@@ -21,8 +19,7 @@ before crossing a boundary.
 - Gameplay never modifies an art prefab in place; it nests it or makes a
   prefab variant, so a re-export does not wipe gameplay wiring.
 - Materials use **HDRP** shaders (HDRP Lit) since #31 (2026-11-10). URP and
-  Built-in materials render magenta in this project; the NEXUS character's
-  URP materials are waiting for AdaM404's decision on #31. See
+  Built-in materials render magenta in this project. See
   [[systems/rendering]] for HDRP mask maps.
 - Source attribution and licences go in `Assets/Documentation/`.
 - Source packages that Unity must not import (Blender files, generator

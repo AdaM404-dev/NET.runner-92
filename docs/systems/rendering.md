@@ -41,9 +41,8 @@ OpenGLCore is not supported with HDRP"). See the work log in
 
 - New art targets **HDRP Lit**. HDRP mask maps pack metallic (R), ambient
   occlusion (G), detail mask (B) and smoothness (A).
-- The NEXUS character's materials (`Assets/Materials/NEXUS`) are still
-  URP Lit and render magenta. NEXUS is not used by the hospital; whether
-  to convert or delete it is AdaM404's call, asked on #31.
+- No URP materials are left: the NEXUS character, the last user of them,
+  was deleted in #46 (2026-11-10).
 - The K-7 robot in the hospital already has HDRP materials
   ([[systems/enemy-k7]]).
 

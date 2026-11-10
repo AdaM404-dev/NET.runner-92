@@ -39,8 +39,6 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | `NETRunner/Settings/` | `QualitySwitch` (F2 quality, F3 FPS) and its PlayMode tests, two assembly definitions; see [[systems/quality-settings]] | 4 | Claude/Samuel |
 | `HDRPDefaultResources/` | HDRP global settings and default volume profile | 2 | shared, change by pull request |
 | `UI Toolkit/` | Unity's default runtime theme, used by the LATCH-07 screen | 1 | shared |
-| `Characters/NEXUS/`, `Materials/`, `Animations/`, `Prefabs/` | the NEXUS character: models, 24 URP materials, Animator, two prefabs. **Unused since #31**; AdaM404 decides on #31 whether it stays | 128 | AdaM404 |
-| `Documentation/` | character licences | 2 | AdaM404 |
 | `InputSystem_Actions.inputactions` | Unity's default input actions, the project-wide actions asset; no script reads it | 1 | Claude/Samuel |
 
 Inside `NETRunner92/`:
@@ -159,7 +157,7 @@ In the editor:
 From the terminal (the editor must be open):
 
 ```bash
-bin/unity-inspect                  # scene, environment, animation reports
+bin/unity-inspect                  # scene and environment reports
 unity command find_gameobjects --type HospitalDoor
 unity command find_assets --type Prefab
 grep -rn "Reach" Assets/NETRunner92 --include=*.cs   # plain text search in the code
