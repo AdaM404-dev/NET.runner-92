@@ -74,8 +74,8 @@ move or be renamed together with its `.meta`.
 Since #31 PR B the hospital code is in feature folders, each with its own
 assembly and namespace `NetRunner.<Feature>` ([[architecture/overview]]).
 The code itself is unchanged from Northline and does not follow
-[[architecture/coding-standards]] yet; #31 PR C fixes that feature by
-feature. Paths below are under `Assets/NETRunner/`.
+[[architecture/coding-standards]] yet; #41–#45 fix that, one
+feature each. Paths below are under `Assets/NETRunner/`.
 
 | File | What it does | Note |
 | --- | --- | --- |
