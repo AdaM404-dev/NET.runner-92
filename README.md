@@ -8,11 +8,17 @@ Development status and agent handoff notes are tracked in [agent.md](agent.md).
 
 ### Open the complete project
 
-1. Clone the repository, or download its ZIP from GitHub and extract it:
+1. Clone the repository. The art (textures, models, Blender files, audio) is
+   stored in [Git LFS](https://git-lfs.com/), so install LFS once per machine
+   first; Git for Windows includes it:
 
    ```bash
+   git lfs install
    git clone https://github.com/AdaM404-dev/NET.runner-92.git
    ```
+
+   A clone without LFS, or a ZIP download from GitHub, contains small pointer
+   files instead of the art, and Unity shows missing or magenta assets.
 
 2. In Unity Hub, add the cloned or extracted project folder. Select the folder that directly contains `Assets`, `Packages`, and `ProjectSettings`.
 3. Open it with Unity **6000.6.2f1**. Let Unity download the packages and finish importing the assets on first launch. The generated `Library` folder does not need to be downloaded from GitHub.

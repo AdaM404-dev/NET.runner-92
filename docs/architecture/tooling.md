@@ -97,6 +97,10 @@ Linux player build about 5 minutes (356 MB output).
 
 ## Known platform quirks
 
+- Art is in Git LFS since 2026-11-09 (see [[assets/handoff]]). Run
+  `git lfs install` once before cloning. Merged branches are deleted on
+  GitHub after merging.
+
 - The Linux editor adds `com.unity.sdk.linux-x86_64` and
   `com.unity.toolchain.linux-x86_64-linux` to `Packages/manifest.json`, and
   may touch `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED`
