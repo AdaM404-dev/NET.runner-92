@@ -49,7 +49,6 @@ System notes:
 | [[systems/quality-settings]] | Low / Medium / High, F2 and F3, resolution scaling |
 | [[systems/performance]] | what the hospital costs, the benchmarks, the optimization plan (#36) |
 | [[systems/enemy-k7]] | the K-7 robots patrolling the hospital |
-| [[systems/character-and-animation]] | the NEXUS model and Animator, unused since #31 |
 
 ## Conventions
 

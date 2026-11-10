@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Print read-only facts about the project, taken from the open Unity editor.
-# Usage: bin/unity-inspect [scene|environment|animation ...]
-#        With no arguments: scene, environment and animation.
+# Usage: bin/unity-inspect [scene|environment ...]
+#        With no arguments: scene and environment.
 # Each name is a C# snippet in tools/inspect/ that is run through
 # `unity command eval_file`. The snippets only read; they change nothing.
 # Needs the editor open on this project and the Unity CLI (`unity`) on PATH.
@@ -10,7 +10,7 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 names=("$@")
-[[ ${#names[@]} -eq 0 ]] && names=(scene environment animation)
+[[ ${#names[@]} -eq 0 ]] && names=(scene environment)
 
 status=0
 for name in "${names[@]}"; do

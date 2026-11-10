@@ -2,10 +2,10 @@
 
 > **Out of date since #31 (2026-11-10).** This guide walks through the
 > warehouse, `NexusPlayer` and `NexusDoor`, which were deleted when the
-> Northline hospital became the main map. It will be rewritten for the
-> hospital once #31 PR B has moved the hospital code into feature folders.
-> Until then, start with [[systems/level-hospital]] and [[systems/player]];
-> the general Unity explanations still apply.
+> Northline hospital became the main map, and the NEXUS character, deleted
+> in #46. It is to be rewritten for the hospital. Until then, start with
+> [[systems/level-hospital]] and [[systems/player]]; the general Unity
+> explanations still apply.
 
 A hands-on walk through the editor and the code, about 40 minutes. Nothing
 here changes a file: everything you try happens in Play mode and is undone
@@ -158,7 +158,7 @@ not stick. See `systems/camera` (deleted in #31).
    raised-arms pose; its weight is 0, and the script turns it up to 1 when
    you press Tab.
 
-See [[systems/character-and-animation]].
+The NEXUS character was deleted in #46.
 
 ## 7. A door up close (3 min)
 

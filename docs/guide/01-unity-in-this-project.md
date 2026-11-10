@@ -2,10 +2,10 @@
 
 > **Out of date since #31 (2026-11-10).** This guide walks through the
 > warehouse, `NexusPlayer` and `NexusDoor`, which were deleted when the
-> Northline hospital became the main map. It will be rewritten for the
-> hospital once #31 PR B has moved the hospital code into feature folders.
-> Until then, start with [[systems/level-hospital]] and [[systems/player]];
-> the general Unity explanations still apply.
+> Northline hospital became the main map, and the NEXUS character, deleted
+> in #46. It is to be rewritten for the hospital. Until then, start with
+> [[systems/level-hospital]] and [[systems/player]]; the general Unity
+> explanations still apply.
 
 Every Unity idea the game uses today, each shown on a real object you can
 click. Read it with the editor open on the `MainTest` scene. It takes about
@@ -204,7 +204,7 @@ project uses **URP** (Universal Render Pipeline), configured by the assets in
 | **Animator** component: plays a controller on a model | on `NEXUS_Character/LOD0` |
 
 Open **Window > Animation > Animator** with `LOD0` selected to see the graph.
-See [[systems/character-and-animation]].
+The NEXUS character was deleted in #46.
 
 ## 15. Level of detail (LOD)
 

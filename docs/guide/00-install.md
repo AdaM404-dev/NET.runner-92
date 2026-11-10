@@ -246,7 +246,6 @@ scripts are bash and are only tested on Linux.
 | You see | Why | Fix |
 | --- | --- | --- |
 | Magenta (bright pink) hospital surfaces | the art is LFS placeholders | `git lfs install`, then `git lfs pull`, then reopen Unity |
-| The **NEXUS** character is magenta | expected: it still has URP materials and is unused since #31 | nothing; AdaM404 decides on #31 whether it stays |
 | Linux: the Game view is black or empty, title bar says `<OpenGLCore>` | HDRP does not render on OpenGL | check Edit → Project Settings → Player → Other Settings: Linux graphics APIs must list Vulkan only; or start the editor with `-force-vulkan`. Install Vulkan drivers (`vulkan-radeon`, `vulkan-intel` or the NVIDIA driver) |
 | The Hub wants to "upgrade" the project | wrong editor version | close without upgrading; install 6000.6.2f1 (step 4) |
 | Unity opens in **Safe Mode** | the code does not compile | read the errors in the console; ask before changing anything, the code on `main` should always compile |

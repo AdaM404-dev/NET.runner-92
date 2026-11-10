@@ -29,16 +29,18 @@ reception hacking and live CCTV on the LATCH-07 tablet; see
   which first-person clips AdaM404 makes first.
 - **Since #31 (2026-11-10):** the hospital player has no third-person
   view and no visible body. The arms-only model of #14 is now the LATCH-07
-  arms viewmodel; the NEXUS arms and full body are unused, and whether they
-  stay is asked of AdaM404 on #31. See [[systems/player]] and
-  [[systems/character-and-animation]].
+  arms viewmodel. The NEXUS arms and full body were deleted on 2026-11-10
+  (AdaM404's decision on #46); they remain in Git history. See
+  [[systems/player]].
 
 ## To settle at the kickoff
 
 - **Pillars** — the three or four things the game must deliver.
 - **Core loop** — what the player does minute to minute, and session to session.
-- **Player character** — is NEXUS the fixed protagonist? Which interaction and
-  hacking animations are needed for the full-body skeleton?
+- **Player character** — who the protagonist is (the interface prototype
+  calls the operator "NEXUS / OPERÁTOR 092"; the NEXUS model itself was
+  deleted in #46). Which interaction and hacking animations do the LATCH-07
+  arms need?
 - **Netrunning / hacking** — what it is mechanically and how it ties into
   exploration and combat.
 - **RPG systems** — stats, progression, inventory, cyberware, quests, dialogue.
