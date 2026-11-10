@@ -1,6 +1,7 @@
 # NET.runner-92
 
-First-person cyberpunk RPG in Unity `6000.6.2f1` (URP). Two people: Samuel
+First-person cyberpunk RPG in Unity `6000.6.2f1` (HDRP; on Linux the editor
+runs on Vulkan). The main map is the Northline hospital. Two people: Samuel
 (gameplay code, on Linux, works with Claude Code) and AdaM404 (art and
 graphical content, on Windows, works with his own AI agent). Anything
 committed has to work on both platforms.
@@ -63,7 +64,7 @@ unity command run_tests --mode editor                        # EditMode tests
 unity command run_tests --mode playmode --async_tests true   # PlayMode tests, then
 unity command test_status                                    # poll until "completed"
 bin/unity-shot <name> [game|scene]    # screenshot into Logs/shots/
-bin/unity-inspect [player|scene|environment|animation|doors|map]  # read-only facts
+bin/unity-inspect [scene|environment|animation]  # read-only facts
 ```
 
 Decisions on GitHub (needs `gh`):
@@ -91,8 +92,9 @@ explains its non-obvious choices so the review is quick.
 
 ## Code conventions
 
-- Code lives in feature folders, `Assets/NETRunner/<Feature>/` (today
-  `Core`, `World`, `Player` and the `MainMenu` prototype). Each has
+- Code lives in feature folders, `Assets/NETRunner/<Feature>/` (today only
+  `Core`; the hospital code in `Assets/NETRunner92/` moves there in #31
+  PR B). Each has
   `Scripts/` with one assembly definition and namespace `NetRunner.<Feature>`,
   and its tests next to it in `Tests/EditMode/` or `Tests/PlayMode/`, each
   with its own test assembly. A new feature gets a new folder. References
@@ -115,14 +117,15 @@ explains its non-obvious choices so the review is quick.
 - `Library/`, `Temp/`, `Logs/`, `Builds/`, `UserSettings/` stay out of git.
 - On Linux the editor rewrites `Packages/manifest.json`,
   `packages-lock.json` and several `ProjectSettings` files on its own. Never
-  commit those: the added packages are Linux-host toolchains and the
-  teammate works on Windows. Stage files by name, not `git add -A`.
+  commit those additions: the added packages are Linux-host toolchains and
+  the teammate works on Windows. Stage files by name, not `git add -A`; when
+  one of these files also has an intended change, stage only that change.
   See "Known platform quirks" in `docs/architecture/tooling.md`.
-- Art folders (`Assets/Characters`, `Environment`, `Materials`, `Animations`)
-  and the preview scenes belong to the teammate. Do not modify them without
+- Art folders (`Assets/Characters`, `Materials`, `Animations`, the art in
+  `Assets/NETRunner92/` and `Northline/`) belong to the teammate. Do not modify them without
   asking; see `docs/assets/handoff.md`.
-- Never save `MainTest` or `CharacterPreview` as a side effect: URP marks
-  them unsaved on its own. Entering and leaving Play mode is safe.
+- Until #31 PR B lands, add no new code or scenes to the hospital's old
+  layout outside that PR (the freeze in `agent.md`).
 
 ## Git
 

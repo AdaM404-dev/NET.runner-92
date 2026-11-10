@@ -4,6 +4,14 @@
 RPG. The perspective/model direction below is recorded; the remaining topics
 still need design work.
 
+## Main map: the Northline hospital (2026-11-10, #31)
+
+Samuel decided the Northline hospital is the main map; the warehouse was
+deleted. The hospital brings a four-floor first ascent, a lift, K-7 patrols,
+reception hacking and live CCTV on the LATCH-07 tablet; see
+[[systems/level-hospital]]. Its own design notes are in
+[`Northline/`](../../Northline/README.md).
+
 ## Perspective direction recorded 2026-10-02
 
 - **Decided 2026-10-15 (#13):** the game is first person. Third person is
@@ -19,7 +27,10 @@ still need design work.
   issue. This replaces AdaM404's earlier "full body for now" answer.
 - Open from #14: whether the arms model includes the cybernetic left arm, and
   which first-person clips AdaM404 makes first.
-- No camera, scene or animation behavior was changed by documenting these. See [[systems/camera]] and
+- **Since #31 (2026-11-10):** the hospital player has no third-person
+  view and no visible body. The arms-only model of #14 is now the LATCH-07
+  arms viewmodel; the NEXUS arms and full body are unused, and whether they
+  stay is asked of AdaM404 on #31. See [[systems/player]] and
   [[systems/character-and-animation]].
 
 ## To settle at the kickoff
@@ -32,8 +43,8 @@ still need design work.
   exploration and combat.
 - **RPG systems** — stats, progression, inventory, cyberware, quests, dialogue.
 - **Combat** — ranged, melee, stealth, or avoidable.
-- **World** — structure (hub and missions, open districts, linear), and how the
-  warehouse environment fits.
+- **World** — structure (hub and missions, open districts, linear), and what
+  comes after the hospital.
 - **Scope** — target platforms, target length, and the first playable milestone.
 
 Once settled, each topic becomes its own note in this folder

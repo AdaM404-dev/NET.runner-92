@@ -11,15 +11,15 @@ Current status and the work log are **not** here: they live in
 
 New to the project or to Unity? Read in this order:
 
-1. [[guide/01-unity-in-this-project]]: the Unity ideas the game uses, each
-   shown on a real object.
-2. [[guide/02-guided-tour]]: a 40-minute hands-on walk through the editor
-   and the code.
-3. [[architecture/project-map]]: where everything is, and "I want to change
+1. [[guide/01-unity-in-this-project]] and [[guide/02-guided-tour]]: the
+   Unity ideas and a hands-on tour. Both still show the deleted warehouse
+   and are rewritten for the hospital after #31; read
+   [[systems/level-hospital]] and [[systems/player]] alongside them.
+2. [[architecture/project-map]]: where everything is, and "I want to change
    X → open Y".
-4. [[architecture/before-new-scripts]]: what has to change before new
+3. [[architecture/before-new-scripts]]: what has to change before new
    gameplay scripts are added.
-5. The [Roadmap issue #5](https://github.com/AdaM404-dev/NET.runner-92/issues/5) on GitHub: every next step and open
+4. The [Roadmap issue #5](https://github.com/AdaM404-dev/NET.runner-92/issues/5) on GitHub: every next step and open
    decision, in order, each with why and what will change.
 
 ## Map of the docs
@@ -34,21 +34,18 @@ New to the project or to Unity? Read in this order:
 | [[assets/handoff\|assets/]] | Art pipeline, naming, and who owns which folders |
 | [[backlog]] | Where the backlog is: the GitHub issues, and what was done before them |
 | [[journal]] | Dated session notes: what was built, what was learned |
-| `img/` | Pictures used by the notes; the floor plan is generated, see [[systems/level-warehouse]] |
+| `img/` | Pictures used by the notes |
 
 System notes:
 
 | Note | Covers |
 | --- | --- |
-| [[systems/player]] | the player object, its script, keys, what happens each frame |
-| [[systems/player-movement]] | the movement maths inside `Simulate`, step by step |
-| [[systems/camera]] | first- and third-person camera |
-| [[systems/character-and-animation]] | the NEXUS model, LODs, Animator, clips |
-| [[systems/doors-and-interaction]] | doors and the E key |
-| [[systems/level-warehouse]] | the warehouse scene, its areas, collision, lights |
-| [[systems/rendering]] | URP settings, materials, why the scene looks dark |
-| [[systems/main-menu]] | isolated surveillance terminal, UI, simulated loading, tuning and validation |
-| [[systems/enemy-k7]] | the K7 robot package, not imported yet |
+| [[systems/level-hospital]] | the Northline hospital: the main map, its floors, route and scene structure |
+| [[systems/player]] | the first-person player, keys, movement, LATCH-07 |
+| [[systems/doors-and-interaction]] | the E key: doors, lift, stairs, reception terminal |
+| [[systems/rendering]] | HDRP settings, materials, Vulkan on Linux |
+| [[systems/enemy-k7]] | the K-7 robots patrolling the hospital |
+| [[systems/character-and-animation]] | the NEXUS model and Animator, unused since #31 |
 
 ## Conventions
 

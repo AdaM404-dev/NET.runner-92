@@ -1,5 +1,7 @@
 # Northline repository integration
 
+> **Superseded by #31 (2026-11-10):** the hospital is now the root project, which uses HDRP. The assets moved to `Assets/NETRunner92/` and the separate project was retired. The text below records the Phase 07 import as it was.
+
 Northline Phase 07 runs as a sibling HDRP Unity project. The root project uses URP and its own `NetRunner.Core`, `NetRunner.Player`, `NetRunner.World` and `NetRunner.MainMenu` assemblies. Open `Northline/NETRunner92_Hospital` in Unity Hub to play or develop the snapshot.
 
 The import preserves the verified Northline C# source, scene files, asset GUIDs and pinned dependencies. It uses the existing project boundaries so the Unity projects load their own assets and packages. A future port into the root project needs URP material and lighting conversion, a mapping to the current feature assemblies and tests against the shared player and interaction contracts. [Root architecture](../../docs/architecture/overview.md) · [Coding standards](../../docs/architecture/coding-standards.md)

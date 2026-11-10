@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - World
+  - Near-detail geometry
+  - First-person viewmodel
   - Enemy
   - Interactable
   - 

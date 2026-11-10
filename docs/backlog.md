@@ -8,7 +8,7 @@ needed and what will change. How the system works: [[decisions/README]].
 - **In the terminal**: `bin/decisions`.
 - **Foundation** (before new gameplay scripts):
   [milestone](https://github.com/AdaM404-dev/NET.runner-92/milestone/1),
-  issues #6 to #12.
+  issues #6 to #12; since 2026-11-10 #31 (hospital and HDRP) comes first.
 - **Decisions waiting for an answer**: issues #13 to #18.
 
 Work tags: **CLAUDE** (Claude writes all code, Samuel reviews), **ART**

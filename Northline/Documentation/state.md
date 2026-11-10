@@ -3,7 +3,7 @@
 ## Start here
 
 - [Phase 07 Windows x64 development build](../Builds/README.md#current-windows-build) is the current player for this snapshot. Keep the DLLs and `NETRunner92_Hospital_Data` beside the executable. Use W/A/S/D to move, the mouse to look, Shift to sprint and **E** to operate a world control. After breaching the reception terminal, press **1** for CCTV and use the arrow keys to switch feeds.
-- [Unity project](../NETRunner92_Hospital) uses installed Unity **6000.6.2f1**, HDRP **17.6.0** and Input System **1.19.0**. Open [Hospital_Exploration.unity](../NETRunner92_Hospital/Assets/NETRunner92/Scenes/Hospital_Exploration.unity) and press Play. The scene opens with the invisible first-person capsule inside the south quarantine gate.
+- [Unity project](../../Assets/NETRunner92) (moved into the root project by #31) uses installed Unity **6000.6.2f1**, HDRP **17.6.0** and Input System **1.19.0**. Open [Hospital_Exploration.unity](../../Assets/NETRunner92/Scenes/Hospital_Exploration.unity) and press Play. The scene opens with the invisible first-person capsule inside the south quarantine gate.
 - The hospital now includes the LATCH-07 viewmodel and optional service relay. The new implementation, controls and QA evidence are in the [LATCH-07 Unity checkpoint](latch07_unity.md).
 - The existing reception monitor runs a three-cell signature puzzle. It unlocks six live virtual viewpoints on LATCH-07 for the current scene session. [CCTV implementation and verification](cctv_unity.md)
 - [Corrected Blender source](../Environment/Hospital_Quarantine_Grounds.blend) remains the source of truth. Its 12 collision proxies are hidden in Blender review layers and were deliberately exported for Unity physics.
