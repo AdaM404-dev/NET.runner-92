@@ -3,39 +3,26 @@ using UnityEngine;
 
 namespace NetRunner.Player
 {
-    public abstract class HospitalInteractable : MonoBehaviour
-    {
-        public abstract string Prompt { get; }
-        public abstract void Use(FirstPersonController player);
-    }
-
-    /// <summary>
-    /// An interactable that takes over the keyboard while it is open, such as
-    /// the reception security terminal. It lives here so the player's
-    /// interaction does not depend on the World assembly.
-    /// </summary>
-    public abstract class HospitalTerminal : HospitalInteractable
-    {
-        public abstract void ReadInput(Keyboard keyboard);
-        public abstract void Close();
-    }
-
     [RequireComponent(typeof(FirstPersonController))]
     public sealed class HospitalInteraction : MonoBehaviour
     {
         public const float Reach = 2.65f;
         FirstPersonController player;
         LatchViewmodel latch;
-        HospitalTerminal terminal;
-        HospitalInteractable target;
+        ITerminal terminal;
+        IInteractable target;
         GUIStyle label;
-        public bool TerminalActive => terminal;
+        public bool TerminalActive => Alive(terminal);
 
-        public void BeginTerminal(HospitalTerminal value) => terminal = value;
-        public void EndTerminal(HospitalTerminal value)
+        public void BeginTerminal(ITerminal value) => terminal = value;
+        public void EndTerminal(ITerminal value)
         {
             if (terminal == value) terminal = null;
         }
+
+        // Interfaces skip Unity's "destroyed object equals null" check, so
+        // ask the component itself whether it still exists.
+        static bool Alive(IInteractable value) => value is Object component && component;
 
         void Awake()
         {
@@ -43,16 +30,16 @@ namespace NetRunner.Player
             latch = GetComponent<LatchViewmodel>();
         }
 
-        public HospitalInteractable TargetInView()
+        public IInteractable TargetInView()
         {
             var view = player.Eyes.transform;
             return Physics.Raycast(view.position, view.forward, out var hit, Reach, ~(1 << 2), QueryTriggerInteraction.Collide)
-                ? hit.collider.GetComponentInParent<HospitalInteractable>() : null;
+                ? hit.collider.GetComponentInParent<IInteractable>() : null;
         }
 
         void Update()
         {
-            if (terminal)
+            if (TerminalActive)
             {
                 if (Cursor.lockState == CursorLockMode.Locked) terminal.ReadInput(Keyboard.current);
                 else terminal.Close();
@@ -66,12 +53,12 @@ namespace NetRunner.Player
             }
             target = TargetInView();
             if (latch && latch.ReadInput(Keyboard.current, target)) return;
-            if (target && Keyboard.current?.eKey.wasPressedThisFrame == true) target.Use(player);
+            if (Alive(target) && Keyboard.current?.eKey.wasPressedThisFrame == true) target.Interact(player);
         }
 
         void OnGUI()
         {
-            if (Cursor.lockState != CursorLockMode.Locked || terminal) return;
+            if (Cursor.lockState != CursorLockMode.Locked || TerminalActive) return;
             if (latch && latch.Active && !latch.CctvHintVisible) return;
             if (label == null)
             {
@@ -89,7 +76,7 @@ namespace NetRunner.Player
                 GUI.Label(hint, latch.CctvHint, label);
             }
             if (latch && latch.Active) return;
-            if (!target) return;
+            if (!Alive(target)) return;
             var box = new Rect(Screen.width * .5f - 187, Screen.height * .5f + 26, 374, 30);
             GUI.Box(box, GUIContent.none);
             GUI.Label(box, target.Prompt, label);

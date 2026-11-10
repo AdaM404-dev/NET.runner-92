@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace NetRunner.Player
 {
-    public sealed class LatchRelay : HospitalInteractable
+    public sealed class LatchRelay : MonoBehaviour, IInteractable
     {
         static readonly int Emission = Shader.PropertyToID("_EmissiveColor");
         [SerializeField] Renderer indicator;
         public bool Linked { get; private set; }
-        public override string Prompt => Linked ? "Q  Service relay linked" : "Q  Open LATCH-07 / service relay";
+        public string Prompt => Linked ? "Q  Service relay linked" : "Q  Open LATCH-07 / service relay";
 
         public void Configure(Renderer lamp) => indicator = lamp;
-        public override void Use(FirstPersonController player) => player.GetComponent<LatchViewmodel>()?.Toggle(this);
+        public void Interact(FirstPersonController player) => player.GetComponent<LatchViewmodel>()?.Toggle(this);
 
         public bool TryLink(FirstPersonController player)
         {

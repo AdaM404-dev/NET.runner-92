@@ -24,14 +24,14 @@ namespace NetRunner.Diagnostics
             LookAtReceptionTerminal(player, terminal);
             var view = player.Eyes.transform;
             Physics.Raycast(view.position, view.forward, out var hit, HospitalInteraction.Reach, ~(1 << 2), QueryTriggerInteraction.Collide);
-            Check(reached && interaction.TargetInView() == terminal,
+            Check(reached && interaction.TargetInView() as UnityEngine.Object == terminal,
                 $"Player can walk around the reception counter and target the existing right monitor (ray hit {hit.collider?.name}).");
-            terminal.Use(player);
+            terminal.Interact(player);
             Check(terminal.IsOpen && interaction.TerminalActive, "The desk terminal owns input while the puzzle is open.");
             Check(!terminal.Submit() && !network.Unlocked && terminal.IsOpen, "An incorrect signature keeps the CCTV locked.");
             terminal.Close();
             Check(!terminal.IsOpen && !interaction.TerminalActive && !network.Unlocked, "Exiting the terminal leaves the CCTV locked.");
-            terminal.Use(player);
+            terminal.Interact(player);
             terminal.Adjust(1);
             terminal.Adjust(1);
             terminal.Select(-1);

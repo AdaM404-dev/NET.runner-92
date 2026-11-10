@@ -80,7 +80,7 @@ feature. Paths below are under `Assets/NETRunner/`.
 | File | What it does | Note |
 | --- | --- | --- |
 | `Player/Scripts/FirstPersonController.cs` | movement, mouse look, cursor | [[systems/player]] |
-| `Player/Scripts/HospitalInteraction.cs` | aiming ray, prompt, E key; base classes `HospitalInteractable` and `HospitalTerminal` | [[systems/doors-and-interaction]] |
+| `Player/Scripts/HospitalInteraction.cs`, `IInteractable.cs` | aiming ray, prompt, E key; the interfaces `IInteractable` and `ITerminal` | [[systems/doors-and-interaction]] |
 | `Player/Scripts/Latch*.cs`, `SecurityCctv.cs` | LATCH-07 tablet and live CCTV | [[systems/player]] |
 | `Player/Editor/LatchViewmodelBuilder.cs` | LATCH-07 import check scene | [[systems/player]] |
 | `World/Scripts/HospitalDoor.cs`, `HospitalLift.cs`, `HospitalLiftButton.cs`, `StairAccess.cs` | doors, lift, first-ascent rules | [[systems/doors-and-interaction]] |
@@ -91,14 +91,16 @@ feature. Paths below are under `Assets/NETRunner/`.
 | `Diagnostics/Scripts/*Diagnostics.cs` | the hospital's 95 Play-mode checks (editor only) | [[systems/level-hospital]] |
 | `Diagnostics/Scripts/PerformanceCapture.cs`, `RoutePerformanceCapture.cs`, `FocusedInputCapture.cs` | the built game's benchmark and input-check modes | [[systems/performance]] |
 | `Diagnostics/Tests/PlayMode/HospitalChecksTests.cs` | runs the 95 checks as one NUnit test | [[architecture/tooling]] |
+| `World/Tests/PlayMode/DoorInteractionTests.cs` | doors start shut, aim, open/close, lock | [[systems/doors-and-interaction]] |
 | `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`) and `PlayModeValidation` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/VerticalMotion.cs`, `Easing.cs` | plain C# rules; currently unused by the hospital | — |
 | `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` | rules behind the quality switch | [[systems/quality-settings]] |
 | `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
 | `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 34 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 34 EditMode (`Core`) and 6 PlayMode (5 in `Settings`, 1 in
-`Diagnostics` that runs the hospital's 95 checks in about 45 seconds).
+Tests: 34 EditMode (`Core`) and 11 PlayMode (5 in `Settings`, 5 in
+`World`, 1 in `Diagnostics` that runs the hospital's 95 checks in about 45
+seconds).
 
 ## Project settings that matter
 

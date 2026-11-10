@@ -11,9 +11,9 @@ code in `NexusPlayer`, which were deleted.
 
 Came with the Northline hospital (PR #30) and was moved into the root
 project by #31 PR A without code changes; #31 PR B moved it into feature
-folders. #10 (one interaction contract;
-doors that know if they are open; a test that every door starts shut, from
-decision #16) will be rewritten against these types.
+folders. #10 (2026-11-10) replaced the base classes with interfaces, added
+locked doors and the PlayMode tests below, including the #16 check that
+every door starts shut.
 
 ## Where it lives
 
@@ -23,8 +23,8 @@ The interaction is in `Assets/NETRunner/Player/Scripts/` (namespace
 
 | Type | Job |
 | --- | --- |
-| `HospitalInteractable` (in `HospitalInteraction.cs`) | base class: a `Prompt` and `Use(FirstPersonController)` |
-| `HospitalTerminal` (in `HospitalInteraction.cs`) | base class for an interactable that takes over the keyboard while open (`ReadInput`, `Close`); added in #31 PR B so `Player` does not need `World` |
+| `IInteractable` (`Player/Scripts/IInteractable.cs`) | the contract: a `Prompt` and `Interact(FirstPersonController)` |
+| `ITerminal` (same file) | an `IInteractable` that takes over the keyboard while open (`ReadInput`, `Close`) |
 | `HospitalInteraction` | on the player: ray from the eyes, prompt, E key ([[systems/player]]) |
 | `HospitalDoor` | one opening: swing leaves, sliding pairs or the telescopic research barrier |
 | `HospitalLift`, `HospitalLiftButton` | the west lift: cabin, cabin door, landing doors, call and floor buttons |
@@ -38,12 +38,20 @@ patrols` in `Hospital_Exploration.unity`. Moving leaves and their
 ## How it works
 
 - **Aim and use:** the ray is 2.65 m (`HospitalInteraction.Reach`), ignores
-  layer 2 and also hits triggers. It takes the `HospitalInteractable` on
-  the hit collider or a parent.
+  layer 2 and also hits triggers. It takes the first `IInteractable` on
+  the hit collider or a parent. `HospitalDoor`, `HospitalLiftButton`,
+  `ReceptionSecurityTerminal` (an `ITerminal`) and `LatchRelay` implement
+  it; any component can, whatever it derives from. Because an interface
+  skips Unity's "destroyed object equals null" check, the interaction asks
+  the component whether it still exists before using it.
 - **Doors:** each `HospitalDoor` stores closed and open poses per panel
   (`Panel`: position and rotation) and blends between them. `Closed` and
-  `Open` report the state, so the doors already "know if they are open".
-  All doors start closed on scene load. A closing door reopens if the
+  `Open` report the state, so the doors "know if they are open".
+  `IsPosedShut()` says whether every leaf stands at its closed pose (1 mm,
+  0.1°); all doors start shut on scene load, and a test checks it.
+- **Locks:** `SetLocked(true)` makes a door prompt "Locked" and ignore E
+  (and the diagnostics' path-opening). Locking does not close an open
+  door. No door is locked in the scene today; hacking will unlock doors. A closing door reopens if the
   player is in its clearance (`Obstructed`). Lift landing doors are
   `liftOnly` and can't be opened by hand; the east lift's doors are
   `offline`.
@@ -67,10 +75,25 @@ Full description and controls:
 - About 100 regular doors; the exact count has not been re-measured in the
   root project (the old `doors` report read `NexusDoor` and was removed).
 - The 2.65 m reach, the `~(1 << 2)` mask and prompt texts are hard-coded.
-- No NUnit tests yet; the hospital's own validator
-  (`Editor/PlayModeValidation.cs`) checks the route, doors and lift in
-  Play mode.
+- `IInteractable` lives in `Player`, not `Core`: `Core` has no engine
+  references, and the one who interacts is the player. So `World` still
+  depends on `Player` ([[architecture/overview]]).
+
+## Tests
+
+`World/Tests/PlayMode/DoorInteractionTests` (#10), in the real scene:
+
+| Test | Checks |
+| --- | --- |
+| `EveryDoorStartsShut` | every `HospitalDoor`, lift doors included, is `Closed` and `IsPosedShut()` at load (#16) |
+| `AimingAtADoorFromTwoMetresTargetsIt` | eyes 2 m in front of the first reachable ordinary door: the interaction targets it, prompt "E  Open door" |
+| `UsingADoorOpensAndClosesIt` | `Interact` opens it and the prompt becomes "E  Close door"; again closes it |
+| `ALockedDoorSaysLockedAndStaysShut` | a locked door prompts "Locked" and does not move |
+| `AHalfOpenDoorIsNotPosedShut` | `IsPosedShut()` catches a leaf away from its closed pose |
+
+The 95 hospital checks (`Diagnostics/Tests/PlayMode/HospitalChecksTests`)
+also open every door and ride the lift.
 
 ## Open questions
 
-- The shape of the single interaction contract (#10).
+- None for the contract. Hacking decides who calls `SetLocked(false)`.

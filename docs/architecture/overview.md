@@ -70,15 +70,13 @@ NetRunner.Settings ─────→ NetRunner.Core
 NetRunner.Player, Enemy, Atmosphere: none of ours
 ```
 
-Today **`World` uses `Player`**: doors, lift and stairs take a
-`FirstPersonController` (`HospitalInteractable.Use(FirstPersonController)`).
-The player used to need `World` back for one thing, the reception
-terminal taking over the keyboard; PR B broke that cycle with an abstract
-`HospitalTerminal` base class in `Player` that the terminal derives from.
-The longer-term plan is
-[#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10): an
-interaction interface in `Core`, so the player talks to "anything
-interactable" and neither side names the other.
+**`World` uses `Player`**: doors, lift and stairs take a
+`FirstPersonController` (`IInteractable.Interact(FirstPersonController)`).
+The player never names a `World` type: it talks to "anything
+interactable" through the interfaces `IInteractable` and `ITerminal` in
+`Player` ([#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)).
+They are in `Player` rather than `Core` because `Core` has no engine
+references and the one who interacts is the player.
 
 **Tests sit next to the code they test**, in `Tests/EditMode/` (no scene,
 runs in milliseconds; for `Core`) and `Tests/PlayMode/` (loads a scene and

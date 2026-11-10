@@ -17,7 +17,7 @@ namespace NetRunner.Diagnostics
             if (!relay) yield break;
             interaction.enabled = false;
             AimAtRelay(relay);
-            Check(interaction.TargetInView() == relay, "The service relay is targetable from the south forecourt.");
+            Check(interaction.TargetInView() as UnityEngine.Object == relay, "The service relay is targetable from the south forecourt.");
             latch.Toggle(relay);
             yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
             latch.Tap();
