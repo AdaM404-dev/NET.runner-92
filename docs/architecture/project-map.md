@@ -22,6 +22,7 @@ NET.runner-92/
 ├─ docs/              this knowledge base; open the folder in Obsidian
 ├─ bin/               terminal helpers: unity-compile, unity-test, unity-build, unity-shot, unity-inspect
 ├─ tools/inspect/     the read-only reports behind bin/unity-inspect
+├─ tools/benchmark/   run-benchmarks.bat, shipped in the Windows alpha zips
 ├─ .claude/           Claude Code settings and skills
 ├─ CLAUDE.md          instructions for Claude Code
 ├─ AGENTS.md, agent.md  instructions and shared status for every AI agent
@@ -34,7 +35,7 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | Folder | What is in it | Files | Owner |
 | --- | --- | ---: | --- |
 | `NETRunner92/` | **the hospital**: scenes, environment, player, K-7, atmosphere, rendering, code, editor builders (below) | 285 | code: Claude/Samuel; art: AdaM404 |
-| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`) and their EditMode tests, two assembly definitions | 12 | Claude/Samuel |
+| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`) and their EditMode tests, two assembly definitions | 14 | Claude/Samuel |
 | `NETRunner/Settings/` | `QualitySwitch` (F2 quality, F3 FPS) and its PlayMode tests, two assembly definitions; see [[systems/quality-settings]] | 4 | Claude/Samuel |
 | `HDRPDefaultResources/` | HDRP global settings and default volume profile | 2 | shared, change by pull request |
 | `UI Toolkit/` | Unity's default runtime theme, used by the LATCH-07 screen | 1 | shared |
@@ -84,14 +85,14 @@ follow [[architecture/overview]] and [[architecture/coding-standards]] yet;
 | `NETRunner92/Player/Scripts/Latch*.cs` | LATCH-07 tablet | [[systems/player]] |
 | `NETRunner92/Core/K7Patrol.cs` | K-7 patrol walk | [[systems/enemy-k7]] |
 | `NETRunner92/Atmosphere/*.cs`, `Core/ResidualPower.cs` | fog zones, ambience, flickering lights | [[systems/level-hospital]] |
-| `NETRunner92/Core/*Diagnostics.cs`, `*Capture.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | Play-mode checks and captures run by the validator | — |
+| `NETRunner92/Core/*Diagnostics.cs`, `*Capture.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | Play-mode checks and captures run by the validator; `PerformanceCapture` and `RoutePerformanceCapture` are also the built game's benchmark modes | [[systems/performance]] |
 | `NETRunner92/Editor/*.cs` | scene builders and `PlayModeValidation` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/VerticalMotion.cs`, `Easing.cs` | plain C# rules; currently unused by the hospital | — |
-| `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs` | rules behind the quality switch | [[systems/quality-settings]] |
+| `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` | rules behind the quality switch | [[systems/quality-settings]] |
 | `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
-| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 28 EditMode and 5 PlayMode tests | the test runner |
+| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 34 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 28 EditMode (`Core`) and 5 PlayMode (`Settings`). The hospital's 95 Play-mode checks run through
+Tests: 34 EditMode (`Core`) and 5 PlayMode (`Settings`). The hospital's 95 Play-mode checks run through
 `PlayModeValidation`, not the test runner, until #31 PR B turns them into
 NUnit tests.
 

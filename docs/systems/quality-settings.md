@@ -5,20 +5,20 @@
 Let the game run on weaker graphics cards: three quality levels the player
 switches with **F2**, an FPS counter on **F3**, and a first start that
 does not draw at a 4K monitor's full size. Added 2026-11-10 after the first
-Windows playtest build lagged; Samuel chose the design in chat.
+Windows alpha test build lagged; Samuel chose the design in chat ([#34](https://github.com/AdaM404-dev/NET.runner-92/issues/34)).
 
 ## Status
 
-Built and tested on Linux; part of the "hospital playtest 2" build. Not
-yet measured on the Windows test machine.
+Built and tested on Linux; released in alpha test 2. Not yet measured on
+the Windows test machine; see [[systems/performance]].
 
 ## Where it lives
 
 | What | Where |
 | --- | --- |
 | The component | `Assets/NETRunner/Settings/Scripts/QualitySwitch.cs` (assembly and namespace `NetRunner.Settings`) |
-| Rules, plain C# | `Assets/NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs` |
-| Tests | `Core/Tests/EditMode/QualityChoiceTests`, `StartResolutionTests`, `FrameRateMeterTests` (18); `Settings/Tests/PlayMode/QualitySwitchTests` (5) |
+| Rules, plain C# | `Assets/NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` |
+| Tests | `Core/Tests/EditMode/QualityChoiceTests`, `StartResolutionTests`, `FrameRateMeterTests`, `LaunchArgumentsTests` (24); `Settings/Tests/PlayMode/QualitySwitchTests` (5) |
 | Pipeline assets | `Assets/NETRunner92/Rendering/Northline_HDRP_Low.asset`, `Northline_HDRP_Medium.asset`, `Northline_HDRP.asset` (High) |
 | Levels | Edit → Project Settings → Quality |
 
@@ -61,6 +61,9 @@ frames. It works on any graphics card.
 - **F2**: next level (`QualityChoice.Next`; after High comes Low), shows
   "Quality: …" for two seconds, saves it in `PlayerPrefs` (on Windows the
   registry, key `NetRunner.Settings.QualityLevel`).
+- **Launch option** `-net92-quality Low` (or `Medium`, `High`, any case):
+  that level for this run only; nothing is saved and F2 does not save
+  either. The benchmark script uses it ([[systems/performance]]).
 - **F3**: FPS counter on or off, averaged over half a second
   (`FrameRateMeter`).
 - **Resolution scaling needs the camera's permission**: HDRP only scales

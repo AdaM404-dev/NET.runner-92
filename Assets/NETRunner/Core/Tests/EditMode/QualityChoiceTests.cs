@@ -47,6 +47,25 @@ namespace NetRunner.Core.Tests
         }
 
         [Test]
+        public void ALevelIsFoundByNameInAnyCase()
+        {
+            string[] names = { "Low", "Medium", "High" };
+
+            Assert.That(QualityChoice.FromName("Medium", names), Is.EqualTo(1));
+            Assert.That(QualityChoice.FromName("high", names), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void AnUnknownNameIsNotALevel()
+        {
+            string[] names = { "Low", "Medium", "High" };
+
+            Assert.That(QualityChoice.FromName("Ultra", names), Is.EqualTo(-1));
+            Assert.That(QualityChoice.FromName("", names), Is.EqualTo(-1));
+            Assert.That(QualityChoice.FromName(null, names), Is.EqualTo(-1));
+        }
+
+        [Test]
         public void ASavedLevelThatNoLongerExistsFallsBack()
         {
             Assert.That(QualityChoice.StartLevel(5, 3, 1), Is.EqualTo(1));

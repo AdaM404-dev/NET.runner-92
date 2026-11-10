@@ -1,3 +1,4 @@
+using System;
 using NetRunner.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,11 +13,14 @@ namespace NetRunner.Settings
     /// On a first start the screen is capped at 1080p. It also lets the
     /// game cameras use HDRP's resolution scaling, which the Low and Medium
     /// pipeline assets switch on. Created automatically when the game starts,
-    /// so no scene needs it.
+    /// so no scene needs it. Starting the game with <c>-net92-quality Low</c>
+    /// (or Medium, High) uses that level for this run without saving it,
+    /// which the benchmark script relies on.
     /// </summary>
     public sealed class QualitySwitch : MonoBehaviour
     {
         private const string SavedLevelKey = "NetRunner.Settings.QualityLevel";
+        private const string QualityOption = "-net92-quality";
         private const int StartMaxHeight = 1080;
         private const float NoteSeconds = 2f;
         private const float MeterWindowSeconds = 0.5f;
@@ -108,21 +112,34 @@ namespace NetRunner.Settings
             var host = new GameObject(nameof(QualitySwitch));
             DontDestroyOnLoad(host);
             var qualitySwitch = host.AddComponent<QualitySwitch>();
-            qualitySwitch.remember = !Application.isEditor;
-            if (qualitySwitch.remember)
+            if (!Application.isEditor)
             {
-                ApplyStartSettings();
+                qualitySwitch.remember = ApplyStartSettings();
             }
         }
 
-        private static void ApplyStartSettings()
+        /// <returns>Whether this run saves the player's choices: not when a level was given at launch.</returns>
+        private static bool ApplyStartSettings()
         {
             bool firstStart = !PlayerPrefs.HasKey(SavedLevelKey);
+            string launchName = LaunchArguments.ValueAfter(Environment.GetCommandLineArgs(), QualityOption);
+            int launchLevel = QualityChoice.FromName(launchName, QualitySettings.names);
+            bool remember = launchLevel < 0;
             int saved = PlayerPrefs.GetInt(SavedLevelKey, -1);
-            int level = QualityChoice.StartLevel(saved, QualitySettings.count, QualitySettings.GetQualityLevel());
+            int level = remember ? QualityChoice.StartLevel(saved, QualitySettings.count, QualitySettings.GetQualityLevel()) : launchLevel;
             QualitySettings.SetQualityLevel(level, true);
-            PlayerPrefs.SetInt(SavedLevelKey, level);
-            PlayerPrefs.Save();
+            if (remember)
+            {
+                PlayerPrefs.SetInt(SavedLevelKey, level);
+                PlayerPrefs.Save();
+            }
+
+            CapFirstStart(firstStart);
+            return remember;
+        }
+
+        private static void CapFirstStart(bool firstStart)
+        {
             if (!firstStart)
             {
                 return;
