@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="328" height="102" viewBox="0 0 328 102" role="img" aria-label="NET.runner 92 — stealth-panel">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Stealth-1" data-layer="Stealth">
+<rect x="4" y="4" width="320" height="94" fill="#090f13" opacity="0.88"/>
+<polyline points="24,34.5 29.75,27.6 40.09999999999991,27.6 47,34.5 40.09999999999991,41.400000000000006 29.75,41.400000000000006 24,34.5" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<circle cx="35.5" cy="34.5" r="2.76" fill="#8ce6cf"/>
+<text id="stealth" x="63" y="42" font-size="19" fill="#8ce6cf" font-weight="500" letter-spacing="1" text-anchor="start">REJTETT</text>
+<text id="trace-value" x="304" y="42" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">12%</text>
+<rect x="24" y="62" width="280" height="2" fill="#34464d"/>
+<rect id="trace-bar" x="24" y="62" width="34" height="2" fill="#8ce6cf"/>
+</g>
+</svg>

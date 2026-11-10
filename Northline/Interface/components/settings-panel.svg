@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1080" height="776" viewBox="0 0 1080 776" role="img" aria-label="NET.runner 92 — settings-panel">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Settings-panel-1" data-layer="Settings-panel">
+<rect x="4" y="4" width="1072" height="768" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<rect x="4" y="4" width="1072" height="2" fill="#8ce6cf"/>
+<text x="60" y="59" font-size="11" fill="#8ce6cf" font-weight="600" letter-spacing="1.8" text-anchor="start">RENDSZER / KONFIGURÁCIÓ</text>
+<text x="60" y="120" font-size="48" fill="#edf3ef" font-weight="300" letter-spacing="-1" text-anchor="start">A te beállításaid.</text>
+<text x="60" y="157" font-size="16" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">A változtatások az előnézetben azonnal láthatók.</text>
+<line x1="60" y1="191" x2="1020" y2="191" stroke="#34464d" stroke-width="1"/>
+<text x="60" y="236" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1.5" text-anchor="start">HANG ÉS KÉP</text>
+<text x="60" y="286" font-size="21" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="start">Hangerő</text>
+<text x="60" y="313" font-size="13" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Az előnézet válaszjelzéseinek hangereje.</text>
+<g class="action" data-action="volume" role="slider" tabindex="0" aria-label="Hangerő" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+<rect x="580" y="255" width="440" height="70" fill="#ffffff" opacity="0"/>
+<rect x="580" y="287" width="342" height="3" fill="#34464d"/>
+<rect id="volume-bar" x="580" y="287" width="239" height="3" fill="#8ce6cf"/>
+<circle id="volume-thumb" cx="819" cy="288.5" r="7" fill="#8ce6cf"/>
+<text id="volume-value" x="1020" y="295" font-size="16" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">70%</text>
+</g>
+<line x1="60" y1="343" x2="1020" y2="343" stroke="#34464d" stroke-width="1"/>
+<text x="60" y="386" font-size="21" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="start">HUD mérete</text>
+<text x="60" y="413" font-size="13" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">A játék közbeni jelzések mérete.</text>
+<g class="action" data-action="scale-down" role="button" tabindex="0" aria-label="HUD kicsinyítése">
+<rect x="580" y="362" width="48" height="48" fill="#ffffff" opacity="0"/>
+<rect x="580" y="362" width="48" height="48" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="604" y="394" font-size="24" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="middle">−</text>
+</g>
+<g class="action" data-action="scale-up" role="button" tabindex="0" aria-label="HUD nagyítása">
+<rect x="972" y="362" width="48" height="48" fill="#ffffff" opacity="0"/>
+<rect x="972" y="362" width="48" height="48" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="996" y="394" font-size="24" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="middle">+</text>
+</g>
+<text id="scale-value" x="810" y="393" font-size="18" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">100%</text>
+<line x1="60" y1="441" x2="1020" y2="441" stroke="#34464d" stroke-width="1"/>
+<text x="60" y="481" font-size="21" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="start">Erős kontraszt</text>
+<text x="60" y="508" font-size="13" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Erősebb panelhátterek és vonalak.</text>
+<g class="action" data-action="contrast" role="button" tabindex="0" aria-label="Erős kontraszt">
+<rect x="880" y="453" width="140" height="52" fill="#ffffff" opacity="0"/>
+<rect id="contrast-track" x="954" y="463" width="66" height="30" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<circle id="contrast-thumb" cx="969" cy="478" r="9" fill="#96aab2"/>
+<text id="contrast-value" x="934" y="484" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">KI</text>
+</g>
+<line x1="60" y1="539" x2="1020" y2="539" stroke="#34464d" stroke-width="1"/>
+<text x="60" y="579" font-size="21" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="start">Mozgáscsökkentés</text>
+<text x="60" y="606" font-size="13" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Az átmenetek és a pásztázás kikapcsolása.</text>
+<g class="action" data-action="motion" role="button" tabindex="0" aria-label="Mozgáscsökkentés">
+<rect x="880" y="551" width="140" height="52" fill="#ffffff" opacity="0"/>
+<rect id="motion-track" x="954" y="561" width="66" height="30" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<circle id="motion-thumb" cx="969" cy="576" r="9" fill="#96aab2"/>
+<text id="motion-value" x="934" y="582" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">KI</text>
+</g>
+<line x1="60" y1="642" x2="1020" y2="642" stroke="#34464d" stroke-width="1"/>
+<g class="action" data-action="back" role="button" tabindex="0" aria-label="KÉSZ">
+<rect x="700" y="672" width="320" height="72" fill="#ffffff" opacity="0"/>
+<rect x="700" y="672" width="320" height="72" fill="#8ce6cf"/>
+<text x="724" y="716" font-size="20" fill="#090f13" font-weight="600" letter-spacing="0.7" text-anchor="start">KÉSZ</text>
+<line x1="968" y1="708.0" x2="992" y2="708.0" stroke="#090f13" stroke-width="2"/>
+<polyline points="984,701.0 992,708.0 984,715.0" fill="none" stroke="#090f13" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<text id="saved-status" x="60" y="712" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">HELYBEN MENTVE  /  OFFLINE ELŐNÉZET</text>
+</g>
+</svg>

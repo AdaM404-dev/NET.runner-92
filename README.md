@@ -4,6 +4,10 @@ Unity 6.6 project (`6000.6.2f1`). Open this directory in Unity Hub.
 
 Development status and agent handoff notes are tracked in [agent.md](agent.md).
 
+## Northline hospital snapshot
+
+The [Northline Phase 07 project](Northline/README.md) preserves the hospital, quarantine grounds, LATCH-07 and live CCTV as a separate Unity HDRP project. Clone with Git LFS and open `Northline/NETRunner92_Hospital` in Unity Hub for the hospital. The following instructions cover the root URP project.
+
 ## Import into Unity
 
 ### Open the complete project

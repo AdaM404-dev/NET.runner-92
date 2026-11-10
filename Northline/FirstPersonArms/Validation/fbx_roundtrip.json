@@ -1,0 +1,82 @@
+{
+  "format": "Fresh Blender FBX round-trip",
+  "imported_armatures": 1,
+  "imported_bones": 41,
+  "mesh_count": 9,
+  "triangles": 31085,
+  "clips": [
+    {
+      "clip": "Hack_Cancel",
+      "fbx_action": "NR92_FP_Rig|Hack_Cancel",
+      "frames": 15,
+      "seconds": 0.25,
+      "max_bone_head_delta_m": 2e-06
+    },
+    {
+      "clip": "Hack_Equip",
+      "fbx_action": "NR92_FP_Rig|Hack_Equip",
+      "frames": 30,
+      "seconds": 0.5,
+      "max_bone_head_delta_m": 2e-06
+    },
+    {
+      "clip": "Hack_Failed",
+      "fbx_action": "NR92_FP_Rig|Hack_Failed",
+      "frames": 36,
+      "seconds": 0.6,
+      "max_bone_head_delta_m": 2e-06
+    },
+    {
+      "clip": "Hack_Idle",
+      "fbx_action": "NR92_FP_Rig|Hack_Idle",
+      "frames": 120,
+      "seconds": 2.0,
+      "max_bone_head_delta_m": 2e-06
+    },
+    {
+      "clip": "Hack_Interact",
+      "fbx_action": "NR92_FP_Rig|Hack_Interact",
+      "frames": 48,
+      "seconds": 0.8,
+      "max_bone_head_delta_m": 2e-06
+    },
+    {
+      "clip": "Hack_Success",
+      "fbx_action": "NR92_FP_Rig|Hack_Success",
+      "frames": 48,
+      "seconds": 0.8,
+      "max_bone_head_delta_m": 2e-06
+    },
+    {
+      "clip": "Hack_Unequip",
+      "fbx_action": "NR92_FP_Rig|Hack_Unequip",
+      "frames": 24,
+      "seconds": 0.4,
+      "max_bone_head_delta_m": 2e-06
+    }
+  ],
+  "matching_clip_count": 7,
+  "missing_or_unexpected_bone_names": [],
+  "screen_mesh": "NR92_Display_Surface",
+  "screen_uv_loops": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "preview_objects": [],
+  "material_count": 12,
+  "imported_image_count": 20
+}

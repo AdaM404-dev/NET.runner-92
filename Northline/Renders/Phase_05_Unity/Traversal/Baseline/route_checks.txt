@@ -1,0 +1,13 @@
+PASS Player, weather and both ambience buses exist.
+PASS L1 to L2 stair settled at Y 4.234 m.
+PASS L2 to L3 stair settled at Y 8.434 m.
+PASS L3 to L4 stair settled at Y 12.634 m.
+PASS L4 to L3 stair settled at Y 8.434 m.
+PASS L3 to L2 stair settled at Y 4.234 m.
+PASS L2 to L1 stair settled at Y 0.034 m.
+PASS Returned to the south forecourt on foot.
+PASS Audible mixer signal sampled in the outdoor mix.
+PASS Audible mixer signal sampled in the interior mix.
+PASS Entrance crossfade passed through intermediate mix values.
+PASS No clipping in sampled listener buffers.
+Distance 640.8 m; 28809 frames; 826 audio samples.

@@ -1,0 +1,60 @@
+PASS Player and atmosphere present in Play Mode.
+PASS Player has no renderable body.
+Focused keyboard and mouse require a foreground Game or Player window.
+PASS Sprint/normal travel in one second 4,84/3,24 m.
+PASS 108 door assemblies start closed. 108 door centers have a physical blocker.
+PASS Lift rejects undiscovered floors before the stairs are used.
+PASS Continuous exterior-to-reception route.
+PASS Ambulance apron to emergency department.
+PASS Closed gate blocks outward sprint.
+PASS Perimeter blocks lateral sprint.
+PASS Gravity settles onto the original ground slab.
+PASS West core L1 to L2; settled Y=4,234, expected 4,20.
+PASS Required L1 to L2 leg uses the west core.
+PASS Exited the active stair onto L2 and unlocked its lift stop.
+PASS East core L2 to L3; settled Y=8,434, expected 8,40.
+PASS Required L2 to L3 leg uses the east core.
+PASS Exited the active stair onto L3 and unlocked its lift stop.
+PASS West core L3 to L4; settled Y=12,634, expected 12,60.
+PASS Required L3 to L4 leg uses the west core.
+PASS Exited the active stair onto L4 and unlocked its lift stop.
+PASS West core L4 to L3; settled Y=8,434, expected 8,40.
+PASS Required return L4 to L3 stair.
+PASS East core L3 to L2; settled Y=4,234, expected 4,20.
+PASS Required return L3 to L2 stair.
+PASS West core L2 to L1; settled Y=0,034, expected 0,00.
+PASS Required return L2 to L1 stair.
+PASS Isolated L1–L2 flight blocks ascent.
+PASS Isolated L1–L2 flight blocks descent.
+PASS Isolated L2–L3 flight blocks ascent.
+PASS Isolated L2–L3 flight blocks descent.
+PASS Isolated L3–L4 flight blocks ascent.
+PASS Isolated L3–L4 flight blocks descent.
+PASS West lift call button can be targeted from the lobby.
+PASS Player walked into the cabin and stood on the deck.
+PASS Cabin level 2 button is reachable from inside.
+PASS Cabin transported the actual player capsule to L2.
+PASS Cabin level 3 button is reachable from inside.
+PASS Cabin transported the actual player capsule to L3.
+PASS Cabin level 4 button is reachable from inside.
+PASS Four practicals dropped below 10% and recovered. Five additional readout power loops are present.
+PASS Cabin transported the actual player capsule to L4.
+PASS Cabin level 1 button is reachable from inside.
+PASS Cabin transported the actual player capsule to L1.
+PASS Player walked back out of the lift onto the lobby slab.
+PASS Only the landing aligned with the cabin opens.
+PASS Largest vertical delta per 1/90-second motion step 0,026 m.
+PASS Four concourse slabs align at 0.0, 4.2, 8.4 and 12.6 m.
+PASS All 100 standard doors can open for the room clearance sweep.
+PASS Room sweep: L1 22/22 (16671 accessible samples); L2 34/34 (14456 accessible samples); L3 28/28 (14743 accessible samples); L4 24/24 (14550 accessible samples)
+PASS Major reception desk blocks chest-height movement.
+PASS Concourse wall blocks a lateral route.
+PASS 3 distinct transparent window/water materials.
+PASS Rain emitted outdoors (752 new drops).
+PASS Roof-height rejection registered (125 probes).
+PASS Interior ambience blend reached 1,00.
+PASS 4 K-7 routes have unobstructed body clearance.
+PASS 4 K-7 patrols moved and animated their original rig. All have four LODs and no interaction target.
+PASS K-7 sensor is 1,94 m above the floor and faces the patrol direction.
+Graphics NVIDIA GeForce RTX 3060 Ti, Direct3D11, VRAM reported 8024 MB.
+Player-camera HDRP begin-render callbacks: 7.

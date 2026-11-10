@@ -1,0 +1,11 @@
+PASS Focused W advanced 1.57 m in the expected direction.
+PASS Focused A advanced 1.54 m in the expected direction.
+PASS Focused S advanced 1.53 m in the expected direction.
+PASS Focused D advanced 1.54 m in the expected direction.
+PASS Focused W+D advanced 1.51 m in the expected direction.
+PASS Focused Shift+W advanced 2.34 m in the expected direction.
+PASS Diagonal walking is normalized.
+PASS Sprint input increases travel speed.
+PASS Focused mouse delta rotated the camera.
+PASS Escape released the cursor.
+PASS Left click restored cursor lock.

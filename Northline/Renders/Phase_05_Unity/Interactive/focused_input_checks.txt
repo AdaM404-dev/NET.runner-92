@@ -1,0 +1,15 @@
+PASS Focused W advanced 1.51 m in the expected direction.
+PASS Focused A advanced 1.54 m in the expected direction.
+PASS Focused S advanced 1.50 m in the expected direction.
+PASS Focused D advanced 1.50 m in the expected direction.
+PASS Focused W+D advanced 1.51 m in the expected direction.
+PASS Focused Shift+W advanced 2.12 m in the expected direction.
+PASS Diagonal walking is normalized.
+PASS Sprint input increases travel speed.
+PASS Focused mouse delta rotated the camera.
+PASS Escape released the cursor.
+PASS Left click restored cursor lock.
+PASS The public entrance starts closed and can be targeted.
+PASS Focused E opened the public entrance.
+PASS Focused E closed the public entrance again.
+PASS Focused E on the west call button opened the aligned lift landing.

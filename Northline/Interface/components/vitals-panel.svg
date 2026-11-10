@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="396" height="104" viewBox="0 0 396 104" role="img" aria-label="NET.runner 92 — vitals-panel">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Vitals-1" data-layer="Vitals">
+<rect x="4" y="4" width="388" height="96" fill="#090f13" opacity="0.9"/>
+<polyline points="32.400000000000006,26.100000000000023 36.599999999999994,26.100000000000023 36.599999999999994,32.39999999999998 42.900000000000006,32.39999999999998 42.900000000000006,36.60000000000002 36.599999999999994,36.60000000000002 36.599999999999994,42.89999999999998 32.400000000000006,42.89999999999998 32.400000000000006,36.60000000000002 26.099999999999994,36.60000000000002 26.099999999999994,32.39999999999998 32.400000000000006,32.39999999999998 32.400000000000006,26.100000000000023" fill="none" stroke="#edf3ef" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="60" y="42" font-size="10" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">ÁLLAPOT</text>
+<text x="368" y="44" font-size="22" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">100</text>
+<rect x="24" y="58" width="344" height="3" fill="#34464d"/>
+<rect x="24" y="58" width="344" height="3" fill="#edf3ef"/>
+<polyline points="34.2,74 27.060000000000002,83.51999999999998 32.16,83.51999999999998 30.459999999999994,91 38.620000000000005,80.79999999999995 33.349999999999994,80.79999999999995 34.2,74" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="60" y="90" font-size="10" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">ENERGIA</text>
+<rect x="148" y="82" width="160" height="3" fill="#34464d"/>
+<rect id="energy-bar" x="148" y="82" width="115" height="3" fill="#8ce6cf"/>
+<text id="energy-value" x="368" y="92" font-size="17" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">72</text>
+</g>
+</svg>

@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="NET.runner 92 — 01-main-menu">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Context-background-1" data-layer="Context-background">
+<rect x="0" y="0" width="1920" height="1080" fill="#090f13"/>
+<polyline points="0,0 1920,0 1260,350 740,350 0,0" fill="#101b21" stroke-linejoin="miter"/>
+<polyline points="0,1080 1920,1080 1260,714 740,714 0,1080" fill="#142127" stroke-linejoin="miter"/>
+<rect x="740" y="350" width="520" height="364" fill="#1b2c32"/>
+<polyline points="0,0 740,350 740,714 0,1080 0,0" fill="#132127" stroke-linejoin="miter"/>
+<polyline points="1920,0 1260,350 1260,714 1920,1080 1920,0" fill="#17282e" stroke-linejoin="miter"/>
+<line x1="1000" y1="520" x2="-800" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="-300" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="200" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="700" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="1300" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="1800" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="2300" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="2800" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="0" y1="742" x2="1920" y2="742" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="785" x2="1920" y2="785" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="845" x2="1920" y2="845" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="933" x2="1920" y2="933" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="1055" x2="1920" y2="1055" stroke="#25353a" stroke-width="1"/>
+<rect x="160" y="84" width="140" height="864" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="169" y="91" width="4" height="854" fill="#34484d"/>
+<rect x="467" y="231" width="79" height="574" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="476" y="238" width="4" height="564" fill="#34484d"/>
+<rect x="645" y="315" width="37" height="427" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="654" y="322" width="4" height="417" fill="#34484d"/>
+<rect x="1630" y="84" width="140" height="864" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="1639" y="91" width="4" height="854" fill="#34484d"/>
+<rect x="1380" y="231" width="79" height="574" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="1389" y="238" width="4" height="564" fill="#34484d"/>
+<rect x="1298" y="315" width="37" height="427" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="1307" y="322" width="4" height="417" fill="#34484d"/>
+<polyline points="560,0 580,0 955.0,350 948.0,350" fill="#6d8b8b" stroke-linejoin="miter"/>
+<polyline points="1350,0 1370,0 1113.0,350 1106.0,350" fill="#6d8b8b" stroke-linejoin="miter"/>
+<rect x="828" y="390" width="344" height="322" fill="#0b171c" stroke="#405259" stroke-width="1"/>
+<rect x="843" y="406" width="314" height="305" fill="#16272c"/>
+<line x1="1000" y1="406" x2="1000" y2="711" stroke="#3b5257" stroke-width="2"/>
+<line x1="864" y1="412" x2="1136" y2="412" stroke="#8ce6cf" stroke-width="3"/>
+<text x="1000" y="455" font-size="14" fill="#a3b8b9" font-weight="600" letter-spacing="1" text-anchor="middle">ARCHÍVUM  /  B–07</text>
+<polyline points="936,700 1000,666 1064,700" fill="none" stroke="#7e8977" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1180" y="480" width="46" height="83" fill="#071115" stroke="#415b60" stroke-width="1"/>
+<rect x="1186" y="487" width="34" height="39" fill="#38615d"/>
+<line x1="1192" y1="496" x2="1215" y2="496" stroke="#8ce6cf" stroke-width="2"/>
+<line x1="1192" y1="503" x2="1207" y2="503" stroke="#91b5ac" stroke-width="1"/>
+<rect x="57" y="590" width="170" height="185" fill="#1b292f" stroke="#3c4a4f" stroke-width="1"/>
+<rect x="65" y="600" width="154" height="6" fill="#3d4a4d"/>
+<line x1="85" y1="630" x2="200" y2="630" stroke="#37494e" stroke-width="1"/>
+<line x1="85" y1="644" x2="200" y2="644" stroke="#37494e" stroke-width="1"/>
+<line x1="85" y1="658" x2="200" y2="658" stroke="#37494e" stroke-width="1"/>
+<rect x="1490" y="610" width="290" height="150" fill="#18282d" stroke="#3b4b50" stroke-width="1"/>
+<rect x="1530" y="540" width="195" height="69" fill="#233137" stroke="#3b4b50" stroke-width="1"/>
+<line x1="1500" y1="625" x2="1770" y2="625" stroke="#5e6a62" stroke-width="3"/>
+<rect x="0" y="0" width="1920" height="150" fill="#090f13" opacity="0.42"/>
+<rect x="0" y="880" width="1920" height="200" fill="#090f13" opacity="0.5"/>
+</g>
+<g id="layer-Main-menu-1" data-layer="Main-menu">
+<rect x="0" y="0" width="1920" height="1080" fill="#090f13" opacity="0.89"/>
+</g>
+<g id="layer-Identity-1" data-layer="Identity">
+<polyline points="64,40 78,32 92,40 92,58 78,66 64,58 64,40" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+<polyline points="71,47 78,42 85,47 85,55 78,59" fill="none" stroke="#8ce6cf" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="109" y="58" font-size="23" fill="#edf3ef" font-weight="600" letter-spacing="1" text-anchor="start">NET.runner</text>
+<text x="257" y="58" font-size="20" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">/ 92</text>
+<text x="64" y="99" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="2.4" text-anchor="start">MŰVELETI TERMINÁL</text>
+<circle cx="1623" cy="53" r="3" fill="#8ce6cf"/>
+<text x="1640" y="58" font-size="12" fill="#96aab2" font-weight="500" letter-spacing="1.2" text-anchor="start">HELYI KAPCSOLAT</text>
+<text x="1856" y="98" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">NR—OS  /  V.01</text>
+<line x1="64" y1="119" x2="1856" y2="119" stroke="#34464d" stroke-width="1"/>
+<line x1="64" y1="1018" x2="1856" y2="1018" stroke="#34464d" stroke-width="1"/>
+<text x="64" y="1049" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="1" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">NODE_92  /  TITKOSÍTOTT CSATORNA</text>
+<text x="1856" y="1049" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">INTERAKTÍV FELÜLETTERV  •  2026</text>
+</g>
+<g id="layer-Main-menu-2" data-layer="Main-menu">
+<text x="120" y="236" font-size="12" fill="#8ce6cf" font-weight="600" letter-spacing="2" text-anchor="start">MŰVELET  /  001</text>
+<text x="116" y="331" font-size="82" fill="#edf3ef" font-weight="600" letter-spacing="-2" text-anchor="start">LÉPJ BE.</text>
+<text x="116" y="425" font-size="68" fill="#edf3ef" font-weight="300" letter-spacing="-2" text-anchor="start">MARADJ REJTVE.</text>
+<line x1="120" y1="466" x2="180" y2="466" stroke="#8ce6cf" stroke-width="2"/>
+<text x="120" y="505" font-size="19" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Egy hozzáférési pont. Egyetlen nyom nélkül.</text>
+<g class="action" data-action="start" role="button" tabindex="0" aria-label="MŰVELET INDÍTÁSA">
+<rect x="120" y="568" width="532" height="72" fill="#ffffff" opacity="0"/>
+<rect x="120" y="568" width="532" height="72" fill="#8ce6cf"/>
+<text x="144" y="612" font-size="20" fill="#090f13" font-weight="600" letter-spacing="0.7" text-anchor="start">MŰVELET INDÍTÁSA</text>
+<line x1="600" y1="604.0" x2="624" y2="604.0" stroke="#090f13" stroke-width="2"/>
+<polyline points="616,597.0 624,604.0 616,611.0" fill="none" stroke="#090f13" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="map" role="button" tabindex="0" aria-label="MŰVELETI TÉRKÉP">
+<rect x="120" y="656" width="532" height="62" fill="#ffffff" opacity="0"/>
+<rect x="120" y="656" width="532" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="144" y="694" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">MŰVELETI TÉRKÉP</text>
+<line x1="600" y1="687.0" x2="624" y2="687.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="616,680.0 624,687.0 616,694.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="settings" role="button" tabindex="0" aria-label="BEÁLLÍTÁSOK">
+<rect x="120" y="730" width="532" height="62" fill="#ffffff" opacity="0"/>
+<rect x="120" y="730" width="532" height="62" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<text x="144" y="768" font-size="18" fill="#edf3ef" font-weight="600" letter-spacing="0.7" text-anchor="start">BEÁLLÍTÁSOK</text>
+<line x1="600" y1="761.0" x2="624" y2="761.0" stroke="#8ce6cf" stroke-width="2"/>
+<polyline points="616,754.0 624,761.0 616,768.0" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="about" role="button" tabindex="0" aria-label="A felület használata">
+<rect x="120" y="824" width="532" height="44" fill="#ffffff" opacity="0"/>
+<text x="120" y="851" font-size="12" fill="#96aab2" font-weight="600" letter-spacing="1.2" text-anchor="start">IRÁNYÍTÁS ÉS A FELÜLET HASZNÁLATA</text>
+</g>
+<text x="120" y="950" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">NEXUS  /  OPERÁTOR 092</text>
+</g>
+<g id="layer-Mission-preview-1" data-layer="Mission-preview">
+<line x1="779" y1="179" x2="779" y2="952" stroke="#34464d" stroke-width="1"/>
+<text x="844" y="208" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="2" text-anchor="start">KÖVETKEZŐ CÉLPONT</text>
+<text x="844" y="254" font-size="32" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="start">Csendes behatolás</text>
+<text x="844" y="286" font-size="12" fill="#8ce6cf" font-weight="400" letter-spacing="1" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">B–07  /  RAKTÁRKOMPLEXUM</text>
+</g>
+<g id="layer-Floorplan-1" data-layer="Floorplan">
+<rect x="900.0" y="383.75" width="184.8" height="147.0" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="900.0" y="563.3" width="184.8" height="157.5" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="1123.65" y="326.0" width="220.5" height="204.75" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="1123.65" y="563.3" width="220.5" height="157.5" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="1383.0" y="326.0" width="159.6" height="141.75" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="1383.0" y="500.3" width="159.6" height="220.5" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="900.0" y="760.7" width="281.40000000000003" height="123.9" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="1220.25" y="760.7" width="322.35" height="123.9" fill="#142329" stroke="#365057" stroke-width="1"/>
+<rect x="1084.8" y="449.9" width="38.85" height="27.3" fill="#253e43"/>
+<rect x="1246.5" y="530.75" width="29.400000000000002" height="32.550000000000004" fill="#253e43"/>
+<rect x="1344.15" y="609.5" width="38.85" height="27.3" fill="#253e43"/>
+<rect x="1013.4" y="720.8" width="26.25" height="39.9" fill="#253e43"/>
+<rect x="1398.75" y="720.8" width="26.25" height="39.9" fill="#253e43"/>
+<text x="919.95" y="415.25" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">RAKTÁR 01</text>
+<text x="1146.75" y="357.5" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ARCHÍVUM</text>
+<text x="1400.85" y="358.55" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">HÁLÓZAT</text>
+<text x="919.95" y="595.85" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">SERVIS</text>
+<text x="1142.55" y="594.8" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">MAG</text>
+<text x="1400.85" y="531.8" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ÁTJÁRÓ</text>
+<text x="919.95" y="792.2" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">DOK 01</text>
+<text x="1240.2" y="792.2" font-size="10.5" fill="#96aab2" font-weight="400" letter-spacing="0.63" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">KIJÁRAT</text>
+<polyline points="1021.8,819.5 1021.8,641.0 1236.0,641.0 1236.0,447.8" fill="none" stroke="#8ce6cf" stroke-width="2.1" stroke-linejoin="miter"/>
+<circle cx="1021.8" cy="641.0" r="4.2" fill="#8ce6cf"/>
+<circle cx="1236.0" cy="641.0" r="4.2" fill="#8ce6cf"/>
+<circle cx="1021.8" cy="819.5" r="13.65" fill="#163b36" stroke="#8ce6cf" stroke-width="1.5750000000000002"/>
+<polyline points="1021.8,810.05 1028.1,826.85 1021.8,823.7 1015.5,826.85 1021.8,810.05" fill="#8ce6cf" stroke-linejoin="miter"/>
+<circle cx="1236.0" cy="447.8" r="21.0" fill="#183c37" stroke="#8ce6cf" stroke-width="1.5750000000000002"/>
+<circle cx="1236.0" cy="447.8" r="7.812000000000001" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="1236.0" cy="447.8" r="2.0160000000000005" fill="#8ce6cf"/>
+<line x1="1223.4" y1="447.8" x2="1228.44" y2="447.8" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1243.5600000000002" y1="447.8" x2="1248.6000000000001" y2="447.8" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1236.0" y1="435.2" x2="1236.0" y2="440.24" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1236.0" y1="455.36" x2="1236.0" y2="460.4" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="1461.75" cy="631.55" r="7.3500000000000005" fill="#edc181"/>
+<line x1="1456.5" y1="626.3" x2="1467.0" y2="636.8" stroke="#090f13" stroke-width="1.47"/>
+</g>
+<g id="layer-Mission-preview-2" data-layer="Mission-preview">
+<rect x="1655" y="332" width="123" height="31" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="1716" y="353" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">B SZINT</text>
+<text x="1624" y="849" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">N</text>
+<line x1="1624" y1="862" x2="1624" y2="892" stroke="#96aab2" stroke-width="1"/>
+<polyline points="1619,870 1624,862 1629,870" fill="none" stroke="#96aab2" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="844" y1="919" x2="1780" y2="919" stroke="#34464d" stroke-width="1"/>
+<circle cx="853" cy="950" r="4" fill="#8ce6cf"/>
+<text x="869" y="955" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">BELÉPÉSI PONT</text>
+<circle cx="1081.0" cy="950.0" r="6.82" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="1081.0" cy="950.0" r="1.76" fill="#8ce6cf"/>
+<line x1="1070" y1="950.0" x2="1074.4" y2="950.0" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1087.6" y1="950.0" x2="1092" y2="950.0" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1081.0" y1="939" x2="1081.0" y2="943.4" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1081.0" y1="956.6" x2="1081.0" y2="961" stroke="#8ce6cf" stroke-width="1.6"/>
+<text x="1104" y="955" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ARCHÍVUM</text>
+<circle cx="1322" cy="950" r="5" fill="#edc181"/>
+<text x="1338" y="955" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">K7 JÁRŐR</text>
+<text x="1780" y="955" font-size="12" fill="#edf3ef" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">07 / 18</text>
+</g>
+</svg>

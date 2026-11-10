@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1168" height="684" viewBox="0 0 1168 684" role="img" aria-label="NET.runner 92 — hacking-panel">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Hacking-panel-1" data-layer="Hacking-panel">
+<rect x="4" y="4" width="1160" height="676" fill="#0e191f" stroke="#34464d" stroke-width="1"/>
+<rect x="4" y="4" width="1160" height="2" fill="#8ce6cf"/>
+<polyline points="66.0,57.08000000000001 66.0,51.80000000000001 69.60000000000002,48.44 74.39999999999998,48.44 78.0,51.80000000000001 78.0,57.08000000000001" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<rect x="62.879999999999995" y="57.08000000000001" width="18.240000000000002" height="12.0" fill="none" stroke="#8ce6cf" stroke-width="1"/>
+<line x1="72.0" y1="60.920000000000016" x2="72.0" y2="65.24000000000001" stroke="#8ce6cf" stroke-width="1.6"/>
+<text x="101" y="68" font-size="11" fill="#8ce6cf" font-weight="600" letter-spacing="1.8" text-anchor="start">HOZZÁFÉRÉSI PROTOKOLL</text>
+<text x="60" y="132" font-size="48" fill="#edf3ef" font-weight="300" letter-spacing="-1" text-anchor="start">Nyisd meg az utat.</text>
+<text x="60" y="171" font-size="16" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Karbantartási terminál  /  NODE_92 → ARCHIVE_B07</text>
+<text x="1108" y="67" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">AES / 256</text>
+<line x1="60" y1="205" x2="1108" y2="205" stroke="#34464d" stroke-width="1"/>
+<line x1="232" y1="290" x2="550" y2="290" stroke="#34464d" stroke-width="2"/>
+<line x1="618" y1="290" x2="936" y2="290" stroke="#34464d" stroke-width="2"/>
+<circle cx="198" cy="290" r="31" fill="#15242b" stroke="#8ce6cf" stroke-width="1.5"/>
+<polyline points="187.91999999999996,290.0 195.12,297.2 208.55999999999995,281.84" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="198" y="352" font-size="12" fill="#edf3ef" font-weight="600" letter-spacing="1.5" text-anchor="middle">OPERÁTOR</text>
+<text x="198" y="377" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">NEXUS_092</text>
+<circle cx="584" cy="290" r="31" fill="#15242b" stroke="#34464d" stroke-width="1.5"/>
+<polyline points="572,291.2 578.0,291.2 581.6,281.6 586.4,298.4 590.0,291.2 596,291.2" fill="none" stroke="#96aab2" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="584" y="352" font-size="12" fill="#edf3ef" font-weight="600" letter-spacing="1.5" text-anchor="middle">ÁTJÁTSZÓ</text>
+<text x="584" y="377" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">NODE_92</text>
+<circle cx="970" cy="290" r="31" fill="#15242b" stroke="#34464d" stroke-width="1.5"/>
+<polyline points="964.0,288.08 964.0,282.8 967.5999999999999,279.44 972.4000000000001,279.44 976.0,282.8 976.0,288.08" fill="none" stroke="#96aab2" stroke-width="1.6" stroke-linejoin="miter"/>
+<rect x="960.8800000000001" y="288.08" width="18.240000000000002" height="12.0" fill="none" stroke="#96aab2" stroke-width="1"/>
+<line x1="970.0" y1="291.92" x2="970.0" y2="296.24" stroke="#96aab2" stroke-width="1.6"/>
+<text x="970" y="352" font-size="12" fill="#edf3ef" font-weight="600" letter-spacing="1.5" text-anchor="middle">ARCHÍVUM</text>
+<text x="970" y="377" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">B07 / ZÁROLT</text>
+<text id="hack-status" x="60" y="437" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">BIZTONSÁGOS CSATORNA FELÉPÍTÉSE</text>
+<text id="hack-percent" x="1108" y="437" font-size="18" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">00%</text>
+<rect id="hack-segment-0" x="60" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-1" x="82" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-2" x="104" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-3" x="126" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-4" x="148" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-5" x="170" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-6" x="192" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-7" x="214" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-8" x="236" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-9" x="258" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-10" x="280" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-11" x="302" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-12" x="324" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-13" x="346" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-14" x="368" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-15" x="390" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-16" x="412" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-17" x="434" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-18" x="456" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-19" x="478" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-20" x="500" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-21" x="522" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-22" x="544" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-23" x="566" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-24" x="588" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-25" x="610" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-26" x="632" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-27" x="654" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-28" x="676" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-29" x="698" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-30" x="720" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-31" x="742" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-32" x="764" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-33" x="786" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-34" x="808" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-35" x="830" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-36" x="852" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-37" x="874" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-38" x="896" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-39" x="918" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-40" x="940" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-41" x="962" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-42" x="984" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-43" x="1006" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-44" x="1028" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-45" x="1050" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-46" x="1072" y="461" width="16" height="10" fill="#34464d"/>
+<rect id="hack-segment-47" x="1094" y="461" width="16" height="10" fill="#34464d"/>
+<text x="60" y="518" font-size="13" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">A kapcsolat felépítése helyi bemutató.</text>
+<text x="60" y="541" font-size="13" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Nincs tényleges hálózati vagy játékkapcsolat.</text>
+<g class="action" data-action="connect" role="button" tabindex="0" aria-label="CSATLAKOZÁS">
+<rect x="744" y="558" width="364" height="72" fill="#ffffff" opacity="0"/>
+<rect x="744" y="558" width="364" height="72" fill="#8ce6cf"/>
+<text x="768" y="602" font-size="20" fill="#090f13" font-weight="600" letter-spacing="0.7" text-anchor="start">CSATLAKOZÁS</text>
+<line x1="1056" y1="594.0" x2="1080" y2="594.0" stroke="#090f13" stroke-width="2"/>
+<polyline points="1072,587.0 1080,594.0 1072,601.0" fill="none" stroke="#090f13" stroke-width="2" stroke-linejoin="miter"/>
+</g>
+<g class="action" data-action="back" role="button" tabindex="0" aria-label="Megszakítás">
+<rect x="60" y="583" width="400" height="40" fill="#ffffff" opacity="0"/>
+<rect x="60" y="585" width="42" height="30" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="81.0" y="605" font-size="13" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ESC</text>
+<text x="116" y="607" font-size="14" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start">Megszakítás</text>
+</g>
+</g>
+</svg>

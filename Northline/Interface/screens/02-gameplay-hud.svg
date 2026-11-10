@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="NET.runner 92 — 02-gameplay-hud">
+<style>text{font-family:"Segoe UI",Arial,sans-serif} .action{cursor:pointer;outline:none}.action:hover>rect:not(:first-child),.action:focus>rect:not(:first-child){filter:brightness(1.22);stroke:#edf3ef;stroke-width:2}.action:focus>rect:first-child{stroke:#edf3ef;stroke-width:2;fill:none}</style>
+<g id="layer-Context-background-1" data-layer="Context-background">
+<rect x="0" y="0" width="1920" height="1080" fill="#090f13"/>
+<polyline points="0,0 1920,0 1260,350 740,350 0,0" fill="#101b21" stroke-linejoin="miter"/>
+<polyline points="0,1080 1920,1080 1260,714 740,714 0,1080" fill="#142127" stroke-linejoin="miter"/>
+<rect x="740" y="350" width="520" height="364" fill="#1b2c32"/>
+<polyline points="0,0 740,350 740,714 0,1080 0,0" fill="#132127" stroke-linejoin="miter"/>
+<polyline points="1920,0 1260,350 1260,714 1920,1080 1920,0" fill="#17282e" stroke-linejoin="miter"/>
+<line x1="1000" y1="520" x2="-800" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="-300" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="200" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="700" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="1300" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="1800" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="2300" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="1000" y1="520" x2="2800" y2="1080" stroke="#26373b" stroke-width="1"/>
+<line x1="0" y1="742" x2="1920" y2="742" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="785" x2="1920" y2="785" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="845" x2="1920" y2="845" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="933" x2="1920" y2="933" stroke="#25353a" stroke-width="1"/>
+<line x1="0" y1="1055" x2="1920" y2="1055" stroke="#25353a" stroke-width="1"/>
+<rect x="160" y="84" width="140" height="864" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="169" y="91" width="4" height="854" fill="#34484d"/>
+<rect x="467" y="231" width="79" height="574" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="476" y="238" width="4" height="564" fill="#34484d"/>
+<rect x="645" y="315" width="37" height="427" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="654" y="322" width="4" height="417" fill="#34484d"/>
+<rect x="1630" y="84" width="140" height="864" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="1639" y="91" width="4" height="854" fill="#34484d"/>
+<rect x="1380" y="231" width="79" height="574" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="1389" y="238" width="4" height="564" fill="#34484d"/>
+<rect x="1298" y="315" width="37" height="427" fill="#0c181e" stroke="#2c3c42" stroke-width="1"/>
+<rect x="1307" y="322" width="4" height="417" fill="#34484d"/>
+<polyline points="560,0 580,0 955.0,350 948.0,350" fill="#6d8b8b" stroke-linejoin="miter"/>
+<polyline points="1350,0 1370,0 1113.0,350 1106.0,350" fill="#6d8b8b" stroke-linejoin="miter"/>
+<rect x="828" y="390" width="344" height="322" fill="#0b171c" stroke="#405259" stroke-width="1"/>
+<rect x="843" y="406" width="314" height="305" fill="#16272c"/>
+<line x1="1000" y1="406" x2="1000" y2="711" stroke="#3b5257" stroke-width="2"/>
+<line x1="864" y1="412" x2="1136" y2="412" stroke="#8ce6cf" stroke-width="3"/>
+<text x="1000" y="455" font-size="14" fill="#a3b8b9" font-weight="600" letter-spacing="1" text-anchor="middle">ARCHÍVUM  /  B–07</text>
+<polyline points="936,700 1000,666 1064,700" fill="none" stroke="#7e8977" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1180" y="480" width="46" height="83" fill="#071115" stroke="#415b60" stroke-width="1"/>
+<rect x="1186" y="487" width="34" height="39" fill="#38615d"/>
+<line x1="1192" y1="496" x2="1215" y2="496" stroke="#8ce6cf" stroke-width="2"/>
+<line x1="1192" y1="503" x2="1207" y2="503" stroke="#91b5ac" stroke-width="1"/>
+<rect x="57" y="590" width="170" height="185" fill="#1b292f" stroke="#3c4a4f" stroke-width="1"/>
+<rect x="65" y="600" width="154" height="6" fill="#3d4a4d"/>
+<line x1="85" y1="630" x2="200" y2="630" stroke="#37494e" stroke-width="1"/>
+<line x1="85" y1="644" x2="200" y2="644" stroke="#37494e" stroke-width="1"/>
+<line x1="85" y1="658" x2="200" y2="658" stroke="#37494e" stroke-width="1"/>
+<rect x="1490" y="610" width="290" height="150" fill="#18282d" stroke="#3b4b50" stroke-width="1"/>
+<rect x="1530" y="540" width="195" height="69" fill="#233137" stroke="#3b4b50" stroke-width="1"/>
+<line x1="1500" y1="625" x2="1770" y2="625" stroke="#5e6a62" stroke-width="3"/>
+<rect x="0" y="0" width="1920" height="150" fill="#090f13" opacity="0.42"/>
+<rect x="0" y="880" width="1920" height="200" fill="#090f13" opacity="0.5"/>
+</g>
+<g id="layer-Hud-identity-1" data-layer="Hud-identity">
+<polyline points="64,40 78,32 92,40 92,58 78,66 64,58 64,40" fill="none" stroke="#8ce6cf" stroke-width="2" stroke-linejoin="miter"/>
+<polyline points="71,47 78,42 85,47 85,55 78,59" fill="none" stroke="#8ce6cf" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="109" y="58" font-size="23" fill="#edf3ef" font-weight="600" letter-spacing="1" text-anchor="start">NET.runner</text>
+<text x="257" y="58" font-size="20" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">/ 92</text>
+<text x="64" y="93" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="1" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">B–07 / RAKTÁRKOMPLEXUM</text>
+</g>
+<g id="layer-Objective-1" data-layer="Objective">
+<rect x="64" y="142" width="424" height="124" fill="#090f13" opacity="0.88"/>
+<rect x="64" y="142" width="2" height="124" fill="#8ce6cf"/>
+<text x="86" y="169" font-size="11" fill="#8ce6cf" font-weight="600" letter-spacing="1.5" text-anchor="start">01 / AKTÍV CÉL</text>
+<text id="objective" x="86" y="206" font-size="21" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="start">Érd el a központi terminált.</text>
+<circle cx="94.5" cy="234.5" r="5.27" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="94.5" cy="234.5" r="1.36" fill="#8ce6cf"/>
+<line x1="86" y1="234.5" x2="89.4" y2="234.5" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="99.6" y1="234.5" x2="103" y2="234.5" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="94.5" y1="226" x2="94.5" y2="229.4" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="94.5" y1="239.6" x2="94.5" y2="243" stroke="#8ce6cf" stroke-width="1.6"/>
+<text id="distance" x="115" y="240" font-size="11" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ARCHÍVUMSZINT  /  38 M</text>
+</g>
+<g id="layer-Compass-1" data-layer="Compass">
+<line x1="720" y1="49" x2="720" y2="63" stroke="#34464d" stroke-width="1"/>
+<line x1="780" y1="49" x2="780" y2="57" stroke="#34464d" stroke-width="1"/>
+<line x1="840" y1="49" x2="840" y2="63" stroke="#96aab2" stroke-width="1"/>
+<line x1="900" y1="49" x2="900" y2="57" stroke="#96aab2" stroke-width="1"/>
+<line x1="960" y1="49" x2="960" y2="63" stroke="#96aab2" stroke-width="1"/>
+<line x1="1020" y1="49" x2="1020" y2="57" stroke="#96aab2" stroke-width="1"/>
+<line x1="1080" y1="49" x2="1080" y2="63" stroke="#96aab2" stroke-width="1"/>
+<line x1="1140" y1="49" x2="1140" y2="57" stroke="#34464d" stroke-width="1"/>
+<line x1="1200" y1="49" x2="1200" y2="63" stroke="#34464d" stroke-width="1"/>
+<text x="960" y="36" font-size="12" fill="#8ce6cf" font-weight="600" letter-spacing="0" text-anchor="middle">É</text>
+<text x="840" y="36" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">315</text>
+<text x="1080" y="36" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">045</text>
+<polyline points="956,75 964,75 960,80 956,75" fill="#8ce6cf" stroke-linejoin="miter"/>
+</g>
+<g id="layer-Stealth-1" data-layer="Stealth">
+<rect x="1536" y="34" width="320" height="94" fill="#090f13" opacity="0.88"/>
+<polyline points="1556,64.5 1561.75,57.6 1572.1,57.6 1579,64.5 1572.1,71.4 1561.75,71.4 1556,64.5" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<circle cx="1567.5" cy="64.5" r="2.76" fill="#8ce6cf"/>
+<text id="stealth" x="1595" y="72" font-size="19" fill="#8ce6cf" font-weight="500" letter-spacing="1" text-anchor="start">REJTETT</text>
+<text id="trace-value" x="1836" y="72" font-size="12" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">12%</text>
+<rect x="1556" y="92" width="280" height="2" fill="#34464d"/>
+<rect id="trace-bar" x="1556" y="92" width="34" height="2" fill="#8ce6cf"/>
+</g>
+<g id="layer-Reticle-1" data-layer="Reticle">
+<circle cx="960" cy="540" r="1.5" fill="#edf3ef"/>
+<line x1="945" y1="540" x2="951" y2="540" stroke="#edf3ef" stroke-width="1" opacity="0.6"/>
+<line x1="969" y1="540" x2="975" y2="540" stroke="#edf3ef" stroke-width="1" opacity="0.6"/>
+<line x1="960" y1="525" x2="960" y2="531" stroke="#edf3ef" stroke-width="1" opacity="0.6"/>
+<line x1="960" y1="549" x2="960" y2="555" stroke="#edf3ef" stroke-width="1" opacity="0.6"/>
+</g>
+<g id="layer-Interaction-1" data-layer="Interaction">
+<rect x="739" y="759" width="442" height="88" fill="#090f13" opacity="0.88"/>
+<g class="action" data-action="hack" role="button" tabindex="0" aria-label="Terminál elérése, E">
+<rect x="739" y="759" width="442" height="88" fill="#ffffff" opacity="0"/>
+<rect x="760" y="780" width="36" height="30" fill="#15242b" stroke="#34464d" stroke-width="1"/>
+<text x="778.0" y="800" font-size="13" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="middle" font-family="Consolas,monospace" style="font-family:Consolas,monospace">E</text>
+<text id="interaction-title" x="814" y="793" font-size="21" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="start">Terminál elérése</text>
+<text x="814" y="820" font-size="10" fill="#96aab2" font-weight="400" letter-spacing="0" text-anchor="start" font-family="Consolas,monospace" style="font-family:Consolas,monospace">KARBANTARTÁSI CSOMÓPONT · 2,4 M</text>
+</g>
+</g>
+<g id="layer-Vitals-1" data-layer="Vitals">
+<rect x="64" y="920" width="388" height="96" fill="#090f13" opacity="0.9"/>
+<polyline points="92.4,942.1 96.6,942.1 96.6,948.4 102.9,948.4 102.9,952.6 96.6,952.6 96.6,958.9 92.4,958.9 92.4,952.6 86.1,952.6 86.1,948.4 92.4,948.4 92.4,942.1" fill="none" stroke="#edf3ef" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="120" y="958" font-size="10" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">ÁLLAPOT</text>
+<text x="428" y="960" font-size="22" fill="#edf3ef" font-weight="500" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">100</text>
+<rect x="84" y="974" width="344" height="3" fill="#34464d"/>
+<rect x="84" y="974" width="344" height="3" fill="#edf3ef"/>
+<polyline points="94.2,990 87.06,999.52 92.16,999.52 90.46,1007 98.62,996.8 93.35,996.8 94.2,990" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="120" y="1006" font-size="10" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">ENERGIA</text>
+<rect x="208" y="998" width="160" height="3" fill="#34464d"/>
+<rect id="energy-bar" x="208" y="998" width="115" height="3" fill="#8ce6cf"/>
+<text id="energy-value" x="428" y="1008" font-size="17" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">72</text>
+</g>
+<g id="layer-Abilities-1" data-layer="Abilities">
+<g class="action" data-action="pulse" role="button" tabindex="0" aria-label="IMPULZUS">
+<rect x="1292" y="936" width="172" height="80" fill="#ffffff" opacity="0"/>
+<rect x="1292" y="936" width="172" height="80" fill="#090f13" stroke="#34464d" stroke-width="1" opacity="0.94"/>
+<polyline points="1308,962.55 1313.25,962.55 1316.4,954.15 1320.6,968.85 1323.75,962.55 1329,962.55" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="1448" y="969" font-size="11" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">Q</text>
+<text id="pulse-label" x="1308" y="998" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">IMPULZUS</text>
+</g>
+<g class="action" data-action="map" role="button" tabindex="0" aria-label="TÉRKÉP">
+<rect x="1488" y="936" width="172" height="80" fill="#ffffff" opacity="0"/>
+<rect x="1488" y="936" width="172" height="80" fill="#090f13" stroke="#34464d" stroke-width="1" opacity="0.94"/>
+<polyline points="1504,954.78 1510.3,951.84 1517.65,955.2 1525,951.84 1525,968.22 1517.65,971.16 1510.3,967.8 1504,971.16 1504,954.78" fill="none" stroke="#8ce6cf" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="1644" y="969" font-size="11" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">TAB</text>
+<text x="1504" y="998" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">TÉRKÉP</text>
+</g>
+<g class="action" data-action="pause" role="button" tabindex="0" aria-label="SZÜNET">
+<rect x="1684" y="936" width="172" height="80" fill="#ffffff" opacity="0"/>
+<rect x="1684" y="936" width="172" height="80" fill="#090f13" stroke="#34464d" stroke-width="1" opacity="0.94"/>
+<circle cx="1710.5" cy="961.5" r="6.72" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<circle cx="1710.5" cy="961.5" r="2.52" fill="none" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1717.64" y1="961.5" x2="1720.58" y2="961.5" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1715.548742417672" y1="966.548742417672" x2="1717.6276363543604" y2="968.6276363543604" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1710.5" y1="968.64" x2="1710.5" y2="971.58" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1705.451257582328" y1="966.548742417672" x2="1703.3723636456396" y2="968.6276363543604" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1703.36" y1="961.5" x2="1700.42" y2="961.5" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1705.451257582328" y1="956.451257582328" x2="1703.3723636456396" y2="954.3723636456396" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1710.5" y1="954.36" x2="1710.5" y2="951.42" stroke="#8ce6cf" stroke-width="1.6"/>
+<line x1="1715.548742417672" y1="956.451257582328" x2="1717.6276363543604" y2="954.3723636456396" stroke="#8ce6cf" stroke-width="1.6"/>
+<text x="1840" y="969" font-size="11" fill="#8ce6cf" font-weight="400" letter-spacing="0" text-anchor="end" font-family="Consolas,monospace" style="font-family:Consolas,monospace">ESC</text>
+<text x="1700" y="998" font-size="11" fill="#96aab2" font-weight="600" letter-spacing="1" text-anchor="start">SZÜNET</text>
+</g>
+</g>
+</svg>
