@@ -3,8 +3,14 @@
 ## Purpose
 
 What makes the hospital expensive to draw, how to measure it, and the plan
-to reach the target of [#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36):
-**60 FPS at 1920×1080 on Medium on the Windows test machine**.
+to reach the targets of [#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36), set by Samuel on 2026-11-10
+after the first measurements:
+
+- **30 FPS at 1920×1080 on Low on the Windows test machine** (Intel UHD
+  Graphics 630, integrated): the minimum hardware we support, and the
+  goal of the optimizations.
+- **60 FPS at 1920×1080 on Medium on a separate graphics card**: already
+  met (RTX 4050 laptop: 119–179 FPS); it must not get worse.
 
 ## Status
 
@@ -12,8 +18,8 @@ to reach the target of [#36](https://github.com/AdaM404-dev/NET.runner-92/issues
 2 added quality levels ([[systems/quality-settings]]); alpha test 3 is the
 measurement build, and its results are below ([#38](https://github.com/AdaM404-dev/NET.runner-92/issues/38)).
 The test machine has integrated Intel graphics (8–14 FPS); Samuel's laptop
-with an RTX 4050 already runs Medium at 119–179 FPS. The target is being
-reconsidered on #36. The
+with an RTX 4050 already runs Medium at 119–179 FPS. The first target (60
+FPS on Medium on the test machine) was replaced by the two above. The
 optimizations come after #31 PR B (decided on #36).
 
 ## What the scene contains
@@ -144,7 +150,7 @@ Fixed views, average FPS (P95 GPU time in ms in brackets):
 Route on Medium (forecourt to the L1→L2 stair, 5,974 frames): 178 FPS on
 average, P95 frame 8.1 ms, P95 main thread 4.8 ms; no frame over 16.7 ms.
 
-- **On a separate graphics card the 60 FPS target is already met**, on
+- **On a separate graphics card 60 FPS is already met**, on
   every level, with room to spare: the slowest view on High is 96 FPS.
 - The same scene is about 13–15 times slower on the UHD 630 (Medium,
   South checkpoint: 8.3 ms against 131 ms of GPU time). The gap between
