@@ -23,7 +23,7 @@ Scene volumes                      fog per floor in Assets/NETRunner92/Atmospher
 Material (per surface)             HDRP Lit, 151 in Assets/NETRunner92/Environment/Materials
 ```
 
-Since playtest 2 (2026-11-10) the player switches levels with F2; Low and
+Since alpha test 2 (2026-11-10) the player switches levels with F2; Low and
 Medium render at 50% and 67% and upscale with STP, and use cheaper
 reflections, ambient occlusion, contact shadows and shadow maps. Details
 and the exact values: [[systems/quality-settings]]. The game still targets
@@ -56,8 +56,8 @@ atmosphere system: [atmosphere system](../../Northline/Documentation/atmosphere_
 
 ## Known problems
 
-- HDRP is heavier than URP. The first Windows playtest build lagged on the
-  test machine; playtest 2 adds the quality levels. Frame time in a built
-  game has not been measured on Linux or Windows yet.
+- HDRP is heavier than URP. Alpha test 1 lagged on the Windows test
+  machine; alpha test 2 added the quality levels. What the scene costs and
+  how to measure it: [[systems/performance]].
 - `HospitalOptimization` (editor) puts small detail objects on layer 8 so
   the player camera can cull them past 34 m.

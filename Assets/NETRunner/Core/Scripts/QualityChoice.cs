@@ -40,5 +40,27 @@ namespace NetRunner.Core
 
             return fallback;
         }
+
+        /// <summary>
+        /// The index of the level called <paramref name="name"/>, ignoring
+        /// upper and lower case, or -1 when no level has that name.
+        /// </summary>
+        public static int FromName(string name, string[] names)
+        {
+            if (string.IsNullOrEmpty(name) || names == null)
+            {
+                return -1;
+            }
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (string.Equals(names[i], name, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
     }
 }
