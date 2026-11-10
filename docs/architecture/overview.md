@@ -41,7 +41,7 @@ Two choices differ from the plan on #31, both to keep behaviour unchanged:
 - **One editor assembly for the scene builders**, in `World/Editor/`, not
   one per feature. The builders are a single `partial class
   HospitalSceneBuilder` spread over eight files, and C# cannot split one
-  class across assemblies. Splitting it is #31 PR C work.
+  class across assemblies. Splitting it is part of #44.
 - **A `Diagnostics` feature** for the hospital's checks and the benchmark
   modes. They use every other feature, and the benchmark modes have to
   ship in the built game, so they cannot live in a test assembly. The
@@ -109,7 +109,7 @@ The rules for writing code (paradigm, fields and access, naming, member
 order, layout, formatting, tests) are in [[architecture/coding-standards]].
 In one line: rules in plain C# in `Core` with EditMode tests, thin
 MonoBehaviours, content as ScriptableObjects. The hospital code does not
-follow this yet; #31 PR C brings it in line feature by feature.
+follow this yet; #41–#45 bring it in line, one feature each (Enemy, Atmosphere, Player, World, Diagnostics).
 
 ## Why feature folders, not one folder per kind of code
 
@@ -125,7 +125,7 @@ folder, for rules that several features use.
 From [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31): PR B
 moved the hospital code into feature folders with assemblies and runs its
 95 Play-mode checks as an NUnit test (behaviour unchanged, the checks pass
-before and after); PR C and later bring each feature in line with
+before and after); #41–#45 bring each feature in line with
 [[architecture/coding-standards]], including the interaction contract of
 [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10). The switch
 to the Input System (#12) is done: the hospital code uses it and Active

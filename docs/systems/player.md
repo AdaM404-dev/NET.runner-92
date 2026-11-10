@@ -13,7 +13,7 @@ Came with the Northline hospital (PR #30) and was moved into the root
 project by #31 PR A without code changes. It reads input through the
 Input System (`Keyboard.current`, `Mouse.current`); Active Input Handling
 is Input System only since #31, which also covers #12. It does not follow
-[[architecture/coding-standards]] yet; #31 PR C fixes that. Since #31 PR B
+[[architecture/coding-standards]] yet; #43 fixes that. Since #31 PR B
 it is in `Assets/NETRunner/Player/` (assembly and namespace
 `NetRunner.Player`).
 
@@ -84,4 +84,4 @@ More detail from the original project:
 
 - Whether `Core/VerticalMotion` (the warehouse player's gravity and jump
   maths, with tests) is reused when the controller is brought in line with
-  the coding standard (#31 PR C).
+  the coding standard (#43).

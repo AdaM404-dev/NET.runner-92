@@ -18,7 +18,7 @@ Decided 2026-11-09 by Samuel, together with "Claude writes all code"
   Examples: `VerticalMotion.Step`, `Easing.SmoothStep01`.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
-  starts doing a second job is split (#31 PR C does this for the hospital code).
+  starts doing a second job is split (#41–#45 do this for the hospital code, one feature each).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
   dialogue, timings), so new content needs no new code.
   Example: `MenuPrototypeSettings`.
@@ -108,7 +108,7 @@ Assets/NETRunner/<Feature>/
   *why*, not *what*.
 - No magic numbers in new code: a named constant, or a serialized field when
   it is tuning. (The hospital code's hard-coded numbers, such as the
-  2.65 m reach and `~(1 << 2)` masks, are fixed in #31 PR C.)
+  2.65 m reach and `~(1 << 2)` masks, are fixed in #43 and #44.)
 
 ## 7. Tests
 
