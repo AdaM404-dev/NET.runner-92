@@ -8,9 +8,12 @@ to reach the target of [#36](https://github.com/AdaM404-dev/NET.runner-92/issues
 
 ## Status
 
-2026-11-10: measuring. Alpha test 1 lagged on the test machine; alpha test
+2026-11-10: measured. Alpha test 1 lagged on the test machine; alpha test
 2 added quality levels ([[systems/quality-settings]]); alpha test 3 is the
-measurement build. The optimizations come after #31 PR B (decided on #36).
+measurement build, and its results are below ([#38](https://github.com/AdaM404-dev/NET.runner-92/issues/38)).
+The test machine has integrated Intel graphics, which makes the 60 FPS
+target on Medium unrealistic; the target is being reconsidered on #36. The
+optimizations come after #31 PR B (decided on #36).
 
 ## What the scene contains
 
@@ -76,4 +79,45 @@ Notes:
 
 ## Results
 
-None yet from the test machine.
+### Alpha test 3, Windows test machine (2026-11-10, [#38](https://github.com/AdaM404-dev/NET.runner-92/issues/38))
+
+Intel Core i5-10500, **Intel UHD Graphics 630** (integrated, driver
+31.0.101.2135), 16 GB, Direct3D 11, 1920×1080.
+
+Fixed views, P95 GPU time in ms (FPS in brackets):
+
+| View | Triangles | Low | Medium | High |
+| --- | --- | --- | --- | --- |
+| South checkpoint | 8.1 M | 101 (9.8) | 131 (7.7) | 190 (5.3) |
+| Reception | 4.6 M | 84 (12.5) | 107 (9.3) | 163 (6.2) |
+| Ward | 6.5 M | 94 (10.6) | 123 (8.2) | 177 (5.7) |
+| Surgery | 5.3 M | 84 (11.8) | 111 (9.0) | 161 (6.2) |
+| Research | 2.6 M | 69 (14.4) | 132 (1.3)* | 154 (6.5) |
+
+\* One frame of about 30 s fell inside the Medium research sample, which
+pulls its average down; its P95 is also out of line with Low and High.
+Treat that cell as a glitch.
+
+Route on Medium (forecourt to the L2→L3 stair, 716 frames): 10.6 FPS on
+average, median frame 92 ms, of which the GPU took 90 ms and the main
+thread 11 ms. Every frame was over 16.7 ms.
+
+What the numbers say:
+
+- **The graphics chip is the limit, everywhere.** GPU time equals frame
+  time; the CPU's main thread needs 11–17 ms. Draw calls are not the
+  problem on this machine.
+- **Geometry costs about 6 ms per million triangles** (Low: 53 ms + 5.9 ms
+  per million fits all five views within 4 ms; Medium: 76 ms + 6.7 ms per
+  million). At the entrance that is about 48 of 101 ms on Low. Occlusion
+  culling and LOD target this part.
+- **The rest, about 50–75 ms, does not depend on the view**: lighting of
+  268 lights, volumetric fog, shadows, ambient occlusion, post effects.
+  Fewer pixels help (High → Medium saves about 60 ms) but do not remove it.
+- **60 FPS needs a frame six times faster than Low today.** That is not
+  reachable on this chip with HDRP and this scene; 30 FPS on Low might
+  be, once geometry is culled and the fixed costs are cut.
+- The route stopped at the L2→L3 stair: the walker missed a waypoint by
+  1 m and hit its time limit. At about 10 FPS it moves 0.7 m per frame
+  and the waypoint tolerance is 7 cm, so this is most likely the benchmark
+  walker, not the stairs; not yet checked.
