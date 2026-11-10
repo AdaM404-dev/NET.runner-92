@@ -34,7 +34,8 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | Folder | What is in it | Files | Owner |
 | --- | --- | ---: | --- |
 | `NETRunner92/` | **the hospital**: scenes, environment, player, K-7, atmosphere, rendering, code, editor builders (below) | 285 | code: Claude/Samuel; art: AdaM404 |
-| `NETRunner/Core/` | rules in plain C# (`VerticalMotion.cs`, `Easing.cs`) and their EditMode tests, two assembly definitions | 6 | Claude/Samuel |
+| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`) and their EditMode tests, two assembly definitions | 12 | Claude/Samuel |
+| `NETRunner/Settings/` | `QualitySwitch` (F2 quality, F3 FPS) and its PlayMode tests, two assembly definitions; see [[systems/quality-settings]] | 4 | Claude/Samuel |
 | `HDRPDefaultResources/` | HDRP global settings and default volume profile | 2 | shared, change by pull request |
 | `UI Toolkit/` | Unity's default runtime theme, used by the LATCH-07 screen | 1 | shared |
 | `Characters/NEXUS/`, `Materials/`, `Animations/`, `Prefabs/` | the NEXUS character: models, 24 URP materials, Animator, two prefabs. **Unused since #31**; AdaM404 decides on #31 whether it stays | 128 | AdaM404 |
@@ -53,7 +54,7 @@ Inside `NETRunner92/`:
 | `Player/Latch07/`, `Player/Prefabs/` | the LATCH-07 arms and tablet; `PlayerController.prefab` |
 | `Core/` | hospital MonoBehaviours: doors, lift, stairs, interaction, terminal, patrol, residual power, plus diagnostics used by the validator |
 | `Atmosphere/` | fog volumes per floor, ambience audio and mixer, rain and dust VFX, `PracticalPulse` |
-| `Rendering/` | `Northline_HDRP.asset` (the pipeline asset) and the exposure profile |
+| `Rendering/` | the pipeline assets `Northline_HDRP` (High), `Northline_HDRP_Medium`, `Northline_HDRP_Low`, and the exposure profile |
 | `Editor/` | scene builders and `PlayModeValidation` (menu **NET.runner-92**) |
 
 Every file in `Assets/` has a `.meta` file next to it holding its unique id
@@ -86,9 +87,11 @@ follow [[architecture/overview]] and [[architecture/coding-standards]] yet;
 | `NETRunner92/Core/*Diagnostics.cs`, `*Capture.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | Play-mode checks and captures run by the validator | — |
 | `NETRunner92/Editor/*.cs` | scene builders and `PlayModeValidation` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/VerticalMotion.cs`, `Easing.cs` | plain C# rules; currently unused by the hospital | — |
-| `NETRunner/Core/Tests/EditMode/*.cs` | 10 EditMode tests of the two above | the test runner |
+| `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs` | rules behind the quality switch | [[systems/quality-settings]] |
+| `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
+| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 28 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 10 EditMode (`Core`). The hospital's 95 Play-mode checks run through
+Tests: 28 EditMode (`Core`) and 5 PlayMode (`Settings`). The hospital's 95 Play-mode checks run through
 `PlayModeValidation`, not the test runner, until #31 PR B turns them into
 NUnit tests.
 
@@ -96,7 +99,8 @@ NUnit tests.
 
 | Setting | Value | Where |
 | --- | --- | --- |
-| Render pipeline | HDRP, `Northline_HDRP.asset` ([[systems/rendering]]) | Project Settings > Graphics, Quality |
+| Render pipeline | HDRP; quality levels Low / Medium (default) / High, each with its own pipeline asset ([[systems/quality-settings]]) | Project Settings > Graphics, Quality |
+| Start resolution | 1920 × 1080, full-screen window (the first start also caps the screen at 1080p) | Project Settings > Player > Resolution and Presentation |
 | Layers | 8 `Near-detail geometry`, 9 `First-person viewmodel`, 10 `Enemy` and 11 `Interactable` (reserved), plus Unity's built-in ones | Project Settings > Tags and Layers |
 | Active input handling | **Input System Package (New)** only | Project Settings > Player > Other Settings |
 | Company name | `NET.runner` (decides where save files go) | Project Settings > Player |
@@ -128,7 +132,7 @@ NUnit tests.
 | the reception puzzle or CCTV feeds | `ReceptionSecurityTerminal`, `SecurityCctv` |
 | K-7 patrol speed or route | the K-7 object → K7 Patrol → Speed / Route ([[systems/enemy-k7]]) |
 | fog, lights, storm | `Assets/NETRunner92/Atmosphere/` ([[systems/rendering]]) |
-| graphics quality | Edit > Project Settings > Quality, and `Assets/NETRunner92/Rendering/Northline_HDRP.asset` |
+| graphics quality | Edit > Project Settings > Quality, and the three pipeline assets in `Assets/NETRunner92/Rendering/` ([[systems/quality-settings]]) |
 | which scene a built game opens | File > Build Profiles > Scene List |
 | layer or tag names | Edit > Project Settings > Tags and Layers |
 | the hospital's Blender source or design notes | [`Northline/`](../../Northline/README.md) |

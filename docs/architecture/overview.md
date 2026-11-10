@@ -11,15 +11,21 @@ prefabs, UI and art, so everything about one feature is in one place. The
 gameplay code moved into it in Step 4 ([#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9)).
 
 **State since #31 PR A (2026-11-10):** the warehouse code (`World/`,
-`Player/`) and the `MainMenu/` prototype were deleted. Only `Core/` is
-left in this layout:
+`Player/`) and the `MainMenu/` prototype were deleted. Playtest 2 added
+`Settings/`:
 
 ```
 Assets/NETRunner/
-└─ Core/                          NetRunner.Core: rules in plain C#, no scene objects
-   ├─ Scripts/VerticalMotion.cs     gravity, jump and ground stick for one frame
-   ├─ Scripts/Easing.cs             a slow-start, slow-end curve
-   └─ Tests/EditMode/               10 tests, run in a fraction of a second
+├─ Core/                          NetRunner.Core: rules in plain C#, no scene objects
+│  ├─ Scripts/VerticalMotion.cs     gravity, jump and ground stick for one frame
+│  ├─ Scripts/Easing.cs             a slow-start, slow-end curve
+│  ├─ Scripts/QualityChoice.cs      next quality level, start level
+│  ├─ Scripts/StartResolution.cs    first-start screen size, capped at 1080p
+│  ├─ Scripts/FrameRateMeter.cs     averaged frames per second
+│  └─ Tests/EditMode/               28 tests, run in a fraction of a second
+└─ Settings/                      NetRunner.Settings: graphics quality for players
+   ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
+   └─ Tests/PlayMode/               5 tests
 ```
 
 The hospital's code is still in `Assets/NETRunner92/` in one namespace,

@@ -8,6 +8,27 @@ and Unity's first import.
 Written 2026-11-10, after #31 (the hospital on HDRP). Sizes were measured on
 Samuel's Linux clone that day.
 
+## Just want to play? Download a build
+
+No Git, no Unity: test builds are on the repository's
+[Releases page](https://github.com/AdaM404-dev/NET.runner-92/releases).
+
+1. Under the newest release, open **Assets** and download the
+   `…_Windows-x64.zip`.
+2. Unpack the whole zip into a folder (right-click → Extract All). Keep
+   every file and folder in it together.
+3. Open the unpacked folder and double-click `NET.runner-92.exe`. The
+   builds are not signed, so Windows
+   may show "Windows protected your PC": click **More info → Run anyway**.
+4. Controls are in step 6 below. There is no menu yet: quit with
+   **Alt+F4**. If it runs slowly, press **F2** for a lower quality level
+   and **F3** to see the frame rate.
+
+You need Windows 10/11 64-bit and a graphics card with Direct3D 11 or 12.
+Report problems as a GitHub issue, with what you did and what you saw.
+
+The rest of this guide is for working on the project.
+
 ## What you need
 
 | | |
@@ -157,6 +178,8 @@ When it is done, check two things:
 | R | cancel the tablet action |
 | 1 | CCTV on the tablet, after solving the reception terminal |
 | Esc | free the mouse; left-click to capture it again |
+| F2 | graphics quality: Low, Medium, High (remembered) |
+| F3 | show or hide the FPS counter |
 
 4. Press **Play** again to stop. Changes made during Play mode are undone
    when it stops.

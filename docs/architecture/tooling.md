@@ -81,7 +81,7 @@ the editor being installed, so they also suit CI.
 | --- | --- | --- |
 | `bin/unity-compile` | Import and compile; prints compiler errors only | 0 ok, 1 errors, 3 editor is open |
 | `bin/unity-test edit\|play [filter]` | Runs Test Framework tests; prints a summary and failures | 0 ok, 1 failures, 4 no tests found |
-| `bin/unity-build` | Linux player into `Builds/Linux/` | 0 ok, 1 failed |
+| `bin/unity-build [linux\|windows]` | player build into `Builds/Linux/` or `Builds/Windows/` (needs that platform's build support in the editor); runs with a graphics device for HDRP | 0 ok, 1 failed |
 
 The hospital's own Play-mode validator (95 checks: route, doors, lift,
 patrols, weather, LATCH-07, CCTV) runs headless too, with the editor
@@ -136,6 +136,13 @@ Linux player build about 5 minutes (356 MB output).
   Vulkan as the only Linux API, so the editor starts on Vulkan; the setting
   does not affect Windows. If it ever starts on OpenGL again, add
   `-force-vulkan`.
+- Every import on Linux re-saves three hospital materials
+  (`Assets/NETRunner92/Environment/Materials/F01___Amber.mat`, `F01___Light.mat`,
+  `F01___Paper.mat`) with a different float format (0.6399999 → 0.64).
+  Restore them with `git checkout --` on those files; they are AdaM404's.
+- PlayMode tests run in batch mode without a window, so cameras only
+  render when a test calls `Camera.Render()`; a test that waits for a
+  camera to draw by itself waits forever.
 - `unity command quit` fails in edit mode with Pipeline `0.8.0-exp.1`
   (a `DontDestroyOnLoad` error). Close the editor window instead, or run
   `unity command eval 'UnityEditor.EditorApplication.Exit(0);'`, which exits

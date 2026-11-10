@@ -46,6 +46,7 @@ System notes:
 | [[systems/player]] | the first-person player, keys, movement, LATCH-07 |
 | [[systems/doors-and-interaction]] | the E key: doors, lift, stairs, reception terminal |
 | [[systems/rendering]] | HDRP settings, materials, Vulkan on Linux |
+| [[systems/quality-settings]] | Low / Medium / High, F2 and F3, resolution scaling |
 | [[systems/enemy-k7]] | the K-7 robots patrolling the hospital |
 | [[systems/character-and-animation]] | the NEXUS model and Animator, unused since #31 |
 
