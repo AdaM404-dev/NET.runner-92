@@ -1,39 +1,102 @@
 using System.Collections.Generic;
+using NetRunner.Core;
 using UnityEngine;
 
 namespace NetRunner.Enemy
 {
+    /// <summary>
+    /// A K-7 robot on patrol: it walks back and forth along its route and
+    /// animates its rig as it goes. Where it goes and when it walks come from
+    /// <see cref="Patrol"/>, the angles of its legs, arms and head from
+    /// <see cref="K7Gait"/>; this component moves the robot and turns the
+    /// bones. The model has no walk animation, so the bones are turned in
+    /// code. The hospital's scene builder places the robots and sets them up
+    /// through <see cref="Configure"/>.
+    /// </summary>
     public sealed class K7Patrol : MonoBehaviour
     {
-        [SerializeField] Transform model;
-        [SerializeField] Vector3[] route;
-        [SerializeField] float speed = 1.10f;
-        int target = 1;
-        int direction = 1;
-        float gait, pause;
-        Joint head, pelvis;
-        readonly Joint[] thighs = new Joint[2], knees = new Joint[2], feet = new Joint[2], arms = new Joint[2];
-        public IReadOnlyList<Vector3> Waypoints => route;
-
-        struct Joint
+        // A bone that turns about one axis from its rest pose, such as a knee or the neck.
+        private readonly struct Hinge
         {
-            Transform bone;
-            Quaternion rest;
-            Vector3 axis;
+            private readonly Transform bone;
+            private readonly Quaternion rest;
+            private readonly Vector3 axis;
 
-            public Joint(Transform joint, Vector3 worldAxis)
+            public Hinge(Transform bone, Vector3 worldAxis)
             {
-                bone = joint;
-                rest = joint ? joint.localRotation : Quaternion.identity;
-                axis = joint ? joint.InverseTransformDirection(worldAxis) : Vector3.right;
+                this.bone = bone;
+                rest = bone.localRotation;
+                axis = bone.InverseTransformDirection(worldAxis);
             }
 
-            public void Pose(float angle)
+            public void Pose(float degrees)
             {
-                if (bone) bone.localRotation = rest * Quaternion.AngleAxis(angle, axis);
+                if (bone)
+                {
+                    bone.localRotation = rest * Quaternion.AngleAxis(degrees, axis);
+                }
             }
         }
 
+        [SerializeField] private Transform model;
+        [SerializeField] private Vector3[] route;
+        [SerializeField] private float speed = 1.10f;
+
+        private readonly Hinge[] thighs = new Hinge[2];
+        private readonly Hinge[] knees = new Hinge[2];
+        private readonly Hinge[] feet = new Hinge[2];
+        private readonly Hinge[] arms = new Hinge[2];
+        private Hinge head;
+        private Hinge pelvis;
+        private Patrol patrol;
+        private float height;
+        private float scanOffset;
+
+        /// <summary>The route in the scene, first point to last; the robot walks it back and forth.</summary>
+        public IReadOnlyList<Vector3> Waypoints => route;
+
+        private void Awake()
+        {
+            // The FBX imports with its visor towards -Z; turn the model round to look the way the robot walks.
+            model.localRotation = Quaternion.Euler(0f, 180f, 0f) * model.localRotation;
+            foreach (var bone in model.GetComponentsInChildren<Transform>(true))
+            {
+                AddHinge(bone);
+            }
+
+            var points = new (float X, float Z)[route.Length];
+            for (int i = 0; i < route.Length; i++)
+            {
+                points[i] = (route[i].x, route[i].z);
+            }
+
+            patrol = new Patrol(points, speed);
+
+            // Robots start at different places along their head sweep, so they do not scan in step.
+            scanOffset = route[0].x;
+        }
+
+        private void OnEnable()
+        {
+            // Carry on from wherever the robot stands: the hospital checks move one while it is switched off.
+            var position = transform.position;
+            patrol.Place((position.x, position.z), transform.eulerAngles.y);
+            height = position.y;
+        }
+
+        private void Update()
+        {
+            patrol.Step(Time.deltaTime);
+            var (x, z) = patrol.Position;
+            transform.SetPositionAndRotation(new Vector3(x, height, z), Quaternion.Euler(0f, patrol.Heading, 0f));
+            Pose(patrol.DistanceWalked, patrol.IsWalking, Time.time);
+        }
+
+        /// <summary>
+        /// Sets the robot up from the scene builder: the model to animate, the
+        /// route (it starts on the first point, facing the second) and its
+        /// walking speed.
+        /// </summary>
         public void Configure(Transform rig, Vector3[] waypoints, float metersPerSecond)
         {
             model = rig;
@@ -42,59 +105,49 @@ namespace NetRunner.Enemy
             transform.SetPositionAndRotation(route[0], Quaternion.LookRotation(route[1] - route[0]));
         }
 
-        void Awake()
+        private void AddHinge(Transform bone)
         {
-            // The FBX imports with its visor toward -Z. Keep the patrol root's +Z along the route.
-            model.localRotation = Quaternion.Euler(0f, 180f, 0f) * model.localRotation;
-            foreach (var bone in model.GetComponentsInChildren<Transform>(true))
+            int side = bone.name.EndsWith("_L") ? K7Gait.Left : K7Gait.Right;
+            switch (bone.name)
             {
-                string name = bone.name;
-                if (name == "Head") head = new Joint(bone, transform.up);
-                if (name == "Pelvis") pelvis = new Joint(bone, transform.forward);
-                int side = name.EndsWith("_L") ? 0 : 1;
-                if (name == "Thigh_L" || name == "Thigh_R") thighs[side] = new Joint(bone, transform.right);
-                if (name == "Shin_L" || name == "Shin_R") knees[side] = new Joint(bone, transform.right);
-                if (name == "Foot_L" || name == "Foot_R") feet[side] = new Joint(bone, transform.right);
-                if (name == "UpperArm_L" || name == "UpperArm_R") arms[side] = new Joint(bone, transform.right);
+                case "Head":
+                    head = new Hinge(bone, transform.up);
+                    break;
+                case "Pelvis":
+                    pelvis = new Hinge(bone, transform.forward);
+                    break;
+                case "Thigh_L":
+                case "Thigh_R":
+                    thighs[side] = new Hinge(bone, transform.right);
+                    break;
+                case "Shin_L":
+                case "Shin_R":
+                    knees[side] = new Hinge(bone, transform.right);
+                    break;
+                case "Foot_L":
+                case "Foot_R":
+                    feet[side] = new Hinge(bone, transform.right);
+                    break;
+                case "UpperArm_L":
+                case "UpperArm_R":
+                    arms[side] = new Hinge(bone, transform.right);
+                    break;
             }
         }
 
-        void Update()
+        private void Pose(float distanceWalked, bool walking, float time)
         {
-            float dt = Time.deltaTime;
-            var displacement = route[target] - transform.position;
-            var facing = Quaternion.LookRotation(displacement.sqrMagnitude > .00001f ? displacement : transform.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, facing, dt * 115f);
-            pause -= dt;
-            bool moving = pause <= 0f && Quaternion.Angle(transform.rotation, facing) < 25f;
-            if (moving)
+            for (int side = K7Gait.Left; side <= K7Gait.Right; side++)
             {
-                float step = Mathf.Min(speed * dt, displacement.magnitude);
-                transform.position = Vector3.MoveTowards(transform.position, route[target], step);
-                gait += step * 8.1f;
-                if ((route[target] - transform.position).sqrMagnitude < .0001f)
-                {
-                    if (target == 0 || target == route.Length - 1)
-                    {
-                        direction = -direction;
-                        pause = 1.15f;
-                    }
-                    target += direction;
-                }
+                thighs[side].Pose(K7Gait.Thigh(distanceWalked, side, walking));
+                knees[side].Pose(K7Gait.Knee(distanceWalked, side, walking));
+                feet[side].Pose(K7Gait.Foot(distanceWalked, side, walking));
+                arms[side].Pose(K7Gait.Arm(distanceWalked, side, walking));
             }
-            float amount = moving ? 1f : 0f;
-            for (int i = 0; i < 2; i++)
-            {
-                float swing = Mathf.Sin(gait + i * Mathf.PI) * amount;
-                float flex = Mathf.Max(0f, -swing);
-                thighs[i].Pose(23f * swing - 4f * amount);
-                knees[i].Pose(26f * flex);
-                feet[i].Pose(-10f * swing - 11f * flex);
-                arms[i].Pose(-15f * swing);
-            }
-            pelvis.Pose(Mathf.Sin(gait) * 2.2f * amount);
-            head.Pose(Mathf.Sin(Time.time * (moving ? .72f : 2.1f) + route[0].x) * (moving ? 8f : 23f));
-            model.localPosition = Vector3.up * (Mathf.Abs(Mathf.Sin(gait)) * .032f * amount);
+
+            pelvis.Pose(K7Gait.Pelvis(distanceWalked, walking));
+            head.Pose(K7Gait.Head(time, scanOffset, walking));
+            model.localPosition = Vector3.up * K7Gait.Bob(distanceWalked, walking);
         }
     }
 }

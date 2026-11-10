@@ -4,6 +4,36 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-11-10 — Feature folders, benchmarks, and the K-7 on the coding standard
+
+- The hospital code moved into feature folders with one assembly each
+  (#31 PR B, #39), and its 95 checks run as an NUnit test. Usable things
+  now share one interface, `IInteractable`; doors can be locked, and five
+  door tests check them (#10, #40).
+- Learned: one C# class split over several files (`partial`) cannot span
+  assemblies, so the scene builders share one editor assembly until #44
+  splits them.
+- Alpha test 3 measured the built game (#38). The Windows test machine's
+  integrated graphics (Intel UHD 630) run the hospital at 8–14 FPS, held
+  back entirely by the graphics chip; Samuel's laptop runs Medium at
+  119–179 FPS. The target is now 30 FPS on Low on that machine, and 60 on
+  Medium with a separate graphics card (#36). The walking benchmark gets
+  stuck at a stair on both machines; still to fix.
+- AdaM404 chose to delete the NEXUS character (#46, PR #48).
+- The coding standard now goes one feature at a time (#41–#45). The K-7
+  went first (#41, PR #49): its patrol and walk rules are plain C# in
+  `Core` with tests, and the robots move exactly as before.
+- Learned: to show that a rewrite changes nothing, run the old and the new
+  code side by side and compare every frame. It caught two things the tests
+  missed. Turning with angles instead of quaternions can go the other way
+  round on an exact half turn. And adding a number up frame by frame rounds
+  differently from multiplying once.
+- Learned: the hospital checks' K-7 picture has always been smeared,
+  because it is taken right after the robot is moved. Look at the old
+  pictures before blaming new code.
+- Next: Samuel reviews #49; then #42 (Atmosphere) or #36 (the stair stop,
+  then the first optimisation).
+
 ## 2026-11-10 — The hospital becomes the main map, on HDRP
 
 - Samuel decided the Northline hospital (AdaM404's PR #30) is the main map

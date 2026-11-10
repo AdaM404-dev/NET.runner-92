@@ -15,16 +15,20 @@ Decided 2026-11-09 by Samuel, together with "Claude writes all code"
   with *No Engine References*, so the compiler enforces this). Same input,
   same output; no hidden state, no scene access, no `Time.deltaTime` read
   inside (pass `dt` in). Every rule has EditMode tests.
-  Examples: `VerticalMotion.Step`, `Easing.SmoothStep01`.
+  Examples: `VerticalMotion.Step`, `Easing.SmoothStep01`; `Patrol` is a
+  small class that keeps its own progress and is moved on by `Step(dt)`.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
-  starts doing a second job is split (#41–#45 do this for the hospital code, one feature each).
+  starts doing a second job is split (#41–#45 do this for the hospital code,
+  one feature each; `K7Patrol` was the first).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
-  dialogue, timings), so new content needs no new code.
-  Example: `MenuPrototypeSettings`.
+  dialogue, timings), so new content needs no new code. None exists yet
+  (the menu prototype's settings, the first, were deleted in #31); the
+  K-7's numbers are named constants in `Patrol` and `K7Gait` until enemies
+  get their own data.
 - **Composition, not inheritance.** Behaviour is built from several small
   components and interfaces (`IInteractable` from [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)). A base class is used
-  only for a closed family with a shared contract, such as `FacilityEvent`;
+  only for a closed family with a shared contract (none in the code yet);
   every other class is `sealed`.
 - **How components find each other:** references set in the Inspector
   (or by the feature's editor builder), `GetComponent` on the same or a
@@ -41,7 +45,7 @@ Decided 2026-11-09 by Samuel, together with "Claude writes all code"
 | What | How |
 | --- | --- |
 | A value set in the Inspector, used only inside the class | `[SerializeField] private` |
-| A value set in the Inspector that this feature's own editor builder or tests must also set | `[SerializeField] internal`, plus `InternalsVisibleTo` for exactly those assemblies (see `AssemblyInfo.cs` in `MainMenu/Scripts/`) |
+| A value set in the Inspector that this feature's own editor builder or tests must also set | `[SerializeField] internal`, plus `InternalsVisibleTo` for exactly those assemblies (none today; a builder in another feature calls a public method instead, such as `K7Patrol.Configure`) |
 | A value other code reads | a read-only property: `public float Lift => lift;` |
 | State the class changes at runtime | `private` field, or a property with `private set` |
 | Constants | `const` (or `static readonly` for non-primitive values), PascalCase |
@@ -55,12 +59,12 @@ saved in scenes and prefabs are lost. Access modifiers are always written
 
 | Kind | Style | Example |
 | --- | --- | --- |
-| Namespaces, types, methods, properties, events, constants | PascalCase | `NetRunner.World`, `NexusDoor`, `Toggle()`, `IsOpen`, `ActionSelected`, `Gravity` |
+| Namespaces, types, methods, properties, events, constants | PascalCase | `NetRunner.World`, `HospitalDoor`, `Toggle()`, `IsOpen`, `ActionSelected`, `Gravity` |
 | Interfaces | `I` + PascalCase | `IInteractable` |
 | Fields, parameters, locals | camelCase, no prefix (`m_`, `_`) | `closedRotation`, `dt` |
 | Booleans | a question | `IsOpen`, `Grounded`, `canJump` |
 | Events | what happened, past or present tense; handlers `On…` or `Handle…` | `ActionSelected`, `HandleAction` |
-| Files | exactly the type name; one top-level type per file | `NexusDoor.cs` |
+| Files | exactly the type name; one top-level type per file | `HospitalDoor.cs` |
 | Tests | a sentence that states the expected behaviour | `AJumpFromTheFloorStartsUpwardsAtTheJumpSpeed` |
 
 ## 4. Order inside a class
@@ -101,7 +105,7 @@ Assets/NETRunner/<Feature>/
   unless the next line is another `}` or `else`.
 - Expression-bodied members (`=>`) only for one-line properties and methods.
 - `var` when the type is visible on the same line (`var door = new …`,
-  `GetComponent<NexusDoor>()`), the type name otherwise.
+  `GetComponent<HospitalDoor>()`), the type name otherwise.
 - `using` lines: `System` first, then alphabetical.
 - Every public type gets a `/// <summary>` saying what it is for; public
   members get one when the name alone does not say it. Comments explain
@@ -118,3 +122,21 @@ Assets/NETRunner/<Feature>/
 - A test's expected value comes from the specification, never copied from
   the code's own output.
 - Tests do not save scenes and write files only under `Logs/`.
+
+## 8. Bringing existing code to the standard
+
+How #41 did it for the K-7; #42–#45 follow the same steps.
+
+1. **Pin today's behaviour first**: a PlayMode test of the component that
+   passes on the old code (for #41, `K7PatrolTests` on a stand-in robot).
+2. **Move the rules into `Core`** with EditMode tests whose numbers come
+   from the system note, and let the component call them.
+3. **Keep serialized field names** (or add `[FormerlySerializedAs]`) and
+   move files with their `.meta`, so the scene keeps its values.
+4. **Compare old and new side by side** before the pull request: a
+   temporary test runs a renamed copy of the old component next to the
+   new one, frame by frame, and reports the largest differences. It is not
+   committed; the result goes into the system note and the pull request.
+5. **Watch the maths**: a turn computed with angles instead of quaternions
+   can go the other way round on an exact half turn, and a running total
+   rounds differently from a product. Both showed up in #41.

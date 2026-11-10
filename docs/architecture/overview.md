@@ -12,7 +12,8 @@ gameplay code moved into it in Step 4 ([#9](https://github.com/AdaM404-dev/NET.r
 
 **State since #31 PR B (2026-11-10):** the warehouse code and the
 `MainMenu/` prototype were deleted in PR A; playtest 2 added `Settings/`;
-PR B moved the hospital code in, behaviour unchanged:
+PR B moved the hospital code in, behaviour unchanged; #41 brought `Enemy`
+to the coding standard:
 
 ```
 Assets/NETRunner/
@@ -22,15 +23,19 @@ Assets/NETRunner/
 │  ├─ Scripts/QualityChoice.cs      next quality level, start level
 │  ├─ Scripts/StartResolution.cs    first-start screen size, capped at 1080p
 │  ├─ Scripts/FrameRateMeter.cs     averaged frames per second
-│  └─ Tests/EditMode/               34 tests, run in a fraction of a second
-└─ Settings/                      NetRunner.Settings: graphics quality for players
+│  ├─ Scripts/LaunchArguments.cs    reads the game's command-line options
+│  ├─ Scripts/Patrol.cs             walking a route back and forth: turn, walk, wait at the ends
+│  ├─ Scripts/K7Gait.cs             the K-7's leg, arm and head angles as it walks
+│  └─ Tests/EditMode/               56 tests, run in a fraction of a second
+├─ Settings/                      NetRunner.Settings: graphics quality for players
 │  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
 │  └─ Tests/PlayMode/               5 tests
 ├─ Player/                        NetRunner.Player: FirstPersonController, interaction, LATCH-07, CCTV
 │  └─ Editor/                       NetRunner.Player.Editor: LATCH-07 import check
 ├─ World/                         NetRunner.World: doors, lift, stairs, terminal, emergency power
 │  └─ Editor/                       NetRunner.World.Editor: the hospital scene builders
-├─ Enemy/                         NetRunner.Enemy: K7Patrol
+├─ Enemy/                         NetRunner.Enemy: K7Patrol (moves the robot, turns its bones)
+│  └─ Tests/PlayMode/               5 tests on a stand-in robot
 ├─ Atmosphere/                    NetRunner.Atmosphere: fog zones, ambience, light pulses
 └─ Diagnostics/                   NetRunner.Diagnostics: the 95 hospital checks, benchmark modes
    └─ Tests/PlayMode/               1 test that runs the 95 checks
@@ -67,7 +72,8 @@ of the door script is `NetRunner.World.HospitalDoor`.
 NetRunner.Diagnostics ──→ World, Enemy, Atmosphere, Player
 NetRunner.World ────────→ NetRunner.Player
 NetRunner.Settings ─────→ NetRunner.Core
-NetRunner.Player, Enemy, Atmosphere: none of ours
+NetRunner.Enemy ────────→ NetRunner.Core
+NetRunner.Player, Atmosphere: none of ours
 ```
 
 **`World` uses `Player`**: doors, lift and stairs take a
@@ -88,7 +94,7 @@ out. How to run them: [[architecture/tooling]].
 
 | The script… | Goes into | Example |
 | --- | --- | --- |
-| decides something without needing a scene: a rule, a formula, a state machine | `Core/Scripts/`, with an EditMode test | `VerticalMotion`, `Easing`, later stats, inventory, hacking rules, the interaction interface |
+| decides something without needing a scene: a rule, a formula, a state machine | `Core/Scripts/`, with an EditMode test | `Patrol`, `QualityChoice`, later stats, inventory, hacking rules |
 | is a thing placed in the level | `World/Scripts/` | `HospitalDoor`, `HospitalLift`, terminals, pickups |
 | belongs to the player | `Player/Scripts/` | `FirstPersonController`, `LatchViewmodel` |
 | starts a new feature (enemies, hacking UI, saves) | a new folder `Assets/NETRunner/<Feature>/` with `Scripts/` and an assembly definition `NetRunner.<Feature>` | `K7Patrol` goes into `Enemy/` |
@@ -108,8 +114,9 @@ definition.
 The rules for writing code (paradigm, fields and access, naming, member
 order, layout, formatting, tests) are in [[architecture/coding-standards]].
 In one line: rules in plain C# in `Core` with EditMode tests, thin
-MonoBehaviours, content as ScriptableObjects. The hospital code does not
-follow this yet; #41–#45 bring it in line, one feature each (Enemy, Atmosphere, Player, World, Diagnostics).
+MonoBehaviours, content as ScriptableObjects. `Enemy` follows it since #41;
+the rest of the hospital code does not yet, and #42–#45 bring it in line,
+one feature each (Atmosphere, Player, World, Diagnostics).
 
 ## Why feature folders, not one folder per kind of code
 
@@ -125,7 +132,7 @@ folder, for rules that several features use.
 From [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31): PR B
 moved the hospital code into feature folders with assemblies and runs its
 95 Play-mode checks as an NUnit test (behaviour unchanged, the checks pass
-before and after); #41–#45 bring each feature in line with
+before and after); #41 (done) to #45 bring each feature in line with
 [[architecture/coding-standards]], including the interaction contract of
 [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10). The switch
 to the Input System (#12) is done: the hospital code uses it and Active

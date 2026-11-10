@@ -34,8 +34,9 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 
 | Folder | What is in it | Files | Owner |
 | --- | --- | ---: | --- |
-| `NETRunner92/` | **the hospital**: scenes, environment, player, K-7, atmosphere, rendering, code, editor builders (below) | 285 | code: Claude/Samuel; art: AdaM404 |
-| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`) and their EditMode tests, two assembly definitions | 14 | Claude/Samuel |
+| `NETRunner92/` | **the hospital's art and scenes**: scenes, environment, LATCH-07 arms and player prefab, K-7, atmosphere assets, rendering (below); no code since #31 PR B | 252 | art: AdaM404; gameplay scenes: Claude/Samuel |
+| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`, `Patrol`, `K7Gait`) and their EditMode tests, two assembly definitions | 18 | Claude/Samuel |
+| `NETRunner/Player/`, `World/`, `Enemy/`, `Atmosphere/`, `Diagnostics/` | the hospital's code, one feature each, with their tests (see "Code" below) | | Claude/Samuel |
 | `NETRunner/Settings/` | `QualitySwitch` (F2 quality, F3 FPS) and its PlayMode tests, two assembly definitions; see [[systems/quality-settings]] | 4 | Claude/Samuel |
 | `HDRPDefaultResources/` | HDRP global settings and default volume profile | 2 | shared, change by pull request |
 | `UI Toolkit/` | Unity's default runtime theme, used by the LATCH-07 screen | 1 | shared |
@@ -49,12 +50,9 @@ Inside `NETRunner92/`:
 | `Environment/Hospital`, `Exterior` | hospital and grounds geometry (`MeshData.bytes`, Git LFS) |
 | `Environment/Materials`, `Textures` | 151 HDRP Lit materials and their textures |
 | `Environment/K7/` | the K-7 robot: FBX, seven HDRP materials, `K7_Patrol.prefab` |
-| `Player/Scripts/` | `FirstPersonController`, `LatchViewmodel`, `LatchScreen`, `LatchRelay`, `SecurityCctv` |
 | `Player/Latch07/`, `Player/Prefabs/` | the LATCH-07 arms and tablet; `PlayerController.prefab` |
-| `Core/` | hospital MonoBehaviours: doors, lift, stairs, interaction, terminal, patrol, residual power, plus diagnostics used by the validator |
-| `Atmosphere/` | fog volumes per floor, ambience audio and mixer, rain and dust VFX, `PracticalPulse` |
+| `Atmosphere/` | fog volumes per floor, ambience audio and mixer, rain and dust VFX |
 | `Rendering/` | the pipeline assets `Northline_HDRP` (High), `Northline_HDRP_Medium`, `Northline_HDRP_Low`, and the exposure profile |
-| `Editor/` | scene builders and `PlayModeValidation` (menu **NET.runner-92**) |
 
 Every file in `Assets/` has a `.meta` file next to it holding its unique id
 (GUID). Scenes and prefabs refer to assets by that id, so a file must always
@@ -71,8 +69,8 @@ move or be renamed together with its `.meta`.
 
 Since #31 PR B the hospital code is in feature folders, each with its own
 assembly and namespace `NetRunner.<Feature>` ([[architecture/overview]]).
-The code itself is unchanged from Northline and does not follow
-[[architecture/coding-standards]] yet; #41–#45 fix that, one
+The code is unchanged from Northline apart from `Enemy`, which follows
+[[architecture/coding-standards]] since #41; #42–#45 do the rest, one
 feature each. Paths below are under `Assets/NETRunner/`.
 
 | File | What it does | Note |
@@ -84,7 +82,8 @@ feature each. Paths below are under `Assets/NETRunner/`.
 | `World/Scripts/HospitalDoor.cs`, `HospitalLift.cs`, `HospitalLiftButton.cs`, `StairAccess.cs` | doors, lift, first-ascent rules | [[systems/doors-and-interaction]] |
 | `World/Scripts/ReceptionSecurityTerminal.cs` | reception puzzle that unlocks CCTV | [[systems/doors-and-interaction]] |
 | `World/Scripts/ResidualPower.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | flickering emergency power; room plan and stair route used by the checks | [[systems/level-hospital]] |
-| `Enemy/Scripts/K7Patrol.cs` | K-7 patrol walk | [[systems/enemy-k7]] |
+| `Enemy/Scripts/K7Patrol.cs` | K-7 patrol: moves the robot and turns its bones, with the rules from `Patrol` and `K7Gait` | [[systems/enemy-k7]] |
+| `Enemy/Tests/PlayMode/K7PatrolTests.cs` | walks, legs swing, turns round at the end, carries on after being moved | [[systems/enemy-k7]] |
 | `Atmosphere/Scripts/*.cs` | fog zones, ambience, light pulses | [[systems/level-hospital]] |
 | `Diagnostics/Scripts/*Diagnostics.cs` | the hospital's 95 Play-mode checks (editor only) | [[systems/level-hospital]] |
 | `Diagnostics/Scripts/PerformanceCapture.cs`, `RoutePerformanceCapture.cs`, `FocusedInputCapture.cs` | the built game's benchmark and input-check modes | [[systems/performance]] |
@@ -93,12 +92,13 @@ feature each. Paths below are under `Assets/NETRunner/`.
 | `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`) and `PlayModeValidation` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/VerticalMotion.cs`, `Easing.cs` | plain C# rules; currently unused by the hospital | — |
 | `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` | rules behind the quality switch | [[systems/quality-settings]] |
+| `NETRunner/Core/Scripts/Patrol.cs`, `K7Gait.cs` | the K-7's patrol walk and its leg, arm and head angles | [[systems/enemy-k7]] |
 | `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
-| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 34 EditMode and 5 PlayMode tests | the test runner |
+| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 56 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 34 EditMode (`Core`) and 11 PlayMode (5 in `Settings`, 5 in
-`World`, 1 in `Diagnostics` that runs the hospital's 95 checks in about 45
-seconds).
+Tests: 56 EditMode (`Core`) and 16 PlayMode (5 in `Settings`, 5 in
+`World`, 5 in `Enemy`, 1 in `Diagnostics` that runs the hospital's 95
+checks in about 45 seconds).
 
 ## Project settings that matter
 
@@ -118,7 +118,7 @@ seconds).
 | --- | --- | --- |
 | High Definition RP 17.6.0 | the render pipeline (also brings Shader Graph and VFX Graph) | yes |
 | Input System 1.20.0 | keyboard and mouse input | yes, by the hospital code |
-| Test Framework 1.8.0 | automated tests | yes: 10 EditMode tests |
+| Test Framework 1.8.0 | automated tests | yes: 56 EditMode, 16 PlayMode tests |
 | AI Navigation 2.0.14 | navigation meshes for enemies | not yet |
 | Timeline, uGUI, Visual Scripting | cutscenes, UI, node-based scripting | not used by any asset |
 | Pipeline 0.8 (experimental) | lets the `unity` terminal tool drive the editor | yes, by our tooling |
@@ -160,5 +160,5 @@ From the terminal (the editor must be open):
 bin/unity-inspect                  # scene and environment reports
 unity command find_gameobjects --type HospitalDoor
 unity command find_assets --type Prefab
-grep -rn "Reach" Assets/NETRunner92 --include=*.cs   # plain text search in the code
+grep -rn "Reach" Assets/NETRunner --include=*.cs   # plain text search in the code
 ```
