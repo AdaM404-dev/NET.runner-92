@@ -18,7 +18,7 @@ Decided 2026-11-09 by Samuel, together with "Claude writes all code"
   Examples: `VerticalMotion.Step`, `Easing.SmoothStep01`.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
-  starts doing a second job is split ([#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11) does this for `NexusPlayer`).
+  starts doing a second job is split (#31 PR C does this for the hospital code).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
   dialogue, timings), so new content needs no new code.
   Example: `MenuPrototypeSettings`.
@@ -32,8 +32,8 @@ Decided 2026-11-09 by Samuel, together with "Claude writes all code"
   `GameObject.Find`, `FindObjectOfType` or tag lookups at runtime, and no
   singletons or static mutable state. Tests and editor tools may use
   `Find` calls.
-- **Input** comes from the Input System package. Legacy `Input` remains
-  only in `NexusPlayer` until [#12](https://github.com/AdaM404-dev/NET.runner-92/issues/12).
+- **Input** comes from the Input System package. Since #31 it is the only
+  input backend (Active Input Handling: Input System).
 - **Layers** are named and used through `LayerMask` fields, never numbers.
 
 ## 2. Fields and access
@@ -107,8 +107,8 @@ Assets/NETRunner/<Feature>/
   members get one when the name alone does not say it. Comments explain
   *why*, not *what*.
 - No magic numbers in new code: a named constant, or a serialized field when
-  it is tuning. (Existing numbers in `NexusPlayer` move into a settings asset
-  in [#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11).)
+  it is tuning. (The hospital code's hard-coded numbers, such as the
+  2.65 m reach and `~(1 << 2)` masks, are fixed in #31 PR C.)
 
 ## 7. Tests
 

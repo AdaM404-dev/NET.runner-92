@@ -1,5 +1,14 @@
 # Character model and animation (NEXUS)
 
+> **Not used by gameplay since #31 (2026-11-10).** The hospital player has
+> no visible body; the first-person model is the LATCH-07 arms viewmodel
+> ([LATCH-07 integration](../../Northline/Documentation/latch07_unity.md),
+> assets in `Assets/NETRunner92/Player/Latch07/`). The NEXUS art below is
+> still in the project, untouched and with URP materials that render
+> magenta under HDRP, until AdaM404 decides on #31 whether to keep and
+> convert it or delete it. `NEXUS_Player.prefab`, `NexusPlayer` and the
+> preview scenes this note mentions were deleted by #31.
+
 **Purpose.** The visible body of the player: a human character, NEXUS, with
 a cybernetic left arm, in four levels of detail, animated by one Animator.
 

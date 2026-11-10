@@ -1,5 +1,12 @@
 # Guided tour: the game as it is today
 
+> **Out of date since #31 (2026-11-10).** This guide walks through the
+> warehouse, `NexusPlayer` and `NexusDoor`, which were deleted when the
+> Northline hospital became the main map. It will be rewritten for the
+> hospital once #31 PR B has moved the hospital code into feature folders.
+> Until then, start with [[systems/level-hospital]] and [[systems/player]];
+> the general Unity explanations still apply.
+
 A hands-on walk through the editor and the code, about 40 minutes. Nothing
 here changes a file: everything you try happens in Play mode and is undone
 when you stop. Read [[guide/01-unity-in-this-project]] first if words like
@@ -40,7 +47,7 @@ hall's south wall. The top-left text lists the keys.
 | Esc | frees the mouse cursor; click the Game view to capture it again |
 | F1 | the character preview scene; F1 again returns |
 
-![The view after pressing Play](../img/view-third-person.jpg)
+(The screenshot of the warehouse view was removed with the warehouse in #31.)
 
 **The first door.** Ahead and a little to the left, about 6 m away, is a
 door in the south wall: `DOOR_Hall_X-18_4`. Switch to first person (Tab),
@@ -71,7 +78,7 @@ Try the search box at the top of the Hierarchy:
 | `DOOR_Hall` | the hall doors (leaves and frames) |
 | `t:NexusDoor` | the 119 objects that have the door script |
 | `t:Light` | the lamps |
-| `FLOOR_` | one floor object per room; compare with the floor plan in [[systems/level-warehouse]] |
+| `FLOOR_` | one floor object per room; compare with the floor plan in `systems/level-warehouse` (deleted in #31) |
 
 Clear the search, select `DOOR_Entry_Main`, move the mouse over the Scene
 view and press **F**: the view flies to the building's main entrance.
@@ -137,7 +144,7 @@ Select `Player_Camera`. The Camera component says Field of View 60. Press
 Play and look at the same field: it now reads 53, or 75 after Tab. Drag the
 slider: it snaps back at once. `LateUpdate()` overwrites the camera's
 position, rotation and field of view every frame, so Inspector changes do
-not stick. See [[systems/camera]].
+not stick. See `systems/camera` (deleted in #31).
 
 ## 6. Animation (5 min)
 

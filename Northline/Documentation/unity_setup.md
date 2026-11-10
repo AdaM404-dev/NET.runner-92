@@ -1,6 +1,6 @@
 # Unity setup
 
-Open the project folder `NETRunner92_Hospital` in Unity Hub and select `6000.6.2f1`. Open [Hospital_Exploration](../NETRunner92_Hospital/Assets/NETRunner92/Scenes/Hospital_Exploration.unity) and press Play. The project is independent of any earlier Unity projects. Unity scale is metres.
+Open the repository root in Unity Hub and select `6000.6.2f1` (the separate `NETRunner92_Hospital` project was merged into it by #31). Open [Hospital_Exploration](../../Assets/NETRunner92/Scenes/Hospital_Exploration.unity) and press Play. The project is independent of any earlier Unity projects. Unity scale is metres.
 
 | Setting | Value |
 | --- | --- |

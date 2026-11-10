@@ -18,22 +18,22 @@ unity status                       # is an editor connected, and is it "ready"?
 unity command                      # list every command the editor exposes
 unity command console --level error
 unity command recompile            # then poll: unity command recompile_status
-unity command open_scene --path Assets/Scenes/MainTest.unity
+unity command open_scene --path Assets/NETRunner92/Scenes/Hospital_Exploration.unity
 unity command editor_play          # and editor_stop
 unity command run_tests --mode editor   # EditMode tests inside the open editor
 unity command run_tests --mode playmode --async_tests true   # PlayMode tests; then
 unity command test_status          # poll until "completed"; prints every result
 unity command eval 'return Application.unityVersion;'
-bin/unity-shot maintest            # Game view -> Logs/shots/maintest.png
+bin/unity-shot hospital            # Game view -> Logs/shots/hospital.png
 bin/unity-shot layout scene        # Scene view
-bin/unity-inspect                  # read-only reports: player, scene, environment, animation
-bin/unity-inspect doors map        # more reports; see tools/inspect/
+bin/unity-inspect                  # read-only reports: scene, environment, animation
 ```
 
 `bin/unity-inspect` runs the C# snippets in `tools/inspect/` inside the
 editor. They only read; the numbers in the `docs/systems/` notes come from
-them. `tools/inspect/floorplan.py` turns `bin/unity-inspect map` into
-`docs/img/warehouse-floorplan.svg`. Snippets for `unity command eval_file`
+them. The warehouse reports (`player`, `doors`, `map` and the floor-plan
+generator) were removed with the warehouse in #31; hospital reports come
+with #31 PR B. Snippets for `unity command eval_file`
 cannot contain `using` lines (the code is wrapped in a method, with
 `UnityEngine` and `System` already in scope), and `Object` must be written
 `UnityEngine.Object`.
@@ -83,6 +83,22 @@ the editor being installed, so they also suit CI.
 | `bin/unity-test edit\|play [filter]` | Runs Test Framework tests; prints a summary and failures | 0 ok, 1 failures, 4 no tests found |
 | `bin/unity-build` | Linux player into `Builds/Linux/` | 0 ok, 1 failed |
 
+The hospital's own Play-mode validator (95 checks: route, doors, lift,
+patrols, weather, LATCH-07, CCTV) runs headless too, with the editor
+closed:
+
+```bash
+source bin/_unity.sh && run_unity validate -executeMethod NETRunner92.Editor.PlayModeValidation.Run
+grep 'NET92 QA' Logs/cli-validate.log     # one PASS or FAIL line per check
+```
+
+It exits 0 when every check passes and writes its captures and
+`playmode_checks.txt` into `Northline/Renders/Phase_07_CCTV/`, overwriting
+the committed ones; restore them with `git checkout -- Northline/Renders`
+unless the new captures are meant to be committed. It must not use
+`-nographics`: the CCTV checks need HDRP to render. #31 PR B turns these
+checks into NUnit PlayMode tests.
+
 Full logs: `Logs/cli-*.log`. Test results: `Logs/test-results-<mode>.xml`.
 The editor binary is resolved from `ProjectSettings/ProjectVersion.txt` under
 `~/Unity/Hub/Editor/`; override with `UNITY_EDITOR=/path/to/Unity`.
@@ -103,27 +119,24 @@ Linux player build about 5 minutes (356 MB output).
 
 - The Linux editor adds `com.unity.sdk.linux-x86_64` and
   `com.unity.toolchain.linux-x86_64-linux` to `Packages/manifest.json`, and
-  may touch `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED`
-  define), `EditorBuildSettings.asset` and `QualitySettings.asset` (a
-  serialization version bump). These are never committed: the two packages
+  `com.unity.sysroot.base` with them to `packages-lock.json`, and may touch
+  `ProjectSettings/ProjectSettings.asset` (`APP_UI_EDITOR_ONLY` and
+  `SENTIS_ANALYTICS_ENABLED` defines), `EditorBuildSettings.asset` (a
+  `com.unity.dt.app-ui` entry) and `QualitySettings.asset` (a
+  serialization version bump). These are never committed: the packages
   are toolchains for a Linux host, and the other contributor works on
   Windows. Stage files by name so they stay out; see [[assets/handoff]].
-- A player build rewrites three URP assets in `Assets/Settings/` and
-  `ProjectSettings/GraphicsSettings.asset`. Restore with
-  `git checkout -- Assets/Settings` unless the change is intended.
-- Running a URP converter also rewrites `ProjectSettings/URPProjectSettings.asset`.
-- Unity's Built-in to URP material converter does not turn emission back on.
-  After converting, re-enable `_EMISSION` on materials that glow and check
-  them in a screenshot. (Before the conversion of 2026-09-30, closing the
-  editor also stripped `_EMISSION` from the then-invalid Built-in materials.)
+  When one of these files has an intended change too (as in #31: HDRP,
+  input, layers, build list), stage a copy with only that change, for
+  example by writing it to the index with `git hash-object -w` and
+  `git update-index --cacheinfo`, and check `git diff --cached`.
+- **HDRP needs Vulkan on Linux** (since #31). With automatic graphics APIs
+  the Linux editor started on OpenGL, where HDRP draws nothing ("graphics
+  API OpenGLCore is not supported with HDRP"). Player Settings now list
+  Vulkan as the only Linux API, so the editor starts on Vulkan; the setting
+  does not affect Windows. If it ever starts on OpenGL again, add
+  `-force-vulkan`.
 - `unity command quit` fails in edit mode with Pipeline `0.8.0-exp.1`
   (a `DontDestroyOnLoad` error). Close the editor window instead, or run
   `unity command eval 'UnityEditor.EditorApplication.Exit(0);'`, which exits
   without saving.
-- `MainTest` gets marked as unsaved without anyone editing it: URP attaches
-  its helper components (`UniversalAdditionalLightData` on 105 lights,
-  `UniversalAdditionalCameraData` on the camera) when it first draws them.
-  The committed scene file has none of them, so saving would add 106
-  components to the teammate's 2 MB scene. Answer **Don't Save** until the
-  team decides; agents must not save it either. Play mode is safe: Unity
-  restores the unsaved state when Play stops.

@@ -1,114 +1,61 @@
-# Rendering (URP)
+# Rendering (HDRP)
 
 **Purpose.** How the picture is made: the render pipeline, its settings, the
-materials, and why the scenes look the way they do.
+materials, and what each platform needs.
 
-**Status.** All materials render correctly since the URP conversion
-(2026-09-30). The image is dark and flat: no shadows, no post-processing, no
-anti-aliasing, no baked light.
-
-Verified 2026-09-30 on commit `df3a31d` from the settings files and
-`bin/unity-inspect player environment`; frame statistics taken in Play mode.
+**Status.** Since #31 (2026-11-10) the project uses the **High Definition
+Render Pipeline (HDRP) 17.6**, taken over from the Northline hospital
+project (PR #30). The Universal Render Pipeline (URP), its assets and the
+warehouse's URP materials were removed. Settings were copied from the
+Northline project unchanged (`GraphicsSettings`, `QualitySettings`,
+`HDRPProjectSettings`, `ShaderGraphSettings`, `VFXManager`).
 
 ## How the settings fit together
 
-Unity's **Universal Render Pipeline (URP)**, version 17.6, draws the game.
-Its settings are spread over a chain of assets; each one points to the next:
-
 ```
-Project Settings > Quality         which quality level is active: "PC"
-  └─ URP asset for that level      Assets/Settings/PC_RPAsset.asset
-       ├─ renderer                 Assets/Settings/PC_Renderer.asset
-       └─ default volume profile   Assets/Settings/SampleSceneProfile.asset
-Project Settings > Graphics > URP  global volume profile: DefaultVolumeProfile.asset
-Camera (per camera)                "Post Processing" and "Anti-aliasing" switches
-Material (per surface)             shader "Universal Render Pipeline/Lit"
+Project Settings > Graphics        default pipeline: Assets/NETRunner92/Rendering/Northline_HDRP.asset
+  └─ HDRP global settings          Assets/HDRPDefaultResources/HDRenderPipelineGlobalSettings.asset
+       └─ default volume profile   Assets/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset
+Project Settings > Quality         six levels, Very Low … Ultra; Ultra is the default for desktop
+                                   and the only one that names its own pipeline asset (the same one)
+Scene volumes                      fog per floor in Assets/NETRunner92/Atmosphere/Fog/*.asset,
+                                   exposure in Assets/NETRunner92/Rendering/Overcast_Luminance.asset
+Material (per surface)             HDRP Lit, 151 in Assets/NETRunner92/Environment/Materials
 ```
 
-## Quality levels
+The levels below Ultra have no pipeline asset of their own, so they fall
+back to the Graphics default, which is the same HDRP asset; they only
+differ in Unity's non-pipeline quality settings. The game still targets
+**PC only** (#15); the template's mobile levels are not used.
 
-| Level | URP asset | LOD bias | Used |
-| --- | --- | ---: | --- |
-| **PC** | `PC_RPAsset` + `PC_Renderer` | 2 | the only level: every platform, and the editor |
+## Platforms and graphics APIs
 
-The game targets **PC only (Windows and Linux)**, decided in
-[issue #15](https://github.com/AdaM404-dev/NET.runner-92/issues/15). The Mobile level from Unity's template and its two URP
-assets were removed on 2026-10-04.
+HDRP needs Direct3D 11/12 on Windows and **Vulkan on Linux**; it does not
+run on OpenGL. On Linux the editor started on OpenGL by default during #31
+and HDRP drew nothing ("Platform StandaloneLinux64 with graphics API
+OpenGLCore is not supported with HDRP"). See the work log in
+[`agent.md`](../../agent.md) for how the Linux editor is set to Vulkan.
 
-`Project Settings > Graphics` has no pipeline of its own; the quality level
-decides.
+## Materials and art
 
-## `PC_RPAsset` (the settings that matter today)
+- New art targets **HDRP Lit**. HDRP mask maps pack metallic (R), ambient
+  occlusion (G), detail mask (B) and smoothness (A).
+- The NEXUS character's materials (`Assets/Materials/NEXUS`) are still
+  URP Lit and render magenta. NEXUS is not used by the hospital; whether
+  to convert or delete it is AdaM404's call, asked on #31.
+- The K-7 robot in the hospital already has HDRP materials
+  ([[systems/enemy-k7]]).
 
-| Setting | Value | Meaning |
-| --- | --- | --- |
-| HDR | on | colours brighter than white are kept (needed for glowing LEDs) |
-| Anti-aliasing (MSAA) | off | |
-| Render scale | 1 | full resolution |
-| Additional lights | per pixel | every point light is calculated per pixel |
-| Shadows | supported; 50 m distance, 4 cascades, soft | no light in `MainTest` actually casts shadows |
-| SRP Batcher | on | cheaper drawing of many objects with the same shader |
-| GPU Resident Drawer | requested | **not supported** by the editor on this Linux machine (it runs on OpenGL); the console warns about it on every Play |
-| Volume profile | `SampleSceneProfile` | bloom (intensity 0.25), vignette (0.2), tonemapping (Neutral) |
+## Atmosphere
 
-`PC_Renderer` uses the **Forward+** path, which handles many lights without a
-per-object limit, and has **Screen Space Ambient Occlusion** switched on
-(intensity 0.4, radius 0.3).
-
-## Post-processing is off
-
-The player camera's **Post Processing** switch is off and `MainTest` has no
-Volume object. So bloom, vignette and tonemapping from the profiles above are
-never applied: bright LEDs do not glow and there is no exposure control.
-Anti-aliasing on the camera is also off. See [[systems/camera]].
-
-## Materials
-
-All 52 materials use `Universal Render Pipeline/Lit`. They were converted
-from the Built-in `Standard` shader on 2026-09-30 (before that, everything
-rendered magenta).
-
-| Folder | Count | Notes |
-| --- | ---: | --- |
-| `Assets/Materials/Environment/` | 27 | 8 glow (LEDs, screens, lamps); `DirtyGlass` is transparent |
-| `Assets/Materials/NEXUS/` | 24 | textured; `Hair_DarkBrown` uses alpha cut-out |
-| `Assets/Materials/Preview_Stage.mat` | 1 | the floor of the preview scene |
-
-A new material must use a URP shader, or it shows magenta. Imported models
-from Blender usually arrive with Built-in materials; see [[assets/handoff]].
-
-## Why the warehouse looks dark and flat
-
-| Cause | Where it is set | Owner |
-| --- | --- | --- |
-| Lights are modest (0.6 to 5) and none casts shadows | `Facility_Lighting` in `MainTest` | AdaM404 |
-| Low ambient light and no sky | Lighting window, `MainTest` | AdaM404 |
-| No post-processing: no exposure, tonemapping or bloom | camera and a scene Volume | Samuel (camera), AdaM404 (look) |
-| No reflection probes: metal reflects one fixed neutral cubemap | `MainTest` | AdaM404 |
-| No baked or bounced light | Lighting window, `MainTest` | AdaM404 |
-| Fog darkens the distance | Lighting window, `MainTest` | AdaM404 |
-
-## Frame statistics (rough)
-
-Taken in Play mode in the editor on the development laptop (RTX 4050 Laptop
-GPU, Ryzen 7 7435HS, Linux, OpenGL) with a small Game view (640 × 480). The
-editor adds overhead; treat these as a first reference, not a budget.
-
-| View at the start position | Triangles | Draw calls | SetPass calls | CPU time per frame |
-| --- | ---: | ---: | ---: | ---: |
-| Third person, looking into the hall | 0.94 M | 1,537 | 32 | 6 ms |
-| First person, same spot | 0.87 M | 2,381 | 28 | 13 ms |
-
-For comparison: the warehouse model has 1.08 million triangles and the
-player's full-detail model 188,001.
+Storm, rain, fog and flickering lights come from the hospital's
+atmosphere system: [atmosphere system](../../Northline/Documentation/atmosphere_system.md),
+[visual upgrade](../../Northline/Documentation/visual_upgrade.md),
+[performance report](../../Northline/Documentation/performance_report.md).
 
 ## Known problems
 
-- Camera post-processing and anti-aliasing are off.
-- No shadows, probes or baked light (an art task).
-- GPU Resident Drawer is enabled but unsupported here, producing a console
-  warning on every Play.
-
-## Open questions
-
-- What look is wanted? A lighting pass needs reference images from the team.
+- HDRP is heavier than URP. Frame time on Samuel's Linux machine has not
+  been measured yet.
+- `HospitalOptimization` (editor) puts small detail objects on layer 8 so
+  the player camera can cull them past 34 m.

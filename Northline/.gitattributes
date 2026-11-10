@@ -1,7 +1,5 @@
-# Preserve the verified snapshot and its interface manifest.
-NETRunner92_Hospital/**/*.cs -text
+# Keep the interface prototype byte for byte.
 Interface/** -text
 
-# Native binary formats specific to Northline.
-*.bytes filter=lfs diff=lfs merge=lfs -text
+# Native binary formats specific to Northline (`.bytes` is covered by the root rules).
 *.zip filter=lfs diff=lfs merge=lfs -text

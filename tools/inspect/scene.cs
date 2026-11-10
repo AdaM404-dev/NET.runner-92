@@ -1,4 +1,4 @@
-// Open scene: object count, roots, layers, tags, static flags, doors.
+// Open scene: object count, roots, layers, tags, static flags.
 // Read-only. Run with: bin/unity-inspect scene   (the Unity editor must be open on this project)
 // This is a snippet for `unity command eval_file`, not a compiled script: it is wrapped in a method,
 // so there are no `using` lines; UnityEngine and System are already in scope.
@@ -42,25 +42,4 @@ foreach (var kv in groups) sb.AppendLine(kv.Key + ": " + kv.Value);
 var sf = new System.Collections.Generic.SortedDictionary<string, int>();
 foreach (var t in all) { string k = UnityEditor.GameObjectUtility.GetStaticEditorFlags(t.gameObject).ToString(); sf[k] = sf.ContainsKey(k) ? sf[k] + 1 : 1; }
 foreach (var kv in sf) sb.AppendLine("staticFlags [" + kv.Key + "]: " + kv.Value);
-// doors
-var doors = UnityEngine.Object.FindObjectsByType<NetRunner.World.NexusDoor>(UnityEngine.FindObjectsInactive.Include);
-int loading = 0; var angles = new System.Collections.Generic.SortedDictionary<string, int>();
-var doorLayers = new System.Collections.Generic.SortedDictionary<int, int>();
-int trig = 0, withMeshCol = 0; var childNames = new System.Collections.Generic.SortedDictionary<string, int>();
-foreach (var d in doors)
-{
-    if (d.IsLoadingDoor) loading++;
-    string k = "loading=" + d.IsLoadingDoor + " angle=" + d.SwingAngle + " lift=" + d.LiftHeight; angles[k] = angles.ContainsKey(k) ? angles[k] + 1 : 1;
-    int l = d.gameObject.layer; doorLayers[l] = doorLayers.ContainsKey(l) ? doorLayers[l] + 1 : 1;
-    var bc = d.GetComponent<UnityEngine.BoxCollider>(); if (bc != null && bc.isTrigger) trig++;
-    if (d.GetComponent<UnityEngine.MeshCollider>() != null) withMeshCol++;
-    foreach (UnityEngine.Transform c in d.transform) { string cn = System.Text.RegularExpressions.Regex.Replace(c.name, @"[-\d\.]+", "#"); childNames[cn] = childNames.ContainsKey(cn) ? childNames[cn] + 1 : 1; }
-}
-sb.AppendLine("DOORS total=" + doors.Length + " loadingDoor=" + loading + " boxColliderIsTrigger=" + trig + " withMeshCollider=" + withMeshCol);
-foreach (var kv in angles) sb.AppendLine("  door config " + kv.Key + ": " + kv.Value);
-foreach (var kv in doorLayers) sb.AppendLine("  door layer " + kv.Key + ": " + kv.Value);
-// names of door objects grouped
-var dn = new System.Collections.Generic.SortedDictionary<string, int>();
-foreach (var d in doors) { string k = System.Text.RegularExpressions.Regex.Replace(d.name, @"[-\d\.]+", "#"); dn[k] = dn.ContainsKey(k) ? dn[k] + 1 : 1; }
-foreach (var kv in dn) sb.AppendLine("  door name pattern '" + kv.Key + "': " + kv.Value);
 return sb.ToString();

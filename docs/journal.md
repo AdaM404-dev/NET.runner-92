@@ -4,6 +4,26 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-11-10 — The hospital becomes the main map, on HDRP
+
+- Samuel decided the Northline hospital (AdaM404's PR #30) is the main map
+  and the game uses HDRP (#31). The separate hospital project was moved
+  into the root project; the warehouse, the main-menu prototype,
+  `NexusPlayer` and `NexusDoor` were deleted. #30 was merged unchanged
+  first, so the restructuring shows up as reviewable moves.
+- Learned: on Linux, HDRP needs Vulkan. With automatic graphics APIs the
+  editor started on OpenGL and HDRP drew nothing, which made 8 of the
+  hospital's 95 checks fail (all CCTV renders); with Vulkan all 95 pass.
+  Player Settings now pin Vulkan for Linux.
+- Learned: a folder's own `.gitattributes` only applies inside that folder.
+  Moving the hospital out of `Northline/` would have dropped the LFS rule
+  for its `MeshData.bytes`; the rule moved to the root file.
+- Learned: the hospital's editor scripts wrote to `../Renders` and
+  `../Builds`, relative to the old project folder; from the root that
+  pointed outside the repository. They now write into `Northline/`.
+- Next: #31 PR B, the hospital code into feature folders with assemblies
+  and NUnit tests.
+
 ## 2026-11-09 — Art moved into Git LFS
 
 - The whole history was rewritten so that art files are stored in Git LFS
@@ -88,10 +108,10 @@ what was confusing. The authoritative record of changes is the work log in
 - PR #21 closes all 119 warehouse doors and adds editable warehouse art
   under `ArtSource/Warehouse_NearFuture`; 71 previously open leaves were
   corrected. Its recorded validation passed 594 Unity assertions; see
-  [[systems/doors-and-interaction]] and [[systems/level-warehouse]].
+  [[systems/doors-and-interaction]] and `systems/level-warehouse` (deleted in #31).
 - PR #22 adds a standalone surveillance menu with boot, four feeds,
   environmental events, session settings and simulated transfer/return.
-  Its recorded validation passed two PlayMode tests; see [[systems/main-menu]].
+  Its recorded validation passed two PlayMode tests; see `systems/main-menu` (deleted in #31).
 - PR #20 merged the issue workflow authored on October 1. Decisions and
   next steps remain in GitHub Issues rather than a second docs backlog.
 

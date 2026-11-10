@@ -1,5 +1,12 @@
 # Unity, explained with this game's own objects
 
+> **Out of date since #31 (2026-11-10).** This guide walks through the
+> warehouse, `NexusPlayer` and `NexusDoor`, which were deleted when the
+> Northline hospital became the main map. It will be rewritten for the
+> hospital once #31 PR B has moved the hospital code into feature folders.
+> Until then, start with [[systems/level-hospital]] and [[systems/player]];
+> the general Unity explanations still apply.
+
 Every Unity idea the game uses today, each shown on a real object you can
 click. Read it with the editor open on the `MainTest` scene. It takes about
 25 minutes. Then do the hands-on [[guide/02-guided-tour]].
@@ -171,7 +178,7 @@ A **tag** is a text label. Only `MainCamera` is used, on `Player_Camera`.
 A **Camera** renders what it sees into the Game view. Its **field of view**
 is how wide it sees; its **near and far clipping planes** are the closest and
 furthest distances it draws. This game has one camera, and `NexusPlayer`
-moves it every frame: behind the player or at the eyes. See [[systems/camera]].
+moves it every frame: behind the player or at the eyes. See `systems/camera` (deleted in #31).
 
 ## 13. Lights and the render pipeline
 

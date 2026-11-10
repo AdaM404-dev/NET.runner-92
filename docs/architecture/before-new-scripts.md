@@ -13,6 +13,24 @@ keeps the order; [[decisions/README]] explains how the issues work.
 Written 2026-09-30 from the inspection described in the `systems/` notes
 (commit `df3a31d`).
 
+> **Update 2026-11-10, [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31):**
+> the Northline hospital became the main map and the project switched to
+> HDRP. The warehouse, `NexusPlayer`, `NexusDoor` and the menu prototype
+> were deleted, so much of the "Now" text below describes code that is
+> gone. What changes for the steps:
+>
+> - **Step 5 (#10)** stays, rewritten against the hospital's
+>   `HospitalInteraction` and `HospitalDoor` after #31 PR B.
+> - **Step 6 (#11)** is closed as obsolete: the hospital's
+>   `FirstPersonController` replaces `NexusPlayer`.
+> - **Step 7 (#12)** is done by #31 PR A: the hospital code uses the
+>   Input System, and Active Input Handling is Input System only.
+> - New first: #31 PR B moves the hospital code into feature folders with
+>   assemblies and NUnit tests; PR C brings it to the coding standard.
+>
+> "Should do soon" items S3, S5, S6 and S7 were about the warehouse player
+> and no longer apply as written.
+
 ## In short
 
 - **The art is ahead of the code.** A detailed character, a 1-million-triangle
@@ -83,7 +101,7 @@ Issue: [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)
 | Change | An interface in `Core`: `IInteractable` with a prompt text, `CanInteract` and `Interact`. A `PlayerInteractor` component casts from the eyes (not from the camera) using a `LayerMask`, shows the prompt, and calls `Interact`. `NexusDoor` implements the interface, works out from its frame whether it is really open, and reports locked or unlocked. |
 | Size, tag | M, CLAUDE |
 
-### 6. Split `NexusPlayer` into small components
+### 6. Split `NexusPlayer` into small components (obsolete since #31)
 
 Issue: [#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11)
 
@@ -94,7 +112,7 @@ Issue: [#11](https://github.com/AdaM404-dev/NET.runner-92/issues/11)
 | Change | Same behaviour, new shape: `PlayerInput` (reads input), `PlayerMotor` (moves the CharacterController; its maths testable in `Core`), `PlayerCamera` (first- and third-person placement), `PlayerInteractor` (from step 5), `PlayerHud` (temporary), `DebugKeys` (Tab, F1, R, development builds only). Tunable numbers move into a settings asset (see "Should do soon"). The PlayMode test from step 4 must pass before and after. |
 | Size, tag | L, CLAUDE. Depends on 4 and 5. |
 
-### 7. Switch to the Input System
+### 7. Switch to the Input System (done by #31 PR A)
 
 Issue: [#12](https://github.com/AdaM404-dev/NET.runner-92/issues/12)
 
@@ -139,11 +157,11 @@ Not blocking, but cheap if done early:
   keeps the idea.
 - **Camera placement in `LateUpdate`**: the right moment.
 - **The NEXUS model**: humanoid rig, LODs, clean import reports.
-- **URP with the Forward+ renderer**: handles the 106 lights.
+- **URP with the Forward+ renderer**: handles the 106 lights. (Replaced by HDRP in #31.)
 - **A separate, simple collision model** (40,680 triangles instead of 1.08
   million) and **static flags** on the building.
 - **The naming scheme** (`DOOR_`, `FLOOR_`, `NF_`, …) and the object hierarchy.
-- **The 52 URP materials.**
+- **The 52 URP materials.** (The warehouse's were deleted in #31; the NEXUS ones wait for AdaM404.)
 
 ## Decisions needed
 
@@ -151,10 +169,10 @@ Not blocking, but cheap if done early:
 | --- | --- | --- | --- | --- |
 | D1 | Third person: part of the game or a debug view? | **Decided 2026-10-15: debug view only; the game is first person.** | both | [#13](https://github.com/AdaM404-dev/NET.runner-92/issues/13) |
 | D2 | First person: full body (today) or the arms-only model? | **Decided 2026-10-15: arms-only model in first person; the full body stays for the debug view and previews.** | both | [#14](https://github.com/AdaM404-dev/NET.runner-92/issues/14) |
-| D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
+| D3 | Who owns the warehouse prefab and the gameplay scene? | Prefab: AdaM404. Gameplay scene: Samuel. (The warehouse is deleted since #31; the hospital scene's ownership follows [[assets/handoff]].) | both | [#8](https://github.com/AdaM404-dev/NET.runner-92/issues/8), [#18](https://github.com/AdaM404-dev/NET.runner-92/issues/18) |
 | D4 | Target platforms | **Decided 2026-10-04: PC only (Windows and Linux); the Mobile quality level is removed.** | both | [#15](https://github.com/AdaM404-dev/NET.runner-92/issues/15) |
 | D5 | Company name and code namespace | **Decided 2026-10-04: company name `NET.runner`; namespaces `NetRunner.<Feature>`.** | both | [#7](https://github.com/AdaM404-dev/NET.runner-92/issues/7), [#9](https://github.com/AdaM404-dev/NET.runner-92/issues/9) |
-| D6 | Doors that are exported open | **Decided 2026-10-15: doors are exported shut (done in PR #21); a test in #10 fails if any warehouse door does not start shut. No runtime detection.** | both | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
+| D6 | Doors that are exported open | **Decided 2026-10-15: doors are exported shut (done in PR #21); a test in #10 fails if any warehouse door does not start shut. No runtime detection.** Since #31 the test applies to the hospital doors. | both | [#16](https://github.com/AdaM404-dev/NET.runner-92/issues/16) |
 
 ## After these steps
 
