@@ -1,38 +1,66 @@
+using NetRunner.Core;
 using UnityEngine;
 
 namespace NetRunner.Atmosphere
 {
+    /// <summary>
+    /// Makes one of the hospital's lights pulse: an emergency light swells and
+    /// fades smoothly, an intermittent one flickers. Its intensity swings
+    /// between the intensity it started with and that × (1 − depth). The
+    /// levels come from <see cref="LightPulse"/>; the Perlin noise behind the
+    /// flicker is sampled here, because only the engine has it. The hospital's
+    /// scene builder adds it to some fixtures and sets it up through
+    /// <see cref="Configure"/>.
+    /// </summary>
     [RequireComponent(typeof(Light))]
     public sealed class PracticalPulse : MonoBehaviour
     {
-        public enum Pattern { Intermittent, Emergency }
-        [SerializeField] Pattern pattern;
-        [SerializeField, Range(0, 1)] float depth = 0.4f;
-        [SerializeField, Min(0.1f)] float frequency = 0.8f;
-        [SerializeField] float phase;
-
-        Light fixture;
-        float nominal;
-
-        public void Configure(Pattern mode, float amount, float speed, float offset)
+        /// <summary>How the light pulses. Scenes save the number, so a new pattern goes at the end.</summary>
+        public enum Pattern
         {
-            pattern = mode; depth = amount; frequency = speed; phase = offset;
+            /// <summary>Flickers irregularly, following Perlin noise.</summary>
+            Intermittent,
+
+            /// <summary>Swells and fades smoothly, like a warning beacon.</summary>
+            Emergency,
         }
 
-        void Awake()
+        [SerializeField] private Pattern pattern;
+        [SerializeField, Range(0, 1)] private float depth = 0.4f;
+        [SerializeField, Min(0.1f)] private float frequency = 0.8f;
+        [SerializeField] private float phase;
+
+        private Light fixture;
+        private float full;
+
+        private void Awake()
         {
             fixture = GetComponent<Light>();
-            nominal = fixture.intensity;
+            full = fixture.intensity;
         }
 
-        void Update()
+        private void Update()
         {
-            float t = Time.time * frequency + phase;
-            float factor = pattern == Pattern.Emergency
-                ? (0.5f + 0.5f * Mathf.Sin(t * Mathf.PI * 2f))
-                : Mathf.SmoothStep(0f, 1f, (Mathf.PerlinNoise(t, phase) - 0.27f) * 3.5f);
-            fixture.intensity = nominal * Mathf.Lerp(1f - depth, 1f, factor);
+            float cycle = LightPulse.Cycle(Time.time, frequency, phase);
+
+            // The phase also picks the noise row, so neighbouring lights flicker differently.
+            float level = pattern == Pattern.Emergency
+                ? LightPulse.Emergency(cycle)
+                : LightPulse.Intermittent(Mathf.PerlinNoise(cycle, phase));
+            fixture.intensity = LightPulse.Intensity(full, depth, level);
+        }
+
+        /// <summary>
+        /// Sets the pulse up from the scene builder: the pattern, how far the
+        /// light dims (0 to 1), how many cycles a second, and where in its
+        /// cycle it starts.
+        /// </summary>
+        public void Configure(Pattern mode, float amount, float speed, float offset)
+        {
+            pattern = mode;
+            depth = amount;
+            frequency = speed;
+            phase = offset;
         }
     }
 }
-

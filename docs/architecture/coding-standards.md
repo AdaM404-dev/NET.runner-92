@@ -17,15 +17,18 @@ Decided 2026-11-09 by Samuel, together with "Claude writes all code"
   inside (pass `dt` in). Every rule has EditMode tests.
   Examples: `VerticalMotion.Step`, `Easing.SmoothStep01`; `Patrol` is a
   small class that keeps its own progress and is moved on by `Step(dt)`.
+  A rule that needs random numbers is given a `System.Random`
+  (`RainField`, `AmbientEvents`), so a test can pass a seeded one.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
   starts doing a second job is split (#41–#45 do this for the hospital code,
-  one feature each; `K7Patrol` was the first).
+  one feature each; `K7Patrol` and the atmosphere are done).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
   dialogue, timings), so new content needs no new code. None exists yet
   (the menu prototype's settings, the first, were deleted in #31); the
   K-7's numbers are named constants in `Patrol` and `K7Gait` until enemies
-  get their own data.
+  get their own data, and the atmosphere's in `Ambience`, `RainField`,
+  `AmbientEvents` and `LightPulse` until weather does.
 - **Composition, not inheritance.** Behaviour is built from several small
   components and interfaces (`IInteractable` from [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10)). A base class is used
   only for a closed family with a shared contract (none in the code yet);
@@ -125,7 +128,8 @@ Assets/NETRunner/<Feature>/
 
 ## 8. Bringing existing code to the standard
 
-How #41 did it for the K-7; #42–#45 follow the same steps.
+How #41 did it for the K-7 and #42 for the atmosphere; #43–#45 follow the
+same steps.
 
 1. **Pin today's behaviour first**: a PlayMode test of the component that
    passes on the old code (for #41, `K7PatrolTests` on a stand-in robot).
@@ -139,4 +143,16 @@ How #41 did it for the K-7; #42–#45 follow the same steps.
    committed; the result goes into the system note and the pull request.
 5. **Watch the maths**: a turn computed with angles instead of quaternions
    can go the other way round on an exact half turn, and a running total
-   rounds differently from a product. Both showed up in #41.
+   rounds differently from a product. Both showed up in #41. Unity's
+   `Mathf.Sin` and `Mathf.Exp` round their argument to a `float` before
+   the double-precision maths; a rule calling `Math.Sin` on a float
+   expression stores the argument in a `float` first, or it differs by a
+   few thousandths (#42).
+6. **Engine-only functions stay in the component.** `Core` cannot call
+   `Mathf.PerlinNoise`; `PracticalPulse` samples the noise and
+   `LightPulse.Intermittent` shapes the sample, so the flicker is
+   unchanged. Writing our own noise would have changed the look.
+7. **Keep shared randomness shared.** Where the old code drew all its
+   random numbers from one stream (the atmosphere's rain and events), the
+   rules get the same `System.Random` and are called in the old order, so
+   the side-by-side comparison matches draw for draw.

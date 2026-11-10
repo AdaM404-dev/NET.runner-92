@@ -2,9 +2,7 @@
     "name": "NetRunner.Atmosphere",
     "rootNamespace": "NetRunner.Atmosphere",
     "references": [
-        "Unity.InputSystem",
-        "Unity.RenderPipelines.Core.Runtime",
-        "Unity.RenderPipelines.HighDefinition.Runtime"
+        "NetRunner.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

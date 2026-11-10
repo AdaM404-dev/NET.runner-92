@@ -44,8 +44,9 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
   `PlayerController` ([[systems/player]]).
 - **Stairs:** the twelve visible flights have invisible ramp colliders
   (2.10 m rise over 3.19 m).
-- **Atmosphere:** storm audio, fog zones, flickering practicals ("residual
-  power"); see [atmosphere system](../../Northline/Documentation/atmosphere_system.md).
+- **Atmosphere:** rain, lightning, ambience sound, fog zones and pulsing
+  lights: [[systems/atmosphere]]. The flickering "residual power" lights
+  are `World`'s `ResidualPower`.
 - **Layers:** 8 `Near-detail geometry` (culled by the player camera past
   `detailCullDistance`, 34 m by default), 9 `First-person viewmodel` (LATCH-07; hidden from CCTV cameras).
   The names were set by #31; the warehouse's `Player`/`World` names are
