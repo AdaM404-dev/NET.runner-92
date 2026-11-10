@@ -136,6 +136,13 @@ Linux player build about 5 minutes (356 MB output).
   Vulkan as the only Linux API, so the editor starts on Vulkan; the setting
   does not affect Windows. If it ever starts on OpenGL again, add
   `-force-vulkan`.
+- Every import on Linux re-saves three hospital materials
+  (`Assets/NETRunner92/Environment/Materials/F01___Amber.mat`, `F01___Light.mat`,
+  `F01___Paper.mat`) with a different float format (0.6399999 → 0.64).
+  Restore them with `git checkout --` on those files; they are AdaM404's.
+- PlayMode tests run in batch mode without a window, so cameras only
+  render when a test calls `Camera.Render()`; a test that waits for a
+  camera to draw by itself waits forever.
 - `unity command quit` fails in edit mode with Pipeline `0.8.0-exp.1`
   (a `DontDestroyOnLoad` error). Close the editor window instead, or run
   `unity command eval 'UnityEditor.EditorApplication.Exit(0);'`, which exits

@@ -43,6 +43,7 @@ body.
 | 1 | Open or close the CCTV page after the reception breach |
 | Arrow keys | Reception puzzle, or switch CCTV feeds |
 | Esc / left click | Release / capture the cursor |
+| F2 / F3 | Next graphics quality level / FPS counter ([[systems/quality-settings]]) |
 
 ## How it works
 

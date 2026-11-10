@@ -16,17 +16,18 @@ Northline project unchanged (`GraphicsSettings`, `QualitySettings`,
 Project Settings > Graphics        default pipeline: Assets/NETRunner92/Rendering/Northline_HDRP.asset
   └─ HDRP global settings          Assets/HDRPDefaultResources/HDRenderPipelineGlobalSettings.asset
        └─ default volume profile   Assets/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset
-Project Settings > Quality         six levels, Very Low … Ultra; Ultra is the default for desktop
-                                   and the only one that names its own pipeline asset (the same one)
+Project Settings > Quality         three levels, Low / Medium / High, each with its own pipeline asset:
+                                   Northline_HDRP_Low, _Medium, and Northline_HDRP (High); Medium is the default
 Scene volumes                      fog per floor in Assets/NETRunner92/Atmosphere/Fog/*.asset,
                                    exposure in Assets/NETRunner92/Rendering/Overcast_Luminance.asset
 Material (per surface)             HDRP Lit, 151 in Assets/NETRunner92/Environment/Materials
 ```
 
-The levels below Ultra have no pipeline asset of their own, so they fall
-back to the Graphics default, which is the same HDRP asset; they only
-differ in Unity's non-pipeline quality settings. The game still targets
-**PC only** (#15); the template's mobile levels are not used.
+Since playtest 2 (2026-11-10) the player switches levels with F2; Low and
+Medium render at 50% and 67% and upscale with STP, and use cheaper
+reflections, ambient occlusion, contact shadows and shadow maps. Details
+and the exact values: [[systems/quality-settings]]. The game still targets
+**PC only** (#15).
 
 ## Platforms and graphics APIs
 
@@ -55,7 +56,8 @@ atmosphere system: [atmosphere system](../../Northline/Documentation/atmosphere_
 
 ## Known problems
 
-- HDRP is heavier than URP. Frame time on Samuel's Linux machine has not
-  been measured yet.
+- HDRP is heavier than URP. The first Windows playtest build lagged on the
+  test machine; playtest 2 adds the quality levels. Frame time in a built
+  game has not been measured on Linux or Windows yet.
 - `HospitalOptimization` (editor) puts small detail objects on layer 8 so
   the player camera can cull them past 34 m.
