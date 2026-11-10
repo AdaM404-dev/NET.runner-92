@@ -51,7 +51,7 @@ bin/unity-compile            # import + compile; prints compiler errors only
 bin/unity-test edit          # EditMode tests; summary + failures
 bin/unity-test play          # PlayMode tests
 bin/unity-test edit <filter> # only tests whose name matches
-bin/unity-build              # Linux player into Builds/Linux/
+bin/unity-build [windows]    # player into Builds/Linux/ (or Builds/Windows/)
 ```
 
 Editor open (Unity CLI bridge through `com.unity.pipeline`):
