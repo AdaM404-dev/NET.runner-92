@@ -20,7 +20,7 @@ measurement build, and its results are below ([#38](https://github.com/AdaM404-d
 The test machine has integrated Intel graphics (8–14 FPS); Samuel's laptop
 with an RTX 4050 already runs Medium at 119–179 FPS. The first target (60
 FPS on Medium on the test machine) was replaced by the two above. The
-optimizations come after #31 PR B (decided on #36).
+optimizations come after #31 PR B (decided on #36), which is done.
 
 ## What the scene contains
 
@@ -45,7 +45,7 @@ K-7s and CCTV were added) are in
 ## How to measure
 
 The game has two benchmark modes built in, from the Northline project
-(`Assets/NETRunner92/Core/PerformanceCapture.cs`,
+(`Assets/NETRunner/Diagnostics/Scripts/PerformanceCapture.cs`,
 `RoutePerformanceCapture.cs`). They run only when the game is started with
 their launch option, then quit.
 
@@ -75,8 +75,8 @@ Notes:
 ## Plan (#36)
 
 1. Measurement build, alpha test 3, and the CSVs from the test machine
-   and Samuel's Linux laptop.
-2. #31 PR B.
+   and Samuel's Linux laptop. Done.
+2. #31 PR B. Done.
 3. One PR per lever, each with before and after CSVs:
    - GPU Resident Drawer and GPU occlusion culling (Unity 6)
    - static flags on the building geometry

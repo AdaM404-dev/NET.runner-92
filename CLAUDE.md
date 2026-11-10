@@ -93,8 +93,9 @@ explains its non-obvious choices so the review is quick.
 ## Code conventions
 
 - Code lives in feature folders, `Assets/NETRunner/<Feature>/` (today
-  `Core` and `Settings`; the hospital code in `Assets/NETRunner92/` moves there in #31
-  PR B). Each has
+  `Core`, `Settings`, `Player`, `World`, `Enemy`, `Atmosphere` and
+  `Diagnostics`; `Assets/NETRunner92/` holds only the hospital's art and
+  scenes). Each has
   `Scripts/` with one assembly definition and namespace `NetRunner.<Feature>`,
   and its tests next to it in `Tests/EditMode/` or `Tests/PlayMode/`, each
   with its own test assembly. A new feature gets a new folder. References
@@ -124,8 +125,6 @@ explains its non-obvious choices so the review is quick.
 - Art folders (`Assets/Characters`, `Materials`, `Animations`, the art in
   `Assets/NETRunner92/` and `Northline/`) belong to the teammate. Do not modify them without
   asking; see `docs/assets/handoff.md`.
-- Until #31 PR B lands, add no new code or scenes to the hospital's old
-  layout outside that PR (the freeze in `agent.md`).
 
 ## Git
 

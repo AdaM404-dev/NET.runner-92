@@ -32,8 +32,8 @@ bin/unity-inspect                  # read-only reports: scene, environment, anim
 `bin/unity-inspect` runs the C# snippets in `tools/inspect/` inside the
 editor. They only read; the numbers in the `docs/systems/` notes come from
 them. The warehouse reports (`player`, `doors`, `map` and the floor-plan
-generator) were removed with the warehouse in #31; hospital reports come
-with #31 PR B. Snippets for `unity command eval_file`
+generator) were removed with the warehouse in #31; hospital reports are
+not written yet. Snippets for `unity command eval_file`
 cannot contain `using` lines (the code is wrapped in a method, with
 `UnityEngine` and `System` already in scope), and `Object` must be written
 `UnityEngine.Object`.
@@ -87,21 +87,27 @@ The built game's benchmark modes (`-net92-benchmark`, `-net92-route-benchmark`)
 and the Windows script that runs them are described in
 [[systems/performance]].
 
-The hospital's own Play-mode validator (95 checks: route, doors, lift,
-patrols, weather, LATCH-07, CCTV) runs headless too, with the editor
-closed:
+The hospital's 95 Play-mode checks (route, doors, lift, patrols, weather,
+LATCH-07, CCTV) run as one NUnit test since #31 PR B,
+`HospitalChecksTests`, part of `bin/unity-test play` (about 45 seconds):
 
 ```bash
-source bin/_unity.sh && run_unity validate -executeMethod NETRunner92.Editor.PlayModeValidation.Run
-grep 'NET92 QA' Logs/cli-validate.log     # one PASS or FAIL line per check
+bin/unity-test play HospitalChecks        # only this test
+cat Logs/hospital-checks/playmode_checks.txt   # one PASS or FAIL line per check
 ```
 
-It exits 0 when every check passes and writes its captures and
-`playmode_checks.txt` into `Northline/Renders/Phase_07_CCTV/`, overwriting
-the committed ones; restore them with `git checkout -- Northline/Renders`
-unless the new captures are meant to be committed. It must not use
-`-nographics`: the CCTV checks need HDRP to render. #31 PR B turns these
-checks into NUnit PlayMode tests.
+It writes the check list and its pictures into `Logs/hospital-checks/`
+(git-ignored); a failure lists the failed checks. `bin/unity-test play`
+runs with a graphics device, which the CCTV checks need.
+
+AdaM404's validator entry point still works and writes into
+`Northline/Renders/Phase_07_CCTV/`, overwriting the committed captures;
+restore them with `git checkout -- Northline/Renders` unless the new ones
+are meant to be committed:
+
+```bash
+source bin/_unity.sh && run_unity validate -executeMethod NetRunner.World.Editor.PlayModeValidation.Run
+```
 
 Full logs: `Logs/cli-*.log`. Test results: `Logs/test-results-<mode>.xml`.
 The editor binary is resolved from `ProjectSettings/ProjectVersion.txt` under

@@ -10,17 +10,21 @@ code in `NexusPlayer`, which were deleted.
 ## Status
 
 Came with the Northline hospital (PR #30) and was moved into the root
-project by #31 PR A without code changes. #10 (one interaction contract;
+project by #31 PR A without code changes; #31 PR B moved it into feature
+folders. #10 (one interaction contract;
 doors that know if they are open; a test that every door starts shut, from
-decision #16) will be rewritten against these types after #31 PR B.
+decision #16) will be rewritten against these types.
 
 ## Where it lives
 
-All in `Assets/NETRunner92/Core/` for now (namespace `NETRunner92`):
+The interaction is in `Assets/NETRunner/Player/Scripts/` (namespace
+`NetRunner.Player`), the things you use in `Assets/NETRunner/World/Scripts/`
+(`NetRunner.World`):
 
 | Type | Job |
 | --- | --- |
 | `HospitalInteractable` (in `HospitalInteraction.cs`) | base class: a `Prompt` and `Use(FirstPersonController)` |
+| `HospitalTerminal` (in `HospitalInteraction.cs`) | base class for an interactable that takes over the keyboard while open (`ReadInput`, `Close`); added in #31 PR B so `Player` does not need `World` |
 | `HospitalInteraction` | on the player: ray from the eyes, prompt, E key ([[systems/player]]) |
 | `HospitalDoor` | one opening: swing leaves, sliding pairs or the telescopic research barrier |
 | `HospitalLift`, `HospitalLiftButton` | the west lift: cabin, cabin door, landing doors, call and floor buttons |

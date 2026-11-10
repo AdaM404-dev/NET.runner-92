@@ -13,17 +13,18 @@ Came with the Northline hospital (PR #30) and was moved into the root
 project by #31 PR A without code changes. It reads input through the
 Input System (`Keyboard.current`, `Mouse.current`); Active Input Handling
 is Input System only since #31, which also covers #12. It does not follow
-[[architecture/coding-standards]] yet (one namespace, `Assembly-CSharp`,
-no NUnit tests); #31 PR B and C fix that.
+[[architecture/coding-standards]] yet; #31 PR C fixes that. Since #31 PR B
+it is in `Assets/NETRunner/Player/` (assembly and namespace
+`NetRunner.Player`).
 
 ## Where it lives
 
 | What | Where |
 | --- | --- |
 | Scene object | `PlayerController` in `Hospital_Exploration.unity` |
-| Movement and look | `Assets/NETRunner92/Player/Scripts/FirstPersonController.cs` |
-| Aiming and the E key | `Assets/NETRunner92/Core/HospitalInteraction.cs` |
-| Tablet | `Player/Scripts/LatchViewmodel.cs`, `LatchScreen.cs`, `LatchRelay.cs`, assets in `Player/Latch07/` |
+| Movement and look | `Assets/NETRunner/Player/Scripts/FirstPersonController.cs` |
+| Aiming and the E key | `Assets/NETRunner/Player/Scripts/HospitalInteraction.cs` |
+| Tablet | `Player/Scripts/LatchViewmodel.cs`, `LatchScreen.cs`, `LatchRelay.cs`; art in `Assets/NETRunner92/Player/Latch07/` |
 | CCTV on the tablet | `Player/Scripts/SecurityCctv.cs` |
 
 `PlayerController` has a `CharacterController`, `FirstPersonController`,
