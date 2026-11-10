@@ -13,6 +13,8 @@ design notes) is in [Northline/](Northline/README.md).
 
 ### Open the complete project
 
+New machine? The step-by-step tutorial for Windows and Linux (Git LFS, Unity Hub, the exact editor version, first open, troubleshooting) is [docs/guide/00-install.md](docs/guide/00-install.md). The short version:
+
 1. Clone the repository. The art (textures, models, Blender files, audio) is
    stored in [Git LFS](https://git-lfs.com/), so install LFS once per machine
    first; Git for Windows includes it:
