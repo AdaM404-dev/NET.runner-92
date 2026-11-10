@@ -11,6 +11,8 @@ Current status and the work log are **not** here: they live in
 
 New to the project or to Unity? Read in this order:
 
+0. [[guide/00-install]]: download and install the project, open it, play
+   the hospital, keep it up to date.
 1. [[guide/01-unity-in-this-project]] and [[guide/02-guided-tour]]: the
    Unity ideas and a hands-on tour. Both still show the deleted warehouse
    and are rewritten for the hospital after #31; read
