@@ -49,6 +49,11 @@ namespace NetRunner.Diagnostics
             }
         }
 
+        // The most one frame counts towards a leg's walking time: a stall of the
+        // whole computer (a screensaver, disk work) is not taken for the walker
+        // being stuck. The movement itself is capped the same way (FirstPersonController.Move).
+        private const float MaxCountedFrame = .1f;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Attach()
         {
@@ -148,19 +153,21 @@ namespace NetRunner.Diagnostics
             foreach (var target in targets)
             {
                 float distance = Vector2.Distance(target, P(player.transform.position.x, player.transform.position.z));
-                float deadline = Time.realtimeSinceStartup + 5f + distance * .75f;
+                float allowed = 5f + distance * .75f;
+                float walked = 0f;
                 while (true)
                 {
                     Vector3 position = player.transform.position;
                     Vector2 delta = target - P(position.x, position.z);
                     if (delta.sqrMagnitude <= .074f * .074f) break;
-                    if (Time.realtimeSinceStartup > deadline || position.y < -1f)
+                    if (walked > allowed || position.y < -1f)
                     {
                         Check(false, $"{segment}: stuck at {position}, target {target}.");
                         yield break;
                     }
 
                     float dt = Time.unscaledDeltaTime;
+                    walked += Mathf.Min(dt, MaxCountedFrame);
                     var wish = new Vector3(delta.x, 0f, delta.y);
                     var aim = Quaternion.LookRotation(wish);
                     player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, aim, 300f * dt);

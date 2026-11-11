@@ -94,7 +94,10 @@ linux`; defaults `Builds/Linux` and `Builds/Linux/benchmark`), with the
 same file names, plus each run's log in `logs/`. Switch the desktop's
 screensaver and screen lock off for the run (on Omarchy: stay awake):
 the route takes about 4 minutes without a key press, and a screensaver
-that takes the screen stalls the game long enough to fail the route.
+that takes the screen stalls the game. A stall shows as one long frame in
+the results; the route counts at most 0.1 s of each frame towards a leg's
+time limit, so a stall is not taken for the walker being stuck (until
+2026-11-11 it was: two laptop runs failed that way).
 
 Notes:
 
