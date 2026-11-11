@@ -28,8 +28,9 @@ You need Windows 10/11 64-bit and a graphics card with Direct3D 11 or 12.
 Report problems as a GitHub issue, with what you did and what you saw.
 
 To help measure performance (from alpha test 3): double-click
-`run-benchmarks.bat` in the game folder, wait about 6 minutes without
-touching anything, then send the `benchmark` folder it creates. Details:
+`run-benchmarks.bat` in the game folder, wait without touching anything
+until it says "Done" (about 6 minutes in alpha test 3, about 15 from alpha
+test 4), then send the `benchmark` folder it creates. Details:
 [[systems/performance]].
 
 The rest of this guide is for working on the project.

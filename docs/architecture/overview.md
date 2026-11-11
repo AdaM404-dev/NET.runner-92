@@ -24,6 +24,7 @@ Assets/NETRunner/
 │  ├─ Scripts/StartResolution.cs    first-start screen size, capped at 1080p
 │  ├─ Scripts/FrameRateMeter.cs     averaged frames per second
 │  ├─ Scripts/LaunchArguments.cs    reads the game's command-line options
+│  ├─ Scripts/RenderFeature.cs      features a benchmark run can switch off (with RenderFeatureList)
 │  ├─ Scripts/Patrol.cs             walking a route back and forth: turn, walk, wait at the ends
 │  ├─ Scripts/K7Gait.cs             the K-7's leg, arm and head angles as it walks
 │  ├─ Scripts/ZoneBlend.cs          how much a point is inside an atmosphere zone
@@ -31,7 +32,7 @@ Assets/NETRunner/
 │  ├─ Scripts/RainField.cs          rain streaks around the listener
 │  ├─ Scripts/AmbientEvents.cs      lightning, thunder, monitor beeps, creaks
 │  ├─ Scripts/LightPulse.cs         emergency and intermittent light levels
-│  └─ Tests/EditMode/               113 tests, run in a fraction of a second
+│  └─ Tests/EditMode/               121 tests, run in a fraction of a second
 ├─ Settings/                      NetRunner.Settings: graphics quality for players
 │  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
 │  └─ Tests/PlayMode/               5 tests
@@ -44,7 +45,7 @@ Assets/NETRunner/
 ├─ Atmosphere/                    NetRunner.Atmosphere: zones, weather and ambience, pulsing lights
 │  └─ Tests/PlayMode/               15 tests on a stand-in site
 └─ Diagnostics/                   NetRunner.Diagnostics: the 95 hospital checks, benchmark modes
-   └─ Tests/PlayMode/               1 test that runs the 95 checks
+   └─ Tests/PlayMode/               6 tests: the 95 checks, and the benchmark's feature switch
 ```
 
 Two choices differ from the plan on #31, both to keep behaviour unchanged:
