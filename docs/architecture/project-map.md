@@ -22,7 +22,7 @@ NET.runner-92/
 ├─ docs/              this knowledge base; open the folder in Obsidian
 ├─ bin/               terminal helpers: unity-compile, unity-test, unity-build, unity-shot, unity-inspect
 ├─ tools/inspect/     the read-only reports behind bin/unity-inspect
-├─ tools/benchmark/   run-benchmarks.bat, shipped in the Windows alpha zips
+├─ tools/benchmark/   run-benchmarks.bat (shipped in the Windows alpha zips) and run-benchmarks.sh (the Linux build)
 ├─ .claude/           Claude Code settings and skills
 ├─ AGENTS.md          the rules for every AI agent: sync with main, workflow, structure, coding standard
 ├─ CLAUDE.md          Claude Code's additions; loads AGENTS.md
@@ -36,7 +36,7 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | Folder | What is in it | Files | Owner |
 | --- | --- | ---: | --- |
 | `NETRunner92/` | **the hospital's art and scenes**: scenes, environment, LATCH-07 arms and player prefab, K-7, atmosphere assets, rendering (below); no code since #31 PR B | 252 | art: AdaM404; gameplay scenes: Claude/Samuel |
-| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`, `Patrol`, `K7Gait`, `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents`, `LightPulse`, `RandomRange`) and their EditMode tests, two assembly definitions | 29 | Claude/Samuel |
+| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`, `RenderFeature`, `RenderFeatureList`, `OcclusionRole`, `OcclusionRules`, `Patrol`, `K7Gait`, `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents`, `LightPulse`, `RandomRange`) and their EditMode tests, two assembly definitions | 35 | Claude/Samuel |
 | `NETRunner/Player/`, `World/`, `Enemy/`, `Atmosphere/`, `Diagnostics/` | the hospital's code, one feature each, with their tests (see "Code" below) | | Claude/Samuel |
 | `NETRunner/Settings/` | `QualitySwitch` (F2 quality, F3 FPS) and its PlayMode tests, two assembly definitions; see [[systems/quality-settings]] | 4 | Claude/Samuel |
 | `HDRPDefaultResources/` | HDRP global settings and default volume profile | 2 | shared, change by pull request |
@@ -47,7 +47,7 @@ Inside `NETRunner92/`:
 
 | Folder | What is in it |
 | --- | --- |
-| `Scenes/` | `Hospital_Exploration` (gameplay) and `LATCH07_ViewmodelCheck` |
+| `Scenes/` | `Hospital_Exploration` (gameplay; its baked occlusion data in `Hospital_Exploration/OcclusionCullingData.asset`) and `LATCH07_ViewmodelCheck` |
 | `Environment/Hospital`, `Exterior` | hospital and grounds geometry (`MeshData.bytes`, Git LFS) |
 | `Environment/Materials`, `Textures` | 151 HDRP Lit materials and their textures |
 | `Environment/K7/` | the K-7 robot: FBX, seven HDRP materials, `K7_Patrol.prefab` |
@@ -89,19 +89,24 @@ The code is unchanged from Northline apart from `Enemy` (#41) and
 | `Atmosphere/Tests/PlayMode/*.cs` | zone weights, rain, crossfade, dust, steam, monitor, pulsing lights on a stand-in site | [[systems/atmosphere]] |
 | `Diagnostics/Scripts/*Diagnostics.cs` | the hospital's 95 Play-mode checks (editor only) | [[systems/level-hospital]] |
 | `Diagnostics/Scripts/PerformanceCapture.cs`, `RoutePerformanceCapture.cs`, `FocusedInputCapture.cs` | the built game's benchmark and input-check modes | [[systems/performance]] |
+| `Diagnostics/Scripts/RenderFeatureSwitch.cs` | `-net92-without`: switches rendering features off for one benchmark run | [[systems/performance]] |
 | `Diagnostics/Tests/PlayMode/HospitalChecksTests.cs` | runs the 95 checks as one NUnit test | [[architecture/tooling]] |
+| `Diagnostics/Tests/PlayMode/RenderFeatureSwitchTests.cs` | each switched-off feature changes only its own camera or light setting | [[systems/performance]] |
 | `World/Tests/PlayMode/DoorInteractionTests.cs` | doors start shut, aim, open/close, lock | [[systems/doors-and-interaction]] |
-| `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`) and `PlayModeValidation` | [[systems/level-hospital]] |
+| `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`, including `HospitalOcclusion.cs`, which bakes occlusion culling) and `PlayModeValidation` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/VerticalMotion.cs` | plain C# rule; currently unused by the hospital | — |
 | `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` | rules behind the quality switch | [[systems/quality-settings]] |
+| `NETRunner/Core/Scripts/RenderFeature.cs`, `RenderFeatureList.cs` | the features a benchmark run can switch off, and their names | [[systems/performance]] |
+| `NETRunner/Core/Scripts/OcclusionRole.cs`, `OcclusionRules.cs` | which part an object plays in the baked occlusion culling | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/Patrol.cs`, `K7Gait.cs` | the K-7's patrol walk and its leg, arm and head angles | [[systems/enemy-k7]] |
 | `NETRunner/Core/Scripts/ZoneBlend.cs`, `Ambience.cs`, `RainField.cs`, `AmbientEvents.cs`, `LightPulse.cs`, `RandomRange.cs`, `Easing.cs` | the atmosphere's rules: zone weights, volumes, rain streaks, lightning and sounds, pulsing lights | [[systems/atmosphere]] |
 | `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
-| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 113 EditMode and 5 PlayMode tests | the test runner |
+| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 124 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 113 EditMode (`Core`) and 31 PlayMode (5 in `Settings`, 5 in
-`World`, 5 in `Enemy`, 15 in `Atmosphere`, 1 in `Diagnostics` that runs
-the hospital's 95 checks in about 45 seconds).
+Tests: 124 EditMode (`Core`) and 36 PlayMode (5 in `Settings`, 5 in
+`World`, 5 in `Enemy`, 15 in `Atmosphere`, 6 in `Diagnostics`: 5 for the
+benchmark's feature switch and 1 that runs the hospital's 95 checks in
+about 45 seconds).
 
 ## Project settings that matter
 
@@ -121,7 +126,7 @@ the hospital's 95 checks in about 45 seconds).
 | --- | --- | --- |
 | High Definition RP 17.6.0 | the render pipeline (also brings Shader Graph and VFX Graph) | yes |
 | Input System 1.20.0 | keyboard and mouse input | yes, by the hospital code |
-| Test Framework 1.8.0 | automated tests | yes: 113 EditMode, 31 PlayMode tests |
+| Test Framework 1.8.0 | automated tests | yes: 124 EditMode, 36 PlayMode tests |
 | AI Navigation 2.0.14 | navigation meshes for enemies | not yet |
 | Timeline, uGUI, Visual Scripting | cutscenes, UI, node-based scripting | not used by any asset |
 | Pipeline 0.8 (experimental) | lets the `unity` terminal tool drive the editor | yes, by our tooling |

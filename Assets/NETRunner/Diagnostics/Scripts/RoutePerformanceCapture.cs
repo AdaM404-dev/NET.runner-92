@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 using NetRunner.Atmosphere;
+using NetRunner.Core;
 using NetRunner.Player;
 using NetRunner.World;
 using UnityEngine;
@@ -47,6 +48,11 @@ namespace NetRunner.Diagnostics
                 Peak = peak;
             }
         }
+
+        // The most one frame counts towards a leg's walking time: a stall of the
+        // whole computer (a screensaver, disk work) is not taken for the walker
+        // being stuck. The movement itself is capped the same way (FirstPersonController.Move).
+        private const float MaxCountedFrame = .1f;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Attach()
@@ -147,23 +153,27 @@ namespace NetRunner.Diagnostics
             foreach (var target in targets)
             {
                 float distance = Vector2.Distance(target, P(player.transform.position.x, player.transform.position.z));
-                float deadline = Time.realtimeSinceStartup + 5f + distance * .75f;
+                float allowed = 5f + distance * .75f;
+                float walked = 0f;
                 while (true)
                 {
                     Vector3 position = player.transform.position;
                     Vector2 delta = target - P(position.x, position.z);
                     if (delta.sqrMagnitude <= .074f * .074f) break;
-                    if (Time.realtimeSinceStartup > deadline || position.y < -1f)
+                    if (walked > allowed || position.y < -1f)
                     {
                         Check(false, $"{segment}: stuck at {position}, target {target}.");
                         yield break;
                     }
 
                     float dt = Time.unscaledDeltaTime;
+                    walked += Mathf.Min(dt, MaxCountedFrame);
                     var wish = new Vector3(delta.x, 0f, delta.y);
                     var aim = Quaternion.LookRotation(wish);
                     player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, aim, 300f * dt);
-                    HospitalDoor.OpenOnDiagnosticPath(player, wish, false);
+                    // Open doors at once, as the hospital checks do: a leaf that is still
+                    // swinging when the walker arrives shoves it aside and traps it.
+                    HospitalDoor.OpenOnDiagnosticPath(player, wish, true);
                     player.Move(wish * 7f, false, dt);
                     travelled += Vector3.Distance(position, player.transform.position);
                     Record(segment, position, dt);
@@ -202,7 +212,7 @@ namespace NetRunner.Diagnostics
         {
             var results = new List<string>
             {
-                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {Screen.width}x{Screen.height}",
+                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {Screen.width}x{Screen.height}; {QualitySettings.names[QualitySettings.GetQualityLevel()]}; without: {RenderFeatureList.Format(RenderFeatureSwitch.FromLaunchOptions())}",
                 "Segment;Frames;Seconds;AvgFPS;P95FrameMs;P99FrameMs;P95GpuMs;P95MainMs;FramesOver16.67Ms"
             };
             foreach (var group in frames.GroupBy(f => f.Segment).Prepend(frames.GroupBy(_ => "Full route").FirstOrDefault()))

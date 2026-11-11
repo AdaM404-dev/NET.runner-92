@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System;
+using NetRunner.Core;
 using NetRunner.Player;
 using Unity.Profiling;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace NetRunner.Diagnostics
             p.enabled = false;
             p.CaptureCursor(false);
             var results = new List<string> {
-                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {Screen.width}x{Screen.height}; {QualitySettings.names[QualitySettings.GetQualityLevel()]}",
+                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {Screen.width}x{Screen.height}; {QualitySettings.names[QualitySettings.GetQualityLevel()]}; without: {RenderFeatureList.Format(RenderFeatureSwitch.FromLaunchOptions())}",
                 "Zone;Samples;AvgFPS;P95FrameMs;P95GPUms;MeanDrawCalls;MeanTriangles"
             };
             using var draws = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count");

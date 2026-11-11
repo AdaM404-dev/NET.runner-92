@@ -83,8 +83,10 @@ the editor being installed, so they also suit CI.
 | `bin/unity-test edit\|play [filter]` | Runs Test Framework tests; prints a summary and failures | 0 ok, 1 failures, 4 no tests found |
 | `bin/unity-build [linux\|windows]` | player build into `Builds/Linux/` or `Builds/Windows/` (needs that platform's build support in the editor); runs with a graphics device for HDRP | 0 ok, 1 failed |
 
-The built game's benchmark modes (`-net92-benchmark`, `-net92-route-benchmark`)
-and the Windows script that runs them are described in
+The built game's benchmark modes (`-net92-benchmark`, `-net92-route-benchmark`,
+`-net92-without`) and the scripts that run them all
+(`tools/benchmark/run-benchmarks.bat` on Windows,
+`tools/benchmark/run-benchmarks.sh` for the Linux build) are described in
 [[systems/performance]].
 
 The hospital's 95 Play-mode checks (route, doors, lift, patrols, weather,
