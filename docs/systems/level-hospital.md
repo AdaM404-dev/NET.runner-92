@@ -27,6 +27,7 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
 | Materials (HDRP Lit) | `Assets/NETRunner92/Environment/Materials` |
 | Fog, lighting, audio, VFX | `Assets/NETRunner92/Atmosphere/` |
 | Scene builders (editor menu **NET.runner-92**) | `Assets/NETRunner/World/Editor/` |
+| Occlusion culling data (baked by `World/Editor/HospitalOcclusion.cs`) | `Assets/NETRunner92/Scenes/Hospital_Exploration/OcclusionCullingData.asset` |
 | Blender sources, renders, cinematic, design notes | [`Northline/`](../../Northline/README.md) |
 
 ## How it works
@@ -47,6 +48,18 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
 - **Atmosphere:** rain, lightning, ambience sound, fog zones and pulsing
   lights: [[systems/atmosphere]]. The flickering "residual power" lights
   are `World`'s `ResidualPower`.
+- **Occlusion culling** (since 2026-11-11, #36 round 1): the cameras skip
+  what walls and floors hide. Everything under
+  `Northline Medical — imported environment` is static for occlusion:
+  6,837 solid renderers hide what is behind them, and 203 see-through ones
+  (glass) can be hidden but hide nothing (`OcclusionRules` in `Core`).
+  Doors, the lift, the patrols, the player and the other systems move, so
+  they stay dynamic; a closed door therefore hides nothing. The data is
+  baked with Umbra (smallest occluder 2 m, smallest hole 0.25 m; about a
+  minute): menu **NET.runner-92 → Bake Occlusion Culling**, or headless
+  `source bin/_unity.sh && run_unity occlusion -quit -executeMethod
+  NetRunner.World.Editor.HospitalSceneBuilder.BakeOcclusion`.
+  **Build Hospital Exploration Scene** bakes it last.
 - **Layers:** 8 `Near-detail geometry` (culled by the player camera past
   `detailCullDistance`, 34 m by default), 9 `First-person viewmodel` (LATCH-07; hidden from CCTV cameras).
   The names were set by #31; the warehouse's `Player`/`World` names are
@@ -59,6 +72,9 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
   regenerates parts of the scene; treat them as tools, not gameplay code.
 - Builders and validation write to `Northline/Renders/` and
   `Northline/Builds/`.
+- The occlusion data describes the static geometry where it was when it
+  was baked. After moving, adding or removing any of it, bake again, or
+  objects can vanish behind walls that are no longer there.
 
 ## Open questions
 

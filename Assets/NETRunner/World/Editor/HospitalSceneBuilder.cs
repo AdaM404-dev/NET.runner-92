@@ -64,6 +64,7 @@ namespace NetRunner.World.Editor
             OptimizeScene();
             InstallHospitalSystems();
             if (AssetDatabase.LoadAssetAtPath<GameObject>(LatchPrefab)) InstallCctv();
+            BakeOcclusion();
             Debug.Log($"NET92 SCENE | {visuals} visual meshes | {solids} colliders | {ramps} stair ramps");
         }
 
