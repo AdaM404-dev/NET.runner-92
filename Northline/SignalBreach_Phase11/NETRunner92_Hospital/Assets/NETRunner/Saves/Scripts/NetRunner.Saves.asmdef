@@ -1,0 +1,16 @@
+{
+    "name": "NetRunner.Saves",
+    "rootNamespace": "NetRunner.Saves",
+    "references": [
+        "NetRunner.Settings"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

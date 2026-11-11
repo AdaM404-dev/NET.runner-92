@@ -1,0 +1,98 @@
+using System.IO;
+using NetRunner.Diagnostics;
+using NetRunner.Hud;
+using NetRunner.Player;
+using UnityEditor.SceneManagement;
+using UnityEditor;
+using UnityEngine;
+
+namespace NetRunner.World.Editor
+{
+    [InitializeOnLoad]
+    public static class PlayModeValidation
+    {
+        const string Session = "NET92.PlayModeValidation";
+        static PlayModeValidation() => EditorApplication.playModeStateChanged += Changed;
+
+        public static void RefineAndRun()
+        {
+            HospitalSceneBuilder.RefineReadability();
+            Run();
+        }
+
+        public static void RunAndBuild()
+        {
+            SessionState.SetBool(Session+".build",true);
+            Run();
+        }
+
+        public static void InstallAndRun()
+        {
+            HospitalSceneBuilder.InstallHospitalSystems();
+            Run();
+        }
+
+        public static void InstallLatchAndRun()
+        {
+            HospitalSceneBuilder.InstallLatch07();
+            Run();
+        }
+
+        public static void InstallCctvAndRun()
+        {
+            HospitalSceneBuilder.InstallCctv();
+            Run();
+        }
+
+        public static void RunMainMenuRegression()
+        {
+            SessionState.SetString(Session + ".output", "../Renders/Phase_09_MainMenu");
+            Run();
+        }
+
+        public static void Run()
+        {
+            if (!File.Exists(HospitalSceneBuilder.ScenePath))
+                throw new FileNotFoundException(HospitalSceneBuilder.ScenePath);
+            EditorSceneManager.OpenScene(HospitalSceneBuilder.ScenePath);
+            SessionState.SetBool(Session,true);
+            EditorApplication.isPlaying=true;
+        }
+
+        static void Changed(PlayModeStateChange state)
+        {
+            if (!SessionState.GetBool(Session,false)) return;
+            if (state == PlayModeStateChange.EnteredPlayMode)
+            {
+                var o=new GameObject("Transient validation");
+                var d=o.AddComponent<ExplorationDiagnostics>();
+                string requestedOutput = SessionState.GetString(Session + ".output", "");
+                SessionState.EraseString(Session + ".output");
+                d.Output=Path.GetFullPath(requestedOutput.Length > 0 ? requestedOutput
+                    : Object.FindAnyObjectByType<HospitalHud>() ? "../Renders/Phase_08_HUD_Reference"
+                    : Object.FindAnyObjectByType<SecurityCctv>() ? "../Renders/Phase_07_CCTV"
+                    : Object.FindAnyObjectByType<LatchViewmodel>() ? "../Renders/Phase_06_Latch07"
+                    : Object.FindAnyObjectByType<StairAccess>() ? "../Renders/Phase_05_Unity/Interactive" : "../Renders/Phase_05_Unity");
+                d.CaptureImages=SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null;
+                d.Complete=ok=>{
+                    SessionState.SetInt(Session+".result",ok?0:2);
+                    EditorApplication.isPlaying=false;
+                };
+            }
+            else if(state==PlayModeStateChange.EnteredEditMode)
+            {
+                SessionState.SetBool(Session,false);
+                int result=SessionState.GetInt(Session+".result",2);
+                if(result==0 && SessionState.GetBool(Session+".build",false))
+                {
+                    SessionState.SetBool(Session+".build",false);
+                    try { HospitalSceneBuilder.BuildWindows(); }
+                    catch (System.Exception ex) { Debug.LogException(ex); result=3; }
+                }
+                EditorApplication.Exit(result);
+            }
+        }
+    }
+}
+
+

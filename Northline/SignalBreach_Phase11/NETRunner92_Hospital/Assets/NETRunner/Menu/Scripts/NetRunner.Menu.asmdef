@@ -1,0 +1,22 @@
+{
+    "name": "NetRunner.Menu",
+    "rootNamespace": "NetRunner.Menu",
+    "references": [
+        "NetRunner.Player",
+        "NetRunner.Saves",
+        "NetRunner.Settings",
+        "NetRunner.World",
+        "Unity.InputSystem",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
