@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using NetRunner.Core;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -21,7 +22,11 @@ namespace NetRunner.Settings
             new(960, 540), new(1280, 720), new(1280, 800), new(1600, 900), new(1680, 1050),
             new(1920, 1080), new(1920, 1200), new(2560, 1080), new(2560, 1440), new(3440, 1440), new(3840, 2160)
         };
+        const string QualityOption = "-net92-quality";
         static GamePreferences saved = new();
+
+        // Set when the game starts with -net92-quality Low|Medium|High: that preset for this run, never saved (benchmarks).
+        static GamePreferences launchPreset;
         static string SettingsPath => Path.Combine(LocalGameFiles.ProfileDirectory, "settings.json");
         static Camera eyes;
         static HDAdditionalCameraData cameraData;
@@ -62,7 +67,8 @@ namespace NetRunner.Settings
                 Debug.LogWarning($"Northline settings defaults restored: {ex.Message}");
             }
             saved.Validate();
-            Active = saved;
+            launchPreset = LaunchPreset(saved);
+            Active = launchPreset ?? saved;
             DynamicResolutionHandler.SetDynamicResScaler(() => Active.renderScale,
                 DynamicResScalePolicyType.ReturnsPercentage);
         }
@@ -125,7 +131,7 @@ namespace NetRunner.Settings
                         mixer = candidate;
                         break;
                     }
-            Preview(saved);
+            Preview(launchPreset ?? saved);
             if (!displayInitialized)
             {
                 displayInitialized = true;
@@ -135,9 +141,40 @@ namespace NetRunner.Settings
             }
         }
 
+        /// <summary>True when the game was started with -net92-quality: choices made this run are not saved.</summary>
+        public static bool QualityFixedAtLaunch => launchPreset != null;
+
+        /// <summary>
+        /// Switches to the preset of a quality level, as F2 does: saved like a
+        /// choice in the menu when <paramref name="save"/> is true, otherwise
+        /// only shown for this run.
+        /// </summary>
+        public static void SelectLevel(int level, bool save)
+        {
+            var next = Active.Copy();
+            next.SetPreset(QualityPreset.ForLevel(level));
+            if (!save || !Commit(next, out _))
+            {
+                Preview(next);
+            }
+        }
+
+        static GamePreferences LaunchPreset(GamePreferences basis)
+        {
+            string name = LaunchArguments.ValueAfter(Environment.GetCommandLineArgs(), QualityOption);
+            int level = QualityChoice.FromName(name, QualitySettings.names);
+            if (level < 0) return null;
+            var run = basis.Copy();
+            run.SetPreset(QualityPreset.ForLevel(level));
+            return run;
+        }
+
         public static void Preview(GamePreferences value)
         {
             Active = value;
+            // The level first: switching level resets VSync, texture limit and the pipeline asset, which the lines below then set.
+            if (QualitySettings.GetQualityLevel() != value.quality && value.quality < QualitySettings.count)
+                QualitySettings.SetQualityLevel(value.quality, true);
             QualitySettings.vSyncCount = value.vsync ? 1 : 0;
             Application.targetFrameRate = value.frameLimit;
             QualitySettings.globalTextureMipmapLimit = value.texture;

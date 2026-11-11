@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using NetRunner.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,7 +25,10 @@ namespace NetRunner.Settings
         public FullScreenMode displayMode = FullScreenMode.FullScreenWindow;
         public bool vsync = true;
         public int frameLimit = 60;
-        public int preset = 2;
+        public int preset = QualityPreset.High;
+
+        /// <summary>The project quality level (0 Low, 1 Medium, 2 High) the preset selected; kept for Custom.</summary>
+        public int quality = QualityPreset.High;
         public int texture, shadows = 2, shadowResolution = 2, antialias = 3, renderScale = 100;
         public bool ao = true, volumetrics = true, bloom = true, motionBlur, depthOfField;
         public float fov = 68, brightness;
@@ -58,12 +62,13 @@ namespace NetRunner.Settings
                 && frameLimit != 120 && frameLimit != 144 && frameLimit != 165 && frameLimit != 240)
                 frameLimit = 60;
 
-            preset = Mathf.Clamp(preset, 0, 4);
+            preset = Mathf.Clamp(preset, QualityPreset.Low, QualityPreset.Custom);
+            quality = QualityPreset.LevelFor(preset, quality);
             texture = Mathf.Clamp(texture, 0, 2);
             shadows = Mathf.Clamp(shadows, 0, 3);
             shadowResolution = Mathf.Clamp(shadowResolution, 0, 3);
             antialias = Mathf.Clamp(antialias, 0, 3);
-            renderScale = Mathf.Clamp(renderScale, 50, 100);
+            renderScale = Mathf.Clamp(renderScale, QualityPreset.MinimumRenderScale, QualityPreset.MaximumRenderScale);
             fov = Bounded(fov, 55, 100, 68);
             brightness = Bounded(brightness, -1.5f, 1.5f, 0);
             master = Bounded(master, 0, 1, 1);
@@ -94,7 +99,8 @@ namespace NetRunner.Settings
         public void SetPreset(int value)
         {
             preset = value;
-            if (value == 4) return;
+            quality = QualityPreset.LevelFor(value, quality);
+            if (value == QualityPreset.Custom) return;
             texture = value == 0 ? 2 : value == 1 ? 1 : 0;
             shadows = value == 0 ? 0 : value == 1 ? 1 : value == 2 ? 2 : 3;
             shadowResolution = value;
@@ -103,7 +109,7 @@ namespace NetRunner.Settings
             volumetrics = value >= 1;
             bloom = value >= 1;
             motionBlur = depthOfField = false;
-            renderScale = value == 0 ? 75 : value == 1 ? 90 : 100;
+            renderScale = QualityPreset.RenderScaleFor(value);
         }
 
         public bool DisplayDiffers(GamePreferences other) => width != other.width || height != other.height
