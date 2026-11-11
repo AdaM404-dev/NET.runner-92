@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 using NetRunner.Atmosphere;
+using NetRunner.Core;
 using NetRunner.Player;
 using NetRunner.World;
 using UnityEngine;
@@ -163,7 +164,9 @@ namespace NetRunner.Diagnostics
                     var wish = new Vector3(delta.x, 0f, delta.y);
                     var aim = Quaternion.LookRotation(wish);
                     player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, aim, 300f * dt);
-                    HospitalDoor.OpenOnDiagnosticPath(player, wish, false);
+                    // Open doors at once, as the hospital checks do: a leaf that is still
+                    // swinging when the walker arrives shoves it aside and traps it.
+                    HospitalDoor.OpenOnDiagnosticPath(player, wish, true);
                     player.Move(wish * 7f, false, dt);
                     travelled += Vector3.Distance(position, player.transform.position);
                     Record(segment, position, dt);
@@ -202,7 +205,7 @@ namespace NetRunner.Diagnostics
         {
             var results = new List<string>
             {
-                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {Screen.width}x{Screen.height}",
+                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {Screen.width}x{Screen.height}; {QualitySettings.names[QualitySettings.GetQualityLevel()]}; without: {RenderFeatureList.Format(RenderFeatureSwitch.FromLaunchOptions())}",
                 "Segment;Frames;Seconds;AvgFPS;P95FrameMs;P99FrameMs;P95GpuMs;P95MainMs;FramesOver16.67Ms"
             };
             foreach (var group in frames.GroupBy(f => f.Segment).Prepend(frames.GroupBy(_ => "Full route").FirstOrDefault()))

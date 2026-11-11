@@ -2,6 +2,7 @@
     "name": "NetRunner.Diagnostics",
     "rootNamespace": "NetRunner.Diagnostics",
     "references": [
+        "NetRunner.Core",
         "NetRunner.Player",
         "NetRunner.World",
         "NetRunner.Enemy",
