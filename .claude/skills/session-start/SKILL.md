@@ -5,9 +5,13 @@ description: Load the current state of NET.runner-92 at the beginning of a work 
 
 # Session start
 
-1. Sync: `git fetch`, then `git status -sb`. If the current branch is behind
-   its upstream, say so and pull before doing anything else. Do not discard
-   local changes.
+1. Sync, as `AGENTS.md` section 1 says: `git fetch origin --prune`,
+   `git status -sb`, and `git rev-list --count HEAD..origin/main`. Say what
+   you found, and bring the branch up to date before doing anything else:
+   on `main`, `git merge --ff-only origin/main`; on a branch, merge
+   `origin/main` into it; if its pull request is already merged, start a
+   new branch from the updated `main`. Do not discard local changes; stop
+   and ask on a conflict.
 2. Read `agent.md` in full: Current status, Active work, Open items, and the
    last five Work log rows.
 3. Run `bin/decisions` to see the open next steps and decisions (GitHub

@@ -1,60 +1,31 @@
-# NET.runner-92
+# NET.runner-92: Claude Code
 
-First-person cyberpunk RPG in Unity `6000.6.2f1` (HDRP; on Linux the editor
-runs on Vulkan). The main map is the Northline hospital. Two people: Samuel
-(gameplay code, on Linux, works with Claude Code) and AdaM404 (art and
-graphical content, on Windows, works with his own AI agent). Anything
-committed has to work on both platforms.
+The rules for every agent are in `AGENTS.md`, loaded here:
 
 @AGENTS.md
 
-`agent.md` is the single shared status file for every agent. Read it at the
-start of a session and update it at the end, following its own protocol. Pull
-before editing it and only append to its tables; two agents write to it.
+This file adds only what is specific to Claude Code on Samuel's Linux
+machine. Shared rules go in `AGENTS.md`, never here, so that AdaM404's
+agent (Codex) sees them too.
 
-## Where knowledge lives
+## How we split work
 
-- `agent.md` — what is done, in progress, unverified; the work log.
-- `docs/` — an Obsidian vault of plain Markdown. Start at `docs/README.md`.
-  - `architecture/project-map.md` says where every file and object is;
-    check it before searching.
-  - `guide/` the learning path for Samuel, `design/` the game itself,
-    `architecture/` project and code structure, `systems/` one note per
-    system, `decisions/README.md` how decision issues work, `assets/` art
-    pipeline and handoff rules, `journal.md` session notes.
-- **GitHub issues labelled `decision`**: every next step and open decision,
-  each with why, what will change, risks and checks. The pinned Roadmap
-  (issue #5) gives the order; `bin/decisions` lists them in the terminal.
-- Do not restate in this file what `agent.md` or `docs/` already record.
+Claude writes all code (tag **CLAUDE**). Samuel decides what gets built and
+reviews the pull request. AdaM404 does the art (tag **ART**). This was
+decided on 2026-11-09 and replaced the earlier YOU WRITE and PAIR tags.
+Each pull request explains its non-obvious choices so the review is quick.
 
-Read the matching `docs/systems/` note before changing a system, and update
-it in the same commit when behaviour or public API changes. A next step or a
-decision that needs agreement gets a `decision` issue with the ten sections
-in `docs/decisions/README.md` (issue #6 is the model).
+## Skills
 
-**Before working on a planned change**, read its issue. Start only when it
-has `status: accepted` or Samuel says to go ahead; then set
-`status: in progress`. The pull request says `Closes #<number>` and fills in
-the Outcome section of the template. Record answers given in chat as an
-issue comment.
+- `session-start` begins a session: sync (`AGENTS.md` section 1), read
+  `agent.md`, list the decisions, and register the task.
+- `session-end` closes a session: verify, update `agent.md` and `docs/`,
+  and commit.
+- `unity-cli` is the reference for the `unity` command.
 
-**Before adding any new gameplay script**, check
-`docs/architecture/before-new-scripts.md`: its seven "must do first" steps
-come first unless Samuel explicitly skips one.
+## Editor open: the Unity CLI bridge
 
-## Commands
-
-Editor closed (batch mode; exits 3 if the editor has the project open):
-
-```bash
-bin/unity-compile            # import + compile; prints compiler errors only
-bin/unity-test edit          # EditMode tests; summary + failures
-bin/unity-test play          # PlayMode tests
-bin/unity-test edit <filter> # only tests whose name matches
-bin/unity-build [windows]    # player into Builds/Linux/ (or Builds/Windows/)
-```
-
-Editor open (Unity CLI bridge through `com.unity.pipeline`):
+The bridge runs through `com.unity.pipeline`.
 
 ```bash
 unity status                          # connected and "ready"?
@@ -67,68 +38,15 @@ bin/unity-shot <name> [game|scene]    # screenshot into Logs/shots/
 bin/unity-inspect [scene|environment]  # read-only facts
 ```
 
-Decisions on GitHub (needs `gh`):
+`unity command` with no arguments lists everything the editor exposes.
+With the editor closed, use the `bin/unity-*` scripts in `AGENTS.md`
+section 8. They exit with code 3 if the editor has the project open. Full
+logs land in `Logs/`, which git ignores.
+
+Decisions on GitHub:
 
 ```bash
-bin/decisions                         # open decision issues, foundation steps in order
 gh issue view <n>                     # read one
 gh issue comment <n> --body "…"       # record an answer or an outcome
 gh issue edit <n> --add-label "status: accepted" --remove-label "status: proposed" --remove-label "needs Samuel"
 ```
-
-`unity command` with no arguments lists everything the editor exposes; the
-`unity-cli` skill is the reference. Setup notes and quirks:
-`docs/architecture/tooling.md`. Full logs land in `Logs/` (git-ignored).
-
-A task is not done until it compiles and its tests pass. For visual changes,
-look at a screenshot; do not report a visual result that was not seen.
-
-## How we split work
-
-Claude writes all code (tag **CLAUDE**); Samuel decides what gets built and
-reviews the pull request; AdaM404 does the art (tag **ART**). Decided
-2026-11-09, replacing the earlier YOU WRITE and PAIR tags. Each pull request
-explains its non-obvious choices so the review is quick.
-
-## Code conventions
-
-- Code lives in feature folders, `Assets/NETRunner/<Feature>/` (today
-  `Core`, `Settings`, `Player`, `World`, `Enemy`, `Atmosphere` and
-  `Diagnostics`; `Assets/NETRunner92/` holds only the hospital's art and
-  scenes). Each has
-  `Scripts/` with one assembly definition and namespace `NetRunner.<Feature>`,
-  and its tests next to it in `Tests/EditMode/` or `Tests/PlayMode/`, each
-  with its own test assembly. A new feature gets a new folder. References
-  point one way, towards `Core`; `Core` references no other feature. Layout,
-  rules and "where does my new script go": `docs/architecture/overview.md`.
-- Every script follows `docs/architecture/coding-standards.md`: rules in
-  plain C# in `Core` (compiled without engine references) with EditMode
-  tests; thin MonoBehaviours; content as ScriptableObjects; no public
-  mutable fields (`[SerializeField] private`, read-only properties); fixed
-  member order; Input System only for new input. Read it before writing code
-  and keep every change consistent with it. `.editorconfig` holds the
-  formatting part for Rider and Visual Studio.
-
-## Unity rules
-
-- Never hand-edit `.unity`, `.prefab`, `.asset`, `.mat` or `.controller`
-  YAML. Change them with `unity command` asset commands or an editor script.
-- Every asset keeps its `.meta`; move or rename assets together with it
-  (`git mv` both) so GUIDs survive. Never regenerate a `.meta`.
-- `Library/`, `Temp/`, `Logs/`, `Builds/`, `UserSettings/` stay out of git.
-- On Linux the editor rewrites `Packages/manifest.json`,
-  `packages-lock.json` and several `ProjectSettings` files on its own. Never
-  commit those additions: the added packages are Linux-host toolchains and
-  the teammate works on Windows. Stage files by name, not `git add -A`; when
-  one of these files also has an intended change, stage only that change.
-  See "Known platform quirks" in `docs/architecture/tooling.md`.
-- Art folders (`Assets/Characters`, `Materials`, `Animations`, the art in
-  `Assets/NETRunner92/` and `Northline/`) belong to the teammate. Do not modify them without
-  asking; see `docs/assets/handoff.md`.
-
-## Git
-
-- Work on a branch and open a PR with `gh`; no direct pushes to `main`.
-- Small commits, one vertical slice each. Record the commit in `agent.md`'s
-  work log.
-- The repository is public. No secrets, keys or personal data in it.

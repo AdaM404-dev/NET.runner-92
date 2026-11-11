@@ -17,4 +17,6 @@ Closes #
 - [ ] Visual change: a screenshot was looked at
 - [ ] The `docs/systems/` notes of changed systems are updated
 - [ ] `agent.md` has a work log row for this change
+- [ ] The branch is up to date with `main` (`git fetch`, then `git rev-list --count HEAD..origin/main` is 0)
+- [ ] The code follows `docs/architecture/coding-standards.md` (summary in `AGENTS.md` section 6)
 - [ ] No editor-generated changes to `Packages/` or `ProjectSettings/` are included by accident

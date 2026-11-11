@@ -4,6 +4,18 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-11-11 — One rule file for every agent
+
+- `AGENTS.md` is now the one set of rules for every AI agent: Claude Code
+  loads it through `CLAUDE.md`, and AdaM404's Codex reads it directly. It
+  holds the workflow, who owns what, the code structure and a summary of
+  the coding standard, so code written by either agent follows the same
+  rules.
+- New rule: before the first change of a task, and before every commit,
+  push and pull request, an agent fetches and checks that `main`, or its
+  branch, is up to date with `origin/main`. A branch whose pull request is
+  already merged is not reused.
+
 ## 2026-11-10 — Feature folders, benchmarks, and the K-7 on the coding standard
 
 - The hospital code moved into feature folders with one assembly each

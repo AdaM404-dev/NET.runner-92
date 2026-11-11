@@ -6,7 +6,8 @@ and why: [[architecture/overview]]. Formatting that an editor can check is in
 `.editorconfig` at the repository root; Rider and Visual Studio apply it.
 
 Decided 2026-11-09 by Samuel, together with "Claude writes all code"
-(`CLAUDE.md`, "How we split work").
+(`CLAUDE.md`, "How we split work"). It binds every agent, including one
+that works for AdaM404; `AGENTS.md` (section 6) sums it up for them.
 
 ## 1. Paradigm: rules in plain C#, thin components, content as data
 
