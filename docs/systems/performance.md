@@ -97,7 +97,7 @@ the route takes about 4 minutes without a key press, and a screensaver
 that takes the screen stalls the game. A stall shows as one long frame in
 the results; the route counts at most 0.1 s of each frame towards a leg's
 time limit, so a stall is not taken for the walker being stuck (until
-2026-11-11 it was: two laptop runs failed that way).
+2026-11-11 it was: three laptop runs failed that way).
 
 Notes:
 
