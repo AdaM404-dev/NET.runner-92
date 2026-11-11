@@ -25,6 +25,7 @@ Assets/NETRunner/
 │  ├─ Scripts/FrameRateMeter.cs     averaged frames per second
 │  ├─ Scripts/LaunchArguments.cs    reads the game's command-line options
 │  ├─ Scripts/RenderFeature.cs      features a benchmark run can switch off (with RenderFeatureList)
+│  ├─ Scripts/OcclusionRules.cs     which objects hide others in the baked occlusion culling
 │  ├─ Scripts/Patrol.cs             walking a route back and forth: turn, walk, wait at the ends
 │  ├─ Scripts/K7Gait.cs             the K-7's leg, arm and head angles as it walks
 │  ├─ Scripts/ZoneBlend.cs          how much a point is inside an atmosphere zone
@@ -32,7 +33,7 @@ Assets/NETRunner/
 │  ├─ Scripts/RainField.cs          rain streaks around the listener
 │  ├─ Scripts/AmbientEvents.cs      lightning, thunder, monitor beeps, creaks
 │  ├─ Scripts/LightPulse.cs         emergency and intermittent light levels
-│  └─ Tests/EditMode/               121 tests, run in a fraction of a second
+│  └─ Tests/EditMode/               124 tests, run in a fraction of a second
 ├─ Settings/                      NetRunner.Settings: graphics quality for players
 │  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
 │  └─ Tests/PlayMode/               5 tests

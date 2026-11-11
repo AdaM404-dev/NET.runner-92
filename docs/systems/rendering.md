@@ -60,3 +60,5 @@ atmosphere system: [atmosphere system](../../Northline/Documentation/atmosphere_
   how to measure it: [[systems/performance]].
 - `HospitalOptimization` (editor) puts small detail objects on layer 8 so
   the player camera can cull them past 34 m.
+- Since #36 round 1 the hospital has baked occlusion culling; re-bake it
+  after changing the static geometry ([[systems/level-hospital]]).

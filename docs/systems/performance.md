@@ -35,7 +35,7 @@ Counted in `Assets/NETRunner92/Scenes/Hospital_Exploration.unity` on
 | What | Value | Why it matters |
 | --- | --- | --- |
 | Mesh renderers | 7,270 | each is at least one draw call; draw calls cost CPU time every frame |
-| Objects marked static | 0 of 9,706 | no static batching, no baked occlusion culling, no baked lighting |
+| Objects marked static | 0 of 9,706; **since 2026-11-11, 7,040** for occlusion culling only (6,837 occluders, 203 see-through occludees) | baked occlusion culling since round 1 ([[systems/level-hospital]]); still no static batching or baked lighting |
 | LOD groups on the hospital | 0 | distant rooms are drawn in full detail; Northline measured about 8 million triangles per frame at the entrance |
 | Lights | 268, all real-time: 249 point, 17 spot, 2 directional | only 5 cast shadows; nothing is baked; lights also feed the volumetric fog |
 | Reflection probes | 0 | |
@@ -126,6 +126,59 @@ Notes:
 4. Retune the quality levels; alpha test 4.
 
 ## Results
+
+### Round 1, lever 1: baked occlusion culling, Samuel's laptop (2026-11-11)
+
+Linux build of `perf/occlusion-culling` (the baseline above plus the baked
+occlusion data), same laptop and script.
+
+Fixed views, average FPS before → after, and million triangles per frame
+before → after:
+
+| View | Low | Medium | High | Triangles |
+| --- | --- | --- | --- | --- |
+| South checkpoint | 123 → 181 | 117 → 150 | 98 → 113 | 8.1 → 3.3 M |
+| Reception | 166 → 268 | 155 → 204 | 117 → 143 | 4.6 → 1.1 M |
+| Ward | 138 → 209 | 122 → 167 | 102 → 126 | 6.5 → 1.2 M |
+| Surgery | 161 → 245 | 142 → 186 | 114 → 124 | 5.2 → 1.2 M |
+| Research | 200 → 296 | 179 → 214 | 133 → 149 | 2.7 → 0.6 M |
+
+The same build with occlusion culling switched off
+(`-net92-without occlusion-culling`) draws the old triangle counts again.
+Against it, occlusion culling cuts the P95 GPU time on Low by 19–29% per
+view (south checkpoint 6.92 → 5.56 ms, ward 7.36 → 5.23 ms) and the P95
+frame time by 29–39%: it also saves processor time, as fewer objects are
+sent to the graphics card.
+
+The route on Low, with and without occlusion culling back to back: on the
+seven segments both runs walked (forecourt to the L2→L3 stair) 225–340
+FPS against 126–250, P95 main thread 2.5–4.1 ms against 3.8–6.6 ms, no
+frame over 16.7 ms against 13. A whole route with occlusion culling
+averaged 294 FPS (P95 frame 4.5 ms, P95 main thread 2.9 ms), counting an
+8 s freeze made on purpose to test the stall fix. An earlier full run
+showed a main thread of 8–11 ms for 90 s whatever the place, then 3 ms:
+other load on the laptop, not the culling.
+
+**What it should mean for the UHD 630** (an estimate, not a measurement):
+alpha test 3 fitted Low there as 53 ms plus 5.9 ms per million triangles.
+With the new counts that is 72 ms at the south checkpoint and 56–60 ms in
+the other views, about 14–18 FPS instead of 10–14. Geometry is now the
+smaller part of the frame; the fixed 53 ms is what stands between Low and
+30 FPS (33 ms), which is round 2.
+
+The breakdown in this build (`-net92-without`, Low, P95 GPU time):
+
+- The volumetric fog costs 33%, of which the lights in it 29%, as before.
+- Shadows 7%; their maps hold 0.3–0.6 M triangles in every view, because
+  shadow maps are not occlusion-culled.
+- `decals` (new): without it the depth pass that HDRP draws for every
+  surface able to receive a decal goes away: 8–33% fewer triangles per
+  view (south checkpoint 3.3 → 2.4 M). The GPU time changed within the
+  noise here; on the UHD 630 that is roughly 1–5 ms.
+- Ambient occlusion, distant lights and see-through objects were within
+  the noise, and the runs late in the sequence were slower overall (other
+  load on the laptop), so `distant-lights` even came out slower. The test
+  machine's run will be the one to rank them.
 
 ### Round 1 baseline, Samuel's laptop (2026-11-11)
 

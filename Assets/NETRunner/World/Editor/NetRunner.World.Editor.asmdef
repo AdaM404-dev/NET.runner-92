@@ -2,6 +2,7 @@
     "name": "NetRunner.World.Editor",
     "rootNamespace": "NetRunner.World.Editor",
     "references": [
+        "NetRunner.Core",
         "NetRunner.Player",
         "NetRunner.World",
         "NetRunner.Enemy",
