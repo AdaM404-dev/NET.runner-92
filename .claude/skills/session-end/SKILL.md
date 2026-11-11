@@ -28,7 +28,8 @@ description: Close a NET.runner-92 work session by verifying the work, updating 
 5. Before staging, leave out editor-generated changes that the team has not
    agreed to commit (see "Known platform quirks" in
    `docs/architecture/tooling.md`). Stage files by name, not `git add -A`.
-6. Commit on the feature branch. Push and open or update the PR only if the
+6. Sync again (`AGENTS.md` section 1): fetch, and merge `origin/main` if
+   it moved, before committing. Commit on the feature branch. Push and open or update the PR only if the
    user asked for it in this session.
 7. Summarise: what is done, what is verified, what is left, what needs a
    decision from Samuel or AdaM404.

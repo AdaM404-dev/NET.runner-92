@@ -24,8 +24,9 @@ NET.runner-92/
 ├─ tools/inspect/     the read-only reports behind bin/unity-inspect
 ├─ tools/benchmark/   run-benchmarks.bat, shipped in the Windows alpha zips
 ├─ .claude/           Claude Code settings and skills
-├─ CLAUDE.md          instructions for Claude Code
-├─ AGENTS.md, agent.md  instructions and shared status for every AI agent
+├─ AGENTS.md          the rules for every AI agent: sync with main, workflow, structure, coding standard
+├─ CLAUDE.md          Claude Code's additions; loads AGENTS.md
+├─ agent.md           shared status and work log for every AI agent
 └─ README.md          how to open the project
 Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never committed.
 ```
