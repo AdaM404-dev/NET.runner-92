@@ -53,5 +53,45 @@ namespace NetRunner.Core.Tests
             Assert.That(QualityPreset.ForLevel(0), Is.EqualTo(QualityPreset.Low));
             Assert.That(QualityPreset.ForLevel(2), Is.EqualTo(QualityPreset.High));
         }
+
+        [Test]
+        public void LowQuartersTexturesTurnsShadowsAndEffectsOffAndUsesFxaa()
+        {
+            var low = QualityPreset.For(QualityPreset.Low);
+
+            Assert.That(low.Texture, Is.EqualTo(2));
+            Assert.That(low.Shadows, Is.EqualTo(0));
+            Assert.That(low.Antialias, Is.EqualTo(1));
+            Assert.That(low.AmbientOcclusion || low.Volumetrics || low.Bloom, Is.False);
+            Assert.That(low.RenderScale, Is.EqualTo(50));
+        }
+
+        [Test]
+        public void MediumHalvesTexturesKeepsFogAndBloomAndUsesSmaa()
+        {
+            var medium = QualityPreset.For(QualityPreset.Medium);
+
+            Assert.That(medium.Texture, Is.EqualTo(1));
+            Assert.That(medium.Antialias, Is.EqualTo(2));
+            Assert.That(medium.Volumetrics && medium.Bloom, Is.True);
+            Assert.That(medium.AmbientOcclusion, Is.False);
+        }
+
+        [Test]
+        public void UltraHasTheLongestShadowsAndEveryEffect()
+        {
+            var ultra = QualityPreset.For(QualityPreset.Ultra);
+
+            Assert.That(ultra.Shadows, Is.EqualTo(3));
+            Assert.That(ultra.ShadowResolution, Is.EqualTo(3));
+            Assert.That(ultra.AmbientOcclusion && ultra.Volumetrics && ultra.Bloom, Is.True);
+            Assert.That(ultra.Antialias, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void CustomHasNoSettingsOfItsOwn()
+        {
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => QualityPreset.For(QualityPreset.Custom));
+        }
     }
 }

@@ -13,6 +13,46 @@ namespace NetRunner.Core
     /// </summary>
     public static class QualityPreset
     {
+        /// <summary>
+        /// The menu settings a preset sets (Phase 11's presets): texture
+        /// reduction (0 full, 1 half, 2 quarter), shadow distance step (0 off
+        /// to 3), shadow resolution step (0 to 3, 2 = as the scene sets it),
+        /// antialiasing (0 off, 1 FXAA, 2 SMAA, 3 TAA), the effects that are
+        /// on, and the render scale in percent. Motion blur and depth of field
+        /// are off in every preset.
+        /// </summary>
+        public readonly struct Settings
+        {
+            public Settings(int texture, int shadows, int shadowResolution, int antialias,
+                bool ambientOcclusion, bool volumetrics, bool bloom, int renderScale)
+            {
+                Texture = texture;
+                Shadows = shadows;
+                ShadowResolution = shadowResolution;
+                Antialias = antialias;
+                AmbientOcclusion = ambientOcclusion;
+                Volumetrics = volumetrics;
+                Bloom = bloom;
+                RenderScale = renderScale;
+            }
+
+            public int Texture { get; }
+
+            public int Shadows { get; }
+
+            public int ShadowResolution { get; }
+
+            public int Antialias { get; }
+
+            public bool AmbientOcclusion { get; }
+
+            public bool Volumetrics { get; }
+
+            public bool Bloom { get; }
+
+            public int RenderScale { get; }
+        }
+
         public const int Low = 0;
         public const int Medium = 1;
         public const int High = 2;
@@ -46,6 +86,20 @@ namespace NetRunner.Core
         public static int RenderScaleFor(int preset)
         {
             return preset >= Low && preset <= Ultra ? DefaultRenderScales[preset] : -1;
+        }
+
+        /// <summary>The settings a preset sets; Custom sets none, so it is not accepted here.</summary>
+        public static Settings For(int preset)
+        {
+            if (preset < Low || preset > Ultra)
+            {
+                throw new ArgumentOutOfRangeException(nameof(preset), "Custom has no settings of its own.");
+            }
+
+            int texture = preset == Low ? 2 : preset == Medium ? 1 : 0;
+            int antialias = preset == Low ? 1 : preset == Medium ? 2 : 3;
+            return new Settings(texture, preset, preset, antialias, preset >= High, preset >= Medium, preset >= Medium,
+                DefaultRenderScales[preset]);
         }
 
         /// <summary>The preset that selects a quality level, used when F2 cycles the levels.</summary>
