@@ -23,7 +23,7 @@ that works for AdaM404; `AGENTS.md` (section 6) sums it up for them.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
   starts doing a second job is split (#41–#45 do this for the hospital code,
-  one feature each; `K7Patrol` and the atmosphere are done).
+  one feature each; `K7Patrol`, the atmosphere and the player are done).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
   dialogue, timings), so new content needs no new code. None exists yet
   (the menu prototype's settings, the first, were deleted in #31); the
@@ -116,7 +116,8 @@ Assets/NETRunner/<Feature>/
   *why*, not *what*.
 - No magic numbers in new code: a named constant, or a serialized field when
   it is tuning. (The hospital code's hard-coded numbers, such as the
-  2.65 m reach and `~(1 << 2)` masks, are fixed in #43 and #44.)
+  2.65 m reach and `~(1 << 2)` masks, are fixed feature by feature: the
+  player's in #43, the world's in #44.)
 
 ## 7. Tests
 
@@ -126,11 +127,17 @@ Assets/NETRunner/<Feature>/
 - A test's expected value comes from the specification, never copied from
   the code's own output.
 - Tests do not save scenes and write files only under `Logs/`.
+- A PlayMode test that builds its own objects runs in whatever scene an
+  earlier test left loaded, often the hospital. Switch the hospital off by
+  name while the test runs (`TestWorld.HideHospital` in the player tests)
+  instead of unloading scenes or switching off every scene with a build
+  index: the test runner's own scene has one during a run, and once it is
+  gone the run hangs without an error (#43).
 
 ## 8. Bringing existing code to the standard
 
-How #41 did it for the K-7 and #42 for the atmosphere; #43–#45 follow the
-same steps.
+How #41 did it for the K-7, #42 for the atmosphere and #43 for the player;
+#44 and #45 follow the same steps.
 
 1. **Pin today's behaviour first**: a PlayMode test of the component that
    passes on the old code (for #41, `K7PatrolTests` on a stand-in robot).
@@ -157,3 +164,9 @@ same steps.
    random numbers from one stream (the atmosphere's rain and events), the
    rules get the same `System.Random` and are called in the old order, so
    the side-by-side comparison matches draw for draw.
+8. **Expect a last bit of difference.** Mono can keep float arithmetic at
+   a higher precision than `float`, so the same expression on two equal
+   inputs may round differently in the last bit (#43: a diagonal's x and z
+   differed by 2.4e-7). Tests compare floats with a small tolerance, and
+   the side-by-side comparison of a controller differs by micrometres,
+   not by nothing.

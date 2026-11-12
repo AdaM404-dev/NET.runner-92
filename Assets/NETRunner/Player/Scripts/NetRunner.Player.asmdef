@@ -2,6 +2,7 @@
     "name": "NetRunner.Player",
     "rootNamespace": "NetRunner.Player",
     "references": [
+        "NetRunner.Core",
         "Unity.InputSystem",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.HighDefinition.Runtime"

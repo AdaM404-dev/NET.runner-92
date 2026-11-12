@@ -24,7 +24,7 @@ The interaction is in `Assets/NETRunner/Player/Scripts/` (namespace
 | Type | Job |
 | --- | --- |
 | `IInteractable` (`Player/Scripts/IInteractable.cs`) | the contract: a `Prompt` and `Interact(FirstPersonController)` |
-| `ITerminal` (same file) | an `IInteractable` that takes over the keyboard while open (`ReadInput`, `Close`) |
+| `ITerminal` (`Player/Scripts/ITerminal.cs`) | an `IInteractable` that takes over the keyboard while open (`ReadInput`, `Close`) |
 | `HospitalInteraction` | on the player: ray from the eyes, prompt, E key ([[systems/player]]) |
 | `HospitalDoor` | one opening: swing leaves, sliding pairs or the telescopic research barrier |
 | `HospitalLift`, `HospitalLiftButton` | the west lift: cabin, cabin door, landing doors, call and floor buttons |
@@ -37,8 +37,9 @@ patrols` in `Hospital_Exploration.unity`. Moving leaves and their
 
 ## How it works
 
-- **Aim and use:** the ray is 2.65 m (`HospitalInteraction.Reach`), ignores
-  layer 2 and also hits triggers. It takes the first `IInteractable` on
+- **Aim and use:** the ray is 2.65 m (`HospitalInteraction.Reach`), hits
+  the layers in the `aimMask` field (by default all but `Ignore Raycast`)
+  and also hits triggers. It takes the first `IInteractable` on
   the hit collider or a parent. `HospitalDoor`, `HospitalLiftButton`,
   `ReceptionSecurityTerminal` (an `ITerminal`) and `LatchRelay` implement
   it; any component can, whatever it derives from. Because an interface
@@ -74,7 +75,8 @@ Full description and controls:
 
 - About 100 regular doors; the exact count has not been re-measured in the
   root project (the old `doors` report read `NexusDoor` and was removed).
-- The 2.65 m reach, the `~(1 << 2)` mask and prompt texts are hard-coded.
+- The doors' and the lift's prompt texts are hard-coded (#44). The player's
+  reach is a named constant and its aim mask a `LayerMask` field since #43.
 - `IInteractable` lives in `Player`, not `Core`: `Core` has no engine
   references, and the one who interacts is the player. So `World` still
   depends on `Player` ([[architecture/overview]]).
