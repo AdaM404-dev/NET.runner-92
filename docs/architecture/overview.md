@@ -12,13 +12,19 @@ gameplay code moved into it in Step 4 ([#9](https://github.com/AdaM404-dev/NET.r
 
 **State since #31 PR B (2026-11-10):** the warehouse code and the
 `MainMenu/` prototype were deleted in PR A; playtest 2 added `Settings/`;
-PR B moved the hospital code in, behaviour unchanged; #41 brought `Enemy`
-and #42 `Atmosphere` to the coding standard:
+PR B moved the hospital code in, behaviour unchanged; #41 brought `Enemy`,
+#42 `Atmosphere` and #43 `Player` to the coding standard:
 
 ```
 Assets/NETRunner/
 ├─ Core/                          NetRunner.Core: rules in plain C#, no scene objects
-│  ├─ Scripts/VerticalMotion.cs     gravity, jump and ground stick for one frame
+│  ├─ Scripts/PlanarMotion.cs       the player's walking velocity: target speed, acceleration
+│  ├─ Scripts/VerticalMotion.cs     the player's gravity, fall limit and ground adhesion
+│  ├─ Scripts/MotionSteps.cs        how a frame of player movement is split into short steps
+│  ├─ Scripts/ViewMotion.cs         mouse look and head bob
+│  ├─ Scripts/LatchSession.cs       the LATCH-07 tablet's phases and keys (with LatchPhase)
+│  ├─ Scripts/LatchStatus.cs        what the tablet's screen shows in each phase (with LatchAccent)
+│  ├─ Scripts/CctvFeeds.cs          CCTV feed order and frame rate
 │  ├─ Scripts/Easing.cs             a straight line and a slow-start, slow-end curve
 │  ├─ Scripts/QualityChoice.cs      next quality level, start level
 │  ├─ Scripts/StartResolution.cs    first-start screen size, capped at 1080p
@@ -33,12 +39,13 @@ Assets/NETRunner/
 │  ├─ Scripts/RainField.cs          rain streaks around the listener
 │  ├─ Scripts/AmbientEvents.cs      lightning, thunder, monitor beeps, creaks
 │  ├─ Scripts/LightPulse.cs         emergency and intermittent light levels
-│  └─ Tests/EditMode/               124 tests, run in a fraction of a second
+│  └─ Tests/EditMode/               181 tests, run in a fraction of a second
 ├─ Settings/                      NetRunner.Settings: graphics quality for players
 │  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
 │  └─ Tests/PlayMode/               5 tests
 ├─ Player/                        NetRunner.Player: FirstPersonController, interaction, LATCH-07, CCTV
-│  └─ Editor/                       NetRunner.Player.Editor: LATCH-07 import check
+│  ├─ Editor/                       NetRunner.Player.Editor: LATCH-07 import check
+│  └─ Tests/PlayMode/               27 tests: movement, aiming, relay, CCTV on test-built objects; the tablet in the hospital
 ├─ World/                         NetRunner.World: doors, lift, stairs, terminal, emergency power
 │  └─ Editor/                       NetRunner.World.Editor: the hospital scene builders
 ├─ Enemy/                         NetRunner.Enemy: K7Patrol (moves the robot, turns its bones)
@@ -123,9 +130,9 @@ definition.
 The rules for writing code (paradigm, fields and access, naming, member
 order, layout, formatting, tests) are in [[architecture/coding-standards]].
 In one line: rules in plain C# in `Core` with EditMode tests, thin
-MonoBehaviours, content as ScriptableObjects. `Enemy` (#41) and
-`Atmosphere` (#42) follow it; the rest of the hospital code does not yet,
-and #43–#45 bring it in line, one feature each (Player, World,
+MonoBehaviours, content as ScriptableObjects. `Enemy` (#41), `Atmosphere`
+(#42) and `Player` (#43) follow it; the rest of the hospital code does not
+yet, and #44 and #45 bring it in line, one feature each (World,
 Diagnostics).
 
 ## Why feature folders, not one folder per kind of code

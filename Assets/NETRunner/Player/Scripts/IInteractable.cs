@@ -1,5 +1,3 @@
-using UnityEngine.InputSystem;
-
 namespace NetRunner.Player
 {
     /// <summary>
@@ -13,20 +11,7 @@ namespace NetRunner.Player
         /// <summary>The text shown while the player aims at it, for example "E  Open door" or "Locked".</summary>
         string Prompt { get; }
 
+        /// <summary>Uses it; <paramref name="player"/> is the player who pressed E.</summary>
         void Interact(FirstPersonController player);
-    }
-
-    /// <summary>
-    /// An interactable that takes over the keyboard while it is open, such as
-    /// the reception security terminal. Between
-    /// <see cref="HospitalInteraction.BeginTerminal"/> and
-    /// <see cref="HospitalInteraction.EndTerminal"/> the player's input goes
-    /// to <see cref="ReadInput"/> instead of movement and aiming.
-    /// </summary>
-    public interface ITerminal : IInteractable
-    {
-        void ReadInput(Keyboard keyboard);
-
-        void Close();
     }
 }
