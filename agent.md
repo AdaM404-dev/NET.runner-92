@@ -74,6 +74,7 @@ These are known verification or improvement items, not authorization to change s
 
 | Date | Work completed | Verification / evidence | Commit |
 | --- | --- | --- | --- |
+| 2026-11-12 | Prepared a proprietary license and copyright attribution notice for the collaborative NET.runner-92 project; added `LICENSE`, `COPYRIGHT.md`, and README links, preserving separately licensed Scott Buckley music and other third-party terms. No code, game assets, or project settings changed. | Reviewed repository root, authorship context, `Northline/Documentation/music_license.md`, Unity dependencies, issue #18, and the docs-only diff. Unity compile/tests not applicable to documentation changes. Legal ownership and third-party asset audits still require contributor review before merge. | Branch `docs/proprietary-license-copyright`, PR pending |
 | 2026-09-29 | Connected the Unity project to the GitHub repository and added the near-future warehouse and refined NEXUS Unity-ready assets with their metadata, prefabs, and scenes. | Key warehouse and character FBX files matched their sources by SHA-256; asset files had matching `.meta` files and no duplicate GUIDs were found at import time. | `7b71672` |
 | 2026-09-29 | Added import instructions to `README.md`. | Reviewed project version, asset paths, and scenes before documenting them. | `06aa371` |
 | 2026-09-29 | Reworked `tutorial.md` into a developer guide for coding NEXUS movement. | Checked the guide against `NexusPlayer.cs`, the prefab, and Animator parameters. | `1c49333` |
