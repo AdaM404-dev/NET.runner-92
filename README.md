@@ -4,13 +4,15 @@ Unity 6.6 project (`6000.6.2f1`). Open this directory in Unity Hub.
 
 Development status and agent handoff notes are tracked in [agent.md](agent.md).
 
-## License and copyright
+## Licenc és szerzői jogok
 
-The original NET.runner-92 project material is **proprietary; all rights
-reserved by its respective copyright holders**. Public source access does
-not grant permission to reuse or redistribute it. See the [LICENSE](LICENSE)
-and [copyright and attribution notice](COPYRIGHT.md). Third-party material
-is governed by its own terms, including the intro track under CC BY 4.0.
+A NET.runner-92 eredeti tartalmai **tulajdonjog-fenntartás mellett védettek;
+a jogtulajdonosok minden jogot fenntartanak**. A forráskód nyilvános
+elérhetősége önmagában nem ad engedélyt a tartalmak átvételére vagy
+újraterjesztésére. Részletek a [licencfeltételekben](LICENSE) és a
+[szerzői jogi, illetve forrásmegjelölési nyilatkozatban](COPYRIGHT.md).
+A külső alkotásokra a saját licenceik vonatkoznak, így az intró
+CC BY 4.0 licencű zenéjére is.
 
 The game's main map is the **Northline hospital**, rendered with **HDRP**
 (since [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31),
