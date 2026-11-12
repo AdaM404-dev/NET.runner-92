@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Linq;
-using NetRunner.Player;
 using NUnit.Framework;
+using NetRunner.Core;
+using NetRunner.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -79,7 +80,7 @@ namespace NetRunner.World.Tests
             door.Interact(player);
             yield return new WaitForSeconds(DoorSeconds);
 
-            Assert.That(door.Prompt, Is.EqualTo(((string)null, "Zárva")));
+            Assert.That(door.Prompt, Is.EqualTo(((GameAction?)null, "Zárva")));
             Assert.That(door.Closed && door.IsPosedShut(), Is.True, "Locked door moved");
         }
 

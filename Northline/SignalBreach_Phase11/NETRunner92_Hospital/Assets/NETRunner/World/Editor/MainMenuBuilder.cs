@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using NetRunner.Menu;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -8,7 +9,6 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using NetRunner.Menu;
 
 namespace NetRunner.World.Editor
 {
@@ -77,7 +77,8 @@ namespace NetRunner.World.Editor
             buttonAudio.transform.SetParent(view.transform);
             buttonAudio.clip = click;
             buttonAudio.playOnAwake = false;
-            view.AddComponent<MainMenuView>().Configure(styles, backdrop, schedule, backgroundAudio, buttonAudio, mixer);
+            view.AddComponent<MainMenuView>().Configure(styles, backdrop, backgroundAudio, buttonAudio,
+                CreateOrLoad<NetRunner.Settings.Preferences>(PreferencesPath), CreateOrLoad<RunSession>(RunSessionPath));
 
             if (!EditorSceneManager.SaveScene(scene, MainMenuPath))
                 throw new IOException("Could not save MainMenu scene.");

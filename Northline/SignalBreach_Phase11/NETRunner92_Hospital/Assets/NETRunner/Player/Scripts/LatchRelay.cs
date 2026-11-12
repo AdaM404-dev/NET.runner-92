@@ -1,4 +1,4 @@
-using NetRunner.Settings;
+using NetRunner.Core;
 using UnityEngine;
 
 namespace NetRunner.Player
@@ -8,7 +8,7 @@ namespace NetRunner.Player
         static readonly int Emission = Shader.PropertyToID("_EmissiveColor");
         [SerializeField] Renderer indicator;
         public bool Linked { get; private set; }
-        public (string Key, string Text) Prompt => (HospitalKeys.Label(GameAction.Tablet), Linked ? "Szervizrelé csatlakoztatva" : "LATCH-07 · Szervizrelé");
+        public (GameAction? Action, string Text) Prompt => (GameAction.Tablet, Linked ? "Szervizrelé csatlakoztatva" : "LATCH-07 · Szervizrelé");
 
         public void Configure(Renderer lamp) => indicator = lamp;
         public void Interact(FirstPersonController player) => player.GetComponent<LatchViewmodel>()?.Toggle(this);

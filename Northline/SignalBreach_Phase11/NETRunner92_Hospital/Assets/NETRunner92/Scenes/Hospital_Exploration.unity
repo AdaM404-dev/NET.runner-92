@@ -11622,6 +11622,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 3
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &31398249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17052,6 +17053,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &45011169
 GameObject:
   m_ObjectHideFlags: 0
@@ -22481,6 +22483,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 0
+  locked: 0
 --- !u!4 &60290302
 Transform:
   m_ObjectHideFlags: 0
@@ -36072,6 +36075,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &93213068
 GameObject:
   m_ObjectHideFlags: 0
@@ -38803,6 +38807,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &98420256
 GameObject:
   m_ObjectHideFlags: 0
@@ -40826,6 +40831,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &100999079
 GameObject:
   m_ObjectHideFlags: 0
@@ -56995,6 +57001,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 16
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &144201555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70001,6 +70008,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &174385116
 GameObject:
   m_ObjectHideFlags: 0
@@ -76093,6 +76101,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 1
+  locked: 0
 --- !u!1 &190664929
 GameObject:
   m_ObjectHideFlags: 0
@@ -81910,6 +81919,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &204750483
 GameObject:
   m_ObjectHideFlags: 0
@@ -86144,6 +86154,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &214333939
 GameObject:
   m_ObjectHideFlags: 0
@@ -93717,6 +93728,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 0
+  locked: 0
 --- !u!4 &233626380
 Transform:
   m_ObjectHideFlags: 0
@@ -104111,6 +104123,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &260532935
 GameObject:
   m_ObjectHideFlags: 0
@@ -127359,6 +127372,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &317286236
 GameObject:
   m_ObjectHideFlags: 0
@@ -138805,6 +138819,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &347318229
 GameObject:
   m_ObjectHideFlags: 0
@@ -153602,6 +153617,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &387130847
 GameObject:
   m_ObjectHideFlags: 0
@@ -154428,6 +154444,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &388318209
 GameObject:
   m_ObjectHideFlags: 0
@@ -157109,6 +157126,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &394376222
 GameObject:
   m_ObjectHideFlags: 0
@@ -162631,6 +162649,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &409345941
 GameObject:
   m_ObjectHideFlags: 0
@@ -165460,6 +165479,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &414570668
 GameObject:
   m_ObjectHideFlags: 0
@@ -165962,6 +165982,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &416074267
 GameObject:
   m_ObjectHideFlags: 0
@@ -166363,6 +166384,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &418619766
 GameObject:
   m_ObjectHideFlags: 0
@@ -175462,6 +175484,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &439951381
 GameObject:
   m_ObjectHideFlags: 0
@@ -179240,6 +179263,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &447279008
 GameObject:
   m_ObjectHideFlags: 0
@@ -182874,6 +182898,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 29
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &456270439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187844,6 +187869,7 @@ MonoBehaviour:
   - {x: -18, y: 4.2149997, z: -0.72}
   - {x: 17, y: 4.2149997, z: -0.72}
   speed: 1.0849999
+  player: {fileID: 3127509688931245513}
 --- !u!1 &468611004
 GameObject:
   m_ObjectHideFlags: 0
@@ -188065,6 +188091,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &469508543
 GameObject:
   m_ObjectHideFlags: 0
@@ -188680,6 +188707,7 @@ MonoBehaviour:
   fixture: {fileID: 1314502905}
   phase: 4.46
   slot: 1
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &472327672
 GameObject:
   m_ObjectHideFlags: 0
@@ -195768,6 +195796,7 @@ MonoBehaviour:
   fixture: {fileID: 0}
   phase: 5.2200003
   slot: 0
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &492491793
 GameObject:
   m_ObjectHideFlags: 0
@@ -195935,6 +195964,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &493666501
 GameObject:
   m_ObjectHideFlags: 0
@@ -196018,6 +196048,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &494146972
 GameObject:
   m_ObjectHideFlags: 0
@@ -200661,6 +200692,170 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506141552}
   m_Mesh: {fileID: -2417998012886437291, guid: 7789891d6cea5ea4aaef9cb01e1c2789, type: 2}
+--- !u!1 &506428664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 506428666}
+  - component: {fileID: 506428665}
+  m_Layer: 0
+  m_Name: Northline session
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &506428665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506428664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bc8dadfedfdbf4196888659c37806c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NetRunner.Menu::NetRunner.Menu.HospitalRun
+  session: {fileID: 11400000, guid: e6692b140029ff8eeba47fcb4ee82126, type: 2}
+  player: {fileID: 3127509688931245513}
+  stairs: {fileID: 496626665}
+  lift: {fileID: 730096070}
+  network: {fileID: 1072382254}
+  relay: {fileID: 1233188448}
+  terminal: {fileID: 754851573}
+  doors:
+  - {fileID: 60290301}
+  - {fileID: 1892532484}
+  - {fileID: 916144845}
+  - {fileID: 2113555950}
+  - {fileID: 1539536331}
+  - {fileID: 570228112}
+  - {fileID: 393976359}
+  - {fileID: 1714951418}
+  - {fileID: 416039206}
+  - {fileID: 940688405}
+  - {fileID: 1303875751}
+  - {fileID: 204358788}
+  - {fileID: 1015259087}
+  - {fileID: 1780739617}
+  - {fileID: 1853224384}
+  - {fileID: 957428111}
+  - {fileID: 1629944335}
+  - {fileID: 414424124}
+  - {fileID: 1962178806}
+  - {fileID: 44779663}
+  - {fileID: 1462094141}
+  - {fileID: 1407711624}
+  - {fileID: 1990201638}
+  - {fileID: 1622132714}
+  - {fileID: 190566421}
+  - {fileID: 409175234}
+  - {fileID: 214250745}
+  - {fileID: 1756542607}
+  - {fileID: 2064450768}
+  - {fileID: 1420301141}
+  - {fileID: 1156848883}
+  - {fileID: 1063622964}
+  - {fileID: 1014132496}
+  - {fileID: 727147370}
+  - {fileID: 493666504}
+  - {fileID: 1912495450}
+  - {fileID: 1747973038}
+  - {fileID: 929050037}
+  - {fileID: 1796275667}
+  - {fileID: 982805381}
+  - {fileID: 1922408640}
+  - {fileID: 1743219044}
+  - {fileID: 1853355095}
+  - {fileID: 417989732}
+  - {fileID: 687317525}
+  - {fileID: 233626379}
+  - {fileID: 970328549}
+  - {fileID: 648677411}
+  - {fileID: 1075713638}
+  - {fileID: 542522569}
+  - {fileID: 1016360692}
+  - {fileID: 1375134855}
+  - {fileID: 173887148}
+  - {fileID: 587725617}
+  - {fileID: 1081458519}
+  - {fileID: 317268784}
+  - {fileID: 447113896}
+  - {fileID: 599266604}
+  - {fileID: 1028518007}
+  - {fileID: 1684903236}
+  - {fileID: 780334266}
+  - {fileID: 492855680}
+  - {fileID: 469254203}
+  - {fileID: 971929962}
+  - {fileID: 1370251188}
+  - {fileID: 1987972105}
+  - {fileID: 946035451}
+  - {fileID: 98418424}
+  - {fileID: 439855187}
+  - {fileID: 1245745763}
+  - {fileID: 1451065284}
+  - {fileID: 347175046}
+  - {fileID: 1400923391}
+  - {fileID: 1016338107}
+  - {fileID: 1582315386}
+  - {fileID: 1167127522}
+  - {fileID: 1337002242}
+  - {fileID: 93150923}
+  - {fileID: 540752072}
+  - {fileID: 388210962}
+  - {fileID: 1391661225}
+  - {fileID: 1155279358}
+  - {fileID: 1812685981}
+  - {fileID: 2057827916}
+  - {fileID: 1769990369}
+  - {fileID: 641845218}
+  - {fileID: 260257587}
+  - {fileID: 1367885939}
+  - {fileID: 1709527686}
+  - {fileID: 1962648088}
+  - {fileID: 1200826580}
+  - {fileID: 1042370307}
+  - {fileID: 813965675}
+  - {fileID: 852500850}
+  - {fileID: 1259756481}
+  - {fileID: 510790446}
+  - {fileID: 387102864}
+  - {fileID: 941106418}
+  - {fileID: 1961110204}
+  - {fileID: 1621964959}
+  - {fileID: 890455778}
+  - {fileID: 2008510701}
+  - {fileID: 100817910}
+  - {fileID: 1978930149}
+  - {fileID: 1473427104}
+  - {fileID: 993611689}
+  - {fileID: 761219963}
+  - {fileID: 572138479}
+  - {fileID: 1289607985}
+  menuPanel: {fileID: 11400000, guid: 002d462d1154dea4790a7fa8086bb10c, type: 2}
+  menuStyle: {fileID: 7433441132597879392, guid: 6ecc5324b9b188d45b36eb1942fe49f5, type: 3}
+  roomSchedule: {fileID: 4900000, guid: 89c17f9e5060efb41b9bc6202e977c74, type: 3}
+--- !u!4 &506428666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506428664}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506781002
 GameObject:
   m_ObjectHideFlags: 0
@@ -202200,6 +202395,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 16
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &510057598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202965,6 +203161,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &511112443
 GameObject:
   m_ObjectHideFlags: 0
@@ -217512,6 +217709,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &541214588
 GameObject:
   m_ObjectHideFlags: 0
@@ -217977,6 +218175,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &542620082
 GameObject:
   m_ObjectHideFlags: 0
@@ -229788,6 +229987,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &570641085
 GameObject:
   m_ObjectHideFlags: 0
@@ -230620,6 +230820,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 1
+  locked: 0
 --- !u!1 &572296758
 GameObject:
   m_ObjectHideFlags: 0
@@ -237658,6 +237859,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &588213196
 GameObject:
   m_ObjectHideFlags: 0
@@ -242495,6 +242697,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &599295059
 GameObject:
   m_ObjectHideFlags: 0
@@ -259712,6 +259915,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &641922668
 GameObject:
   m_ObjectHideFlags: 0
@@ -262550,6 +262754,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &648996212
 GameObject:
   m_ObjectHideFlags: 0
@@ -266826,6 +267031,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 42
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &661823204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276748,6 +276954,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &687546222
 GameObject:
   m_ObjectHideFlags: 0
@@ -290920,6 +291127,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &727726886
 GameObject:
   m_ObjectHideFlags: 0
@@ -298722,6 +298930,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 16
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &740403584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307638,6 +307847,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 0
+  locked: 0
 --- !u!4 &761219964
 Transform:
   m_ObjectHideFlags: 0
@@ -314367,6 +314577,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &780365680
 GameObject:
   m_ObjectHideFlags: 0
@@ -315914,6 +316125,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 3
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &782877392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327272,6 +327484,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &814272142
 GameObject:
   m_ObjectHideFlags: 0
@@ -342978,6 +343191,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &852943443
 GameObject:
   m_ObjectHideFlags: 0
@@ -357675,6 +357889,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &890800079
 GameObject:
   m_ObjectHideFlags: 0
@@ -357725,6 +357940,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 29
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &890800082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370387,6 +370603,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &916273115
 GameObject:
   m_ObjectHideFlags: 0
@@ -374341,6 +374558,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &929465698
 GameObject:
   m_ObjectHideFlags: 0
@@ -379101,6 +379319,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &941098101
 GameObject:
   m_ObjectHideFlags: 0
@@ -379276,6 +379495,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &941120502
 GameObject:
   m_ObjectHideFlags: 0
@@ -381245,6 +381465,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &946329656
 GameObject:
   m_ObjectHideFlags: 0
@@ -384461,6 +384682,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &957550027
 GameObject:
   m_ObjectHideFlags: 0
@@ -388939,6 +389161,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 1
+  locked: 0
 --- !u!1 &970376197
 GameObject:
   m_ObjectHideFlags: 0
@@ -389474,6 +389697,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &971955065
 GameObject:
   m_ObjectHideFlags: 0
@@ -393106,6 +393330,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &983311794
 GameObject:
   m_ObjectHideFlags: 0
@@ -397345,6 +397570,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &993692507
 GameObject:
   m_ObjectHideFlags: 0
@@ -406893,6 +407119,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1014241229
 GameObject:
   m_ObjectHideFlags: 0
@@ -407570,6 +407797,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1015925191
 GameObject:
   m_ObjectHideFlags: 0
@@ -407917,6 +408145,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1016358869
 GameObject:
   m_ObjectHideFlags: 0
@@ -408092,6 +408321,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1016477680
 GameObject:
   m_ObjectHideFlags: 0
@@ -412748,6 +412978,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1028720333
 GameObject:
   m_ObjectHideFlags: 0
@@ -419160,6 +419391,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1042481338
 GameObject:
   m_ObjectHideFlags: 0
@@ -426727,6 +426959,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1063636876
 GameObject:
   m_ObjectHideFlags: 0
@@ -431597,6 +431830,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1075715449
 GameObject:
   m_ObjectHideFlags: 0
@@ -433624,6 +433858,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1082172044
 GameObject:
   m_ObjectHideFlags: 0
@@ -439344,6 +439579,7 @@ MonoBehaviour:
   fixture: {fileID: 2085231338}
   phase: 2.23
   slot: 1
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &1097384438
 GameObject:
   m_ObjectHideFlags: 0
@@ -448053,6 +448289,7 @@ MonoBehaviour:
   - {x: -23, y: 12.615, z: -0.72}
   - {x: 6, y: 12.615, z: -0.72}
   speed: 1.1949999
+  player: {fileID: 3127509688931245513}
 --- !u!1 &1120451586
 GameObject:
   m_ObjectHideFlags: 0
@@ -456007,6 +456244,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 55
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1140380117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462131,6 +462369,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1155348380
 GameObject:
   m_ObjectHideFlags: 0
@@ -462746,6 +462985,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1156878390
 GameObject:
   m_ObjectHideFlags: 0
@@ -467755,6 +467995,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 1
+  locked: 0
 --- !u!1 &1167213242
 GameObject:
   m_ObjectHideFlags: 0
@@ -479037,6 +479278,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1200846263
 GameObject:
   m_ObjectHideFlags: 0
@@ -490643,6 +490885,7 @@ MonoBehaviour:
   fixture: {fileID: 0}
   phase: 0
   slot: 0
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &1227885974
 GameObject:
   m_ObjectHideFlags: 0
@@ -496696,6 +496939,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1246023970
 GameObject:
   m_ObjectHideFlags: 0
@@ -498231,6 +498475,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 3
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1249646145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499264,6 +499509,7 @@ MonoBehaviour:
   - {x: 5, y: 8.415, z: 0.72}
   - {x: 27, y: 8.415, z: 0.72}
   speed: 1.14
+  player: {fileID: 3127509688931245513}
 --- !u!1 &1252396983
 GameObject:
   m_ObjectHideFlags: 0
@@ -502016,6 +502262,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1259986647
 GameObject:
   m_ObjectHideFlags: 0
@@ -505465,6 +505712,7 @@ MonoBehaviour:
   fixture: {fileID: 901483269}
   phase: 6.69
   slot: 1
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &1268133524
 GameObject:
   m_ObjectHideFlags: 0
@@ -514130,6 +514378,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1289854861
 GameObject:
   m_ObjectHideFlags: 0
@@ -520876,6 +521125,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1304199948
 GameObject:
   m_ObjectHideFlags: 0
@@ -521304,6 +521554,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 16
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1304682284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533244,6 +533495,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1337456963
 GameObject:
   m_ObjectHideFlags: 0
@@ -545177,6 +545429,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1367980701
 GameObject:
   m_ObjectHideFlags: 0
@@ -548528,6 +548781,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1370581665
 GameObject:
   m_ObjectHideFlags: 0
@@ -550355,6 +550609,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1375968540
 GameObject:
   m_ObjectHideFlags: 0
@@ -556636,6 +556891,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1391800690
 GameObject:
   m_ObjectHideFlags: 0
@@ -560407,6 +560663,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1401024748
 GameObject:
   m_ObjectHideFlags: 0
@@ -563133,6 +563390,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1408175535
 GameObject:
   m_ObjectHideFlags: 0
@@ -567550,6 +567808,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1420475611
 GameObject:
   m_ObjectHideFlags: 0
@@ -574157,6 +574416,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 42
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1432745746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581455,6 +581715,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1451156713
 GameObject:
   m_ObjectHideFlags: 0
@@ -585140,6 +585401,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1462211127
 GameObject:
   m_ObjectHideFlags: 0
@@ -588311,6 +588573,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 42
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1467855336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590961,6 +591224,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1473430208
 GameObject:
   m_ObjectHideFlags: 0
@@ -616211,6 +616475,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1539559928
 GameObject:
   m_ObjectHideFlags: 0
@@ -620923,6 +621188,7 @@ MonoBehaviour:
   fixture: {fileID: 0}
   phase: 3.48
   slot: 0
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &1553070010
 GameObject:
   m_ObjectHideFlags: 0
@@ -623915,6 +624181,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 3
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1560491525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631097,6 +631364,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 0
+  locked: 0
 --- !u!4 &1582315387
 Transform:
   m_ObjectHideFlags: 0
@@ -646662,6 +646930,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1622132713
 GameObject:
   m_ObjectHideFlags: 0
@@ -646707,6 +646976,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 1
   offline: 0
+  locked: 0
 --- !u!4 &1622132715
 Transform:
   m_ObjectHideFlags: 0
@@ -652087,6 +652357,7 @@ MonoBehaviour:
   - {x: -26, y: 0.015, z: 0.72}
   - {x: -6, y: 0.015, z: 0.72}
   speed: 1.03
+  player: {fileID: 3127509688931245513}
 --- !u!1 &1629944332
 GameObject:
   m_ObjectHideFlags: 0
@@ -652170,6 +652441,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1630478619
 GameObject:
   m_ObjectHideFlags: 0
@@ -657215,6 +657487,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 29
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1641349911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676518,6 +676791,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1684973827
 GameObject:
   m_ObjectHideFlags: 0
@@ -678210,6 +678484,7 @@ MonoBehaviour:
   depth: 0.5
   frequency: 0.64
   phase: 0
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1688601769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686459,6 +686734,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1710043579
 GameObject:
   m_ObjectHideFlags: 0
@@ -688202,6 +688478,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1715139643
 GameObject:
   m_ObjectHideFlags: 0
@@ -688250,6 +688527,7 @@ MonoBehaviour:
   fixture: {fileID: 0}
   phase: 6.96
   slot: 0
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &1715621642
 GameObject:
   m_ObjectHideFlags: 0
@@ -698818,6 +699096,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1743695399
 GameObject:
   m_ObjectHideFlags: 0
@@ -700575,6 +700854,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1748834291
 GameObject:
   m_ObjectHideFlags: 0
@@ -704596,6 +704876,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1756558763
 GameObject:
   m_ObjectHideFlags: 0
@@ -710219,6 +710500,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1770196765
 GameObject:
   m_ObjectHideFlags: 0
@@ -714692,6 +714974,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1781003073
 GameObject:
   m_ObjectHideFlags: 0
@@ -718955,6 +719238,7 @@ MonoBehaviour:
   depth: 0.61
   frequency: 0.9
   phase: 3
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!114 &1795174977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720514,6 +720798,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1796369015
 GameObject:
   m_ObjectHideFlags: 0
@@ -729808,6 +730093,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1812823177
 GameObject:
   m_ObjectHideFlags: 0
@@ -746851,6 +747137,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1853355092
 GameObject:
   m_ObjectHideFlags: 0
@@ -746928,6 +747215,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1853614908
 GameObject:
   m_ObjectHideFlags: 0
@@ -763820,6 +764108,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1892945341
 GameObject:
   m_ObjectHideFlags: 0
@@ -771732,6 +772021,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1912852065
 GameObject:
   m_ObjectHideFlags: 0
@@ -775952,6 +776242,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1922619483
 GameObject:
   m_ObjectHideFlags: 0
@@ -791020,6 +791311,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1961450819
 GameObject:
   m_ObjectHideFlags: 0
@@ -791425,6 +791717,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1962327369
 GameObject:
   m_ObjectHideFlags: 0
@@ -791682,6 +791975,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1962879174
 GameObject:
   m_ObjectHideFlags: 0
@@ -800694,6 +800988,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1979004086
 GameObject:
   m_ObjectHideFlags: 0
@@ -803978,6 +804273,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1988188574
 GameObject:
   m_ObjectHideFlags: 0
@@ -805408,6 +805704,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &1990332615
 GameObject:
   m_ObjectHideFlags: 0
@@ -811249,6 +811546,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &2009024157
 GameObject:
   m_ObjectHideFlags: 0
@@ -813166,6 +813464,7 @@ MonoBehaviour:
   fixture: {fileID: 1314502905}
   phase: 0
   slot: 1
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &2014410652
 GameObject:
   m_ObjectHideFlags: 0
@@ -816617,6 +816916,7 @@ MonoBehaviour:
   fixture: {fileID: 0}
   phase: 1.74
   slot: 0
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
 --- !u!1 &2021983310
 GameObject:
   m_ObjectHideFlags: 0
@@ -830996,6 +831296,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &2058335898
 GameObject:
   m_ObjectHideFlags: 0
@@ -832930,6 +833231,7 @@ MonoBehaviour:
   hinged: 1
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &2064550390
 GameObject:
   m_ObjectHideFlags: 0
@@ -854296,6 +854598,7 @@ MonoBehaviour:
   hinged: 0
   liftOnly: 0
   offline: 0
+  locked: 0
 --- !u!1 &2113690756
 GameObject:
   m_ObjectHideFlags: 0
@@ -865439,6 +865742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
+    - target: {fileID: 1134410780927723331, guid: 018fba78ae1af8c458604455dd38a535, type: 3}
+      propertyPath: preferences
+      value: 
+      objectReference: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
     - target: {fileID: 3373445810706889711, guid: 018fba78ae1af8c458604455dd38a535, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55
@@ -865532,6 +865839,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2ad62a034d64f49a9895acd69a0949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NETRunner92.HospitalInteraction
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  breachables:
+  - {fileID: 1629750514}
+  - {fileID: 468455381}
+  - {fileID: 1251972031}
+  - {fileID: 1119777982}
 --- !u!114 &3127509688931245516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865571,3 +865886,4 @@ SceneRoots:
   - {fileID: 2019050991}
   - {fileID: 3127509688931245511}
   - {fileID: 1390742261}
+  - {fileID: 506428666}

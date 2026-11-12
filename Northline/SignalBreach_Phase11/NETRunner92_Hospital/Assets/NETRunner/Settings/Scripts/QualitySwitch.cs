@@ -9,13 +9,13 @@ namespace NetRunner.Settings
     /// <summary>
     /// Graphics quality shortcuts for players: F2 cycles through the quality
     /// levels (Low, Medium, High) by choosing that preset of the settings menu
-    /// (<see cref="GameOptions.SelectLevel"/>), which saves it like the menu
+    /// (<see cref="Preferences.SelectLevel"/>), which saves it like the menu
     /// does; F3 shows an FPS counter. It also lets the game cameras use HDRP's
     /// resolution scaling, which the render-scale setting drives. Created
-    /// automatically when the game starts, so no scene needs it. In Phase 11
-    /// the preferences own the level and the display, so the first-start
-    /// 1080p cap and the PlayerPrefs storage of main's version are gone;
-    /// <c>-net92-quality</c> is read by <see cref="GameOptions"/>.
+    /// by <see cref="PreferencesRuntime"/> when the game starts, so no scene
+    /// needs it. In Phase 11 the preferences own the level and the display,
+    /// so the first-start 1080p cap and the PlayerPrefs storage of main's
+    /// version are gone; <c>-net92-quality</c> is read by <see cref="Preferences"/>.
     /// </summary>
     public sealed class QualitySwitch : MonoBehaviour
     {
@@ -30,6 +30,7 @@ namespace NetRunner.Settings
         private float noteUntil;
         private bool showFrameRate;
         private GUIStyle labelStyle;
+        private Preferences preferences;
 
         private static string CurrentLevelName => QualitySettings.names[QualitySettings.GetQualityLevel()];
 
@@ -94,16 +95,14 @@ namespace NetRunner.Settings
         public void CycleQuality()
         {
             int next = QualityChoice.Next(QualitySettings.GetQualityLevel(), QualitySettings.count);
-            GameOptions.SelectLevel(next, !Application.isEditor && !GameOptions.QualityFixedAtLaunch);
+            preferences.SelectLevel(next, !Application.isEditor && !preferences.QualityFixedAtLaunch);
             noteUntil = Time.unscaledTime + NoteSeconds;
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void CreateOnStart()
+        /// <summary>Uses <paramref name="source"/> for the level F2 picks; <see cref="PreferencesRuntime"/> calls it when the game starts.</summary>
+        public void Configure(Preferences source)
         {
-            var host = new GameObject(nameof(QualitySwitch));
-            DontDestroyOnLoad(host);
-            host.AddComponent<QualitySwitch>();
+            preferences = source;
         }
 
         private static void HandleCameraRendering(ScriptableRenderContext context, Camera renderingCamera)

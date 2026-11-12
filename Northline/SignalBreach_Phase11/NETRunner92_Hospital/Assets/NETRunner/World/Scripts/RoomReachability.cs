@@ -46,13 +46,13 @@ namespace NetRunner.World
                     }
                 }
                 int count=0,found=0;
-                foreach(var room in plan.rooms)
+                foreach(var room in plan.Rooms)
                 {
-                    if(room.floor!=level)continue;
+                    if(room.Floor!=level)continue;
                     count++;
-                    bool hit=visited.Exists(p=>Array.Exists(room.tiles,t=>p.x>t.x0+.28f&&p.x<t.x1-.28f&&p.y>t.z0+.28f&&p.y<t.z1-.28f));
+                    bool hit=visited.Exists(p=>Array.Exists(room.Tiles,t=>p.x>t.X0+.28f&&p.x<t.X1-.28f&&p.y>t.Z0+.28f&&p.y<t.Z1-.28f));
                     if(hit)found++;
-                    else missed.Add($"L{level} {room.name}");
+                    else missed.Add($"L{level} {room.Name}");
                 }
                 totals.Add($"L{level} {found}/{count} ({visited.Count} accessible samples)");
             }

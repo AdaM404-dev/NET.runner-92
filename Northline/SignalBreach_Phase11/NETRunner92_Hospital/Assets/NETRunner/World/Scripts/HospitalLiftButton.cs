@@ -1,5 +1,5 @@
+using NetRunner.Core;
 using NetRunner.Player;
-using NetRunner.Settings;
 using UnityEngine;
 
 namespace NetRunner.World
@@ -10,9 +10,9 @@ namespace NetRunner.World
         [SerializeField] int floor;
         [SerializeField] bool cabin;
 
-        public (string Key, string Text) Prompt => !lift.Unlocked(floor) ? (null, "Ezt a szintet előbb lépcsőn érd el")
+        public (GameAction? Action, string Text) Prompt => !lift.Unlocked(floor) ? (null, "Ezt a szintet előbb lépcsőn érd el")
             : lift.Busy ? (null, "A lift mozgásban van")
-            : (HospitalKeys.Label(GameAction.Interact), cabin ? $"{floor + 1}. szint kiválasztása" : $"Lift hívása · {floor + 1}. szint");
+            : (GameAction.Interact, cabin ? $"{floor + 1}. szint kiválasztása" : $"Lift hívása · {floor + 1}. szint");
 
         public void Configure(HospitalLift controller, int level, bool inside)
         {

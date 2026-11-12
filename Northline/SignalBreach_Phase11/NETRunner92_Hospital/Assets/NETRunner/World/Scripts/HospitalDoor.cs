@@ -1,6 +1,6 @@
 using System;
+using NetRunner.Core;
 using NetRunner.Player;
-using NetRunner.Settings;
 using UnityEngine;
 
 namespace NetRunner.World
@@ -38,10 +38,10 @@ namespace NetRunner.World
         public bool Open => amount >= 1f;
         public bool LiftOnly => liftOnly;
         public bool Locked => locked;
-        public (string Key, string Text) Prompt => offline ? (null, "A lift üzemen kívül")
+        public (GameAction? Action, string Text) Prompt => offline ? (null, "A lift üzemen kívül")
             : liftOnly ? (null, "Használd a lift hívógombját")
             : locked ? (null, "Zárva")
-            : (HospitalKeys.Label(GameAction.Interact), requested ? "Ajtó bezárása" : "Ajtó kinyitása");
+            : (GameAction.Interact, requested ? "Ajtó bezárása" : "Ajtó kinyitása");
 
         public void Configure(Panel[] leaves, float aperture, bool swing, bool controlledByLift, bool outOfService)
         {

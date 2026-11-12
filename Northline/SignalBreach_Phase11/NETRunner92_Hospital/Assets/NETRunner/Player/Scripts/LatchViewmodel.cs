@@ -1,4 +1,4 @@
-using NetRunner.Settings;
+using NetRunner.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +14,9 @@ namespace NetRunner.Player
         const float BreachCooldown = 3f;
         const float FailureDisplay = 1f;
 
+        // The breach pointer moves 1.2 screen pixels per mouse count.
+        const float BreachPointerGain = 1.2f;
+
         [SerializeField] GameObject model;
         [SerializeField] Animator animator;
         [SerializeField] LatchScreen screen;
@@ -23,7 +26,8 @@ namespace NetRunner.Player
         bool committed, success;
         bool cctvRequested;
         float noticeUntil;
-        SignalBreachPuzzle breach;
+        SignalBreach breach;
+        readonly System.Random random = new System.Random();
         IBreachable breachTarget;
         float breachDisableSeconds;
         bool breachApplied;
@@ -36,7 +40,7 @@ namespace NetRunner.Player
         public bool CctvHintVisible => Time.unscaledTime < noticeUntil;
         public bool BreachOpen => breach != null;
         public bool BreachCapturesLook => BreachOpen &&
-            breach.State is SignalBreachPuzzle.Outcome.Pending or SignalBreachPuzzle.Outcome.Tracing;
+            breach.State is SignalBreach.Outcome.Pending or SignalBreach.Outcome.Tracing;
         public int BreachRetrySeconds => Mathf.CeilToInt(Mathf.Max(0f, retryAt - Time.time));
 
         static int Hash(string clip) => Animator.StringToHash("Base Layer.Hack_" + clip);
@@ -67,15 +71,15 @@ namespace NetRunner.Player
             }
             bool owned = Active;
             if (keyboard == null) return owned;
-            if (HospitalKeys.CctvPressed(keyboard)) ToggleCctv();
-            else if (HospitalKeys.Pressed(keyboard, GameAction.Tablet))
+            if (player.Preferences.CctvPressed(keyboard)) ToggleCctv();
+            else if (player.Preferences.Pressed(keyboard, GameAction.Tablet))
             {
                 if (BreachTargets.Alive(robot) && (Current == Phase.Stowed || Current == Phase.Ready && !relay && !cctvRequested))
                     BeginBreach(robot);
                 else Toggle(target as LatchRelay);
             }
-            else if (HospitalKeys.Pressed(keyboard, GameAction.Stow) && Active) Cancel();
-            else if (HospitalKeys.Pressed(keyboard, GameAction.Interact) && Active) Tap();
+            else if (player.Preferences.Pressed(keyboard, GameAction.Stow) && Active) Cancel();
+            else if (player.Preferences.Pressed(keyboard, GameAction.Interact) && Active) Tap();
             else if (cctvRequested && Current == Phase.Ready)
             {
                 if (keyboard.leftArrowKey.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame) StepCctv(-1);
@@ -88,7 +92,7 @@ namespace NetRunner.Player
         {
             if (BreachOpen || Time.time < retryAt || !BreachTargets.Alive(robot) || !robot.CanBreach
                 || Current != Phase.Stowed && (Current != Phase.Ready || relay || cctvRequested)) return false;
-            breach = new SignalBreachPuzzle();
+            breach = new SignalBreach(random);
             breachTarget = robot;
             breachDisableSeconds = robot.DisableSeconds;
             breachApplied = false;
@@ -105,29 +109,30 @@ namespace NetRunner.Player
                 TerminateBreach("SIGNAL LOST");
                 return;
             }
-            breach.Start(Time.time);
+            breach.Begin(Time.time);
             breachTarget.SetBreachTracing(true);
-            screen.PresentBreach(breach, SignalBreachPuzzle.Duration, breachDisableSeconds);
+            screen.PresentBreach(breach, SignalBreach.Duration, breachDisableSeconds, player.Preferences.Active.ReduceMotion);
         }
 
         void ReadBreachInput(Keyboard keyboard, Mouse mouse)
         {
             if (keyboard != null && (keyboard.escapeKey.wasPressedThisFrame
-                || HospitalKeys.Pressed(keyboard, GameAction.Stow) || HospitalKeys.Pressed(keyboard, GameAction.Tablet)))
+                || player.Preferences.Pressed(keyboard, GameAction.Stow) || player.Preferences.Pressed(keyboard, GameAction.Tablet)))
             {
                 Cancel();
                 return;
             }
-            if (breach.State != SignalBreachPuzzle.Outcome.Tracing) return;
+            if (breach.State != SignalBreach.Outcome.Tracing) return;
             breach.Tick(Time.time);
-            if (breach.State != SignalBreachPuzzle.Outcome.Tracing) return;
+            if (breach.State != SignalBreach.Outcome.Tracing) return;
 
             if (mouse != null)
             {
-                breach.MovePointer(mouse.delta.ReadValue() * 1.2f);
+                var delta = mouse.delta.ReadValue() * BreachPointerGain;
+                breach.MovePointer(delta.x, delta.y);
                 if (mouse.leftButton.wasPressedThisFrame) breach.Click();
             }
-            if (keyboard != null && breach.State == SignalBreachPuzzle.Outcome.Tracing)
+            if (keyboard != null && breach.State == SignalBreach.Outcome.Tracing)
             {
                 if (keyboard.upArrowKey.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame) breach.StepFocus(-1);
                 else if (keyboard.downArrowKey.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame) breach.StepFocus(1);
@@ -139,14 +144,14 @@ namespace NetRunner.Player
 
         void UpdateBreach()
         {
-            if (breach.State == SignalBreachPuzzle.Outcome.Pending) return;
-            if (breach.State == SignalBreachPuzzle.Outcome.Tracing)
+            if (breach.State == SignalBreach.Outcome.Pending) return;
+            if (breach.State == SignalBreach.Outcome.Tracing)
             {
                 if (!BreachTargets.Alive(breachTarget) || !breachTarget.CanBreach) TerminateBreach("SIGNAL LOST");
                 else breach.Tick(Time.time);
             }
 
-            if (breach.State == SignalBreachPuzzle.Outcome.Successful)
+            if (breach.State == SignalBreach.Outcome.Successful)
             {
                 if (!breachApplied)
                 {
@@ -159,17 +164,17 @@ namespace NetRunner.Player
                     breachTarget.SetBreachTracing(false);
                 }
                 if (BreachTargets.Alive(breachTarget) && breachTarget.BreachRecovery > 0f)
-                    screen.PresentBreach(breach, breachTarget.BreachRecovery, breachDisableSeconds);
+                    screen.PresentBreach(breach, breachTarget.BreachRecovery, breachDisableSeconds, player.Preferences.Active.ReduceMotion);
                 else CloseBreach();
                 return;
             }
-            if (breach.State == SignalBreachPuzzle.Outcome.Terminated)
+            if (breach.State == SignalBreach.Outcome.Terminated)
             {
                 if (failureClosesAt == 0f) TerminateBreach(breach.Feedback);
                 if (Time.time >= failureClosesAt) CloseBreach();
                 return;
             }
-            screen.PresentBreach(breach, breach.Remaining(Time.time), breachDisableSeconds);
+            screen.PresentBreach(breach, breach.Remaining(Time.time), breachDisableSeconds, player.Preferences.Active.ReduceMotion);
         }
 
         void TerminateBreach(string message)
@@ -178,7 +183,7 @@ namespace NetRunner.Player
             if (BreachTargets.Alive(breachTarget)) breachTarget.SetBreachTracing(false);
             retryAt = Time.time + BreachCooldown;
             failureClosesAt = Time.time + FailureDisplay;
-            screen.PresentBreach(breach, 0f, breachDisableSeconds);
+            screen.PresentBreach(breach, 0f, breachDisableSeconds, player.Preferences.Active.ReduceMotion);
         }
 
         void ClearBreach()
@@ -230,8 +235,8 @@ namespace NetRunner.Player
             if (!Active || Current == Phase.Cancel) return;
             if (BreachOpen)
             {
-                if (breach.State == SignalBreachPuzzle.Outcome.Successful) CloseBreach();
-                else if (breach.State != SignalBreachPuzzle.Outcome.Terminated) TerminateBreach("LINK CANCELLED");
+                if (breach.State == SignalBreach.Outcome.Successful) CloseBreach();
+                else if (breach.State != SignalBreach.Outcome.Terminated) TerminateBreach("LINK CANCELLED");
                 return;
             }
             StopCctv();
@@ -329,9 +334,9 @@ namespace NetRunner.Player
             Current = phase;
             if (blend > 0f) animator.CrossFadeInFixedTime(Motion[(int)phase], blend, 0, 0f);
             else animator.Play(Motion[(int)phase], 0, 0f);
-            string cancel = HospitalKeys.Label(GameAction.Stow) + "  CANCEL";
-            string stow = HospitalKeys.Label(GameAction.Tablet) + "  STOW";
-            string link = HospitalKeys.Label(GameAction.Interact) + "  LINK";
+            string cancel = player.Preferences.Label(GameAction.Stow) + "  CANCEL";
+            string stow = player.Preferences.Label(GameAction.Tablet) + "  STOW";
+            string link = player.Preferences.Label(GameAction.Interact) + "  LINK";
             switch (phase)
             {
                 case Phase.Equip:
@@ -340,7 +345,7 @@ namespace NetRunner.Player
                 case Phase.Ready:
                     if (BreachOpen)
                     {
-                        if (breach.State == SignalBreachPuzzle.Outcome.Pending) StartBreach();
+                        if (breach.State == SignalBreach.Outcome.Pending) StartBreach();
                         break;
                     }
                     if (cctvRequested)
@@ -350,7 +355,7 @@ namespace NetRunner.Player
                     }
                     screen.Present(relay && relay.Linked ? "RELAY ONLINE" : "SIGNAL STANDBY",
                         relay ? "TARGET  /  NORTHLINE SERVICE RELAY" : "TARGET  /  NO RELAY IN VIEW",
-                        CctvAvailable ? $"{link}     {stow}     {HospitalKeys.Label(GameAction.Cctv)}  CCTV" : $"{link}     {stow}     {cancel}",
+                        CctvAvailable ? $"{link}     {stow}     {player.Preferences.Label(GameAction.Cctv)}  CCTV" : $"{link}     {stow}     {cancel}",
                         relay ? LatchScreen.Cyan : LatchScreen.Amber, relay ? .86f : .14f);
                     break;
                 case Phase.Tap:

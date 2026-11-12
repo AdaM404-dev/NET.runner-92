@@ -1,146 +1,213 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NetRunner.Player;
+using NetRunner.Saves;
+using NetRunner.World;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
-using NetRunner.Player;
-using NetRunner.Saves;
-using NetRunner.Settings;
-using NetRunner.World;
 
 namespace NetRunner.Menu
 {
+    /// <summary>
+    /// A hospital run started from the main menu (Phase 11): it restores the
+    /// checkpoint the menu chose, writes the first checkpoint of a new game,
+    /// offers the pause menu on Escape (resume, save, back to the main
+    /// menu), and after a defeat starts again from the slot's last save.
+    /// It sits in the hospital scene, set up by the hospital's installer
+    /// (<see cref="Configure"/>), and takes its run from the
+    /// <see cref="RunSession"/>; without a pending run it switches itself off.
+    /// </summary>
     [DefaultExecutionOrder(-100)]
     public sealed class HospitalRun : MonoBehaviour
     {
         public const string MenuScene = "MainMenu";
         public const string HospitalScene = "Hospital_Exploration";
-        static int pendingSlot;
-        static HospitalCheckpoint pendingCheckpoint;
-        static PanelSettings menuPanel;
-        static StyleSheet menuStyle;
-        static TextAsset scheduleAsset;
 
-        int slot;
-        float previousTimeScale;
-        bool paused, returning;
-        FirstPersonController player;
-        HospitalInteraction interaction;
-        LatchViewmodel latch;
-        StairAccess stairs;
-        HospitalLift lift;
-        SecurityCctv network;
-        LatchRelay relay;
-        HospitalRoomSchedule schedule;
-        VisualElement overlay, actions;
-        Label status;
-        Button resume, save, leave;
-        PanelSettings pausePanel;
+        // A restored player is lifted 2.5 cm so the capsule does not start inside the floor.
+        private const float RestoreLift = .025f;
+        private const int PauseSortingOrder = 30;
+        private const string DefaultLocation = "Northline · Karanténzóna";
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void ResetSession()
+        [SerializeField] private RunSession session;
+        [SerializeField] private FirstPersonController player;
+        [SerializeField] private StairAccess stairs;
+        [SerializeField] private HospitalLift lift;
+        [SerializeField] private SecurityCctv network;
+        [SerializeField] private LatchRelay relay;
+        [SerializeField] private ReceptionSecurityTerminal terminal;
+        [SerializeField] private HospitalDoor[] doors = new HospitalDoor[0];
+        [SerializeField] private PanelSettings menuPanel;
+        [SerializeField] private StyleSheet menuStyle;
+        [SerializeField] private TextAsset roomSchedule;
+
+        private CheckpointStore store;
+        private readonly MenuWidgets widgets = new MenuWidgets(null);
+        private int slot;
+        private float previousTimeScale;
+        private bool paused;
+        private bool returning;
+        private LatchViewmodel latch;
+        private HospitalInteraction interaction;
+        private HospitalRoomSchedule schedule;
+        private VisualElement overlay;
+        private VisualElement actions;
+        private Label status;
+        private Button resume;
+        private Button save;
+        private Button leave;
+        private PanelSettings pausePanel;
+
+        /// <summary>The save slot of this run.</summary>
+        public int Slot => slot;
+
+        /// <summary>Whether the pause menu is open.</summary>
+        public bool Paused => paused;
+
+        private void Start()
         {
-            pendingSlot = -1;
-            pendingCheckpoint = null;
-            menuPanel = null;
-            menuStyle = null;
-            scheduleAsset = null;
-            SceneManager.sceneLoaded -= OnLoaded;
-            SceneManager.sceneLoaded += OnLoaded;
-        }
+            store = session.Store;
+            if (!session.TryTake(out slot, out var checkpoint))
+            {
+                enabled = false;
+                return;
+            }
 
-        public static void Enter(int slot, HospitalCheckpoint checkpoint, PanelSettings panel,
-            StyleSheet style, TextAsset roomSchedule)
-        {
-            pendingSlot = slot;
-            pendingCheckpoint = checkpoint;
-            menuPanel = panel;
-            menuStyle = style;
-            scheduleAsset = roomSchedule;
-        }
-
-        static void OnLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.name != HospitalScene || pendingSlot < 0) return;
-            var run = new GameObject("Northline session").AddComponent<HospitalRun>();
-            var checkpoint = pendingCheckpoint;
-            run.slot = pendingSlot;
-            pendingSlot = -1;
-            pendingCheckpoint = null;
-            run.Initialize(checkpoint);
-        }
-
-        // The player raises Defeated 1.5 s after going down: start again from this slot's last checkpoint.
-        void RestartAfterDefeat()
-        {
-            returning = true;
-            Enter(slot, CheckpointStore.Read(slot), menuPanel, menuStyle, scheduleAsset);
-            SceneManager.LoadSceneAsync(HospitalScene);
-        }
-
-        void Initialize(HospitalCheckpoint checkpoint)
-        {
-            player = FindAnyObjectByType<FirstPersonController>();
             interaction = player.GetComponent<HospitalInteraction>();
             latch = player.GetComponent<LatchViewmodel>();
+            schedule = roomSchedule ? JsonUtility.FromJson<HospitalRoomSchedule>(roomSchedule.text) : null;
             player.Defeated += RestartAfterDefeat;
-            stairs = FindAnyObjectByType<StairAccess>();
-            lift = FindAnyObjectByType<HospitalLift>();
-            network = FindAnyObjectByType<SecurityCctv>();
-            relay = FindAnyObjectByType<LatchRelay>();
-            schedule = scheduleAsset ? JsonUtility.FromJson<HospitalRoomSchedule>(scheduleAsset.text) : null;
-            if (checkpoint != null) Restore(checkpoint);
+            if (checkpoint != null)
+            {
+                Restore(checkpoint);
+            }
+
             BuildPause();
             if (checkpoint == null && !WriteCheckpoint())
+            {
                 status.text = "A kezdőpontot nem sikerült menteni.";
+            }
         }
 
-        void Restore(HospitalCheckpoint checkpoint)
+        private void Update()
         {
-            if (stairs) stairs.RestoreProgress(checkpoint.highestFloor);
-            if (checkpoint.cctv)
-                FindAnyObjectByType<ReceptionSecurityTerminal>()?.RestoreUnlock();
-            if (checkpoint.relay && relay) relay.RestoreLink();
-            var open = new HashSet<string>(checkpoint.openDoors, StringComparer.Ordinal);
-            foreach (var door in FindObjectsByType<HospitalDoor>())
-                if (open.Contains(door.name)) door.RestoreOpen();
+            if (returning || player.IsDown || Keyboard.current?.escapeKey.wasPressedThisFrame != true)
+            {
+                return;
+            }
 
-            player.Warp(checkpoint.position + Vector3.up * .025f, Quaternion.Euler(0, checkpoint.yaw, 0));
-            player.RestorePitch(checkpoint.pitch);
+            if (paused)
+            {
+                StartCoroutine(ResumeNextFrame());
+                return;
+            }
+
+            if (Cursor.lockState == CursorLockMode.Locked && !interaction.TerminalActive && !(latch && latch.Active))
+            {
+                Pause();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (paused)
+            {
+                Time.timeScale = previousTimeScale;
+            }
+
+            if (player)
+            {
+                player.PauseInput(false);
+                player.Defeated -= RestartAfterDefeat;
+            }
+
+            if (pausePanel)
+            {
+                Destroy(pausePanel);
+            }
+        }
+
+        /// <summary>Sets the run up in the hospital scene; called by the hospital's installer.</summary>
+        public void Configure(RunSession runs, FirstPersonController runner, StairAccess stairCores, HospitalLift westLift,
+            SecurityCctv cameras, LatchRelay serviceRelay, ReceptionSecurityTerminal reception, HospitalDoor[] allDoors,
+            PanelSettings panel, StyleSheet style, TextAsset rooms)
+        {
+            session = runs;
+            player = runner;
+            stairs = stairCores;
+            lift = westLift;
+            network = cameras;
+            relay = serviceRelay;
+            terminal = reception;
+            doors = allDoors;
+            menuPanel = panel;
+            menuStyle = style;
+            roomSchedule = rooms;
+        }
+
+        private void Restore(HospitalCheckpoint checkpoint)
+        {
+            stairs.RestoreProgress(checkpoint.HighestFloor);
+            if (checkpoint.CctvUnlocked)
+            {
+                terminal.RestoreUnlock();
+            }
+
+            if (checkpoint.RelayLinked)
+            {
+                relay.RestoreLink();
+            }
+
+            var open = new HashSet<string>(checkpoint.OpenDoors, StringComparer.Ordinal);
+            foreach (var door in doors)
+            {
+                if (open.Contains(door.name))
+                {
+                    door.RestoreOpen();
+                }
+            }
+
+            player.Warp(checkpoint.Position + Vector3.up * RestoreLift, Quaternion.Euler(0f, checkpoint.Yaw, 0f));
+            player.RestorePitch(checkpoint.Pitch);
             Physics.SyncTransforms();
         }
 
-        bool WriteCheckpoint()
+        private bool WriteCheckpoint()
         {
             var openDoors = new List<string>();
-            foreach (var door in FindObjectsByType<HospitalDoor>())
-                if (door.SaveOpen) openDoors.Add(door.name);
+            foreach (var door in doors)
+            {
+                if (door.SaveOpen)
+                {
+                    openDoors.Add(door.name);
+                }
+            }
+
             var position = player.transform.position;
             var room = schedule?.At(position);
-            return CheckpointStore.Save(slot, new HospitalCheckpoint
-            {
-                time = DateTime.UtcNow.Ticks,
-                position = position,
-                yaw = player.transform.eulerAngles.y,
-                pitch = player.ViewPitch,
-                highestFloor = stairs ? stairs.Highest : 0,
-                cctv = network && network.Unlocked,
-                relay = relay && relay.Linked,
-                location = room == null ? "Northline · Karanténzóna" : $"{room.floor}. szint · {room.name}",
-                openDoors = openDoors.ToArray()
-            });
+            string location = room == null ? DefaultLocation : $"{room.Floor}. szint · {room.Name}";
+            return store.Save(slot, new HospitalCheckpoint(DateTime.UtcNow, position, player.transform.eulerAngles.y,
+                player.ViewPitch, stairs.Highest, network.Unlocked, relay.Linked, location, openDoors.ToArray()));
         }
 
-        void BuildPause()
+        // The player raises Defeated 1.5 s after going down: start again from this slot's last save.
+        private void RestartAfterDefeat()
         {
-            var ui = gameObject.AddComponent<UIDocument>();
+            returning = true;
+            session.Begin(slot, store.Read(slot));
+            SceneManager.LoadSceneAsync(HospitalScene);
+        }
+
+        private void BuildPause()
+        {
+            var document = gameObject.AddComponent<UIDocument>();
             pausePanel = Instantiate(menuPanel);
-            pausePanel.sortingOrder = 30;
-            ui.panelSettings = pausePanel;
-            var root = ui.rootVisualElement;
+            pausePanel.sortingOrder = PauseSortingOrder;
+            document.panelSettings = pausePanel;
+            var root = document.rootVisualElement;
             root.pickingMode = PickingMode.Ignore;
             root.styleSheets.Add(menuStyle);
             root.AddToClassList("net-menu");
@@ -149,20 +216,15 @@ namespace NetRunner.Menu
             var card = new VisualElement();
             card.AddToClassList("dialog-card");
             card.AddToClassList("pause-card");
-            var mark = new Label("NORTHLINE  /  MŰVELET FELFÜGGESZTVE");
-            mark.AddToClassList("eyebrow");
-            card.Add(mark);
-            var heading = new Label("Szünet");
-            heading.AddToClassList("dialog-title");
-            card.Add(heading);
-            status = new Label();
-            status.AddToClassList("dialog-copy");
+            card.Add(MenuWidgets.Label("NORTHLINE  /  MŰVELET FELFÜGGESZTVE", "eyebrow"));
+            card.Add(MenuWidgets.Label("Szünet", "dialog-title"));
+            status = MenuWidgets.Label("", "dialog-copy");
             card.Add(status);
             actions = new VisualElement();
             card.Add(actions);
-            resume = MenuControls.Button("Vissza a játékba", Resume);
-            save = MenuControls.Button("Játék mentése", SaveFromPause);
-            leave = MenuControls.Button("Vissza a főmenübe", ConfirmLeave);
+            resume = widgets.Button("Vissza a játékba", Resume);
+            save = widgets.Button("Játék mentése", SaveFromPause);
+            leave = widgets.Button("Vissza a főmenübe", ConfirmLeave);
             resume.name = "pause-resume";
             save.name = "pause-save";
             leave.name = "pause-leave";
@@ -172,38 +234,34 @@ namespace NetRunner.Menu
             overlay.style.display = DisplayStyle.None;
         }
 
-        void Update()
+        private void Pause()
         {
-            if (returning || player.IsDown || Keyboard.current?.escapeKey.wasPressedThisFrame != true) return;
-            if (paused)
-            {
-                StartCoroutine(ResumeNextFrame());
-                return;
-            }
-            if (Cursor.lockState == CursorLockMode.Locked && !interaction.TerminalActive && !(latch && latch.Active))
-            {
-                paused = true;
-                player.PauseInput(true);
-                previousTimeScale = Time.timeScale;
-                Time.timeScale = 0;
-                player.CaptureCursor(false);
-                overlay.EnableInClassList("contrast", GameOptions.Active.highContrast);
-                pausePanel.scale = GameOptions.Active.uiScale;
-                overlay.style.display = DisplayStyle.Flex;
-                ShowPauseActions();
-                overlay.schedule.Execute(resume.Focus);
-            }
+            var options = player.Preferences.Active;
+            paused = true;
+            player.PauseInput(true);
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            player.CaptureCursor(false);
+            overlay.EnableInClassList("contrast", options.UseHighContrast);
+            pausePanel.scale = options.UiScale;
+            overlay.style.display = DisplayStyle.Flex;
+            ShowPauseActions();
+            overlay.schedule.Execute(resume.Focus);
         }
 
-        IEnumerator ResumeNextFrame()
+        private IEnumerator ResumeNextFrame()
         {
             yield return null;
             Resume();
         }
 
-        void Resume()
+        private void Resume()
         {
-            if (!paused || returning) return;
+            if (!paused || returning)
+            {
+                return;
+            }
+
             paused = false;
             player.PauseInput(false);
             overlay.style.display = DisplayStyle.None;
@@ -211,59 +269,60 @@ namespace NetRunner.Menu
             player.CaptureCursor(true);
         }
 
-        void ShowPauseActions()
+        private void ShowPauseActions()
         {
             actions.Clear();
             actions.Add(resume);
             actions.Add(save);
             actions.Add(leave);
-            save.SetEnabled(player.IsGrounded && !(lift && lift.PlayerInside));
+            save.SetEnabled(CanSave());
         }
 
-        void SaveFromPause()
+        // Saving needs firm ground outside the lift cabin, so a load never starts mid-fall or mid-ride.
+        private bool CanSave() => player.IsGrounded && !(lift && lift.PlayerInside);
+
+        private void SaveFromPause()
         {
-            if (!paused || returning) return;
-            if (!player.IsGrounded || lift && lift.PlayerInside)
+            if (!paused || returning)
+            {
+                return;
+            }
+
+            if (!CanSave())
             {
                 status.text = "Menteni szilárd talajon, a liftkabinen kívül lehet.";
                 return;
             }
+
             status.text = WriteCheckpoint() ? $"Mentve a(z) {slot + 1}. helyre." : "A mentés sikertelen.";
         }
 
-        void ConfirmLeave()
+        private void ConfirmLeave()
         {
             status.text = "Az utolsó mentés óta történt változások elvesznek.";
             actions.Clear();
-            actions.Add(MenuControls.Button("Vissza", () =>
+            actions.Add(widgets.Button("Vissza", () =>
             {
                 status.text = "";
                 ShowPauseActions();
                 leave.Focus();
             }));
-            var confirm = MenuControls.Button("Főmenü megnyitása", ReturnToMenu);
+            var confirm = widgets.Button("Főmenü megnyitása", ReturnToMenu);
             confirm.name = "pause-confirm";
             actions.Add(confirm);
             confirm.Focus();
         }
 
-        void ReturnToMenu()
+        private void ReturnToMenu()
         {
-            if (!paused || returning) return;
+            if (!paused || returning)
+            {
+                return;
+            }
+
             returning = true;
             Time.timeScale = previousTimeScale;
             SceneManager.LoadSceneAsync(MenuScene);
-        }
-
-        void OnDestroy()
-        {
-            if (paused) Time.timeScale = previousTimeScale;
-            if (player)
-            {
-                player.PauseInput(false);
-                player.Defeated -= RestartAfterDefeat;
-            }
-            if (pausePanel) Destroy(pausePanel);
         }
     }
 }

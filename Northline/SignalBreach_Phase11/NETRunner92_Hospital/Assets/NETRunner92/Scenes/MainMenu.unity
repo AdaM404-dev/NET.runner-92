@@ -641,10 +641,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NETRunner92.MainMenuView
   menuStyle: {fileID: 7433441132597879392, guid: 6ecc5324b9b188d45b36eb1942fe49f5, type: 3}
   hospitalPlate: {fileID: 2800000, guid: 9d6af6c930d35f74d840aee425b35022, type: 3}
-  roomSchedule: {fileID: 4900000, guid: 89c17f9e5060efb41b9bc6202e977c74, type: 3}
   music: {fileID: 542403230}
   feedback: {fileID: 1744312915}
-  hospitalMixer: {fileID: 24100000, guid: 9f9d5a0bce1e1cf498d6c9f987f55815, type: 2}
+  preferences: {fileID: 11400000, guid: 81a132b8d15e2a4c2b65884f93025f91, type: 2}
+  session: {fileID: 11400000, guid: e6692b140029ff8eeba47fcb4ee82126, type: 2}
 --- !u!114 &1811064893
 MonoBehaviour:
   m_ObjectHideFlags: 0

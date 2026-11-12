@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NetRunner.Core;
 using NetRunner.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ namespace NetRunner.Player
     public sealed class FirstPersonController : MonoBehaviour
     {
         [SerializeField] Camera eyes;
+        [SerializeField] Preferences preferences;
         [SerializeField, Min(0.1f)] float walkingSpeed = 3.5f;
         [SerializeField, Min(0.1f)] float sprintSpeed = 5.5f;
         [SerializeField, Min(1f)] float acceleration = 22f;
@@ -35,6 +37,9 @@ namespace NetRunner.Player
         public bool IsGrounded => hasGroundContact;
         public CharacterController Capsule => capsule;
         public Camera Eyes => eyes;
+
+        /// <summary>The player's settings and key bindings; the player's other components read them from here.</summary>
+        public Preferences Preferences => preferences;
         public float Health { get; private set; } = 100f;
         public float LastHitTime { get; private set; } = float.NegativeInfinity;
         public bool IsDown => Health <= 0f;
@@ -68,6 +73,13 @@ namespace NetRunner.Player
 
         public void SetCamera(Camera camera) => eyes = camera;
 
+        /// <summary>Gives it the player's settings; called by the hospital's installer and tests.</summary>
+        public void SetPreferences(Preferences settings)
+        {
+            preferences = settings;
+        }
+
+
         void Awake()
         {
             capsule = GetComponent<CharacterController>();
@@ -77,7 +89,7 @@ namespace NetRunner.Player
             float[] distances = new float[32];
             distances[8] = detailCullDistance;
             eyes.layerCullDistances = distances;
-            GameOptions.UseCamera(eyes);
+            preferences.UseCamera(eyes);
         }
 
         void Start() => CaptureCursor(true);
@@ -87,7 +99,7 @@ namespace NetRunner.Player
             if (InputPaused || IsDown) return;
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
-            var options = GameOptions.Active;
+            var options = preferences.Active;
             if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame &&
                 !(interaction && (interaction.TerminalActive || interaction.BreachOpen)))
                 CaptureCursor(false);
@@ -101,27 +113,27 @@ namespace NetRunner.Player
                 if (mouse != null && !suppressLook && !(interaction && interaction.BreachCapturesLook))
                 {
                     var delta = mouse.delta.ReadValue();
-                    smoothedLook = options.smoothing <= 0
-                        ? delta : Vector2.Lerp(smoothedLook, delta, 1f - options.smoothing);
-                    var look = smoothedLook * options.sensitivity;
-                    if (options.invertY) look.y = -look.y;
+                    smoothedLook = options.Smoothing <= 0
+                        ? delta : Vector2.Lerp(smoothedLook, delta, 1f - options.Smoothing);
+                    var look = smoothedLook * options.Sensitivity;
+                    if (options.YInverted) look.y = -look.y;
                     Look(look);
                 }
                 suppressLook = false;
                 if (keyboard != null)
                 {
                     input = new Vector2(
-                        (HospitalKeys.Held(keyboard, GameAction.Right) ? 1 : 0) - (HospitalKeys.Held(keyboard, GameAction.Left) ? 1 : 0),
-                        (HospitalKeys.Held(keyboard, GameAction.Forward) ? 1 : 0) - (HospitalKeys.Held(keyboard, GameAction.Back) ? 1 : 0));
-                    if (options.sprintToggle)
+                        (preferences.Held(keyboard, GameAction.Right) ? 1 : 0) - (preferences.Held(keyboard, GameAction.Left) ? 1 : 0),
+                        (preferences.Held(keyboard, GameAction.Forward) ? 1 : 0) - (preferences.Held(keyboard, GameAction.Back) ? 1 : 0));
+                    if (options.SprintToggles)
                     {
-                        if (HospitalKeys.Pressed(keyboard, GameAction.Sprint)) sprintLatched = !sprintLatched;
+                        if (preferences.Pressed(keyboard, GameAction.Sprint)) sprintLatched = !sprintLatched;
                         sprint = sprintLatched;
                     }
                     else
                     {
                         sprintLatched = false;
-                        sprint = HospitalKeys.Held(keyboard, GameAction.Sprint);
+                        sprint = preferences.Held(keyboard, GameAction.Sprint);
                     }
                 }
             }
@@ -161,8 +173,8 @@ namespace NetRunner.Player
             }
 
             stride += planarVelocity.magnitude * dt * 3f;
-            var options = GameOptions.Active;
-            float amplitude = options.reducedMotion ? 0f : options.headBob;
+            var options = preferences.Active;
+            float amplitude = options.ReduceMotion ? 0f : options.HeadBob;
             float bob = amplitude > 0 && hasGroundContact
                 ? amplitude * Mathf.Sin(stride) * Mathf.Min(.021f, planarVelocity.magnitude * .004f) : 0f;
             eyes.transform.localPosition = Vector3.up * (eyeHeight + bob);

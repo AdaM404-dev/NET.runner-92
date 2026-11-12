@@ -1,7 +1,8 @@
+using NetRunner.Core;
 using NetRunner.Player;
 using NetRunner.Settings;
-using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace NetRunner.World
 {
@@ -17,8 +18,8 @@ namespace NetRunner.World
         bool mismatch;
 
         public bool IsOpen => operatorInput;
-        public (string Key, string Text) Prompt => cctv.Unlocked ? (HospitalKeys.Label(GameAction.Cctv), "Élő kamerák")
-            : (HospitalKeys.Label(GameAction.Interact), "Recepciós terminál");
+        public (GameAction? Action, string Text) Prompt => cctv.Unlocked ? (GameAction.Cctv, "Élő kamerák")
+            : (GameAction.Interact, "Recepciós terminál");
         public static int CellCount => Signature.Length;
         public static int ReferenceCell(int index) => Signature[index];
         public int RouteCell(int index) => route[index];
@@ -86,7 +87,7 @@ namespace NetRunner.World
             operatorInput = null;
         }
 
-        public void ReadInput(Keyboard keyboard)
+        public void ReadInput(Keyboard keyboard, Preferences bindings)
         {
             if (keyboard == null) return;
             if (keyboard.leftArrowKey.wasPressedThisFrame) Select(-1);
@@ -94,7 +95,7 @@ namespace NetRunner.World
             else if (keyboard.upArrowKey.wasPressedThisFrame) Adjust(1);
             else if (keyboard.downArrowKey.wasPressedThisFrame) Adjust(-1);
             else if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame) Submit();
-            else if (HospitalKeys.Pressed(keyboard, GameAction.Interact) || keyboard.escapeKey.wasPressedThisFrame) Close();
+            else if (bindings.Pressed(keyboard, GameAction.Interact) || keyboard.escapeKey.wasPressedThisFrame) Close();
         }
 
         void OnDisable() => Close();

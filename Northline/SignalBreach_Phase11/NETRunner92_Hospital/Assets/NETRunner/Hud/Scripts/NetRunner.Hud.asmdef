@@ -2,6 +2,7 @@
     "name": "NetRunner.Hud",
     "rootNamespace": "NetRunner.Hud",
     "references": [
+        "NetRunner.Core",
         "NetRunner.Player",
         "NetRunner.Settings",
         "NetRunner.World",

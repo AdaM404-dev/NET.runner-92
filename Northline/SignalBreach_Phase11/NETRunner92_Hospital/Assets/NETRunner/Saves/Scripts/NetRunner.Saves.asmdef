@@ -2,6 +2,7 @@
     "name": "NetRunner.Saves",
     "rootNamespace": "NetRunner.Saves",
     "references": [
+        "NetRunner.Core",
         "NetRunner.Settings"
     ],
     "includePlatforms": [],

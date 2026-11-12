@@ -2,6 +2,7 @@
     "name": "NetRunner.Menu",
     "rootNamespace": "NetRunner.Menu",
     "references": [
+        "NetRunner.Core",
         "NetRunner.Player",
         "NetRunner.Saves",
         "NetRunner.Settings",

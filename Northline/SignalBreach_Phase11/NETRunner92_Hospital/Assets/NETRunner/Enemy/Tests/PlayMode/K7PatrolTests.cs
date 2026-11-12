@@ -118,6 +118,25 @@ namespace NetRunner.Enemy.Tests
             Assert.That(Quaternion.Angle(model.localRotation, Quaternion.Euler(0f, 180f, 0f)), Is.LessThan(0.01f));
         }
 
+        [UnityTest]
+        public IEnumerator ABreachSwitchesItOffForTenSeconds()
+        {
+            // Phase 11: a successful Signal Breach stops the robot for 10 s; it cannot be breached again meanwhile.
+            var patrol = Build(new Vector3(10f, 0f, 0f));
+            yield return Frames(5);
+            bool couldBreach = patrol.CanBreach;
+
+            bool breached = patrol.TryBreachDisable();
+            var stopped = patrol.transform.position;
+            yield return Frames(30);
+
+            Assert.That(couldBreach, Is.True);
+            Assert.That(breached, Is.True);
+            Assert.That(patrol.BreachRecovery, Is.EqualTo(10f - 30 * Frame).Within(.05f));
+            Assert.That(patrol.CanBreach, Is.False);
+            Assert.That(Vector3.Distance(stopped, patrol.transform.position), Is.LessThan(1e-4f), "Moved while switched off");
+        }
+
         private K7Patrol Build(Vector3 end)
         {
             robot = new GameObject("Test K-7");

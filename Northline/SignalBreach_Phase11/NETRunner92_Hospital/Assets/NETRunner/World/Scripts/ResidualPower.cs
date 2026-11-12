@@ -10,12 +10,21 @@ namespace NetRunner.World
         [SerializeField] Light fixture;
         [SerializeField] float phase;
         [SerializeField] int slot;
+
+        // Optional: without it the power flickers as if reduced flashing were off. Set by the hospital's installer.
+        [SerializeField] Preferences preferences;
         Color emission;
         float nominal;
         MaterialPropertyBlock block;
 #if UNITY_EDITOR
         public Light DiagnosticFixture => fixture;
 #endif
+
+        /// <summary>Gives it the player's settings; called by the hospital's installer.</summary>
+        public void SetPreferences(Preferences settings)
+        {
+            preferences = settings;
+        }
 
         public void Configure(Renderer screen, int materialIndex, Light lamp, float offset)
         {
@@ -46,7 +55,7 @@ namespace NetRunner.World
                 fixture.intensity = nominal * factor;
             }
             else factor = cycle < .28f ? .18f : .78f + Mathf.Sin(time * 3.1f) * .20f;
-            if (GameOptions.Active.reducedFlashing)
+            if (preferences && preferences.Active.ReduceFlashing)
             {
                 factor = 1;
                 if (fixture) fixture.intensity = nominal;

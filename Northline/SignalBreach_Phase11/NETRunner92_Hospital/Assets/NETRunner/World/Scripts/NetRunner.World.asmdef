@@ -2,6 +2,7 @@
     "name": "NetRunner.World",
     "rootNamespace": "NetRunner.World",
     "references": [
+        "NetRunner.Core",
         "NetRunner.Player",
         "NetRunner.Settings",
         "Unity.InputSystem",

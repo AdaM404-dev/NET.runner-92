@@ -3,6 +3,7 @@
     "rootNamespace": "NetRunner.Diagnostics",
     "references": [
         "NetRunner.Atmosphere",
+        "NetRunner.Core",
         "NetRunner.Enemy",
         "NetRunner.Hud",
         "NetRunner.Menu",

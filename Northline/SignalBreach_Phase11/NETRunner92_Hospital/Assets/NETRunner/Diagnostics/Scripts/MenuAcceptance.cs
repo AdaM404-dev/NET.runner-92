@@ -2,6 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using NetRunner.Atmosphere;
+using NetRunner.Core;
+using NetRunner.Hud;
+using NetRunner.Menu;
+using NetRunner.Player;
+using NetRunner.Saves;
+using NetRunner.Settings;
+using NetRunner.World;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -12,13 +20,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 using MouseButton = UnityEngine.InputSystem.LowLevel.MouseButton;
-using NetRunner.Hud;
-using NetRunner.Menu;
-using NetRunner.Player;
-using NetRunner.Saves;
-using NetRunner.Settings;
-using NetRunner.World;
-using NetRunner.Atmosphere;
 
 namespace NetRunner.Diagnostics
 {
@@ -28,6 +29,8 @@ namespace NetRunner.Diagnostics
         const string RunFlag = "-net92-menu-check";
         const string ReloadFlag = "-net92-menu-reload-check";
         readonly List<string> results = new();
+        readonly CheckpointStore store = CheckpointStore.ForProfile();
+        Preferences preferences;
         Keyboard keyboard;
         Mouse mouse;
         string path;
@@ -46,6 +49,8 @@ namespace NetRunner.Diagnostics
         IEnumerator Start()
         {
             bool reload = Array.IndexOf(Environment.GetCommandLineArgs(), ReloadFlag) >= 0;
+            // A diagnostic tool may look the shared settings asset up instead of being given it.
+            preferences = Resources.Load<Preferences>(PreferencesRuntime.ResourcePath);
             path = Path.Combine(LocalGameFiles.ProfileDirectory, reload ? "reload-checks.txt" : "menu-checks.txt");
             yield return new WaitForSecondsRealtime(1.0f);
             var score = GameObject.Find("Menu score")?.GetComponent<AudioSource>();
@@ -54,11 +59,11 @@ namespace NetRunner.Diagnostics
                 "Deep Atmospheric Pads is playing and configured to loop on the menu music source.");
             if (reload)
             {
-                Check(Mathf.Abs(GameOptions.Saved.master - .43f) < .001f && Mathf.Abs(AudioListener.volume - .43f) < .001f,
+                Check(Mathf.Abs(preferences.Saved.Master - .43f) < .001f && Mathf.Abs(AudioListener.volume - .43f) < .001f,
                     "After restarting, saved master volume is loaded and applied.");
-                Check(GameOptions.Saved.keys[(int)GameAction.Interact] == Key.F,
+                Check(preferences.Saved.KeyFor(GameAction.Interact) == Key.F,
                     "After restarting, the interaction binding is still F.");
-                Check(GameOptions.Saved.displayMode == FullScreenMode.Windowed && Screen.fullScreenMode == FullScreenMode.Windowed,
+                Check(preferences.Saved.DisplayMode == FullScreenMode.Windowed && Screen.fullScreenMode == FullScreenMode.Windowed,
                     "After restarting, the confirmed windowed display mode is applied.");
                 Finish();
                 yield break;
@@ -107,9 +112,9 @@ namespace NetRunner.Diagnostics
             var mixer = Array.Find(Resources.FindObjectsOfTypeAll<AudioMixer>(), m => m.name == "Northline_Ambience");
             Check(Mathf.Abs(AudioListener.volume - .43f) < .001f
                 && mixer && mixer.GetFloat("NorthlineExterior", out float outside)
-                && Mathf.Abs(outside - GameOptions.ToDecibels(.36f)) < .01f
+                && Mathf.Abs(outside - PreferenceRules.ToDecibels(.36f)) < .01f
                 && mixer.GetFloat("NorthlineEffects", out float sfx)
-                && Mathf.Abs(sfx - GameOptions.ToDecibels(.60f)) < .01f,
+                && Mathf.Abs(sfx - PreferenceRules.ToDecibels(.60f)) < .01f,
                 "Audio preview changes the actual master, ambience and effect buses.");
             Check(Mathf.Abs(GameObject.Find("Menu score").GetComponent<AudioSource>().volume - .54f * .25f) < .001f
                 && Mathf.Abs(GameObject.Find("Menu interface feedback").GetComponent<AudioSource>().volume - .35f * .30f) < .001f,
@@ -118,27 +123,27 @@ namespace NetRunner.Diagnostics
             Check(AudioListener.volume == 0, "Mute takes effect immediately.");
             root.Q<Toggle>("mute").value = false;
             Submit(root.Q<Button>("settings-cancel"));
-            Check(AudioListener.volume == 1 && GameOptions.Active == GameOptions.Saved, "Cancel rolls back live previews.");
+            Check(AudioListener.volume == 1 && preferences.Active == preferences.Saved, "Cancel rolls back live previews.");
 
             Submit(root.Q<Button>("settings"));
             Submit(root.Q<Button>("settings-defaults"));
             Submit(root.Q<Button>("dialog-confirm"));
-            Check(GameOptions.Active.fov == 68 && AudioListener.volume == 1, "Restore Defaults previews factory preferences.");
+            Check(preferences.Active.FieldOfView == 68 && AudioListener.volume == 1, "Restore Defaults previews factory preferences.");
             Submit(root.Q<Button>("category-1"));
             root.Q<Slider>("master").value = .43f;
             Submit(root.Q<Button>("category-2"));
             Submit(root.Q<Button>("binding-5"));
             yield return Press(Key.S);
-            Check(GameOptions.Active.keys[(int)GameAction.Interact] == Key.E, "An existing movement key cannot be reused.");
+            Check(preferences.Active.KeyFor(GameAction.Interact) == Key.E, "An existing movement key cannot be reused.");
             yield return Press(Key.F);
-            Check(GameOptions.Active.keys[(int)GameAction.Interact] == Key.F, "A physical keypress rebinds Interact.");
+            Check(preferences.Active.KeyFor(GameAction.Interact) == Key.F, "A physical keypress rebinds Interact.");
             Submit(root.Q<Button>("binding-5"));
             yield return Press(Key.Escape);
-            Check(root.Q<Button>("binding-5") != null && GameOptions.Active.keys[(int)GameAction.Interact] == Key.F,
+            Check(root.Q<Button>("binding-5") != null && preferences.Active.KeyFor(GameAction.Interact) == Key.F,
                 "Escape cancels only the binding capture and keeps Settings open.");
             Submit(root.Q<Button>("category-0"));
             root.Q<DropdownField>("quality").index = 0;
-            Check(GameOptions.Active.texture == 2 && QualitySettings.globalTextureMipmapLimit == 2,
+            Check(preferences.Active.Texture == 2 && QualitySettings.globalTextureMipmapLimit == 2,
                 "The Low preset changes the actual global mip limit.");
             root.Q<DropdownField>("quality").index = 2;
             root.Q<Toggle>("vsync").value = false;
@@ -169,7 +174,7 @@ namespace NetRunner.Diagnostics
                 "UI scale changes the rendered panel width and high contrast changes the menu style.");
             Submit(root.Q<Button>("category-0"));
             Submit(root.Q<Button>("settings-apply"));
-            Check(GameOptions.Saved.fov == 76 && QualitySettings.vSyncCount == 0 && Application.targetFrameRate == 120,
+            Check(preferences.Saved.FieldOfView == 76 && QualitySettings.vSyncCount == 0 && Application.targetFrameRate == 120,
                 "Apply persists the selected preferences and applies VSync and FPS cap.");
 
             root.Q<DropdownField>("display-mode").index = 2;
@@ -188,7 +193,7 @@ namespace NetRunner.Diagnostics
                 yield return null;
             yield return new WaitForSecondsRealtime(.4f);
             Check(Screen.width == oldWidth && Screen.height == oldHeight && Screen.fullScreenMode == oldMode
-                && GameOptions.Saved.displayMode != FullScreenMode.Windowed,
+                && preferences.Saved.DisplayMode != FullScreenMode.Windowed,
                 "The unconfirmed display trial times out and restores its original mode and dimensions.");
 
             Debug.Log($"Display restored from {oldWidth}×{oldHeight} {oldMode} to {Screen.width}×{Screen.height} {Screen.fullScreenMode}.");
@@ -206,7 +211,7 @@ namespace NetRunner.Diagnostics
             yield return new WaitForSecondsRealtime(1.2f);
             Submit(root.Q<Button>("dialog-confirm"));
             yield return null;
-            Check(GameOptions.Saved.displayMode == FullScreenMode.Windowed && GameOptions.Saved.width == 1280,
+            Check(preferences.Saved.DisplayMode == FullScreenMode.Windowed && preferences.Saved.Width == 1280,
                 "Confirming a display trial saves the new windowed resolution.");
             Submit(root.Q<Button>("settings-cancel"));
 
@@ -215,7 +220,7 @@ namespace NetRunner.Diagnostics
             yield return WaitForScene(HospitalRun.HospitalScene);
             var run = FindAnyObjectByType<HospitalRun>();
             var player = FindAnyObjectByType<FirstPersonController>();
-            if (!Check(run && player && CheckpointStore.Read(0) != null, "New Game starts the hospital and writes its initial checkpoint."))
+            if (!Check(run && player && store.Read(0) != null, "New Game starts the hospital and writes its initial checkpoint."))
             {
                 Finish();
                 yield break;
@@ -262,7 +267,7 @@ namespace NetRunner.Diagnostics
             yield return Press(Key.F);
             yield return new WaitForSecondsRealtime(.85f);
             Debug.Log($"Input probe: focused={Application.isFocused}, cursor={Cursor.lockState}, target={entrance}, " +
-                $"binding={GameOptions.Active.keys[(int)GameAction.Interact]}, position={player.transform.position}");
+                $"binding={preferences.Active.KeyFor(GameAction.Interact)}, position={player.transform.position}");
             Check(oldClosed && entrance && entrance.Open, "The rebound F operates the real entrance and E no longer does.");
             FindAnyObjectByType<StairAccess>().RestoreProgress(2);
             FindAnyObjectByType<ReceptionSecurityTerminal>().RestoreUnlock();
@@ -276,9 +281,9 @@ namespace NetRunner.Diagnostics
             var pause = run.GetComponent<UIDocument>().rootVisualElement;
             Submit(pause.Q<Button>("pause-save"));
             yield return null;
-            var checkpoint = CheckpointStore.Read(0);
-            Check(player.InputPaused && checkpoint != null && checkpoint.cctv && checkpoint.relay
-                && checkpoint.highestFloor == 2 && entrance && Array.IndexOf(checkpoint.openDoors, entrance.name) >= 0,
+            var checkpoint = store.Read(0);
+            Check(player.InputPaused && checkpoint != null && checkpoint.CctvUnlocked && checkpoint.RelayLinked
+                && checkpoint.HighestFloor == 2 && entrance && Array.IndexOf(checkpoint.OpenDoors, entrance.name) >= 0,
                 "Pause saves actual player progress, unlocks and open doors.");
             Submit(pause.Q<Button>("pause-leave"));
             Submit(pause.Q<Button>("pause-confirm"));
@@ -290,7 +295,7 @@ namespace NetRunner.Diagnostics
             Submit(root.Q<Button>("slot-action-0"));
             Check(root.Q<Button>("dialog-confirm") != null, "Starting over in an occupied slot requires confirmation.");
             Submit(root.Q<Button>("dialog-cancel"));
-            Check(CheckpointStore.Read(0).time == checkpoint.time, "Cancel preserves the existing checkpoint.");
+            Check(store.Read(0).Time == checkpoint.Time, "Cancel preserves the existing checkpoint.");
             Submit(root.Q<Button>("drawer-back"));
 
             Submit(root.Q<Button>("load-game"));
@@ -299,7 +304,7 @@ namespace NetRunner.Diagnostics
             Submit(root.Q<Button>("slot-action-0"));
             yield return WaitForScene(HospitalRun.HospitalScene);
             player = FindAnyObjectByType<FirstPersonController>();
-            Check(player && Vector3.Distance(player.transform.position, checkpoint.position) < .2f
+            Check(player && Vector3.Distance(player.transform.position, checkpoint.Position) < .2f
                 && FindAnyObjectByType<SecurityCctv>().Unlocked && FindAnyObjectByType<StairAccess>().Highest == 2
                 && FindAnyObjectByType<LatchRelay>().Linked,
                 "Load Game restores position and real stair, CCTV and relay progression.");
@@ -325,13 +330,13 @@ namespace NetRunner.Diagnostics
             Submit(root.Q<Button>("load-game"));
             Submit(root.Q<Button>("slot-delete-0"));
             Submit(root.Q<Button>("dialog-cancel"));
-            Check(CheckpointStore.Read(0) != null, "Canceling deletion leaves the slot intact.");
+            Check(store.Read(0) != null, "Canceling deletion leaves the slot intact.");
             Submit(root.Q<Button>("slot-delete-0"));
             Submit(root.Q<Button>("dialog-confirm"));
-            Check(!CheckpointStore.Exists(0), "Confirmed deletion removes the actual save file.");
+            Check(!store.Exists(0), "Confirmed deletion removes the actual save file.");
             File.WriteAllText(Path.Combine(LocalGameFiles.ProfileDirectory, "slot-1.json"), "{ invalid");
             Submit(root.Q<Button>("drawer-back"));
-            Check(CheckpointStore.MostRecent() < 0 && root.Q<Button>("continue") == null,
+            Check(store.MostRecent() < 0 && root.Q<Button>("continue") == null,
                 "A corrupted slot does not appear under Continue.");
             Submit(root.Q<Button>("load-game"));
             Check(!root.Q<Button>("slot-action-0").enabledSelf, "A corrupted slot is visible but cannot be loaded.");

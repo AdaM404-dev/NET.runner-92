@@ -1,99 +1,112 @@
 using System;
 using System.IO;
-using UnityEngine;
+using NetRunner.Core;
 using NetRunner.Settings;
+using UnityEngine;
 
 namespace NetRunner.Saves
 {
-    [Serializable]
-    public sealed class HospitalCheckpoint
+    /// <summary>
+    /// The three save slots (Phase 11): one JSON file each, slot-1.json to
+    /// slot-3.json, in a folder (the player's profile, see
+    /// <see cref="LocalGameFiles"/>). A file that is too large, unreadable or
+    /// fails <see cref="HospitalCheckpoint.IsValid"/> counts as damaged: it
+    /// exists but cannot be loaded.
+    /// </summary>
+    public sealed class CheckpointStore
     {
-        public int version = 1;
-        public long time;
-        public Vector3 position;
-        public float yaw, pitch;
-        public int highestFloor;
-        public bool cctv, relay;
-        public string location;
-        public string[] openDoors;
+        // Larger files are not saves; they are treated as damaged rather than read.
+        private const long MaxFileBytes = 65536;
 
-        public bool Valid => version == 1 && time > 0 && time <= DateTime.MaxValue.Ticks
-            && highestFloor >= 0 && highestFloor <= 3
-            && Mathf.Abs(position.x) < 220 && position.y >= -1 && position.y <= 16 && Mathf.Abs(position.z) < 220
-            && Mathf.Abs(yaw) <= 360 && Mathf.Abs(pitch) <= 90
-            && !string.IsNullOrWhiteSpace(location) && location.Length <= 128
-            && openDoors != null && openDoors.Length <= 200;
-    }
+        private readonly string directory;
 
-    public static class CheckpointStore
-    {
-        public const int Slots = 3;
-
-        static string PathFor(int slot)
+        /// <summary>Slots in <paramref name="folder"/>; tests use a folder under Logs/.</summary>
+        public CheckpointStore(string folder)
         {
-            if (slot < 0 || slot >= Slots) throw new ArgumentOutOfRangeException(nameof(slot));
-            return Path.Combine(LocalGameFiles.ProfileDirectory, $"slot-{slot + 1}.json");
+            directory = folder;
         }
 
-        public static bool Exists(int slot) => File.Exists(PathFor(slot));
+        /// <summary>The slots in the player's profile folder.</summary>
+        public static CheckpointStore ForProfile() => new CheckpointStore(LocalGameFiles.ProfileDirectory);
 
-        public static HospitalCheckpoint Read(int slot)
+        /// <summary>Whether a file is in the slot, damaged or not.</summary>
+        public bool Exists(int slot) => File.Exists(PathFor(slot));
+
+        /// <summary>The slot's checkpoint, or null when it is empty or damaged.</summary>
+        public HospitalCheckpoint Read(int slot)
         {
             var path = PathFor(slot);
             try
             {
                 var file = new FileInfo(path);
-                if (!file.Exists || file.Length > 65536) return null;
+                if (!file.Exists || file.Length > MaxFileBytes)
+                {
+                    return null;
+                }
+
                 var data = JsonUtility.FromJson<HospitalCheckpoint>(File.ReadAllText(path));
-                return data != null && data.Valid ? data : null;
+                return data != null && data.IsValid ? data : null;
             }
-            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
+            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException)
             {
                 return null;
             }
         }
 
-        public static int MostRecent()
+        /// <summary>The slot with the latest valid save, or -1.</summary>
+        public int MostRecent()
         {
-            int latest = -1;
-            long time = 0;
-            for (int i = 0; i < Slots; i++)
+            var times = new long[CheckpointRules.Slots];
+            for (int i = 0; i < times.Length; i++)
             {
-                var checkpoint = Read(i);
-                if (checkpoint == null || checkpoint.time <= time) continue;
-                time = checkpoint.time;
-                latest = i;
+                times[i] = Read(i)?.Time ?? 0;
             }
-            return latest;
+
+            return CheckpointRules.MostRecent(times);
         }
 
-        public static bool Save(int slot, HospitalCheckpoint data)
+        /// <summary>Writes the checkpoint; false when it is not valid or cannot be written.</summary>
+        public bool Save(int slot, HospitalCheckpoint data)
         {
-            if (!data.Valid) return false;
+            if (!data.IsValid)
+            {
+                return false;
+            }
+
             try
             {
                 LocalGameFiles.Write(PathFor(slot), JsonUtility.ToJson(data, true));
                 return true;
             }
-            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
             {
-                Debug.LogWarning($"Checkpoint write failed: {ex.Message}");
+                Debug.LogWarning($"Checkpoint write failed: {exception.Message}");
                 return false;
             }
         }
 
-        public static bool Delete(int slot)
+        public bool Delete(int slot)
         {
             try
             {
                 File.Delete(PathFor(slot));
                 return true;
             }
-            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
             {
-                Debug.LogWarning($"Checkpoint deletion failed: {ex.Message}");
+                Debug.LogWarning($"Checkpoint deletion failed: {exception.Message}");
                 return false;
             }
+        }
+
+        private string PathFor(int slot)
+        {
+            if (slot < 0 || slot >= CheckpointRules.Slots)
+            {
+                throw new ArgumentOutOfRangeException(nameof(slot));
+            }
+
+            return Path.Combine(directory, $"slot-{slot + 1}.json");
         }
     }
 }

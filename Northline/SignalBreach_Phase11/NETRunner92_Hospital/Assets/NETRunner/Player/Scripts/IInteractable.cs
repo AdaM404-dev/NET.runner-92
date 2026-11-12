@@ -1,3 +1,5 @@
+using NetRunner.Core;
+using NetRunner.Settings;
 using UnityEngine.InputSystem;
 
 namespace NetRunner.Player
@@ -11,11 +13,12 @@ namespace NetRunner.Player
     public interface IInteractable
     {
         /// <summary>
-        /// The prompt the HUD shows while the player aims at it: the label of
-        /// the key to press (null when no key applies, such as a locked door)
-        /// and the text, for example ("E", "Ajtó kinyitása").
+        /// The prompt the HUD shows while the player aims at it: the action
+        /// whose key to press (null when none applies, such as a locked door)
+        /// and the text, for example (Interact, "Ajtó kinyitása"). The HUD
+        /// shows the key the player bound to the action.
         /// </summary>
-        (string Key, string Text) Prompt { get; }
+        (GameAction? Action, string Text) Prompt { get; }
 
         void Interact(FirstPersonController player);
     }
@@ -29,7 +32,8 @@ namespace NetRunner.Player
     /// </summary>
     public interface ITerminal : IInteractable
     {
-        void ReadInput(Keyboard keyboard);
+        /// <summary>Reads this frame's keys; <paramref name="bindings"/> gives the player's key for leaving it.</summary>
+        void ReadInput(Keyboard keyboard, Preferences bindings);
 
         void Close();
     }

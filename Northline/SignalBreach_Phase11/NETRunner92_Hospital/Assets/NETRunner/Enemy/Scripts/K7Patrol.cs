@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using NetRunner.Core;
 using NetRunner.Player;
-using NetRunner.Settings;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -64,6 +63,7 @@ namespace NetRunner.Enemy
         [SerializeField] private Transform model;
         [SerializeField] private Vector3[] route;
         [SerializeField] private float speed = 1.10f;
+        [SerializeField] private FirstPersonController player;
 
         private readonly Hinge[] thighs = new Hinge[2];
         private readonly Hinge[] knees = new Hinge[2];
@@ -75,7 +75,6 @@ namespace NetRunner.Enemy
         private Patrol patrol;
         private float height;
         private float scanOffset;
-        private FirstPersonController player;
         private K7ForearmCannon cannon;
         private Transform breachPoint;
         private bool breachTracing;
@@ -131,13 +130,6 @@ namespace NetRunner.Enemy
             var position = transform.position;
             patrol.Place((position.x, position.z), transform.eulerAngles.y);
             height = position.y;
-            BreachTargets.Add(this);
-        }
-
-        private void Start()
-        {
-            // Temporary (#55 step 3): the scene builder will set this reference instead.
-            player = FindAnyObjectByType<FirstPersonController>();
         }
 
         private void Update()
@@ -177,7 +169,6 @@ namespace NetRunner.Enemy
 
         private void OnDisable()
         {
-            BreachTargets.Remove(this);
             if (malfunctionFrame >= 0)
             {
                 RestoreIndicators();
@@ -195,6 +186,12 @@ namespace NetRunner.Enemy
             route = waypoints;
             speed = metersPerSecond;
             transform.SetPositionAndRotation(route[0], Quaternion.LookRotation(route[1] - route[0]));
+        }
+
+        /// <summary>The player the cannon looks for and shoots at; set by the hospital's installer.</summary>
+        public void SetTarget(FirstPersonController target)
+        {
+            player = target;
         }
 
         public void SetBreachTracing(bool active) => breachTracing = active;
@@ -338,7 +335,8 @@ namespace NetRunner.Enemy
             }
 
             malfunctionFrame = frame;
-            bool blink = !GameOptions.Active.reducedMotion && frame < MalfunctionFrames && frame % 2 == 0;
+            bool reduceMotion = player && player.Preferences && player.Preferences.Active.ReduceMotion;
+            bool blink = !reduceMotion && frame < MalfunctionFrames && frame % 2 == 0;
             foreach (var indicator in indicators)
             {
                 SetIndicator(indicator.Renderer, indicator.Slot, MalfunctionColor * (blink ? MalfunctionBright : MalfunctionDim));

@@ -1,3 +1,4 @@
+using NetRunner.Core;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UIElements;
@@ -142,7 +143,7 @@ namespace NetRunner.Player
             feedNumber.text = $"CAM {network.Selected + 1:00} / {network.Count:00}";
         }
 
-        public void PresentBreach(SignalBreachPuzzle puzzle, float seconds, float disableSeconds)
+        public void PresentBreach(SignalBreach puzzle, float seconds, float disableSeconds, bool reduceMotion)
         {
             if (title == null) return;
             if (breachPage == null)
@@ -153,7 +154,7 @@ namespace NetRunner.Player
             statusPage.style.display = DisplayStyle.None;
             cctvPage.style.display = DisplayStyle.None;
             breachPage.style.display = DisplayStyle.Flex;
-            breachPage.Present(puzzle, seconds, disableSeconds);
+            breachPage.Present(puzzle, seconds, disableSeconds, reduceMotion);
         }
 
         public static VisualElement Box(VisualElement parent, int x, int y, int width, int height, Color color)

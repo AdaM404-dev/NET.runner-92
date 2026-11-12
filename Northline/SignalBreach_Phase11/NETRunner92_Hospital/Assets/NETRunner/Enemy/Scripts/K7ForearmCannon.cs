@@ -1,31 +1,25 @@
 using System.Collections.Generic;
+using NetRunner.Core;
+using NetRunner.Player;
 using UnityEngine;
 using UnityEngine.Rendering;
-using NetRunner.Player;
-using NetRunner.Settings;
 
 namespace NetRunner.Enemy
 {
+    /// <summary>
+    /// The K-7's left forearm cannon (Phase 11): it opens its armour hatches,
+    /// slides the emitters out, raises the arm, aims at the player it sees and
+    /// fires an energy pulse. The timing comes from <see cref="CannonCycle"/>;
+    /// this class checks sight and aim with raycasts and moves the bones.
+    /// <see cref="K7Patrol"/> owns it and calls it every frame.
+    /// </summary>
     public sealed class K7ForearmCannon
     {
-        const float Range = 12f;
-        const float ChargeTime = .85f;
-        const float RecoveryTime = 1.45f;
-        const float StowedTravel = .036f;
-        const float StowedDepth = .025f;
-
-        readonly Transform root, head, upperArm, forearm, muzzle, breech;
-        readonly Quaternion forearmRest;
-        readonly Hatch[] hatches = new Hatch[8];
-        readonly Slide[] emitters = new Slide[4];
-        readonly LineRenderer pulse;
-        float deployment, charge, recovery, pulseTime;
-        bool tracking;
-
-        public readonly struct Hatch
+        private readonly struct Hatch
         {
-            readonly Transform hatch;
-            readonly Quaternion closed, open;
+            private readonly Transform hatch;
+            private readonly Quaternion closed;
+            private readonly Quaternion open;
 
             public Hatch(Transform hatch, Transform marker)
             {
@@ -37,10 +31,11 @@ namespace NetRunner.Enemy
             public void Set(float amount) => hatch.localRotation = Quaternion.Slerp(closed, open, amount);
         }
 
-        public readonly struct Slide
+        private readonly struct Slide
         {
-            readonly Transform emitter;
-            readonly Vector3 deployed, stowed;
+            private readonly Transform emitter;
+            private readonly Vector3 deployed;
+            private readonly Vector3 stowed;
 
             public Slide(Transform emitter, Vector3 travel)
             {
@@ -52,137 +47,205 @@ namespace NetRunner.Enemy
             public void Set(float amount) => emitter.localPosition = Vector3.Lerp(stowed, deployed, amount);
         }
 
-        public static K7ForearmCannon Create(Transform root, Dictionary<string, Transform> bones)
-        {
-            return bones.ContainsKey("Cannon_L_Muzzle") ? new K7ForearmCannon(root, bones) : null;
-        }
+        /// <summary>Metres the cannon sees and shoots.</summary>
+        public const float Range = 12f;
 
-        K7ForearmCannon(Transform root, Dictionary<string, Transform> parts)
+        private const string MuzzleBone = "Cannon_L_Muzzle";
+        private const string BreechBone = "Cannon_L_Breech";
+        private const string EmitterBone = "Cannon_L_Emitter";
+        private const string EmitterMaterial = "MAT_K7_Cannon_EmitterCore";
+        private const int LevelsOfDetail = 4;
+
+        // The emitters slide back along the barrel and into the armour when stowed.
+        private const float StowedTravel = .036f;
+        private const float StowedDepth = .025f;
+
+        // The player is ignored more than this many metres above or below the robot (another floor).
+        private const float FloorTolerance = 1.45f;
+
+        // Facing limits as cosines: it starts tracking within about 70° of its front and keeps tracking up to about 100°.
+        private const float StartTrackingCosine = .35f;
+        private const float KeepTrackingCosine = -.17f;
+
+        // Below this horizontal distance (squared) the direction check is skipped: the player is right on top of it.
+        private const float CloseRangeSquared = .04f;
+
+        // Degrees the upper arm lifts when the cannon is fully deployed.
+        private const float ArmLift = 67f;
+
+        private const float PulseStartWidth = .065f;
+        private const float PulseEndWidth = .035f;
+
+        private readonly CannonCycle cycle = new CannonCycle();
+        private readonly Transform root;
+        private readonly Transform head;
+        private readonly Transform upperArm;
+        private readonly Transform forearm;
+        private readonly Transform muzzle;
+        private readonly Transform breech;
+        private readonly Quaternion forearmRest;
+        private readonly Hatch[] hatches = new Hatch[2 * LevelsOfDetail];
+        private readonly Slide[] emitters = new Slide[LevelsOfDetail];
+        private readonly LineRenderer pulse;
+        private bool tracking;
+
+        private K7ForearmCannon(Transform root, IReadOnlyDictionary<string, Transform> parts)
         {
             this.root = root;
             head = parts["Head"];
             upperArm = parts["UpperArm_L"];
             forearm = parts["LowerArm_L"];
             forearmRest = forearm.localRotation;
-            muzzle = parts["Cannon_L_Muzzle"];
-            breech = parts["Cannon_L_Breech"];
+            muzzle = parts[MuzzleBone];
+            breech = parts[BreechBone];
             Vector3 axis = (muzzle.position - breech.position).normalized;
             Vector3 outward = Vector3.ProjectOnPlane(breech.position - forearm.position, axis).normalized;
             Vector3 travel = axis * StowedTravel + outward * StowedDepth;
-            for (int i = 0; i < emitters.Length; i++)
+            for (int i = 0; i < LevelsOfDetail; i++)
             {
                 string suffix = i == 0 ? "" : $"_LOD{i}";
                 string outer = "Armor_Forearm_L" + suffix;
                 string inner = "Armor_Forearm_L_InnerHatch" + suffix;
                 hatches[2 * i] = new Hatch(parts[outer], parts[outer + "_Closed"]);
                 hatches[2 * i + 1] = new Hatch(parts[inner], parts[inner + "_Closed"]);
-                emitters[i] = new Slide(parts["Cannon_L_Emitter" + suffix], travel);
+                emitters[i] = new Slide(parts[EmitterBone + suffix], travel);
             }
-            var effect = new GameObject("K-7 energy pulse");
-            effect.transform.SetParent(root, false);
-            pulse = effect.AddComponent<LineRenderer>();
-            var emitter = parts["Cannon_L_Emitter"].GetComponent<Renderer>();
-            foreach (var material in emitter.sharedMaterials)
-                if (material.name == "MAT_K7_Cannon_EmitterCore") pulse.sharedMaterial = material;
-            pulse.startWidth = .065f;
-            pulse.endWidth = .035f;
-            pulse.positionCount = 2;
-            pulse.numCapVertices = 2;
-            pulse.generateLightingData = true;
-            pulse.shadowCastingMode = ShadowCastingMode.Off;
-            pulse.receiveShadows = false;
-            pulse.enabled = false;
+
+            pulse = CreatePulse(root, parts[EmitterBone].GetComponent<Renderer>());
             SetDeployment();
         }
 
+        /// <summary>The cannon on a combat model's bones, or null when the model has none.</summary>
+        public static K7ForearmCannon Create(Transform root, IReadOnlyDictionary<string, Transform> bones)
+        {
+            return bones.ContainsKey(MuzzleBone) ? new K7ForearmCannon(root, bones) : null;
+        }
+
+        /// <summary>
+        /// Looks for the player and deploys or stows; returns whether it sees
+        /// the player, which makes the robot turn to face them.
+        /// </summary>
         public bool Track(FirstPersonController player, float dt)
         {
-            pulseTime -= dt;
-            pulse.enabled = pulseTime > 0f;
-            recovery = Mathf.Max(0f, recovery - dt);
             tracking = CanSee(player);
-            if (!tracking) charge = 0f;
-            deployment = Mathf.MoveTowards(deployment, tracking ? 1f : 0f, dt / .48f);
+            cycle.Step(dt, tracking);
+            pulse.enabled = cycle.PulseVisible;
             SetDeployment();
             return tracking;
         }
 
+        /// <summary>Stows the cannon at once, as a successful Signal Breach does.</summary>
         public void Suspend()
         {
             tracking = false;
-            charge = deployment = pulseTime = 0f;
+            cycle.Suspend();
             pulse.enabled = false;
             forearm.localRotation = forearmRest;
             SetDeployment();
         }
 
-        void SetDeployment()
-        {
-            float doors = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(deployment / .74f));
-            float extension = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((deployment - .26f) / .74f));
-            foreach (var hatch in hatches) hatch.Set(doors);
-            foreach (var emitter in emitters) emitter.Set(extension);
-        }
-
-        bool CanSee(FirstPersonController player)
-        {
-            if (!player || player.IsDown || Mathf.Abs(player.transform.position.y - root.position.y) > 1.45f)
-                return false;
-            Vector3 offset = player.TargetCenter - head.position;
-            Vector3 flat = Vector3.ProjectOnPlane(offset, Vector3.up);
-            if (flat.sqrMagnitude > .04f && Vector3.Dot(root.forward, flat.normalized) < (tracking ? -.17f : .35f))
-                return false;
-            return HitsPlayer(head.position, player, out _);
-        }
-
-        static bool HitsPlayer(Vector3 origin, FirstPersonController player, out RaycastHit hit)
-        {
-            Vector3 ray = player.TargetCenter - origin;
-            return Physics.Raycast(origin, ray, out hit, Range, Physics.DefaultRaycastLayers,
-                QueryTriggerInteraction.Ignore) && hit.collider == player.Capsule;
-        }
-
+        /// <summary>
+        /// Raises the arm by how far the cannon is deployed, aims at the
+        /// player it tracks, and charges and fires while the barrel points at
+        /// them. Called after the robot's walk pose, which it adds to.
+        /// </summary>
         public void AimAndFire(FirstPersonController player, float dt)
         {
             forearm.localRotation = forearmRest;
-            if (deployment <= 0f) return;
+            if (cycle.Deployment <= 0f)
+            {
+                return;
+            }
 
             Quaternion gaitPose = upperArm.localRotation;
             Vector3 liftAxis = upperArm.InverseTransformDirection(root.right);
-            upperArm.localRotation = gaitPose * Quaternion.AngleAxis(-67f * deployment, liftAxis);
-            if (!tracking) return;
+            upperArm.localRotation = gaitPose * Quaternion.AngleAxis(-ArmLift * cycle.Deployment, liftAxis);
+            if (!tracking)
+            {
+                return;
+            }
 
             Vector3 target = player.TargetCenter;
-            float aimWeight = Mathf.SmoothStep(0f, 1f, deployment);
+            float aimWeight = Easing.SmoothStep01(cycle.Deployment);
             Vector3 barrel = muzzle.position - breech.position;
             Quaternion aim = Quaternion.FromToRotation(barrel, target - breech.position);
             forearm.rotation = Quaternion.Slerp(Quaternion.identity, aim, aimWeight) * forearm.rotation;
-
-            if (recovery > 0f || deployment < 1f)
+            if (!cycle.CanCharge)
             {
-                charge = 0f;
+                cycle.Charge(dt, false);
                 return;
             }
 
             // Correct the aim for the muzzle's offset from the elbow after the first rotation.
             barrel = muzzle.position - breech.position;
             forearm.rotation = Quaternion.FromToRotation(barrel, target - muzzle.position) * forearm.rotation;
-            if (!Physics.Raycast(muzzle.position, muzzle.position - breech.position, out var hit, Range,
-                    Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) || hit.collider != player.Capsule)
+            bool onTarget = Physics.Raycast(muzzle.position, muzzle.position - breech.position, out var hit, Range,
+                Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) && hit.collider == player.Capsule;
+            if (!cycle.Charge(dt, onTarget))
             {
-                charge = 0f;
                 return;
             }
-            charge += dt;
-            if (charge < ChargeTime) return;
 
             pulse.SetPosition(0, muzzle.position);
             pulse.SetPosition(1, hit.point);
-            pulseTime = .12f;
             pulse.enabled = true;
-            charge = 0f;
-            recovery = RecoveryTime;
-            player.TakeDamage(25f);
+            player.TakeDamage(CannonCycle.Damage);
+        }
+
+        private static LineRenderer CreatePulse(Transform root, Renderer emitter)
+        {
+            var effect = new GameObject("K-7 energy pulse");
+            effect.transform.SetParent(root, false);
+            var line = effect.AddComponent<LineRenderer>();
+            foreach (var material in emitter.sharedMaterials)
+            {
+                if (material.name == EmitterMaterial)
+                {
+                    line.sharedMaterial = material;
+                }
+            }
+
+            line.startWidth = PulseStartWidth;
+            line.endWidth = PulseEndWidth;
+            line.positionCount = 2;
+            line.numCapVertices = 2;
+            line.generateLightingData = true;
+            line.shadowCastingMode = ShadowCastingMode.Off;
+            line.receiveShadows = false;
+            line.enabled = false;
+            return line;
+        }
+
+        private void SetDeployment()
+        {
+            foreach (var hatch in hatches)
+            {
+                hatch.Set(cycle.HatchOpening);
+            }
+
+            foreach (var emitter in emitters)
+            {
+                emitter.Set(cycle.EmitterExtension);
+            }
+        }
+
+        private bool CanSee(FirstPersonController player)
+        {
+            if (!player || player.IsDown || Mathf.Abs(player.transform.position.y - root.position.y) > FloorTolerance)
+            {
+                return false;
+            }
+
+            Vector3 offset = player.TargetCenter - head.position;
+            Vector3 flat = Vector3.ProjectOnPlane(offset, Vector3.up);
+            float limit = tracking ? KeepTrackingCosine : StartTrackingCosine;
+            if (flat.sqrMagnitude > CloseRangeSquared && Vector3.Dot(root.forward, flat.normalized) < limit)
+            {
+                return false;
+            }
+
+            return Physics.Raycast(head.position, offset, out var hit, Range,
+                Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) && hit.collider == player.Capsule;
         }
     }
 }

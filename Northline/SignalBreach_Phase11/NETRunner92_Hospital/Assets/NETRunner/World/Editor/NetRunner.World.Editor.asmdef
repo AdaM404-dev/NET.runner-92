@@ -3,11 +3,13 @@
     "rootNamespace": "NetRunner.World.Editor",
     "references": [
         "NetRunner.Atmosphere",
+        "NetRunner.Core",
         "NetRunner.Diagnostics",
         "NetRunner.Enemy",
         "NetRunner.Hud",
         "NetRunner.Menu",
         "NetRunner.Player",
+        "NetRunner.Saves",
         "NetRunner.Settings",
         "NetRunner.World",
         "Unity.InputSystem",

@@ -31,6 +31,9 @@ namespace NetRunner.Atmosphere
         [SerializeField, Min(0.1f)] private float frequency = 0.8f;
         [SerializeField] private float phase;
 
+        // Optional: without it the light pulses as if reduced flashing were off. Set by the hospital's installer.
+        [SerializeField] private Preferences preferences;
+
         private Light fixture;
         private float full;
 
@@ -43,7 +46,7 @@ namespace NetRunner.Atmosphere
         private void Update()
         {
             // Reduced flashing (accessibility setting) holds the light at its full intensity.
-            if (GameOptions.Active.reducedFlashing)
+            if (preferences && preferences.Active.ReduceFlashing)
             {
                 fixture.intensity = full;
                 return;
@@ -56,6 +59,12 @@ namespace NetRunner.Atmosphere
                 ? LightPulse.Emergency(cycle)
                 : LightPulse.Intermittent(Mathf.PerlinNoise(cycle, phase));
             fixture.intensity = LightPulse.Intensity(full, depth, level);
+        }
+
+        /// <summary>Gives it the player's settings; called by the hospital's installer.</summary>
+        public void SetPreferences(Preferences settings)
+        {
+            preferences = settings;
         }
 
         /// <summary>
