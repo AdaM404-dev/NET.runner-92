@@ -1,0 +1,72 @@
+NET.runner-92 PROPRIETARY LICENSE
+Version 1.0 — 12 November 2026
+
+Copyright (c) 2026 the respective NET.runner-92 contributors.
+All rights reserved.
+
+1. SCOPE AND OWNERSHIP
+
+This license notice applies to the original source code, game content, artwork,
+3D models, animations, textures, audio, designs, documentation, and other
+copyrightable material in this repository (collectively, "Project Material"),
+but only to the extent that the respective project contributors own or are
+authorized to license that material.
+
+Each contributor retains the copyright in their own original contributions
+unless a separate written agreement states otherwise. This notice does not
+transfer ownership, establish joint ownership, or assert rights over material
+belonging to third parties.
+
+2. RIGHTS RESERVED
+
+No public license is granted to use, copy, modify, adapt, redistribute,
+publish, sublicense, sell, or commercially exploit Project Material, in whole
+or in part, without prior permission from the relevant copyright holder(s),
+except to the extent permitted by applicable law or by the terms of the
+platform through which the material is accessed.
+
+Availability of this repository on GitHub, including public visibility and
+the ability to view or fork it using GitHub's features, does not make the
+Project Material open source or grant a license to use it outside those
+applicable permissions.
+
+3. COLLABORATION AND PERMISSION
+
+Authorized contributors may work with Project Material only within the
+permissions and agreements applicable to their work on NET.runner-92.
+Contributing work to the repository does not, by itself, assign the
+contributor's copyright to another person or entity.
+
+For reuse, redistribution, integration into another project, or commercial
+licensing, obtain permission from every relevant rights holder. Permission
+from one contributor does not authorize use of another contributor's work.
+
+4. THIRD-PARTY MATERIAL
+
+This notice does not relicense or restrict third-party material beyond
+the rights permitted under its own license. Such material remains subject
+to its applicable licenses, copyright notices, attribution requirements,
+and other terms.
+
+In particular, the intro music "Signal to Noise" by Scott Buckley is
+documented as licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0). Its license and attribution obligations remain in force.
+See Northline/Documentation/music_license.md and COPYRIGHT.md.
+
+Unity, third-party packages, tools, and any other separately licensed
+components are governed by their respective terms. This proprietary notice
+does not override those terms.
+
+5. NO WARRANTY
+
+To the maximum extent permitted by applicable law, Project Material is
+provided "AS IS", without warranties of any kind, express or implied.
+To the maximum extent permitted by applicable law, the respective rights
+holders are not liable for damages arising from use of the Project Material.
+
+6. TRADEMARKS AND OTHER RIGHTS
+
+No trademark, trade name, logo, patent, publicity, privacy, or other right
+is granted by this notice. Rights not expressly granted remain reserved.
+
+For copyright and third-party attribution details, see COPYRIGHT.md.
