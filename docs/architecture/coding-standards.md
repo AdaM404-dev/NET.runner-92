@@ -23,7 +23,8 @@ that works for AdaM404; `AGENTS.md` (section 6) sums it up for them.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
   starts doing a second job is split (#41–#45 do this for the hospital code,
-  one feature each; `K7Patrol`, the atmosphere and the player are done).
+  one feature each; `K7Patrol`, the atmosphere, the player and the world's
+  runtime code are done).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
   dialogue, timings), so new content needs no new code. None exists yet
   (the menu prototype's settings, the first, were deleted in #31); the
@@ -136,8 +137,8 @@ Assets/NETRunner/<Feature>/
 
 ## 8. Bringing existing code to the standard
 
-How #41 did it for the K-7, #42 for the atmosphere and #43 for the player;
-#44 and #45 follow the same steps.
+How #41 did it for the K-7, #42 for the atmosphere, #43 for the player and
+#44 for the world; #45 follows the same steps.
 
 1. **Pin today's behaviour first**: a PlayMode test of the component that
    passes on the old code (for #41, `K7PatrolTests` on a stand-in robot).
@@ -155,7 +156,8 @@ How #41 did it for the K-7, #42 for the atmosphere and #43 for the player;
    `Mathf.Sin` and `Mathf.Exp` round their argument to a `float` before
    the double-precision maths; a rule calling `Math.Sin` on a float
    expression stores the argument in a `float` first, or it differs by a
-   few thousandths (#42).
+   few thousandths (#42). For `Mathf.MoveTowards` and `Mathf.Repeat`,
+   `Core`'s `Scalar` repeats Unity's arithmetic step by step (#44).
 6. **Engine-only functions stay in the component.** `Core` cannot call
    `Mathf.PerlinNoise`; `PracticalPulse` samples the noise and
    `LightPulse.Intermittent` shapes the sample, so the flicker is

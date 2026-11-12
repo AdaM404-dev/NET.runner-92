@@ -1,25 +1,66 @@
+using NetRunner.Core;
 using NetRunner.Player;
 using UnityEngine;
 
 namespace NetRunner.World
 {
+    /// <summary>
+    /// The west lift: a cabin with its own door and a landing door on each
+    /// floor. Core's <see cref="LiftCar"/> decides what it does; this component
+    /// moves the doors and the cabin, carries a passenger along, and tells the
+    /// car whether someone stands in a doorway and whether the doors are
+    /// fully open or shut. Only floors the stairs have reached
+    /// (<see cref="StairAccess"/>) can be chosen.
+    /// </summary>
     [DefaultExecutionOrder(-30)]
     public sealed class HospitalLift : MonoBehaviour
     {
-        enum State { Closed, Opening, Open, Closing, Moving }
-        [SerializeField] StairAccess access;
-        [SerializeField] FirstPersonController player;
-        [SerializeField] Transform cabin;
-        [SerializeField] HospitalDoor cabinDoor;
-        [SerializeField] HospitalDoor[] landings;
+        [SerializeField] private StairAccess access;
+        [SerializeField] private FirstPersonController player;
+        [SerializeField] private Transform cabin;
+        [SerializeField] private HospitalDoor cabinDoor;
+        [SerializeField] private HospitalDoor[] landings;
 
-        State state;
-        int floor, destination;
-        float dwell, travelSpeed;
-        public int Floor => floor;
-        public bool Busy => state == State.Moving || state == State.Closing;
-        public bool Unlocked(int level) => level >= 0 && level <= access.Highest;
+        private readonly LiftCar car = new LiftCar();
 
+        /// <summary>The floor the cabin is at or last left (0-based).</summary>
+        public int Floor => car.Floor;
+
+        /// <summary>Whether the lift is shutting its doors or travelling, and takes no requests.</summary>
+        public bool Busy => car.Busy;
+
+        private void Awake()
+        {
+            car.DoorsCommanded += CommandDoors;
+        }
+
+        private void Update()
+        {
+            float dt = Time.deltaTime;
+            switch (car.Current)
+            {
+                case LiftCar.State.Opening:
+                case LiftCar.State.Closing:
+                    if (car.Current == LiftCar.State.Closing && DoorwayBlocked())
+                    {
+                        car.Reopen();
+                    }
+
+                    HospitalDoor landing = landings[car.Floor];
+                    landing.Advance(dt);
+                    cabinDoor.Advance(dt);
+                    car.DoorsMoved(cabinDoor.Open && landing.Open, cabinDoor.Closed && landing.Closed);
+                    break;
+                case LiftCar.State.Open:
+                    car.Wait(dt, DoorwayBlocked());
+                    break;
+                case LiftCar.State.Moving:
+                    Ride(dt);
+                    break;
+            }
+        }
+
+        /// <summary>Sets the stairs, the player, the cabin and the doors; the scene builder calls it.</summary>
         public void Configure(StairAccess progression, FirstPersonController controller, Transform car,
             HospitalDoor carGate, HospitalDoor[] floorDoors)
         {
@@ -30,86 +71,51 @@ namespace NetRunner.World
             landings = floorDoors;
         }
 
+        /// <summary>Whether <paramref name="level"/> can be chosen: the stairs have reached it.</summary>
+        public bool Unlocked(int level)
+        {
+            return LiftCar.IsReached(level, access.Highest);
+        }
+
+        /// <summary>
+        /// A call button (<paramref name="fromCabin"/> false) or a cabin button
+        /// asks for <paramref name="target"/>; returns whether the lift accepted.
+        /// </summary>
         public bool Request(int target, bool fromCabin)
         {
-            if (!Unlocked(target) || Busy || fromCabin && !Inside()) return false;
-            if (target == floor)
-            {
-                OpenDoors();
-                return true;
-            }
-            if (state == State.Opening || cabinDoor.Obstructed(player) || landings[floor].Obstructed(player))
-                return false;
-            destination = target;
-            landings[floor].SetLiftOpen(false);
-            cabinDoor.SetLiftOpen(false);
-            state = State.Closing;
-            return true;
+            return car.Request(target, access.Highest, fromCabin, fromCabin && Inside(), DoorwayBlocked());
         }
 
-        bool Inside()
+        private bool Inside()
         {
-            var p = cabin.InverseTransformPoint(player.transform.position);
-            return Mathf.Abs(p.x) < 1.28f && p.z > -1.34f && p.z < 1.52f && Mathf.Abs(p.y) < .22f;
+            Vector3 local = cabin.InverseTransformPoint(player.transform.position);
+            return LiftCar.Carries(local.x, local.y, local.z);
         }
 
-        void OpenDoors()
+        private bool DoorwayBlocked()
         {
-            landings[floor].SetLiftOpen(true);
-            cabinDoor.SetLiftOpen(true);
-            state = State.Opening;
+            return cabinDoor.Obstructed(player) || landings[car.Floor].Obstructed(player);
         }
 
-        void Update()
+        private void CommandDoors(bool open)
         {
-            float dt = Time.deltaTime;
-            if (state == State.Opening || state == State.Closing)
+            landings[car.Floor].SetLiftOpen(open);
+            cabinDoor.SetLiftOpen(open);
+        }
+
+        // Moves the cabin for one frame and carries a passenger with it.
+        private void Ride(float dt)
+        {
+            Vector3 position = cabin.position;
+            float next = car.Travel(position.y, dt);
+            bool passenger = Inside();
+            cabin.position = new Vector3(position.x, next, position.z);
+            if (passenger)
             {
-                if (state == State.Closing && (cabinDoor.Obstructed(player) || landings[floor].Obstructed(player)))
-                {
-                    destination = floor;
-                    OpenDoors();
-                }
-                landings[floor].Advance(dt);
-                cabinDoor.Advance(dt);
-                if (state == State.Opening && cabinDoor.Open && landings[floor].Open)
-                {
-                    state = State.Open;
-                    dwell = 7f;
-                }
-                else if (state == State.Closing && cabinDoor.Closed && landings[floor].Closed)
-                    state = destination == floor ? State.Closed : State.Moving;
+                player.FollowPlatform(next - position.y);
             }
-            else if (state == State.Open)
-            {
-                if (cabinDoor.Obstructed(player) || landings[floor].Obstructed(player)) dwell = 7f;
-                dwell -= dt;
-                if (dwell <= 0f)
-                {
-                    destination = floor;
-                    landings[floor].SetLiftOpen(false);
-                    cabinDoor.SetLiftOpen(false);
-                    state = State.Closing;
-                }
-            }
-            else if (state == State.Moving)
-            {
-                var position = cabin.position;
-                float target = destination * StairAccess.FloorHeight;
-                float speed = Mathf.Min(2.25f, Mathf.Sqrt(4.2f * Mathf.Abs(target - position.y)));
-                travelSpeed = Mathf.MoveTowards(travelSpeed, speed, dt * 2.1f);
-                float next = Mathf.MoveTowards(position.y, target, Mathf.Max(.15f, travelSpeed) * dt);
-                bool passenger = Inside();
-                cabin.position = new Vector3(position.x, next, position.z);
-                if (passenger) player.FollowPlatform(next - position.y);
-                Physics.SyncTransforms();
-                if (next == target)
-                {
-                    floor = destination;
-                    travelSpeed = 0f;
-                    OpenDoors();
-                }
-            }
+
+            Physics.SyncTransforms();
         }
     }
 }
