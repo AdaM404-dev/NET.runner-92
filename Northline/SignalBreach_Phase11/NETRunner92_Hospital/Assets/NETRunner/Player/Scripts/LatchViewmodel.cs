@@ -4,47 +4,104 @@ using UnityEngine.InputSystem;
 
 namespace NetRunner.Player
 {
+    /// <summary>
+    /// The LATCH-07 tablet in the player's hands. It reads Q, E, R, 1 and the
+    /// arrow keys, plays the arms' animation clip for each phase, shows the
+    /// status or the CCTV feed on the tablet's screen, and links the service
+    /// relay at the moment the finger touches the screen. What each key does
+    /// in each phase, and when a clip moves the tablet on, is Core's
+    /// <see cref="LatchSession"/>; the words on the screen are
+    /// <see cref="LatchStatus"/>.
+    /// </summary>
     [RequireComponent(typeof(FirstPersonController), typeof(LatchScreen))]
     public sealed class LatchViewmodel : MonoBehaviour
     {
-        public enum Phase { Stowed, Equip, Ready, Tap, Success, Failed, Unequip, Cancel }
-        static readonly int[] Motion = { 0, Hash("Equip"), Hash("Idle"), Hash("Interact"),
-            Hash("Success"), Hash("Failed"), Hash("Unequip"), Hash("Cancel") };
-        const float TouchPoint = .42f;
-        const float BreachCooldown = 3f;
-        const float FailureDisplay = 1f;
+        // The animator state of each phase's clip, in LatchPhase order; Stowed has none.
+        private static readonly int[] Clips =
+        {
+            0, ClipHash("Equip"), ClipHash("Idle"), ClipHash("Interact"), ClipHash("Success"), ClipHash("Failed"),
+            ClipHash("Unequip"), ClipHash("Cancel"),
+        };
 
-        // The breach pointer moves 1.2 screen pixels per mouse count.
-        const float BreachPointerGain = 1.2f;
+        // Seconds of crossfade into each phase's clip, in LatchPhase order; 0 starts the clip outright.
+        private static readonly float[] Blends = { 0f, 0f, .065f, .055f, .045f, .045f, .07f, .055f };
 
-        [SerializeField] GameObject model;
-        [SerializeField] Animator animator;
-        [SerializeField] LatchScreen screen;
-        [SerializeField] SecurityCctv cctv;
-        FirstPersonController player;
-        LatchRelay relay;
-        bool committed, success;
-        bool cctvRequested;
-        float noticeUntil;
-        SignalBreach breach;
-        readonly System.Random random = new System.Random();
-        IBreachable breachTarget;
-        float breachDisableSeconds;
-        bool breachApplied;
-        float retryAt, failureClosesAt;
+        [SerializeField] private GameObject model;
+        [SerializeField] private Animator animator;
+        [SerializeField] private LatchScreen screen;
+        [SerializeField] private SecurityCctv cctv;
 
-        public Phase Current { get; private set; }
-        public bool Active => Current != Phase.Stowed;
+        private readonly LatchSession session = new LatchSession();
+        private FirstPersonController player;
+        private LatchRelay relay;
+        private const float BreachCooldown = 3f;
+        private const float FailureDisplay = 1f;
+        private const float BreachPointerGain = 1.2f;
+        private readonly System.Random random = new System.Random();
+        private SignalBreach breach;
+        private IBreachable breachTarget;
+        private float breachDisableSeconds;
+        private bool breachApplied;
+        private float retryAt;
+        private float failureClosesAt;
+
+        /// <summary>The phase the tablet is in.</summary>
+        public LatchPhase Current => session.Current;
+
+        /// <summary>Whether the tablet is out.</summary>
+        public bool Active => session.Active;
+
+        /// <summary>The arms and tablet model, shown only while the tablet is out.</summary>
         public GameObject Model => model;
+
+        /// <summary>Whether the reception breach has unlocked the CCTV.</summary>
         public bool CctvAvailable => cctv && cctv.Unlocked;
-        public bool CctvHintVisible => Time.unscaledTime < noticeUntil;
         public bool BreachOpen => breach != null;
         public bool BreachCapturesLook => BreachOpen &&
             breach.State is SignalBreach.Outcome.Pending or SignalBreach.Outcome.Tracing;
         public int BreachRetrySeconds => Mathf.CeilToInt(Mathf.Max(0f, retryAt - Time.time));
 
-        static int Hash(string clip) => Animator.StringToHash("Base Layer.Hack_" + clip);
+        /// <summary>Whether the CCTV hint is up over the reticle.</summary>
+        public bool CctvHintVisible => session.IsHintShown(Time.unscaledTime);
 
+        /// <summary>The CCTV hint's text.</summary>
+        public string CctvHint => LatchStatus.CctvHint(CctvAvailable);
+
+        private void Awake()
+        {
+            player = GetComponent<FirstPersonController>();
+            session.PhaseChanged += HandlePhaseChanged;
+            session.CctvOpened += ShowCctv;
+            Stow();
+        }
+
+        private void Update()
+        {
+            if (Active && player.IsDown) Stow();
+            if (BreachOpen) UpdateBreach();
+            if (!Active || animator.IsInTransition(0))
+            {
+                return;
+            }
+
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.fullPathHash != Clips[(int)Current])
+            {
+                return;
+            }
+
+            session.Advance(state.normalizedTime, LinkRelay);
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            if (!focus && Active)
+            {
+                Stow();
+            }
+        }
+
+        /// <summary>Sets the arms model, its animator and the screen; the LATCH-07 installer calls it.</summary>
         public void Configure(GameObject root, Animator animation, LatchScreen liveScreen)
         {
             model = root;
@@ -52,12 +109,10 @@ namespace NetRunner.Player
             screen = liveScreen;
         }
 
-        public void SetCctv(SecurityCctv network) => cctv = network;
-
-        void Awake()
+        /// <summary>Sets the CCTV network shown on the tablet; the CCTV installer calls it.</summary>
+        public void SetCctv(SecurityCctv network)
         {
-            player = GetComponent<FirstPersonController>();
-            Stow();
+            cctv = network;
         }
 
         public bool ReadInput(Keyboard keyboard, IInteractable target) => ReadInput(keyboard, target, null);
@@ -70,34 +125,60 @@ namespace NetRunner.Player
                 return true;
             }
             bool owned = Active;
-            if (keyboard == null) return owned;
-            if (player.Preferences.CctvPressed(keyboard)) ToggleCctv();
+            if (keyboard == null)
+            {
+                return owned;
+            }
+
+            if (player.Preferences.CctvPressed(keyboard))
+            {
+                ToggleCctv();
+            }
             else if (player.Preferences.Pressed(keyboard, GameAction.Tablet))
             {
-                if (BreachTargets.Alive(robot) && (Current == Phase.Stowed || Current == Phase.Ready && !relay && !cctvRequested))
+                if (BreachTargets.Alive(robot) && (Current == LatchPhase.Stowed ||
+                    Current == LatchPhase.Ready && !relay && !session.CctvRequested))
+                {
                     BeginBreach(robot);
-                else Toggle(target as LatchRelay);
+                }
+                else
+                {
+                    Toggle(target as LatchRelay);
+                }
             }
-            else if (player.Preferences.Pressed(keyboard, GameAction.Stow) && Active) Cancel();
-            else if (player.Preferences.Pressed(keyboard, GameAction.Interact) && Active) Tap();
-            else if (cctvRequested && Current == Phase.Ready)
+            else if (player.Preferences.Pressed(keyboard, GameAction.Stow) && Active)
             {
-                if (keyboard.leftArrowKey.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame) StepCctv(-1);
-                else if (keyboard.rightArrowKey.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame) StepCctv(1);
+                Cancel();
             }
+            else if (player.Preferences.Pressed(keyboard, GameAction.Interact) && Active)
+            {
+                Tap();
+            }
+            else if (session.CctvRequested && Current == LatchPhase.Ready)
+            {
+                if (keyboard.leftArrowKey.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame)
+                {
+                    StepCctv(-1);
+                }
+                else if (keyboard.rightArrowKey.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame)
+                {
+                    StepCctv(1);
+                }
+            }
+
             return owned || Active;
         }
 
         public bool BeginBreach(IBreachable robot)
         {
             if (BreachOpen || Time.time < retryAt || !BreachTargets.Alive(robot) || !robot.CanBreach
-                || Current != Phase.Stowed && (Current != Phase.Ready || relay || cctvRequested)) return false;
+                || Current != LatchPhase.Stowed && (Current != LatchPhase.Ready || relay || session.CctvRequested)) return false;
             breach = new SignalBreach(random);
             breachTarget = robot;
             breachDisableSeconds = robot.DisableSeconds;
             breachApplied = false;
             failureClosesAt = 0f;
-            if (Current == Phase.Stowed) Toggle(null);
+            if (Current == LatchPhase.Stowed) Toggle(null);
             else StartBreach();
             return true;
         }
@@ -196,180 +277,156 @@ namespace NetRunner.Player
         void CloseBreach()
         {
             ClearBreach();
-            Play(Phase.Unequip, .07f);
+            session.Toggle();
         }
 
         public void Toggle(LatchRelay target)
         {
-            switch (Current)
+            if (!Active)
             {
-                case Phase.Stowed:
-                    relay = target;
-                    model.SetActive(true);
-                    screen.Open();
-                    Play(Phase.Equip);
-                    animator.Update(0f);
-                    break;
-                case Phase.Ready:
-                    StopCctv();
-                    Play(Phase.Unequip, .07f);
-                    break;
-                case Phase.Unequip:
-                case Phase.Cancel:
-                    break;
-                default:
-                    Cancel();
-                    break;
+                relay = target;
             }
+
+            session.Toggle();
         }
 
+        /// <summary>E: taps Link.</summary>
         public void Tap()
         {
-            if (Current != Phase.Ready || cctvRequested) return;
-            committed = success = false;
-            Play(Phase.Tap, .055f);
+            session.Tap();
         }
 
+        /// <summary>R: cancels and puts the tablet away.</summary>
         public void Cancel()
         {
-            if (!Active || Current == Phase.Cancel) return;
+            if (!Active || Current == LatchPhase.Cancel) return;
             if (BreachOpen)
             {
                 if (breach.State == SignalBreach.Outcome.Successful) CloseBreach();
                 else if (breach.State != SignalBreach.Outcome.Terminated) TerminateBreach("LINK CANCELLED");
                 return;
             }
-            StopCctv();
-            Play(Phase.Cancel, .055f);
+            session.Cancel();
         }
 
+        /// <summary>1: opens or closes the CCTV page, or shows the hint while it is locked.</summary>
         public bool ToggleCctv()
         {
             if (BreachOpen) return false;
-            if (!CctvAvailable)
-            {
-                noticeUntil = Time.unscaledTime + 3f;
-                return false;
-            }
-            if (cctvRequested)
-            {
-                Toggle(null);
-                return true;
-            }
-            if (Current != Phase.Stowed && Current != Phase.Equip && Current != Phase.Ready) return false;
-            cctvRequested = true;
-            noticeUntil = 0f;
-            if (Current == Phase.Stowed) Toggle(null);
-            else if (Current == Phase.Ready) ShowCctv();
-            return true;
+            return session.ToggleCctv(CctvAvailable, Time.unscaledTime);
         }
 
+        /// <summary>Shows the next (+1) or previous (−1) camera while the CCTV page is up.</summary>
         public void StepCctv(int step)
         {
-            if (!cctvRequested || !cctv.Watching) return;
+            if (!session.CctvRequested || !cctv.Watching)
+            {
+                return;
+            }
+
             cctv.Step(step);
             screen.PresentFeed(cctv);
         }
 
-        void ShowCctv()
-        {
-            if (cctv.Open()) screen.PresentFeed(cctv);
-        }
-
-        void StopCctv()
-        {
-            cctvRequested = false;
-            if (cctv) cctv.Close();
-        }
-
-        void OnApplicationFocus(bool focus)
-        {
-            if (!focus && Active) Stow();
-        }
-
+        /// <summary>Puts the tablet away at once and hides the arms.</summary>
         public void Stow()
         {
             if (BreachCapturesLook) retryAt = Time.time + BreachCooldown;
             ClearBreach();
-            StopCctv();
-            Current = Phase.Stowed;
-            relay = null;
-            if (screen) screen.Close();
-            if (model) model.SetActive(false);
+            session.Stow();
         }
 
-        void Update()
+        private static int ClipHash(string clip)
         {
-            if (Active && player.IsDown) Stow();
-            if (BreachOpen) UpdateBreach();
-            if (!Active || animator.IsInTransition(0)) return;
-            var state = animator.GetCurrentAnimatorStateInfo(0);
-            if (state.fullPathHash != Motion[(int)Current]) return;
-            float progress = state.normalizedTime;
-            if (Current == Phase.Tap && progress >= TouchPoint && !committed)
+            return Animator.StringToHash("Base Layer.Hack_" + clip);
+        }
+
+        private void HandlePhaseChanged(LatchPhase phase)
+        {
+            if (phase == LatchPhase.Stowed)
             {
-                success = relay && relay.TryLink(player);
-                committed = true;
+                CloseCctv();
+                relay = null;
+                if (screen)
+                {
+                    screen.Close();
+                }
+
+                if (model)
+                {
+                    model.SetActive(false);
+                }
+
+                return;
             }
-            if (progress < .999f) return;
-            switch (Current)
+
+            if (phase == LatchPhase.Equip)
             {
-                case Phase.Tap:
-                    Play(success ? Phase.Success : Phase.Failed, .045f);
-                    break;
-                case Phase.Equip:
-                case Phase.Success:
-                case Phase.Failed:
-                    Play(Phase.Ready, .065f);
-                    break;
-                case Phase.Unequip:
-                case Phase.Cancel:
-                    Stow();
-                    break;
+                model.SetActive(true);
+                screen.Open();
+            }
+            else if (phase == LatchPhase.Unequip || phase == LatchPhase.Cancel)
+            {
+                CloseCctv();
+            }
+
+            PlayClip(phase);
+            if (phase == LatchPhase.Ready && BreachOpen)
+            {
+                StartBreach();
+                return;
+            }
+
+            if (phase == LatchPhase.Ready && session.CctvRequested)
+            {
+                // The CCTV page shows instead (LatchSession.CctvOpened).
+                return;
+            }
+
+            var status = LatchStatus.For(phase, relay, relay && relay.Linked, CctvAvailable,
+                player.Preferences.Label(GameAction.Interact), player.Preferences.Label(GameAction.Tablet),
+                player.Preferences.Label(GameAction.Stow), player.Preferences.Label(GameAction.Cctv));
+            screen.Present(status);
+        }
+
+        private void PlayClip(LatchPhase phase)
+        {
+            int clip = Clips[(int)phase];
+            float blend = Blends[(int)phase];
+            if (blend > 0f)
+            {
+                animator.CrossFadeInFixedTime(clip, blend, 0, 0f);
+            }
+            else
+            {
+                animator.Play(clip, 0, 0f);
+            }
+
+            if (phase == LatchPhase.Equip)
+            {
+                // Pose the arms at once, so the first rendered frame already shows them raising.
+                animator.Update(0f);
             }
         }
 
-        void Play(Phase phase, float blend = 0f)
+        private bool LinkRelay()
         {
-            Current = phase;
-            if (blend > 0f) animator.CrossFadeInFixedTime(Motion[(int)phase], blend, 0, 0f);
-            else animator.Play(Motion[(int)phase], 0, 0f);
-            string cancel = player.Preferences.Label(GameAction.Stow) + "  CANCEL";
-            string stow = player.Preferences.Label(GameAction.Tablet) + "  STOW";
-            string link = player.Preferences.Label(GameAction.Interact) + "  LINK";
-            switch (phase)
+            return relay && relay.TryLink(player);
+        }
+
+        private void ShowCctv()
+        {
+            if (cctv.Open())
             {
-                case Phase.Equip:
-                    screen.Present("BOOTING", "ESTABLISHING LOCAL SESSION", cancel, LatchScreen.Cyan, .25f);
-                    break;
-                case Phase.Ready:
-                    if (BreachOpen)
-                    {
-                        if (breach.State == SignalBreach.Outcome.Pending) StartBreach();
-                        break;
-                    }
-                    if (cctvRequested)
-                    {
-                        ShowCctv();
-                        break;
-                    }
-                    screen.Present(relay && relay.Linked ? "RELAY ONLINE" : "SIGNAL STANDBY",
-                        relay ? "TARGET  /  NORTHLINE SERVICE RELAY" : "TARGET  /  NO RELAY IN VIEW",
-                        CctvAvailable ? $"{link}     {stow}     {player.Preferences.Label(GameAction.Cctv)}  CCTV" : $"{link}     {stow}     {cancel}",
-                        relay ? LatchScreen.Cyan : LatchScreen.Amber, relay ? .86f : .14f);
-                    break;
-                case Phase.Tap:
-                    screen.Present("HANDSHAKE", "SENDING SERVICE REQUEST", cancel, LatchScreen.Cyan, .57f);
-                    break;
-                case Phase.Success:
-                    screen.Present("LINK ESTABLISHED", "SERVICE RELAY RESPONDING", $"{stow}     {cancel}", LatchScreen.Cyan, 1f);
-                    break;
-                case Phase.Failed:
-                    screen.Present("LINK FAILED", "EQUIP WHILE AIMING AT A RELAY", $"{stow}     {cancel}", LatchScreen.Fault, .08f);
-                    break;
-                default:
-                    screen.Present("DISCONNECTING", "CLOSING LOCAL SESSION", "", LatchScreen.Muted, .13f);
-                    break;
+                screen.PresentFeed(cctv);
+            }
+        }
+
+        private void CloseCctv()
+        {
+            if (cctv)
+            {
+                cctv.Close();
             }
         }
     }

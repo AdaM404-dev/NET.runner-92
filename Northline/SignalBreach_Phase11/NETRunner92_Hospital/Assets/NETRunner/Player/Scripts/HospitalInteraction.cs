@@ -20,7 +20,7 @@ namespace NetRunner.Player
         /// <summary>Metres the player reaches to use something.</summary>
         public const float Reach = 2.65f;
 
-        [SerializeField] private LayerMask interactionLayers = ~(1 << 2);
+        [SerializeField] private LayerMask interactionLayers = Physics.DefaultRaycastLayers;
         [SerializeField] private MonoBehaviour[] breachables = new MonoBehaviour[0];
 
         private readonly List<IBreachable> breachTargets = new List<IBreachable>();
@@ -131,7 +131,11 @@ namespace NetRunner.Player
                 : null;
         }
 
-        // Interfaces skip Unity's "destroyed object equals null" check, so ask the component itself whether it still exists.
-        private static bool Alive(IInteractable value) => value is Object component && component;
+        // Interfaces skip Unity's "destroyed object equals null" check, so
+        // ask the component itself whether it still exists.
+        private static bool Alive(IInteractable value)
+        {
+            return value is Object component && component;
+        }
     }
 }

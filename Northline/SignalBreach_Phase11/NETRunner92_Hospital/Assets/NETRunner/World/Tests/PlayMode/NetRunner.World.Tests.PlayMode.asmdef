@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "NetRunner.Player",
         "NetRunner.World",
-        "NetRunner.Core"
+        "NetRunner.Core",
+        "NetRunner.Player.Tests.PlayMode"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

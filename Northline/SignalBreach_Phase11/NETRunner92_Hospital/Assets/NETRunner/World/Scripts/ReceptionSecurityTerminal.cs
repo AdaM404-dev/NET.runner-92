@@ -6,62 +6,86 @@ using UnityEngine.InputSystem;
 
 namespace NetRunner.World
 {
+    /// <summary>
+    /// The reception desk's security monitor. E opens a full-screen puzzle
+    /// that takes the keyboard (an <see cref="ITerminal"/>); matching the
+    /// local route to the intercepted signature (Core's
+    /// <see cref="SignalPuzzle"/>) unlocks the CCTV for this session and
+    /// lights the link indicator. The hospital HUD draws the puzzle.
+    /// </summary>
     public sealed class ReceptionSecurityTerminal : MonoBehaviour, ITerminal
     {
-        static readonly int Emission = Shader.PropertyToID("_EmissiveColor");
-        static readonly int[] Signature = { 3, 1, 4 };
-        [SerializeField] SecurityCctv cctv;
-        [SerializeField] Renderer linkIndicator;
-        readonly int[] route = new int[Signature.Length];
-        HospitalInteraction operatorInput;
-        int cursor;
-        bool mismatch;
+        private static readonly int Emission = Shader.PropertyToID("_EmissiveColor");
+        private static readonly Color LinkedGlow = new Color(.12f, 1f, .82f) * 2.2f;
+        [SerializeField] private SecurityCctv cctv;
+        [SerializeField] private Renderer linkIndicator;
 
+        private readonly SignalPuzzle puzzle = new SignalPuzzle();
+        private HospitalInteraction operatorInput;
+
+        /// <summary>Whether the puzzle is open and has the keyboard.</summary>
         public bool IsOpen => operatorInput;
         public (GameAction? Action, string Text) Prompt => cctv.Unlocked ? (GameAction.Cctv, "Élő kamerák")
             : (GameAction.Interact, "Recepciós terminál");
-        public static int CellCount => Signature.Length;
-        public static int ReferenceCell(int index) => Signature[index];
-        public int RouteCell(int index) => route[index];
-        public int SelectedCell => cursor;
-        public bool Mismatch => mismatch;
+        public static int CellCount => SignalPuzzle.CellCount;
+        public static int ReferenceCell(int index) => SignalPuzzle.ReferenceCell(index);
+        public int RouteCell(int index) => puzzle.RouteAt(index);
+        public int SelectedCell => puzzle.Cursor;
+        public bool Mismatch => puzzle.Mismatch;
 
+        private void OnDisable()
+        {
+            Close();
+        }
+
+        /// <summary>Sets the CCTV network it unlocks and its link indicator; the scene builder calls it.</summary>
         public void Configure(SecurityCctv network, Renderer indicator)
         {
             cctv = network;
             linkIndicator = indicator;
         }
 
+        /// <inheritdoc/>
         public void Interact(FirstPersonController player)
         {
-            if (cctv.Unlocked || IsOpen) return;
+            if (cctv.Unlocked || IsOpen)
+            {
+                return;
+            }
+
             operatorInput = player.GetComponent<HospitalInteraction>();
-            if (!operatorInput) return;
+            if (!operatorInput)
+            {
+                return;
+            }
+
             operatorInput.BeginTerminal(this);
-            for (int i = 0; i < route.Length; i++) route[i] = 1;
-            cursor = 0;
-            mismatch = false;
+            puzzle.Reset();
         }
 
+        /// <summary>Selects the next (+1) or previous (−1) cell while open.</summary>
         public void Select(int step)
         {
-            if (IsOpen) cursor = (cursor + step + route.Length) % route.Length;
+            if (IsOpen)
+            {
+                puzzle.Select(step);
+            }
         }
 
+        /// <summary>Changes the selected cell up (+1) or down (−1) while open.</summary>
         public void Adjust(int step)
         {
-            if (!IsOpen) return;
-            route[cursor] = (route[cursor] - 1 + step + 4) % 4 + 1;
-            mismatch = false;
+            if (IsOpen)
+            {
+                puzzle.Adjust(step);
+            }
         }
 
+        /// <summary>Checks the route; when it matches, unlocks the CCTV, lights the indicator and closes.</summary>
         public bool Submit()
         {
-            if (!IsOpen) return false;
-            for (int i = 0; i < route.Length; i++)
+            if (!IsOpen || !puzzle.Submit())
             {
-                if (route[i] == Signature[i]) continue;
-                mismatch = true;
                 return false;
             }
             RestoreUnlock();
@@ -76,14 +100,19 @@ namespace NetRunner.World
             {
                 var block = new MaterialPropertyBlock();
                 linkIndicator.GetPropertyBlock(block);
-                block.SetColor(Emission, new Color(.12f, 1f, .82f) * 2.2f);
+                block.SetColor(Emission, LinkedGlow);
                 linkIndicator.SetPropertyBlock(block);
             }
         }
 
+        /// <inheritdoc/>
         public void Close()
         {
-            if (operatorInput) operatorInput.EndTerminal(this);
+            if (operatorInput)
+            {
+                operatorInput.EndTerminal(this);
+            }
+
             operatorInput = null;
         }
 
@@ -98,6 +127,5 @@ namespace NetRunner.World
             else if (bindings.Pressed(keyboard, GameAction.Interact) || keyboard.escapeKey.wasPressedThisFrame) Close();
         }
 
-        void OnDisable() => Close();
     }
 }

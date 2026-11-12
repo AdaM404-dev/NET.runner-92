@@ -2,63 +2,125 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using NetRunner.Core;
 using UnityEngine;
 
 namespace NetRunner.World
 {
+    /// <summary>
+    /// A check for the hospital checks: from the centre of each floor it
+    /// floods outwards over the floor in 0.32 m steps wherever a player's
+    /// capsule fits, and reports which rooms of the room schedule it reached.
+    /// Editor only; it reads <c>RoomSchedule.json</c> from the art folder.
+    /// </summary>
     public static class RoomReachability
     {
-        const float Pitch=.32f;
-        const int X=113;
-        const int Z=61;
-        static readonly int[] DX={1,0,-1,0};
-        static readonly int[] DZ={0,1,0,-1};
+        private const string ScheduleFile = "NETRunner92/Environment/Hospital/RoomSchedule.json";
+        private const string WalkableLayer = "Default";
+        private const int Floors = 4;
 
+        // The grid: 0.32 m steps, 113 either way along x and 61 along z from the centre.
+        private const float Pitch = .32f;
+        private const int HalfStepsX = 113;
+        private const int HalfStepsZ = 61;
+
+        // A floor sample: a ray from 0.10 m above the floor's height, 0.20 m long,
+        // must find floor within 0.065 m of it; then a capsule from 0.31 to 1.49 m
+        // up, 0.275 m wide, must fit. A room counts when a sample lies 0.28 m inside one of its tiles.
+        private const float RayStart = .10f;
+        private const float RayLength = .20f;
+        private const float FloorTolerance = .065f;
+        private const float CapsuleBottom = .31f;
+        private const float CapsuleTop = 1.49f;
+        private const float CapsuleRadius = .275f;
+        private const float RoomMargin = .28f;
+
+        private static readonly int[] StepX = { 1, 0, -1, 0 };
+        private static readonly int[] StepZ = { 0, 1, 0, -1 };
+
+        /// <summary>One line per floor with the rooms reached, then any rooms missed.</summary>
         public static string Probe()
         {
-            string file=Path.Combine(Application.dataPath,"NETRunner92/Environment/Hospital/RoomSchedule.json");
-            var plan=JsonUtility.FromJson<HospitalRoomSchedule>(File.ReadAllText(file));
-            var missed=new List<string>();
-            var totals=new List<string>();
-            for (int level=1;level<=4;level++)
+            string file = Path.Combine(Application.dataPath, ScheduleFile);
+            HospitalRoomSchedule plan = JsonUtility.FromJson<HospitalRoomSchedule>(File.ReadAllText(file));
+            int walkable = LayerMask.GetMask(WalkableLayer);
+            var missed = new List<string>();
+            var totals = new List<string>();
+            for (int level = 1; level <= Floors; level++)
             {
-                float height=(level-1)*4.2f;
-                var checkedGrid=new byte[2*X+1,2*Z+1];
-                var open=new Queue<Vector2Int>();
-                var visited=new List<Vector2>();
-                open.Enqueue(Vector2Int.zero);
-                checkedGrid[X,Z]=1;
-                while(open.Count>0)
+                float height = (level - 1) * StairRules.FloorHeight;
+                List<Vector2> visited = Flood(height, walkable);
+                int count = 0;
+                int found = 0;
+                foreach (HospitalRoomSchedule.Room room in plan.Rooms)
                 {
-                    var p=open.Dequeue();
-                    float x=p.x*Pitch,z=p.y*Pitch;
-                    if (!Physics.Raycast(new Vector3(x,height+.10f,z),Vector3.down,out var floor,.20f,1,QueryTriggerInteraction.Ignore)
-                        || Mathf.Abs(floor.point.y-height)>.065f) continue;
-                    if (Physics.CheckCapsule(new Vector3(x,floor.point.y+.31f,z),new Vector3(x,floor.point.y+1.49f,z),.275f,1,QueryTriggerInteraction.Ignore))
-                        continue;
-                    visited.Add(new Vector2(x,z));
-                    for(int i=0;i<4;i++)
+                    if (room.Floor != level)
                     {
-                        int xx=p.x+DX[i],zz=p.y+DZ[i];
-                        if(Mathf.Abs(xx)>X||Mathf.Abs(zz)>Z||checkedGrid[xx+X,zz+Z]!=0)continue;
-                        checkedGrid[xx+X,zz+Z]=1;
-                        open.Enqueue(new Vector2Int(xx,zz));
+                        continue;
+                    }
+
+                    count++;
+                    bool hit = visited.Exists(point => Array.Exists(room.Tiles, tile => point.x > tile.X0 + RoomMargin && point.x < tile.X1 - RoomMargin
+                        && point.y > tile.Z0 + RoomMargin && point.y < tile.Z1 - RoomMargin));
+                    if (hit)
+                    {
+                        found++;
+                    }
+                    else
+                    {
+                        missed.Add($"L{level} {room.Name}");
                     }
                 }
-                int count=0,found=0;
-                foreach(var room in plan.Rooms)
-                {
-                    if(room.Floor!=level)continue;
-                    count++;
-                    bool hit=visited.Exists(p=>Array.Exists(room.Tiles,t=>p.x>t.X0+.28f&&p.x<t.X1-.28f&&p.y>t.Z0+.28f&&p.y<t.Z1-.28f));
-                    if(hit)found++;
-                    else missed.Add($"L{level} {room.Name}");
-                }
+
                 totals.Add($"L{level} {found}/{count} ({visited.Count} accessible samples)");
             }
-            return string.Join("; ",totals)+(missed.Count==0?"":" | Missing: "+string.Join(", ",missed));
+
+            return string.Join("; ", totals) + (missed.Count == 0 ? string.Empty : " | Missing: " + string.Join(", ", missed));
+        }
+
+        // Every floor sample reachable from the centre of the floor at this height.
+        private static List<Vector2> Flood(float height, int walkable)
+        {
+            var reached = new byte[2 * HalfStepsX + 1, 2 * HalfStepsZ + 1];
+            var open = new Queue<Vector2Int>();
+            var visited = new List<Vector2>();
+            open.Enqueue(Vector2Int.zero);
+            reached[HalfStepsX, HalfStepsZ] = 1;
+            while (open.Count > 0)
+            {
+                Vector2Int cell = open.Dequeue();
+                float x = cell.x * Pitch;
+                float z = cell.y * Pitch;
+                if (!Physics.Raycast(new Vector3(x, height + RayStart, z), Vector3.down, out RaycastHit floor, RayLength, walkable,
+                        QueryTriggerInteraction.Ignore)
+                    || Mathf.Abs(floor.point.y - height) > FloorTolerance)
+                {
+                    continue;
+                }
+
+                if (Physics.CheckCapsule(new Vector3(x, floor.point.y + CapsuleBottom, z), new Vector3(x, floor.point.y + CapsuleTop, z),
+                        CapsuleRadius, walkable, QueryTriggerInteraction.Ignore))
+                {
+                    continue;
+                }
+
+                visited.Add(new Vector2(x, z));
+                for (int i = 0; i < StepX.Length; i++)
+                {
+                    int nextX = cell.x + StepX[i];
+                    int nextZ = cell.y + StepZ[i];
+                    if (Mathf.Abs(nextX) > HalfStepsX || Mathf.Abs(nextZ) > HalfStepsZ || reached[nextX + HalfStepsX, nextZ + HalfStepsZ] != 0)
+                    {
+                        continue;
+                    }
+
+                    reached[nextX + HalfStepsX, nextZ + HalfStepsZ] = 1;
+                    open.Enqueue(new Vector2Int(nextX, nextZ));
+                }
+            }
+
+            return visited;
         }
     }
 }
 #endif
-

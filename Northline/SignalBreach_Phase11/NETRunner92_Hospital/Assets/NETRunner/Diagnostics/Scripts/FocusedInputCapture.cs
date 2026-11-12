@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using System;
+using NetRunner.Core;
 using NetRunner.Player;
 using NetRunner.World;
 using UnityEngine.InputSystem.LowLevel;
@@ -118,9 +119,9 @@ namespace NetRunner.Diagnostics
             Physics.SyncTransforms();
             var door = interaction.TargetInView() as HospitalDoor;
             yield return Press(keyboard, Key.Q, .80f);
-            Report(results, latch.Current == LatchViewmodel.Phase.Ready, "Focused Q deployed LATCH-07.");
+            Report(results, latch.Current == LatchPhase.Ready, "Focused Q deployed LATCH-07.");
             yield return Press(keyboard, Key.E, 1.04f);
-            Report(results, door && door.Closed && latch.Current == LatchViewmodel.Phase.Failed,
+            Report(results, door && door.Closed && latch.Current == LatchPhase.Failed,
                 "Focused E operated the tablet and left the aimed-at world door closed.");
             yield return Press(keyboard, Key.R, .56f);
             Report(results, !latch.Active && !latch.Model.activeSelf, "Focused R canceled and hid LATCH-07.");
@@ -138,7 +139,7 @@ namespace NetRunner.Diagnostics
             Report(results, interaction.TargetInView() as UnityEngine.Object == relay, "Focused aim acquired the service relay.");
             yield return Press(keyboard, Key.Q, .82f);
             yield return Press(keyboard, Key.E, 1.05f);
-            Report(results, relay.Linked && latch.Current == LatchViewmodel.Phase.Success, "Focused E linked the service relay.");
+            Report(results, relay.Linked && latch.Current == LatchPhase.Success, "Focused E linked the service relay.");
             yield return new WaitForSecondsRealtime(.76f);
             yield return Press(keyboard, Key.Q, .72f);
             Report(results, !latch.Active && !latch.Model.activeSelf, "Focused Q played unequip and returned to exploration.");
@@ -240,7 +241,7 @@ namespace NetRunner.Diagnostics
                 Capture("03_HUD_Unlocked.png");
             }
             yield return Press(keyboard, Key.Digit1, .82f);
-            Report(results, latch.Current == LatchViewmodel.Phase.Ready && network.Watching && network.Selected == 0,
+            Report(results, latch.Current == LatchPhase.Ready && network.Watching && network.Selected == 0,
                 "Focused 1 opened live camera 01 on the tablet.");
             yield return Press(keyboard, Key.RightArrow, .27f);
             Report(results, network.Selected == 1, "Focused Right switched to the next feed.");

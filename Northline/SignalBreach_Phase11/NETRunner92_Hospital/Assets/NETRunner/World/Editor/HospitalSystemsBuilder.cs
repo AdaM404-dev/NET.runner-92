@@ -77,8 +77,7 @@ namespace NetRunner.World.Editor
                         shut.x = side * span * (stack + .5f);
                         if (lift) open.x = side * span * 1.53f;
                     }
-                    panels[i] = new HospitalDoor.Panel { leaf = leaf.transform, closed = shut, open = open,
-                        closedRotation = shutRotation, openRotation = openRotation };
+                    panels[i] = new HospitalDoor.Panel(leaf.transform, shut, open, shutRotation, openRotation);
                 }
 
                 var door = root.gameObject.AddComponent<HospitalDoor>();
@@ -200,9 +199,8 @@ namespace NetRunner.World.Editor
             {
                 float side = i == 0 ? -1f : 1f;
                 var panel = Block(door, "Cabin sliding leaf", Vector3.zero, new Vector3(.86f, 2.30f, .052f), metal);
-                panels[i] = new HospitalDoor.Panel { leaf = panel,
-                    closed = new Vector3(side * .43f, 1.16f, 0), open = new Vector3(side * 1.28f, 1.16f, .11f),
-                    closedRotation = Quaternion.identity, openRotation = Quaternion.identity };
+                panels[i] = new HospitalDoor.Panel(panel, new Vector3(side * .43f, 1.16f, 0), new Vector3(side * 1.28f, 1.16f, .11f),
+                    Quaternion.identity, Quaternion.identity);
             }
             var carDoor = door.gameObject.AddComponent<HospitalDoor>();
             carDoor.Configure(panels, 1.72f, false, true, false);

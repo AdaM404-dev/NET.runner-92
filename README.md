@@ -9,6 +9,25 @@ The game's main map is the **Northline hospital**, rendered with **HDRP**
 2026-11-10). Its production material (Blender sources, cinematic, renders,
 design notes) is in [Northline/](Northline/README.md).
 
+## Phase 11 test branch
+
+`CODEX-TEST` publishes the Northline Signal Breach Unity project. Clone the
+branch with Git LFS and open
+`Northline/SignalBreach_Phase11/NETRunner92_Hospital/` in Unity Hub with
+**6000.6.2f1**. Open `Assets/NETRunner92/Scenes/MainMenu.unity` inside that
+project and press **Play**.
+
+```bash
+git lfs install
+git clone --branch CODEX-TEST https://github.com/AdaM404-dev/NET.runner-92.git
+```
+
+The [Phase 11 README](Northline/SignalBreach_Phase11/README.md) covers the
+Windows build, F4 panel, benchmark and Linux validation. The
+[Hungarian performance notes](Northline/SignalBreach_Phase11/PERFORMANCE_HU.md)
+record the measurements. The import instructions below describe the root
+project.
+
 ## Import into Unity
 
 ### Open the complete project

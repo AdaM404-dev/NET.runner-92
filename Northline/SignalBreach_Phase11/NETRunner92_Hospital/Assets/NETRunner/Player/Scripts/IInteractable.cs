@@ -1,6 +1,4 @@
 using NetRunner.Core;
-using NetRunner.Settings;
-using UnityEngine.InputSystem;
 
 namespace NetRunner.Player
 {
@@ -20,21 +18,7 @@ namespace NetRunner.Player
         /// </summary>
         (GameAction? Action, string Text) Prompt { get; }
 
+        /// <summary>Uses it; <paramref name="player"/> is the player who pressed E.</summary>
         void Interact(FirstPersonController player);
-    }
-
-    /// <summary>
-    /// An interactable that takes over the keyboard while it is open, such as
-    /// the reception security terminal. Between
-    /// <see cref="HospitalInteraction.BeginTerminal"/> and
-    /// <see cref="HospitalInteraction.EndTerminal"/> the player's input goes
-    /// to <see cref="ReadInput"/> instead of movement and aiming.
-    /// </summary>
-    public interface ITerminal : IInteractable
-    {
-        /// <summary>Reads this frame's keys; <paramref name="bindings"/> gives the player's key for leaving it.</summary>
-        void ReadInput(Keyboard keyboard, Preferences bindings);
-
-        void Close();
     }
 }
