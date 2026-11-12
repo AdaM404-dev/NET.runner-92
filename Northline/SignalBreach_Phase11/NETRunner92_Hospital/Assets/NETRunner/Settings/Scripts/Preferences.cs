@@ -178,7 +178,7 @@ namespace NetRunner.Settings
                 Debug.LogWarning($"Northline settings defaults restored: {exception.Message}");
             }
 
-            return new GamePreferences();
+            return GamePreferences.CreateDefault();
         }
     }
 }

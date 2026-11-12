@@ -37,13 +37,14 @@ namespace NetRunner.Settings.Tests
         }
 
         [Test]
-        public void WithoutAFileTheDefaultsAreTheHighPreset()
+        public void WithoutAFileTheDefaultsAreMediumWithASixtyFpsLimit()
         {
             var preferences = Loaded();
 
-            Assert.That(preferences.Active.Preset, Is.EqualTo(QualityPreset.High));
-            Assert.That(preferences.Active.Quality, Is.EqualTo(QualityPreset.High));
-            Assert.That(preferences.Active.RenderScale, Is.EqualTo(100));
+            Assert.That(preferences.Active.Preset, Is.EqualTo(QualityPreset.Medium));
+            Assert.That(preferences.Active.Quality, Is.EqualTo(QualityPreset.Medium));
+            Assert.That(preferences.Active.RenderScale, Is.EqualTo(67));
+            Assert.That(preferences.Active.FrameLimit, Is.EqualTo(60));
             Assert.That(preferences.Active.FieldOfView, Is.EqualTo(68f));
         }
 
@@ -82,7 +83,7 @@ namespace NetRunner.Settings.Tests
 
             Assert.That(preferences.Active.Quality, Is.EqualTo(0));
             Assert.That(preferences.Active.RenderScale, Is.EqualTo(50));
-            Assert.That(preferences.Saved.Preset, Is.EqualTo(QualityPreset.High));
+            Assert.That(preferences.Saved.Preset, Is.EqualTo(QualityPreset.Medium));
             Assert.That(File.Exists(Path.Combine(folder, "settings.json")), Is.False);
         }
 
@@ -96,6 +97,20 @@ namespace NetRunner.Settings.Tests
             preferences.Preview(preferences.Saved.Copy());
 
             Assert.That(changes, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void LoadingAnExistingProfileKeepsItsSelectedPresetAndFrameLimit()
+        {
+            Directory.CreateDirectory(folder);
+            File.WriteAllText(Path.Combine(folder, "settings.json"),
+                "{\"version\":1,\"preset\":2,\"quality\":2,\"renderScale\":100,\"frameLimit\":120}");
+
+            var preferences = Loaded();
+
+            Assert.That(preferences.Saved.Preset, Is.EqualTo(QualityPreset.High));
+            Assert.That(preferences.Saved.RenderScale, Is.EqualTo(100));
+            Assert.That(preferences.Saved.FrameLimit, Is.EqualTo(120));
         }
 
         [UnityTest]

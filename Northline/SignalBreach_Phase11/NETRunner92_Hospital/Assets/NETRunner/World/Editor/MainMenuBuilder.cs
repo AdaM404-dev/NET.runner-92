@@ -16,7 +16,7 @@ namespace NetRunner.World.Editor
     {
         const string MenuAssets = Root + "/Menu";
         public const string MainMenuPath = Root + "/Scenes/MainMenu.unity";
-        const string MenuBuildPath = "../Builds/Phase_09_MainMenu/NETRunner92_Hospital.exe";
+        private const string MenuBuildPath = "../Builds/Phase_11_Frame_Pacing/NETRunner92_Hospital.exe";
 
         [MenuItem("NET.runner-92/Main Menu/Create startup scene")]
         public static void CreateMainMenu()
@@ -92,11 +92,16 @@ namespace NetRunner.World.Editor
             Debug.Log("NET92 MAIN MENU | Saved startup scene and wired the hospital scene.");
         }
 
+        /// <summary>Builds the saved menu and hospital as a standalone Windows game.</summary>
         [MenuItem("NET.runner-92/Main Menu/Build Windows player")]
         public static void BuildMainMenuWindows()
         {
-            if (!File.Exists(MainMenuPath)) CreateMainMenu();
-            BuildWindows(MenuBuildPath, new[] { MainMenuPath, ScenePath });
+            if (!File.Exists(MainMenuPath))
+            {
+                CreateMainMenu();
+            }
+
+            BuildWindows(MenuBuildPath, new[] { MainMenuPath, ScenePath }, BuildOptions.None);
             var outputFolder = Path.GetDirectoryName(Path.GetFullPath(MenuBuildPath));
             File.Copy(Root + "/UI/RobotoMono-LICENSE.txt", Path.Combine(outputFolder, "RobotoMono-LICENSE.txt"), true);
         }

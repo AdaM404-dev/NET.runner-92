@@ -171,15 +171,24 @@ namespace NetRunner.Settings
         /// <summary>The action's name in the settings menu.</summary>
         public static string ActionName(GameAction action) => Names[(int)action];
 
+        /// <summary>Starts new profiles on the Medium preset while keeping existing profiles compatible.</summary>
+        public static GamePreferences CreateDefault()
+        {
+            var value = new GamePreferences();
+            value.SetPreset(QualityPreset.Medium);
+            return value;
+        }
+
         /// <summary>
         /// Whether a key may be bound: a keyboard key, but not the keys the
-        /// terminal and menus need (Escape, Enter, Tab, the arrows, keypad 1).
+        /// terminal and menus need (Escape, Enter, Tab, the arrows, keypad 1),
+        /// or the performance panel's F4 shortcut.
         /// </summary>
         public static bool AllowedKey(Key key)
         {
             return key > Key.None && key <= Key.OEM5
                 && key is not (Key.Escape or Key.Enter or Key.NumpadEnter or Key.Tab or Key.LeftArrow
-                    or Key.RightArrow or Key.UpArrow or Key.DownArrow or Key.Numpad1);
+                    or Key.RightArrow or Key.UpArrow or Key.DownArrow or Key.Numpad1 or Key.F4);
         }
 
         public Key KeyFor(GameAction action) => keys[(int)action];
@@ -244,11 +253,17 @@ namespace NetRunner.Settings
 
             for (int i = 0; i < keys.Length; i++)
             {
-                if (!AllowedKey(keys[i]) || Array.IndexOf(keys, keys[i]) != i)
+                if ((keys[i] != Key.F4 && !AllowedKey(keys[i])) || Array.IndexOf(keys, keys[i]) != i)
                 {
                     ResetBindings();
-                    break;
+                    return;
                 }
+            }
+
+            int overlayBinding = Array.IndexOf(keys, Key.F4);
+            if (overlayBinding >= 0)
+            {
+                RestoreReservedBinding(overlayBinding);
             }
         }
 
@@ -291,5 +306,25 @@ namespace NetRunner.Settings
         }
 
         public void ResetBindings() => keys = (Key[])DefaultBindings.Clone();
+
+        private void RestoreReservedBinding(int index)
+        {
+            // An older profile could use F4. Leave its other bindings alone.
+            Key preferred = DefaultBindings[index];
+            if (Array.IndexOf(keys, preferred) < 0)
+            {
+                keys[index] = preferred;
+                return;
+            }
+
+            foreach (Key key in DefaultBindings)
+            {
+                if (Array.IndexOf(keys, key) < 0)
+                {
+                    keys[index] = key;
+                    return;
+                }
+            }
+        }
     }
 }

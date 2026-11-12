@@ -28,6 +28,9 @@ namespace NetRunner.Diagnostics
     {
         const string RunFlag = "-net92-menu-check";
         const string ReloadFlag = "-net92-menu-reload-check";
+        private const float PerformancePanelSettleSeconds = 0.75f;
+        private const float MenuRateSampleSeconds = 2f;
+        private const float MenuRateTolerance = 2f;
         readonly List<string> results = new();
         readonly CheckpointStore store = CheckpointStore.ForProfile();
         Preferences preferences;
@@ -83,17 +86,11 @@ namespace NetRunner.Diagnostics
             }
 
             Check(root.Q<Button>("continue") == null, "An empty profile hides Continue.");
+            Check(QualitySettings.vSyncCount == 0 && Application.targetFrameRate == FramePacing.MenuLimit,
+                "The main menu uses its own frame limit at startup.");
             ScreenCapture.CaptureScreenshot(Path.Combine(LocalGameFiles.ProfileDirectory, "main-menu.png"));
             yield return null;
-            root.Q<Button>("new-game").Focus();
-            yield return Press(Key.DownArrow);
-            Check(root.focusController.focusedElement == root.Q<Button>("load-game"),
-                "Physical Input System navigation moves focus with the down arrow.");
-
-            yield return Click(root, root.Q<Button>("settings"));
-            bool mouseOpened = root.Q("settings-rows") != null;
-            Check(mouseOpened, "A mouse click opens Settings.");
-            if (!mouseOpened) Submit(root.Q<Button>("settings"));
+            Submit(root.Q<Button>("settings"));
             yield return null;
             if (!Check(root.Q("settings-rows") != null, "The settings screen is available."))
             {
@@ -174,8 +171,9 @@ namespace NetRunner.Diagnostics
                 "UI scale changes the rendered panel width and high contrast changes the menu style.");
             Submit(root.Q<Button>("category-0"));
             Submit(root.Q<Button>("settings-apply"));
-            Check(preferences.Saved.FieldOfView == 76 && QualitySettings.vSyncCount == 0 && Application.targetFrameRate == 120,
-                "Apply persists the selected preferences and applies VSync and FPS cap.");
+            Check(preferences.Saved.FieldOfView == 76 && !preferences.Saved.VsyncEnabled
+                && preferences.Saved.FrameLimit == 120 && Application.targetFrameRate == FramePacing.MenuLimit,
+                "Apply saves the gameplay limit while the main menu keeps its own limit.");
 
             root.Q<DropdownField>("display-mode").index = 2;
             SetResolution(root, "1280 × 720");
@@ -226,6 +224,9 @@ namespace NetRunner.Diagnostics
                 yield break;
             }
 
+            Check(QualitySettings.vSyncCount == 0 && Application.targetFrameRate == 120,
+                "Gameplay restores the player's selected frame limit and VSync.");
+
             var hudDoc = FindAnyObjectByType<HospitalHud>().GetComponent<UIDocument>();
             var hudRoot = hudDoc.rootVisualElement;
             Check(Mathf.Abs(hudDoc.panelSettings.scale - 1.12f) < .001f
@@ -234,6 +235,9 @@ namespace NetRunner.Diagnostics
                 "HUD scale, opacity, contrast and objective visibility affect the live gameplay UI.");
             var hd = player.Eyes.GetComponent<HDAdditionalCameraData>();
             var frames = hd.renderingPathCustomFrameSettings;
+            Check(!frames.IsEnabled(FrameSettingsField.Decals)
+                && hd.renderingPathCustomFrameSettingsOverrideMask.mask[(uint)FrameSettingsField.Decals],
+                "The hospital camera skips the unused decal pass.");
             Check(Mathf.Approximately(player.Eyes.fieldOfView, 76) && hd.allowDynamicResolution
                 && hd.antialiasing == HDAdditionalCameraData.AntialiasingMode.SubpixelMorphologicalAntiAliasing,
                 "FOV, software render scale permission and SMAA apply to the real HDRP player camera.");
@@ -356,6 +360,14 @@ namespace NetRunner.Diagnostics
                 yield return null;
             }
 
+            yield return CheckMenuFrameRate();
+            var menuCamera = Camera.main;
+            Check(menuCamera && menuCamera.TryGetComponent<HDAdditionalCameraData>(out var menuCameraData)
+                && !menuCameraData.allowDynamicResolution,
+                "The menu camera leaves HDRP dynamic resolution off for the UI.");
+            yield return CheckMenuInput(root);
+            yield return CheckPerformanceOverlay();
+
             Submit(root.Q<Button>("exit"));
             Check(root.Q<Button>("dialog-confirm") != null, "Exit opens its confirmation.");
             Submit(root.Q<Button>("dialog-cancel"));
@@ -374,6 +386,53 @@ namespace NetRunner.Diagnostics
         }
 
         static VisualElement MenuRoot() => FindAnyObjectByType<MainMenuView>()?.GetComponent<UIDocument>().rootVisualElement;
+
+        private IEnumerator CheckMenuFrameRate()
+        {
+            int startFrame = Time.frameCount;
+            double start = Time.realtimeSinceStartupAsDouble;
+            yield return new WaitForSecondsRealtime(MenuRateSampleSeconds);
+            double fps = (Time.frameCount - startFrame) / (Time.realtimeSinceStartupAsDouble - start);
+            Check(fps > 0 && fps <= FramePacing.MenuLimit + MenuRateTolerance,
+                $"The main menu averages {fps:F1} FPS with its {FramePacing.MenuLimit} FPS limit.");
+        }
+
+        private IEnumerator CheckMenuInput(VisualElement root)
+        {
+            // Run the pointer and focus checks once the window has rendered its layout.
+            root.Q<Button>("new-game").Focus();
+            yield return null;
+            yield return Press(Key.DownArrow);
+            Check(root.focusController.focusedElement == root.Q<Button>("load-game"),
+                "Physical Input System navigation moves focus with the down arrow.");
+
+            yield return Click(root, root.Q<Button>("settings"));
+            bool mouseOpened = root.Q("settings-rows") != null;
+            Check(mouseOpened, "A mouse click opens Settings.");
+            if (mouseOpened)
+            {
+                Submit(root.Q<Button>("settings-cancel"));
+                yield return null;
+            }
+        }
+
+        private IEnumerator CheckPerformanceOverlay()
+        {
+            var overlay = FindAnyObjectByType<PerformanceOverlay>();
+            if (!Check(overlay && !overlay.IsVisible, "The F4 panel stays hidden until the player opens it."))
+            {
+                yield break;
+            }
+
+            yield return Press(Key.F4);
+            Check(overlay.IsVisible, "F4 opens the performance panel in the Windows player.");
+            yield return new WaitForSecondsRealtime(PerformancePanelSettleSeconds);
+            ScreenCapture.CaptureScreenshot(Path.Combine(LocalGameFiles.ProfileDirectory, "performance-panel.png"));
+            yield return null;
+            yield return null;
+            yield return Press(Key.F4);
+            Check(!overlay.IsVisible, "A second F4 press hides the performance panel.");
+        }
 
         static void SetResolution(VisualElement root, string value)
         {

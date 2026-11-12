@@ -336,14 +336,14 @@ namespace NetRunner.World.Editor
             BuildWindows("../Builds/Phase_05_Traversal/NETRunner92_Hospital.exe");
         }
 
-        static void BuildWindows(string output, string[] scenes = null)
+        private static void BuildWindows(string output, string[] scenes = null, BuildOptions options = BuildOptions.Development)
         {
             PlayerSettings.enableFrameTimingStats = true;
             string file = Path.GetFullPath(output);
             Directory.CreateDirectory(Path.GetDirectoryName(file));
             var result = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
                 scenes = scenes ?? new[] { ScenePath }, locationPathName = file,
-                target = BuildTarget.StandaloneWindows64, options = BuildOptions.Development
+                target = BuildTarget.StandaloneWindows64, options = options
             });
             if (result.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
                 throw new InvalidOperationException(result.summary.result.ToString());

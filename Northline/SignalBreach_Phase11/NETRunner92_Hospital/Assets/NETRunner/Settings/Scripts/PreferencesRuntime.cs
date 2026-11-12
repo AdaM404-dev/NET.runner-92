@@ -25,6 +25,8 @@ namespace NetRunner.Settings
         public const string ResourcePath = "Preferences";
 
         private const string ScreenOptionPrefix = "-screen-";
+        private const string MainMenuScene = "MainMenu";
+        private const float RefreshCheckSeconds = 1f;
         private const int VolumePriority = 100;
 
         // The shadow resolution step that keeps each light's own resolution from the scene.
@@ -55,10 +57,29 @@ namespace NetRunner.Settings
         private DepthOfField depth;
         private int appliedShadowResolution;
         private bool displayApplied;
+        private bool isMainMenu;
+        private double displayRefreshRate;
+        private float nextRefreshCheck;
 
         private void OnEnable()
         {
             SceneManager.sceneLoaded += HandleSceneLoaded;
+        }
+
+        private void Update()
+        {
+            if (isMainMenu || !preferences || preferences.Active == null || !preferences.Active.VsyncEnabled
+                || Time.unscaledTime < nextRefreshCheck)
+            {
+                return;
+            }
+
+            nextRefreshCheck = Time.unscaledTime + RefreshCheckSeconds;
+            double refreshRate = Screen.mainWindowDisplayInfo.refreshRate.value;
+            if (refreshRate != displayRefreshRate)
+            {
+                ApplyFramePacing(preferences.Active, refreshRate);
+            }
         }
 
         private void OnDisable()
@@ -93,6 +114,7 @@ namespace NetRunner.Settings
             DontDestroyOnLoad(host);
             host.AddComponent<PreferencesRuntime>().Configure(preferences);
             host.AddComponent<QualitySwitch>().Configure(preferences);
+            host.AddComponent<PerformanceOverlay>().Configure(preferences);
         }
 
         private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -103,6 +125,8 @@ namespace NetRunner.Settings
             }
 
             RemoveRuntimeVolume();
+            isMainMenu = scene.name == MainMenuScene;
+            ApplyFramePacing(preferences.StartingPreferences, Screen.mainWindowDisplayInfo.refreshRate.value);
             var eyes = preferences.PlayerCamera;
             cameraData = eyes ? eyes.GetComponent<HDAdditionalCameraData>() : null;
             appliedShadowResolution = SceneShadowResolution;
@@ -142,8 +166,7 @@ namespace NetRunner.Settings
                 QualitySettings.SetQualityLevel(value.Quality, true);
             }
 
-            QualitySettings.vSyncCount = value.VsyncEnabled ? 1 : 0;
-            Application.targetFrameRate = value.FrameLimit;
+            ApplyFramePacing(value, Screen.mainWindowDisplayInfo.refreshRate.value);
             QualitySettings.globalTextureMipmapLimit = value.Texture;
             AudioListener.volume = value.Muted ? 0f : value.Master;
             var mixer = preferences.Mixer;
@@ -176,6 +199,8 @@ namespace NetRunner.Settings
             };
             cameraData.allowDynamicResolution = value.RenderScale < QualityPreset.MaximumRenderScale;
             cameraData.customRenderingSettings = true;
+            // The hospital has no decal projectors. Skip its decal depth prepass.
+            SetFrameSetting(FrameSettingsField.Decals, false);
             SetFrameSetting(FrameSettingsField.ShadowMaps, value.Shadows != 0);
             SetFrameSetting(FrameSettingsField.SSAO, value.AmbientOcclusionEnabled);
             SetFrameSetting(FrameSettingsField.Volumetrics, value.VolumetricsEnabled);
@@ -203,6 +228,14 @@ namespace NetRunner.Settings
                 light.SetShadowResolution(useScene ? size : ShadowSizes[value.ShadowResolution]);
                 light.SetShadowResolutionOverride(!useScene || custom);
             }
+        }
+
+        private void ApplyFramePacing(GamePreferences value, double refreshRate)
+        {
+            displayRefreshRate = refreshRate;
+            int frameLimit = isMainMenu ? FramePacing.MenuLimit : value.FrameLimit;
+            QualitySettings.vSyncCount = FramePacing.SyncInterval(!isMainMenu && value.VsyncEnabled, frameLimit, refreshRate);
+            Application.targetFrameRate = frameLimit;
         }
 
         private void SetFrameSetting(FrameSettingsField field, bool enabled)

@@ -107,9 +107,9 @@ namespace NetRunner.Settings
 
         private static void HandleCameraRendering(ScriptableRenderContext context, Camera renderingCamera)
         {
-            // Only cameras that draw to the screen are scaled; the CCTV cameras
-            // render into textures at their own fixed size.
-            if (renderingCamera.cameraType != CameraType.Game || renderingCamera.targetTexture != null)
+            // The menu camera only presents UI. CCTV draws into textures at its own size.
+            if (renderingCamera.cameraType != CameraType.Game || renderingCamera.targetTexture != null
+                || renderingCamera.cullingMask == 0)
             {
                 return;
             }

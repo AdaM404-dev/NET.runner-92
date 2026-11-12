@@ -124,7 +124,7 @@ namespace NetRunner.Menu
             var defaults = Widgets.Button("Alapértékek", () => host.Confirm("Visszaállítod az alapértékeket?",
                 "A változtatásokat az Alkalmaz gomb menti.", "Visszaállítás", () =>
                 {
-                    draft = new GamePreferences();
+                    draft = GamePreferences.CreateDefault();
                     Preferences.Preview(draft);
                     ShowCategory(category);
                 }));
@@ -207,22 +207,19 @@ namespace NetRunner.Menu
                     });
             }
 
-            DropdownField frameLimit = null;
             int[] limits = PreferenceRules.FrameLimits;
-            Toggle("vsync", "VSync", draft.VsyncEnabled, x =>
+            Toggle("vsync", "VSync · ha illik az FPS-korláthoz", draft.VsyncEnabled, x =>
             {
                 draft.VsyncEnabled = x;
-                frameLimit?.SetEnabled(!x);
                 Preview();
             });
-            frameLimit = Choice("frame-limit", "Képkockakorlát · VSync nélkül",
+            Choice("frame-limit", "Játék FPS-korlátja",
                 limits.Select(x => x == PreferenceRules.Unlimited ? "Korlátlan" : $"{x} FPS").ToArray(),
                 Array.IndexOf(limits, draft.FrameLimit), i =>
                 {
                     draft.FrameLimit = limits[i];
                     Preview();
                 });
-            frameLimit.SetEnabled(!draft.VsyncEnabled);
             Rendering();
         }
 

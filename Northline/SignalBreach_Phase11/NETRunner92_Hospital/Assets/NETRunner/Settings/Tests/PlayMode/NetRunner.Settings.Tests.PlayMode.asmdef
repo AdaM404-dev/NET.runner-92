@@ -6,6 +6,7 @@
         "UnityEditor.TestRunner",
         "NetRunner.Core",
         "NetRunner.Settings",
+        "Unity.InputSystem",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.HighDefinition.Runtime"
     ],
