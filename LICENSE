@@ -1,72 +1,86 @@
-NET.runner-92 PROPRIETARY LICENSE
-Version 1.0 — 12 November 2026
+NET.runner-92 – TULAJDONJOG-FENNTARTÁSOS LICENCFELTÉTELEK
+1.0. verzió – 2026. november 12.
 
-Copyright (c) 2026 the respective NET.runner-92 contributors.
-All rights reserved.
+Copyright © 2026 a NET.runner-92 projekt érintett közreműködői.
+Minden jog fenntartva.
 
-1. SCOPE AND OWNERSHIP
+1. HATÁLY ÉS JOGTULAJDON
 
-This license notice applies to the original source code, game content, artwork,
-3D models, animations, textures, audio, designs, documentation, and other
-copyrightable material in this repository (collectively, "Project Material"),
-but only to the extent that the respective project contributors own or are
-authorized to license that material.
+Ezek a feltételek a jelen adattárban található eredeti forráskódra,
+játéktartalomra, grafikákra, 3D modellekre, animációkra, textúrákra,
+hanganyagokra, tervekre, dokumentációra és egyéb szerzői jogi védelem
+alá eső alkotásokra (a továbbiakban együtt: „Projektanyagok”)
+vonatkoznak, kizárólag olyan mértékben, amilyen mértékben az érintett
+közreműködők ezek jogosultjai, vagy jogosultak azokra engedélyt adni.
 
-Each contributor retains the copyright in their own original contributions
-unless a separate written agreement states otherwise. This notice does not
-transfer ownership, establish joint ownership, or assert rights over material
-belonging to third parties.
+Eltérő írásbeli megállapodás hiányában minden közreműködő megtartja
+a saját eredeti alkotásaihoz fűződő szerzői jogait. Ez a nyilatkozat
+nem ruház át szerzői jogokat, nem hoz létre önmagában közös
+jogtulajdont, és nem állít fenn jogokat harmadik személyek alkotásai felett.
 
-2. RIGHTS RESERVED
+2. FENNTARTOTT JOGOK
 
-No public license is granted to use, copy, modify, adapt, redistribute,
-publish, sublicense, sell, or commercially exploit Project Material, in whole
-or in part, without prior permission from the relevant copyright holder(s),
-except to the extent permitted by applicable law or by the terms of the
-platform through which the material is accessed.
+A jelen feltételek nem adnak általános felhasználási engedélyt a
+Projektanyagok egészének vagy részének másolására, módosítására,
+átdolgozására, továbbterjesztésére, közzétételére, további
+felhasználási engedély alá helyezésére, értékesítésére vagy más
+üzleti célú hasznosítására. Az ilyen felhasználáshoz az érintett
+jogtulajdonos(ok) előzetes engedélye szükséges, kivéve, ha az adott
+cselekményt alkalmazandó jogszabály vagy a hozzáférést biztosító
+platform vonatkozó feltételei megengedik.
 
-Availability of this repository on GitHub, including public visibility and
-the ability to view or fork it using GitHub's features, does not make the
-Project Material open source or grant a license to use it outside those
-applicable permissions.
+Az adattár GitHubon történő elérhetősége, annak nyilvános volta,
+illetve a GitHub által biztosított megtekintési vagy fork-létrehozási
+lehetőség önmagában nem teszi a Projektanyagokat nyílt forráskódúvá,
+és nem biztosít a fenti kivételeken túli felhasználási jogot.
 
-3. COLLABORATION AND PERMISSION
+3. EGYÜTTMŰKÖDÉS ÉS ENGEDÉLYEK
 
-Authorized contributors may work with Project Material only within the
-permissions and agreements applicable to their work on NET.runner-92.
-Contributing work to the repository does not, by itself, assign the
-contributor's copyright to another person or entity.
+A projekt felhatalmazott közreműködői a Projektanyagokat kizárólag
+a NET.runner-92 fejlesztésével kapcsolatos, rájuk vonatkozó
+engedélyek és megállapodások keretei között használhatják.
+A projektbe történő közreműködés önmagában nem jelenti a közreműködő
+szerzői jogainak más személyre vagy szervezetre történő átruházását.
 
-For reuse, redistribution, integration into another project, or commercial
-licensing, obtain permission from every relevant rights holder. Permission
-from one contributor does not authorize use of another contributor's work.
+Más projektben való felhasználáshoz, újraterjesztéshez, beépítéshez
+vagy kereskedelmi célú engedélyezéshez valamennyi érintett
+jogtulajdonos szükséges engedélyét be kell szerezni. Egy
+közreműködő engedélye nem terjed ki automatikusan más közreműködők
+alkotásaira.
 
-4. THIRD-PARTY MATERIAL
+4. HARMADIK FELEKTŐL SZÁRMAZÓ ANYAGOK
 
-This notice does not relicense or restrict third-party material beyond
-the rights permitted under its own license. Such material remains subject
-to its applicable licenses, copyright notices, attribution requirements,
-and other terms.
+Ezek a feltételek nem módosítják a harmadik felek tulajdonában
+álló vagy általuk licencelt anyagok felhasználási feltételeit.
+Ezekre továbbra is a saját licenceik, szerzői jogi nyilatkozataik,
+forrásmegjelölési előírásaik és egyéb feltételeik vonatkoznak.
 
-In particular, the intro music "Signal to Noise" by Scott Buckley is
-documented as licensed under Creative Commons Attribution 4.0 International
-(CC BY 4.0). Its license and attribution obligations remain in force.
-See Northline/Documentation/music_license.md and COPYRIGHT.md.
+A játék intrójában felhasznált, Scott Buckley által készített
+„Signal to Noise” című zene a projekt dokumentációja szerint a
+Creative Commons Nevezd meg! 4.0 Nemzetközi (CC BY 4.0)
+licenc feltételei szerint használható. A licenc és a
+forrásmegjelölés követelményei továbbra is érvényesek.
+Részletek: Northline/Documentation/music_license.md és COPYRIGHT.md.
 
-Unity, third-party packages, tools, and any other separately licensed
-components are governed by their respective terms. This proprietary notice
-does not override those terms.
+A Unity, a külső csomagok, fejlesztőeszközök és minden más,
+külön licencelt összetevő a saját felhasználási feltételei
+alá tartozik. A jelen dokumentum ezek rendelkezéseit nem írja felül.
 
-5. NO WARRANTY
+5. SZAVATOSSÁG ÉS FELELŐSSÉG KORLÁTOZÁSA
 
-To the maximum extent permitted by applicable law, Project Material is
-provided "AS IS", without warranties of any kind, express or implied.
-To the maximum extent permitted by applicable law, the respective rights
-holders are not liable for damages arising from use of the Project Material.
+A Projektanyagok „ADOTT ÁLLAPOTUKBAN” kerülnek rendelkezésre
+bocsátásra. Az alkalmazandó jog által megengedett legteljesebb
+mértékben a jogtulajdonosok kizárnak minden kifejezett vagy
+vélelmezett jótállást és szavatosságot, továbbá az anyagok
+felhasználásából eredő károkért való felelősséget.
+A kötelező jogszabályi rendelkezések ettől függetlenül irányadók.
 
-6. TRADEMARKS AND OTHER RIGHTS
+6. VÉDJEGYEK ÉS EGYÉB JOGOK
 
-No trademark, trade name, logo, patent, publicity, privacy, or other right
-is granted by this notice. Rights not expressly granted remain reserved.
+A jelen dokumentum nem engedélyezi védjegyek, kereskedelmi nevek,
+logók, szabadalmak, személyiségi jogok vagy egyéb jogosultságok
+felhasználását. Valamennyi kifejezetten át nem engedett jog
+fenntartva marad.
 
-For copyright and third-party attribution details, see COPYRIGHT.md.
+A szerzői jogi tudnivalók és a külső alkotók megjelölése:
+COPYRIGHT.md.
