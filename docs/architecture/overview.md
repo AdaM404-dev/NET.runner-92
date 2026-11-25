@@ -155,7 +155,7 @@ order, layout, formatting, tests) are in [[architecture/coding-standards]].
 In one line: rules in plain C# in `Core` with EditMode tests, thin
 MonoBehaviours, content as ScriptableObjects. `Enemy` (#41), `Atmosphere`
 (#42), `Player` (#43) and `World` (#44, with the scene builders split by
-feature) follow it; #45 brings `Diagnostics` in line.
+feature) and `Diagnostics` (#45) follow it.
 
 ## Why feature folders, not one folder per kind of code
 
@@ -171,7 +171,7 @@ folder, for rules that several features use.
 From [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31): PR B
 moved the hospital code into feature folders with assemblies and runs its
 95 Play-mode checks as an NUnit test (behaviour unchanged, the checks pass
-before and after); #41 (done) to #45 bring each feature in line with
+before and after); #41 to #45 (done) brought each feature in line with
 [[architecture/coding-standards]], including the interaction contract of
 [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10). The switch
 to the Input System (#12) is done: the hospital code uses it and Active

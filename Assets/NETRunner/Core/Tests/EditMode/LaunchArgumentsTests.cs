@@ -36,5 +36,28 @@ namespace NetRunner.Core.Tests
         {
             Assert.That(LaunchArguments.ValueAfter(null, "-net92-quality"), Is.Null);
         }
+
+        [Test]
+        public void AGivenOptionIsFoundAnywhere()
+        {
+            string[] arguments = { "NET.runner-92.exe", "-net92-quality", "Low", "-net92-benchmark" };
+
+            Assert.That(LaunchArguments.Has(arguments, "-net92-benchmark"), Is.True);
+            Assert.That(LaunchArguments.Has(arguments, "-net92-quality"), Is.True);
+        }
+
+        [Test]
+        public void AnOptionIsMatchedExactly()
+        {
+            string[] arguments = { "NET.runner-92.exe", "-net92-benchmarks", "-NET92-BENCHMARK" };
+
+            Assert.That(LaunchArguments.Has(arguments, "-net92-benchmark"), Is.False);
+        }
+
+        [Test]
+        public void NoArgumentsHaveNoOption()
+        {
+            Assert.That(LaunchArguments.Has(null, "-net92-benchmark"), Is.False);
+        }
     }
 }

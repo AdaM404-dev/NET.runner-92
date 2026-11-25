@@ -22,9 +22,8 @@ that works for AdaM404; `AGENTS.md` (section 6) sums it up for them.
   (`RainField`, `AmbientEvents`), so a test can pass a seeded one.
 - **MonoBehaviours** are thin: read input or events, call the rules, show the
   result (move a transform, set a label, play a sound). A MonoBehaviour that
-  starts doing a second job is split (#41–#45 do this for the hospital code,
-  one feature each; `K7Patrol`, the atmosphere, the player and the world's
-  runtime code are done).
+  starts doing a second job is split (#41–#45 did this for the hospital
+  code, one feature each).
 - **Content and tuning are data**: ScriptableObjects (items, enemies,
   dialogue, timings), so new content needs no new code. None exists yet
   (the menu prototype's settings, the first, were deleted in #31); the
@@ -137,8 +136,8 @@ Assets/NETRunner/<Feature>/
 
 ## 8. Bringing existing code to the standard
 
-How #41 did it for the K-7, #42 for the atmosphere, #43 for the player and
-#44 for the world; #45 follows the same steps.
+How #41 did it for the K-7, #42 for the atmosphere, #43 for the player,
+#44 for the world and its scene builders, and #45 for the diagnostics.
 
 1. **Pin today's behaviour first**: a PlayMode test of the component that
    passes on the old code (for #41, `K7PatrolTests` on a stand-in robot).

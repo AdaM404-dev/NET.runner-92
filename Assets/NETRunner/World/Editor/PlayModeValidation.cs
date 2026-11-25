@@ -108,11 +108,11 @@ namespace NetRunner.World.Editor
         {
             var host = new GameObject("Transient validation");
             ExplorationDiagnostics diagnostics = host.AddComponent<ExplorationDiagnostics>();
-            diagnostics.Output = Path.GetFullPath(UnityEngine.Object.FindAnyObjectByType<SecurityCctv>() ? CctvRenders
+            diagnostics.Configure(Path.GetFullPath(UnityEngine.Object.FindAnyObjectByType<SecurityCctv>() ? CctvRenders
                 : UnityEngine.Object.FindAnyObjectByType<LatchViewmodel>() ? LatchRenders
-                : UnityEngine.Object.FindAnyObjectByType<StairAccess>() ? InteractiveRenders : SceneRenders);
-            diagnostics.CaptureImages = SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
-            diagnostics.Complete = passed =>
+                : UnityEngine.Object.FindAnyObjectByType<StairAccess>() ? InteractiveRenders : SceneRenders),
+                SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null);
+            diagnostics.Completed += passed =>
             {
                 SessionState.SetInt(Result, passed ? Passed : Failed);
                 EditorApplication.isPlaying = false;
