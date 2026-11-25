@@ -1,5 +1,6 @@
 using System;
 using NetRunner.Core;
+using NetRunner.SceneBuilding.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -14,9 +15,8 @@ namespace NetRunner.World.Editor
     /// (doors, the lift, the K-7s, the player) stays dynamic; the roles come
     /// from <see cref="OcclusionRules"/>.
     /// </summary>
-    public static partial class HospitalSceneBuilder
+    public static class HospitalOcclusion
     {
-        private const string ImportedEnvironment = "Northline Medical — imported environment";
         private const string SurfaceTypeProperty = "_SurfaceType";
         private const string AlphaClipProperty = "_AlphaCutoffEnable";
 
@@ -32,13 +32,13 @@ namespace NetRunner.World.Editor
         /// <summary>
         /// Marks the hospital scene's renderers for occlusion culling, bakes
         /// the data and saves the scene. Runs headless with
-        /// <c>-executeMethod NetRunner.World.Editor.HospitalSceneBuilder.BakeOcclusion</c>.
+        /// <c>-executeMethod NetRunner.World.Editor.HospitalOcclusion.Bake</c>.
         /// </summary>
         [MenuItem("NET.runner-92/Bake Occlusion Culling")]
-        public static void BakeOcclusion()
+        public static void Bake()
         {
-            Scene scene = EditorSceneManager.OpenScene(ScenePath);
-            Transform environment = GameObject.Find(ImportedEnvironment).transform;
+            Scene scene = EditorSceneManager.OpenScene(HospitalAssets.ScenePath);
+            Transform environment = GameObject.Find(HospitalHierarchy.ImportedEnvironment).transform;
             int occluders = 0;
             int occludeesOnly = 0;
             int dynamic = 0;

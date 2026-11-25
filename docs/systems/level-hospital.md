@@ -26,7 +26,7 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
 | Hospital and exterior geometry | `Assets/NETRunner92/Environment/Hospital`, `Exterior` (meshes in `MeshData.bytes`, Git LFS) |
 | Materials (HDRP Lit) | `Assets/NETRunner92/Environment/Materials` |
 | Fog, lighting, audio, VFX | `Assets/NETRunner92/Atmosphere/` |
-| Scene builders (editor menu **NET.runner-92**) | `Assets/NETRunner/World/Editor/` |
+| Scene builders (editor menu **NET.runner-92**) | `Assets/NETRunner/World/Editor/HospitalSceneBuilder.cs` builds the whole scene; it calls the builders in `World/Editor/` (building, doors, stairs, lift, residual power, terminal), `Player/Editor/` (player, LATCH-07, CCTV), `Enemy/Editor/` (K-7s) and `Atmosphere/Editor/` (lights, zones, weather, sound) |
 | Occlusion culling data (baked by `World/Editor/HospitalOcclusion.cs`) | `Assets/NETRunner92/Scenes/Hospital_Exploration/OcclusionCullingData.asset` |
 | Blender sources, renders, cinematic, design notes | [`Northline/`](../../Northline/README.md) |
 
@@ -69,7 +69,7 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
   baked with Umbra (smallest occluder 2 m, smallest hole 0.25 m; about a
   minute): menu **NET.runner-92 → Bake Occlusion Culling**, or headless
   `source bin/_unity.sh && run_unity occlusion -quit -executeMethod
-  NetRunner.World.Editor.HospitalSceneBuilder.BakeOcclusion`.
+  NetRunner.World.Editor.HospitalOcclusion.Bake`.
   **Build Hospital Exploration Scene** bakes it last.
 - **Layers:** 8 `Near-detail geometry` (culled by the player camera past
   `detailCullDistance`, 34 m by default), 9 `First-person viewmodel` (LATCH-07; hidden from CCTV cameras).
@@ -80,7 +80,11 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
 
 - The scene is generated and maintained by editor builders
   (`HospitalSceneBuilder`, `HospitalSystemsBuilder`, …). Re-running them
-  regenerates parts of the scene; treat them as tools, not gameplay code.
+  regenerates parts of the scene and rewrites AdaM404's mesh, material,
+  profile and prefab assets; treat them as tools, not gameplay code. Since
+  #44 (2026-11-25) each feature has its own builder, and a full rebuild
+  with the new builders produces the same scene and assets as the old ones
+  (compared object by object and value by value).
 - Builders and validation write to `Northline/Renders/` and
   `Northline/Builds/`.
 - The occlusion data describes the static geometry where it was when it
