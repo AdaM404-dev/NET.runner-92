@@ -70,10 +70,9 @@ move or be renamed together with its `.meta`.
 
 Since #31 PR B the hospital code is in feature folders, each with its own
 assembly and namespace `NetRunner.<Feature>` ([[architecture/overview]]).
-The code is unchanged from Northline apart from `Enemy` (#41),
-`Atmosphere` (#42), `Player` (#43) and `World`'s runtime code (#44), which
-follow [[architecture/coding-standards]]; #44's second part (the scene
-builders) and #45 (`Diagnostics`) do the rest. Paths below are under `Assets/NETRunner/`.
+All of it follows [[architecture/coding-standards]] since #41–#45
+(`Enemy`, `Atmosphere`, `Player`, `World` with the scene builders,
+`Diagnostics`). Paths below are under `Assets/NETRunner/`.
 
 | File | What it does | Note |
 | --- | --- | --- |
@@ -89,7 +88,9 @@ builders) and #45 (`Diagnostics`) do the rest. Paths below are under `Assets/NET
 | `Enemy/Tests/PlayMode/K7PatrolTests.cs` | walks, legs swing, turns round at the end, carries on after being moved | [[systems/enemy-k7]] |
 | `Atmosphere/Scripts/*.cs` | fog zones, weather and ambience, pulsing lights, with the rules from `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents` and `LightPulse` | [[systems/atmosphere]] |
 | `Atmosphere/Tests/PlayMode/*.cs` | zone weights, rain, crossfade, dust, steam, monitor, pulsing lights on a stand-in site | [[systems/atmosphere]] |
-| `Diagnostics/Scripts/*Diagnostics.cs` | the hospital's 95 Play-mode checks (editor only) | [[systems/level-hospital]] |
+| `Diagnostics/Scripts/ExplorationDiagnostics*.cs` | the hospital's 95 Play-mode checks (editor only), one class in four parts: the main walk and views, `.Systems`, `.Latch`, `.Cctv` | [[systems/level-hospital]] |
+| `Diagnostics/Scripts/BenchmarkReport.cs` | the first line of every benchmark CSV | [[systems/performance]] |
+| `Core/Scripts/SampleStatistics.cs` | the benchmark CSVs' mean and nearest-rank percentiles | [[systems/performance]] |
 | `Diagnostics/Scripts/PerformanceCapture.cs`, `RoutePerformanceCapture.cs`, `FocusedInputCapture.cs` | the built game's benchmark and input-check modes | [[systems/performance]] |
 | `Diagnostics/Scripts/RenderFeatureSwitch.cs` | `-net92-without`: switches rendering features off for one benchmark run | [[systems/performance]] |
 | `Diagnostics/Tests/PlayMode/HospitalChecksTests.cs` | runs the 95 checks as one NUnit test | [[architecture/tooling]] |

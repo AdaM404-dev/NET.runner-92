@@ -100,7 +100,11 @@ cat Logs/hospital-checks/playmode_checks.txt   # one PASS or FAIL line per check
 
 It writes the check list and its pictures into `Logs/hospital-checks/`
 (git-ignored); a failure lists the failed checks. `bin/unity-test play`
-runs with a graphics device, which the CCTV checks need.
+runs with a graphics device, which the CCTV checks need. The checks stay
+one test (Samuel, 2026-11-12, on #45): splitting them by area would load
+the hospital again for every part. Since #45 the K-7 check waits until each
+robot has walked, at most 6 s; the old fixed 2.42 s window sometimes caught
+a robot waiting at its route end and failed (V-14).
 
 AdaM404's validator entry point still works and writes into
 `Northline/Renders/Phase_07_CCTV/`, overwriting the committed captures;

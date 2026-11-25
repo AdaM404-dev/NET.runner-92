@@ -31,9 +31,8 @@ namespace NetRunner.Diagnostics.Tests
             bool? passed = null;
             var host = new GameObject("Hospital checks");
             var checks = host.AddComponent<ExplorationDiagnostics>();
-            checks.Output = output;
-            checks.CaptureImages = SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
-            checks.Complete = ok => passed = ok;
+            checks.Configure(output, SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null);
+            checks.Completed += ok => passed = ok;
 
             yield return new WaitUntil(() => passed.HasValue);
 
