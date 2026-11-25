@@ -27,8 +27,8 @@ Written 2026-09-30 from the inspection described in the `systems/` notes
 > - **Step 7 (#12)** is done by #31 PR A: the hospital code uses the
 >   Input System, and Active Input Handling is Input System only.
 > - Done: #31 PR B moved the hospital code into feature folders with
->   assemblies and an NUnit test; next, #41–#45 bring it to the coding
->   standard.
+>   assemblies and an NUnit test; #41–#45 (done 2026-11-25) brought it to
+>   the coding standard.
 >
 > "Should do soon" items S3, S5, S6 and S7 were about the warehouse player
 > and no longer apply as written.

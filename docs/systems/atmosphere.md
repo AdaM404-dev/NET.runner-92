@@ -21,7 +21,7 @@ Behaviour is unchanged (see "Tests").
 | Components (`NetRunner.Atmosphere`) | `Assets/NETRunner/Atmosphere/Scripts/`: `EnvironmentalZone`, `HospitalAtmosphere`, `PracticalPulse` |
 | Rules (`NetRunner.Core`) | `Assets/NETRunner/Core/Scripts/`: `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents`, `LightPulse`, `RandomRange` |
 | Fog profiles, audio clips and mixer, particle materials (AdaM404's) | `Assets/NETRunner92/Atmosphere/` |
-| Set-up (editor) | `Assets/NETRunner/World/Editor/HospitalAtmosphereBuilder.cs`: zones, fixtures, particle systems, audio sources, `Configure` calls |
+| Set-up (editor, `NetRunner.Atmosphere.Editor`) | `Assets/NETRunner/Atmosphere/Editor/`: `HospitalAtmosphereBuilder` (zones, particle systems, audio sources, `Configure` calls), `FogProfiles` (volume profiles and the sky), `PracticalLights` (the model's light fixtures), `ClinicalFillLights` (the low fill lights and indoor exposure) |
 | In the scene | under `Atmosphere`: the `HospitalAtmosphere` component, the `ZONE_…` objects (HDRP volume + `EnvironmentalZone`), the practicals with `PracticalPulse` |
 
 ## How it works

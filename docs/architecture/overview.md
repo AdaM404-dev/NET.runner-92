@@ -51,25 +51,34 @@ Assets/NETRunner/
 │  ├─ Scripts/QualitySwitch.cs      F2 quality, F3 FPS, resolution scaling on screen cameras
 │  └─ Tests/PlayMode/               5 tests
 ├─ Player/                        NetRunner.Player: FirstPersonController, interaction, LATCH-07, CCTV
-│  ├─ Editor/                       NetRunner.Player.Editor: LATCH-07 import check
+│  ├─ Editor/                       NetRunner.Player.Editor: LATCH-07 import check; the player prefab, LATCH-07 and the CCTV in the hospital
 │  └─ Tests/PlayMode/               27 tests: movement, aiming, relay, CCTV on test-built objects; the tablet in the hospital
 ├─ World/                         NetRunner.World: doors, lift, stairs, terminal, emergency power
-│  ├─ Editor/                       NetRunner.World.Editor: the hospital scene builders
+│  ├─ Editor/                       NetRunner.World.Editor: builds the hospital scene; the building, doors, stairs, lift, residual power, terminal, occlusion
 │  └─ Tests/PlayMode/               29 tests: doors, lift, stairs, terminal, residual power
 ├─ Enemy/                         NetRunner.Enemy: K7Patrol (moves the robot, turns its bones)
+│  ├─ Editor/                       NetRunner.Enemy.Editor: the K-7 prefab and the four patrols
 │  └─ Tests/PlayMode/               5 tests on a stand-in robot
 ├─ Atmosphere/                    NetRunner.Atmosphere: zones, weather and ambience, pulsing lights
+│  ├─ Editor/                       NetRunner.Atmosphere.Editor: practical lights, zones, fog, weather, sound, clinical fill
 │  └─ Tests/PlayMode/               15 tests on a stand-in site
-└─ Diagnostics/                   NetRunner.Diagnostics: the 95 hospital checks, benchmark modes
-   └─ Tests/PlayMode/               6 tests: the 95 checks, and the benchmark's feature switch
+├─ Diagnostics/                   NetRunner.Diagnostics: the 95 hospital checks, benchmark modes
+│  └─ Tests/PlayMode/               6 tests: the 95 checks, and the benchmark's feature switch
+└─ SceneBuilding/Editor/          NetRunner.SceneBuilding.Editor: helpers every scene builder shares
 ```
 
-Two choices differ from the plan on #31, both to keep behaviour unchanged:
+Two choices differ from the plan on #31:
 
-- **One editor assembly for the scene builders**, in `World/Editor/`, not
-  one per feature. The builders are a single `partial class
-  HospitalSceneBuilder` spread over eight files, and C# cannot split one
-  class across assemblies. Splitting it is part of #44.
+- **A small shared editor assembly for the scene builders**,
+  `SceneBuilding/Editor/` (`NetRunner.SceneBuilding.Editor`). Since #44 each
+  feature builds its own part of the hospital in its own `Editor/`
+  assembly, and `World/Editor/`'s `HospitalSceneBuilder` calls them in
+  order. They share a few helpers (an empty node, a box, a system
+  material, the asset paths, the layer slots and the names of the
+  scene's top-level objects). If those lived in `World/Editor/`, the
+  feature builders would reference `World/Editor/` while it references
+  them, which assemblies cannot do; so they have their own assembly that
+  references none of ours.
 - **A `Diagnostics` feature** for the hospital's checks and the benchmark
   modes. They use every other feature, and the benchmark modes have to
   ship in the built game, so they cannot live in a test assembly. The
@@ -100,6 +109,12 @@ NetRunner.Atmosphere ───→ NetRunner.Core
 NetRunner.Player: none of ours
 ```
 
+The editor assemblies, which only the editor loads, follow the same
+direction: `NetRunner.World.Editor` builds the scene and calls
+`NetRunner.Player.Editor`, `NetRunner.Enemy.Editor` and
+`NetRunner.Atmosphere.Editor`; each of those references its own feature
+and `NetRunner.SceneBuilding.Editor`, which references none of ours.
+
 **`World` uses `Player`**: doors, lift and stairs take a
 `FirstPersonController` (`IInteractable.Interact(FirstPersonController)`).
 The player never names a `World` type: it talks to "anything
@@ -122,7 +137,7 @@ out. How to run them: [[architecture/tooling]].
 | is a thing placed in the level | `World/Scripts/` | `HospitalDoor`, `HospitalLift`, terminals, pickups |
 | belongs to the player | `Player/Scripts/` | `FirstPersonController`, `LatchViewmodel` |
 | starts a new feature (enemies, hacking UI, saves) | a new folder `Assets/NETRunner/<Feature>/` with `Scripts/` and an assembly definition `NetRunner.<Feature>` | `K7Patrol` goes into `Enemy/` |
-| is an editor tool | `<Feature>/Editor/`, with an assembly definition limited to the Editor platform | the hospital's scene builders in `World/Editor/` |
+| is an editor tool | `<Feature>/Editor/`, with an assembly definition limited to the Editor platform | `K7PatrolBuilder` in `Enemy/Editor/`, `HospitalSceneBuilder` in `World/Editor/` |
 
 Asset helper scripts delivered with art (for example the K7 robot's) keep
 their own assembly next to their asset; see [[systems/enemy-k7]].
@@ -139,9 +154,8 @@ The rules for writing code (paradigm, fields and access, naming, member
 order, layout, formatting, tests) are in [[architecture/coding-standards]].
 In one line: rules in plain C# in `Core` with EditMode tests, thin
 MonoBehaviours, content as ScriptableObjects. `Enemy` (#41), `Atmosphere`
-(#42), `Player` (#43) and `World`'s runtime code (#44) follow it; #44's
-second part splits the scene builders by feature, and #45 brings
-`Diagnostics` in line.
+(#42), `Player` (#43) and `World` (#44, with the scene builders split by
+feature) and `Diagnostics` (#45) follow it.
 
 ## Why feature folders, not one folder per kind of code
 
@@ -157,7 +171,7 @@ folder, for rules that several features use.
 From [#31](https://github.com/AdaM404-dev/NET.runner-92/issues/31): PR B
 moved the hospital code into feature folders with assemblies and runs its
 95 Play-mode checks as an NUnit test (behaviour unchanged, the checks pass
-before and after); #41 (done) to #45 bring each feature in line with
+before and after); #41 to #45 (done) brought each feature in line with
 [[architecture/coding-standards]], including the interaction contract of
 [#10](https://github.com/AdaM404-dev/NET.runner-92/issues/10). The switch
 to the Input System (#12) is done: the hospital code uses it and Active

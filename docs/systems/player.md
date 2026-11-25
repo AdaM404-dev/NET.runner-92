@@ -31,6 +31,7 @@ Paths under `Assets/NETRunner/`:
 | Tablet | `Player/Scripts/LatchViewmodel.cs`, `LatchScreen.cs`, `LatchRelay.cs`; rules `Core/Scripts/LatchSession.cs`, `LatchPhase.cs`, `LatchStatus.cs`, `LatchAccent.cs`; art in `Assets/NETRunner92/Player/Latch07/` |
 | CCTV on the tablet | `Player/Scripts/SecurityCctv.cs`; rule `Core/Scripts/CctvFeeds.cs` |
 | Import check of the arms (editor) | `Player/Editor/LatchViewmodelBuilder.cs` |
+| The player, the tablet and the CCTV in the hospital (editor) | `Player/Editor/PlayerPrefabBuilder.cs`, `Latch07Installer.cs`, `CctvNetworkBuilder.cs` |
 | Tests | the rules' EditMode tests in `Core/Tests/EditMode/`; 27 PlayMode tests in `Player/Tests/PlayMode/` |
 
 `PlayerController` has a `CharacterController`, `FirstPersonController`,

@@ -102,7 +102,10 @@ time limit, so a stall is not taken for the walker being stuck (until
 Notes:
 
 - "P95" is the 95th percentile: 95% of frames were faster. It shows
-  stutter that an average hides. 16.67 ms is 60 FPS.
+  stutter that an average hides. 16.67 ms is 60 FPS. It is the nearest
+  rank: of n frames sorted by time, the ceil(n × 0.95)-th (P99 likewise).
+  A column with no measurements shows -1. Both are `SampleStatistics` in
+  `Core` since #45.
 - The draw-call column has stayed empty in release builds (Northline saw
   the same); triangles and GPU time are recorded.
 - The benchmark turns VSync off and does not cap the frame rate.

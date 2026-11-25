@@ -213,7 +213,8 @@ gets fixed.
 
 - **Never hand-edit Unity YAML** (`.unity`, `.prefab`, `.asset`, `.mat`,
   `.controller`). Change it in the editor, through an editor script, or
-  through the hospital's scene builders in `Assets/NETRunner/World/Editor/`.
+  through the hospital's scene builders (started from
+  `Assets/NETRunner/World/Editor/HospitalSceneBuilder.cs`).
 - **Every asset keeps its `.meta`.** Move or rename an asset together with
   its `.meta` (`git mv` both) so its GUID survives. Never delete or
   regenerate a `.meta`.
