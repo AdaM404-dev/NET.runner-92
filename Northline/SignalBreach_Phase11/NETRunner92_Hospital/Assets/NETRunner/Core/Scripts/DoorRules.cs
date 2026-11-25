@@ -25,29 +25,33 @@ namespace NetRunner.Core
         private const float SwingDepth = 1.32f;
         private const float SlideDepth = .43f;
 
-        /// <summary>The prompt shown while the player aims at the door.</summary>
+        /// <summary>
+        /// The prompt the HUD shows while the player aims at the door: the
+        /// action whose bound key it shows (none when the key does nothing)
+        /// and the text.
+        /// </summary>
         /// <param name="offline">An out-of-service lift door.</param>
         /// <param name="liftOnly">A lift door, opened only by the lift.</param>
-        /// <param name="locked">Locked: E does nothing.</param>
-        /// <param name="requested">Opening or open, so E would close it.</param>
-        public static string Prompt(bool offline, bool liftOnly, bool locked, bool requested)
+        /// <param name="locked">Locked: the interact key does nothing.</param>
+        /// <param name="requested">Opening or open, so the interact key would close it.</param>
+        public static (GameAction? Action, string Text) Prompt(bool offline, bool liftOnly, bool locked, bool requested)
         {
             if (offline)
             {
-                return "Lift offline";
+                return (null, "A lift üzemen kívül");
             }
 
             if (liftOnly)
             {
-                return "Use the lift call button";
+                return (null, "Használd a lift hívógombját");
             }
 
             if (locked)
             {
-                return "Locked";
+                return (null, "Zárva");
             }
 
-            return requested ? "E  Close door" : "E  Open door";
+            return (GameAction.Interact, requested ? "Ajtó bezárása" : "Ajtó kinyitása");
         }
 
         /// <summary>

@@ -15,9 +15,8 @@ namespace NetRunner.World
         [SerializeField] private int floor;
         [SerializeField] private bool cabin;
 
-        public (GameAction? Action, string Text) Prompt => !lift.Unlocked(floor) ? (null, "Ezt a szintet előbb lépcsőn érd el")
-            : lift.Busy ? (null, "A lift mozgásban van")
-            : (GameAction.Interact, cabin ? $"{floor + 1}. szint kiválasztása" : $"Lift hívása · {floor + 1}. szint");
+        /// <inheritdoc/>
+        public (GameAction? Action, string Text) Prompt => LiftCar.ButtonPrompt(floor, lift.Unlocked(floor), lift.Busy, cabin);
 
         /// <summary>Sets the lift, the floor (0-based) and whether the button is in the cabin; the scene builder calls it.</summary>
         public void Configure(HospitalLift controller, int level, bool inside)

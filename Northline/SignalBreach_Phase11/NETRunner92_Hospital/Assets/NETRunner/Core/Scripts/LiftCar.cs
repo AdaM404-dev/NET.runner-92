@@ -80,22 +80,23 @@ namespace NetRunner.Core
         /// <summary>
         /// The prompt of a lift button for <paramref name="floor"/> (0-based):
         /// a floor the stairs have not reached says so, a busy lift says it
-        /// is in transit, otherwise E selects or calls.
+        /// is moving, and neither offers a key; otherwise the interact key
+        /// selects the floor in the cabin or calls the lift on a landing.
         /// </summary>
-        public static string ButtonPrompt(int floor, bool reached, bool busy, bool inCabin)
+        public static (GameAction? Action, string Text) ButtonPrompt(int floor, bool reached, bool busy, bool inCabin)
         {
             int level = floor + 1;
             if (!reached)
             {
-                return $"L{level}  Reach this level by stairs";
+                return (null, "Ezt a szintet előbb lépcsőn érd el");
             }
 
             if (busy)
             {
-                return "Lift in transit";
+                return (null, "A lift mozgásban van");
             }
 
-            return inCabin ? $"E  Select level {level}" : $"E  Call lift to level {level}";
+            return (GameAction.Interact, inCabin ? $"{level}. szint kiválasztása" : $"Lift hívása · {level}. szint");
         }
 
         /// <summary>Whether a point at (x, y, z) in the cabin's frame stands on the cabin floor.</summary>

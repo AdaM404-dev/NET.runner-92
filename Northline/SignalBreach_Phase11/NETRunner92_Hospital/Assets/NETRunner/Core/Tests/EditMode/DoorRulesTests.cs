@@ -7,24 +7,29 @@ namespace NetRunner.Core.Tests
     /// docs/systems/doors-and-interaction.md: swing doors open in 1/1.9 s,
     /// sliding doors in 1/1.55 s; the doorway reaches 0.28 m beyond the
     /// opening, 0.5 m up and down, and 1.32 m (swing) or 0.43 m (slide) deep.
+    /// The prompts are the Phase 11 HUD's Hungarian wording; the HUD shows
+    /// the key bound to the prompt's action, and no key when it has none.
     /// </summary>
     public sealed class DoorRulesTests
     {
         private const float Width = 1.2f;
 
         [Test]
-        public void ThePromptSaysWhatEDoes()
+        public void ThePromptOffersTheInteractKeyToOpenOrClose()
         {
-            Assert.That(DoorRules.Prompt(false, false, false, false), Is.EqualTo("E  Open door"));
-            Assert.That(DoorRules.Prompt(false, false, false, true), Is.EqualTo("E  Close door"));
+            Assert.That(DoorRules.Prompt(false, false, false, false),
+                Is.EqualTo(((GameAction?)GameAction.Interact, "Ajtó kinyitása")));
+            Assert.That(DoorRules.Prompt(false, false, false, true),
+                Is.EqualTo(((GameAction?)GameAction.Interact, "Ajtó bezárása")));
         }
 
         [Test]
-        public void LockedLiftAndOfflineDoorsSaySo()
+        public void LockedLiftAndOfflineDoorsSaySoAndOfferNoKey()
         {
-            Assert.That(DoorRules.Prompt(false, false, true, false), Is.EqualTo("Locked"));
-            Assert.That(DoorRules.Prompt(false, true, false, false), Is.EqualTo("Use the lift call button"));
-            Assert.That(DoorRules.Prompt(true, true, false, false), Is.EqualTo("Lift offline"));
+            Assert.That(DoorRules.Prompt(false, false, true, false), Is.EqualTo(((GameAction?)null, "Zárva")));
+            Assert.That(DoorRules.Prompt(false, true, false, false),
+                Is.EqualTo(((GameAction?)null, "Használd a lift hívógombját")));
+            Assert.That(DoorRules.Prompt(true, true, false, false), Is.EqualTo(((GameAction?)null, "A lift üzemen kívül")));
         }
 
         [Test]

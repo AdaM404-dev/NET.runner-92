@@ -25,8 +25,9 @@ namespace NetRunner.World
 
         /// <summary>Whether the puzzle is open and has the keyboard.</summary>
         public bool IsOpen => operatorInput;
-        public (GameAction? Action, string Text) Prompt => cctv.Unlocked ? (GameAction.Cctv, "Élő kamerák")
-            : (GameAction.Interact, "Recepciós terminál");
+
+        /// <inheritdoc/>
+        public (GameAction? Action, string Text) Prompt => SignalPuzzle.Prompt(cctv.Unlocked);
         public static int CellCount => SignalPuzzle.CellCount;
         public static int ReferenceCell(int index) => SignalPuzzle.ReferenceCell(index);
         public int RouteCell(int index) => puzzle.RouteAt(index);
@@ -88,6 +89,7 @@ namespace NetRunner.World
             {
                 return false;
             }
+
             RestoreUnlock();
             Close();
             return true;
@@ -118,13 +120,35 @@ namespace NetRunner.World
 
         public void ReadInput(Keyboard keyboard, Preferences bindings)
         {
-            if (keyboard == null) return;
-            if (keyboard.leftArrowKey.wasPressedThisFrame) Select(-1);
-            else if (keyboard.rightArrowKey.wasPressedThisFrame) Select(1);
-            else if (keyboard.upArrowKey.wasPressedThisFrame) Adjust(1);
-            else if (keyboard.downArrowKey.wasPressedThisFrame) Adjust(-1);
-            else if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame) Submit();
-            else if (bindings.Pressed(keyboard, GameAction.Interact) || keyboard.escapeKey.wasPressedThisFrame) Close();
+            if (keyboard == null)
+            {
+                return;
+            }
+
+            if (keyboard.leftArrowKey.wasPressedThisFrame)
+            {
+                Select(-1);
+            }
+            else if (keyboard.rightArrowKey.wasPressedThisFrame)
+            {
+                Select(1);
+            }
+            else if (keyboard.upArrowKey.wasPressedThisFrame)
+            {
+                Adjust(1);
+            }
+            else if (keyboard.downArrowKey.wasPressedThisFrame)
+            {
+                Adjust(-1);
+            }
+            else if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame)
+            {
+                Submit();
+            }
+            else if (bindings.Pressed(keyboard, GameAction.Interact) || keyboard.escapeKey.wasPressedThisFrame)
+            {
+                Close();
+            }
         }
 
     }

@@ -25,10 +25,13 @@ namespace NetRunner.Core
         /// <summary>Whether the last check failed and nothing has changed since.</summary>
         public bool Mismatch { get; private set; }
 
-        /// <summary>The prompt of the terminal: what E does, or that the CCTV is already unlocked.</summary>
-        public static string Prompt(bool unlocked)
+        /// <summary>
+        /// The prompt of the terminal: the interact key opens the puzzle, and
+        /// once the CCTV is unlocked the CCTV key shows the live cameras.
+        /// </summary>
+        public static (GameAction? Action, string Text) Prompt(bool unlocked)
         {
-            return unlocked ? "CCTV unlocked   /   1  Live cameras" : "E  Breach reception CCTV terminal";
+            return unlocked ? (GameAction.Cctv, "Élő kamerák") : (GameAction.Interact, "Recepciós terminál");
         }
 
         /// <summary>The intercepted signature's value in a cell.</summary>

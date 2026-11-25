@@ -60,7 +60,11 @@ namespace NetRunner.Player
         public void RestoreLink()
         {
             Linked = true;
-            if (!indicator) return;
+            if (!indicator)
+            {
+                return;
+            }
+
             var block = new MaterialPropertyBlock();
             indicator.GetPropertyBlock(block);
             block.SetColor(Emission, LinkedGlow);

@@ -174,13 +174,23 @@ namespace NetRunner.Core.Tests
             Assert.That(car.Request(0, 0, true, true, false), Is.True);
         }
 
+        // The prompts are the Phase 11 HUD's Hungarian wording; the HUD shows
+        // the key bound to the prompt's action, and no key when it has none.
         [Test]
-        public void TheButtonsSayWhatEDoes()
+        public void AButtonOfAFloorNotYetReachedOrOfABusyLiftOffersNoKey()
         {
-            Assert.That(LiftCar.ButtonPrompt(2, false, false, false), Is.EqualTo("L3  Reach this level by stairs"));
-            Assert.That(LiftCar.ButtonPrompt(0, true, true, true), Is.EqualTo("Lift in transit"));
-            Assert.That(LiftCar.ButtonPrompt(1, true, false, true), Is.EqualTo("E  Select level 2"));
-            Assert.That(LiftCar.ButtonPrompt(1, true, false, false), Is.EqualTo("E  Call lift to level 2"));
+            Assert.That(LiftCar.ButtonPrompt(2, false, false, false),
+                Is.EqualTo(((GameAction?)null, "Ezt a szintet előbb lépcsőn érd el")));
+            Assert.That(LiftCar.ButtonPrompt(0, true, true, true), Is.EqualTo(((GameAction?)null, "A lift mozgásban van")));
+        }
+
+        [Test]
+        public void TheInteractKeySelectsAFloorInTheCabinOrCallsTheLift()
+        {
+            Assert.That(LiftCar.ButtonPrompt(1, true, false, true),
+                Is.EqualTo(((GameAction?)GameAction.Interact, "2. szint kiválasztása")));
+            Assert.That(LiftCar.ButtonPrompt(1, true, false, false),
+                Is.EqualTo(((GameAction?)GameAction.Interact, "Lift hívása · 2. szint")));
         }
 
         [Test]

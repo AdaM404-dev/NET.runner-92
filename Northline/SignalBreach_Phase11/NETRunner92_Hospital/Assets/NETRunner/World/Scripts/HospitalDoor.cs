@@ -7,8 +7,8 @@ namespace NetRunner.World
 {
     /// <summary>
     /// One opening in the hospital: swing leaves, a sliding pair or the
-    /// telescopic research barrier. E toggles it; it opens again instead of
-    /// closing on the player. A locked door prompts "Locked" and does not
+    /// telescopic research barrier. The interact key toggles it; it opens again instead of
+    /// closing on the player. A locked door prompts "Zárva" and does not
     /// move. Each leaf eases between the closed and open pose stored in
     /// <see cref="Panel"/>. Lift doors move only for the lift. What it says,
     /// when it moves and how fast is Core's <see cref="DoorRules"/>.
@@ -82,11 +82,9 @@ namespace NetRunner.World
 
         /// <summary>Whether it is locked.</summary>
         public bool Locked => locked;
-        public (GameAction? Action, string Text) Prompt => offline ? (null, "A lift üzemen kívül")
-            : liftOnly ? (null, "Használd a lift hívógombját")
-            : locked ? (null, "Zárva")
-            : (GameAction.Interact, requested ? "Ajtó bezárása" : "Ajtó kinyitása");
 
+        /// <inheritdoc/>
+        public (GameAction? Action, string Text) Prompt => DoorRules.Prompt(offline, liftOnly, locked, requested);
 
         private void Update()
         {
@@ -164,7 +162,11 @@ namespace NetRunner.World
         public bool SaveOpen => !liftOnly && (requested || amount > 0);
         public void RestoreOpen()
         {
-            if (liftOnly) return;
+            if (liftOnly)
+            {
+                return;
+            }
+
             requested = true;
             amount = 1;
             Pose();

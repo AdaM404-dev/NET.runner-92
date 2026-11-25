@@ -76,17 +76,30 @@ namespace NetRunner.Player
 
         public void TakeDamage(float amount)
         {
-            if (IsDown || InputPaused) return;
+            if (IsDown || InputPaused)
+            {
+                return;
+            }
+
             Health = Mathf.Max(0f, Health - amount);
             LastHitTime = Time.unscaledTime;
-            if (IsDown) StartCoroutine(RetryAfterDefeat());
+            if (IsDown)
+            {
+                StartCoroutine(RetryAfterDefeat());
+            }
         }
 
         IEnumerator RetryAfterDefeat()
         {
             yield return new WaitForSecondsRealtime(1.5f);
-            if (Defeated != null) Defeated();
-            else SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            if (Defeated != null)
+            {
+                Defeated();
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            }
         }
 
         /// <summary>Gives it the player's settings; called by the hospital's installer and tests.</summary>
@@ -107,7 +120,10 @@ namespace NetRunner.Player
 
             eyes.transform.localPosition = Vector3.up * eyeHeight;
             eyes.layerCullDistances = DetailCullDistances();
-            if (preferences) preferences.UseCamera(eyes);
+            if (preferences)
+            {
+                preferences.UseCamera(eyes);
+            }
         }
 
         private void Start()
@@ -117,13 +133,20 @@ namespace NetRunner.Player
 
         private void Update()
         {
-            if (InputPaused || IsDown || !preferences) return;
+            if (InputPaused || IsDown || !preferences)
+            {
+                return;
+            }
+
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
             var options = preferences.Active;
             if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame &&
                 !(interaction && (interaction.TerminalActive || interaction.BreachOpen)))
+            {
                 CaptureCursor(false);
+            }
+
             if (Cursor.lockState != CursorLockMode.Locked && mouse != null && mouse.leftButton.wasPressedThisFrame)
             {
                 CaptureCursor(true);
@@ -139,9 +162,14 @@ namespace NetRunner.Player
                     smoothedLook = options.Smoothing <= 0
                         ? delta : Vector2.Lerp(smoothedLook, delta, 1f - options.Smoothing);
                     var look = smoothedLook * options.Sensitivity;
-                    if (options.YInverted) look.y = -look.y;
+                    if (options.YInverted)
+                    {
+                        look.y = -look.y;
+                    }
+
                     Look(look);
                 }
+
                 suppressLook = false;
                 if (keyboard != null)
                 {
@@ -150,7 +178,11 @@ namespace NetRunner.Player
                         (preferences.Held(keyboard, GameAction.Forward) ? 1 : 0) - (preferences.Held(keyboard, GameAction.Back) ? 1 : 0));
                     if (options.SprintToggles)
                     {
-                        if (preferences.Pressed(keyboard, GameAction.Sprint)) sprintLatched = !sprintLatched;
+                        if (preferences.Pressed(keyboard, GameAction.Sprint))
+                        {
+                            sprintLatched = !sprintLatched;
+                        }
+
                         sprint = sprintLatched;
                     }
                     else

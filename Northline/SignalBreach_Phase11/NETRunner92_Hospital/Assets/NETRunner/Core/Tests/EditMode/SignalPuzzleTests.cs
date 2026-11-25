@@ -97,11 +97,18 @@ namespace NetRunner.Core.Tests
             Assert.That(puzzle.Mismatch, Is.False);
         }
 
+        // The prompts are the Phase 11 HUD's Hungarian wording; the HUD shows
+        // the key bound to the prompt's action.
         [Test]
-        public void ThePromptSaysWhetherTheCctvIsUnlocked()
+        public void TheInteractKeyOpensTheTerminalUntilTheCctvIsUnlocked()
         {
-            Assert.That(SignalPuzzle.Prompt(false), Is.EqualTo("E  Breach reception CCTV terminal"));
-            Assert.That(SignalPuzzle.Prompt(true), Is.EqualTo("CCTV unlocked   /   1  Live cameras"));
+            Assert.That(SignalPuzzle.Prompt(false), Is.EqualTo(((GameAction?)GameAction.Interact, "Recepciós terminál")));
+        }
+
+        [Test]
+        public void OnceUnlockedTheCctvKeyShowsTheLiveCameras()
+        {
+            Assert.That(SignalPuzzle.Prompt(true), Is.EqualTo(((GameAction?)GameAction.Cctv, "Élő kamerák")));
         }
     }
 }

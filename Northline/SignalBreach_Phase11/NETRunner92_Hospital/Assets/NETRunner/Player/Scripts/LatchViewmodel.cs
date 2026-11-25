@@ -77,8 +77,16 @@ namespace NetRunner.Player
 
         private void Update()
         {
-            if (Active && player.IsDown) Stow();
-            if (BreachOpen) UpdateBreach();
+            if (Active && player.IsDown)
+            {
+                Stow();
+            }
+
+            if (BreachOpen)
+            {
+                UpdateBreach();
+            }
+
             if (!Active || animator.IsInTransition(0))
             {
                 return;
@@ -124,6 +132,7 @@ namespace NetRunner.Player
                 ReadBreachInput(keyboard, Mouse.current);
                 return true;
             }
+
             bool owned = Active;
             if (keyboard == null)
             {
@@ -172,14 +181,25 @@ namespace NetRunner.Player
         public bool BeginBreach(IBreachable robot)
         {
             if (BreachOpen || Time.time < retryAt || !BreachTargets.Alive(robot) || !robot.CanBreach
-                || Current != LatchPhase.Stowed && (Current != LatchPhase.Ready || relay || session.CctvRequested)) return false;
+                || Current != LatchPhase.Stowed && (Current != LatchPhase.Ready || relay || session.CctvRequested))
+            {
+                return false;
+            }
+
             breach = new SignalBreach(random);
             breachTarget = robot;
             breachDisableSeconds = robot.DisableSeconds;
             breachApplied = false;
             failureClosesAt = 0f;
-            if (Current == LatchPhase.Stowed) Toggle(null);
-            else StartBreach();
+            if (Current == LatchPhase.Stowed)
+            {
+                Toggle(null);
+            }
+            else
+            {
+                StartBreach();
+            }
+
             return true;
         }
 
@@ -190,6 +210,7 @@ namespace NetRunner.Player
                 TerminateBreach("SIGNAL LOST");
                 return;
             }
+
             breach.Begin(Time.time);
             breachTarget.SetBreachTracing(true);
             screen.PresentBreach(breach, SignalBreach.Duration, breachDisableSeconds, player.Preferences.Active.ReduceMotion);
@@ -203,33 +224,69 @@ namespace NetRunner.Player
                 Cancel();
                 return;
             }
-            if (breach.State != SignalBreach.Outcome.Tracing) return;
+
+            if (breach.State != SignalBreach.Outcome.Tracing)
+            {
+                return;
+            }
+
             breach.Tick(Time.time);
-            if (breach.State != SignalBreach.Outcome.Tracing) return;
+            if (breach.State != SignalBreach.Outcome.Tracing)
+            {
+                return;
+            }
 
             if (mouse != null)
             {
                 var delta = mouse.delta.ReadValue() * BreachPointerGain;
                 breach.MovePointer(delta.x, delta.y);
-                if (mouse.leftButton.wasPressedThisFrame) breach.Click();
+                if (mouse.leftButton.wasPressedThisFrame)
+                {
+                    breach.Click();
+                }
             }
+
             if (keyboard != null && breach.State == SignalBreach.Outcome.Tracing)
             {
-                if (keyboard.upArrowKey.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame) breach.StepFocus(-1);
-                else if (keyboard.downArrowKey.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame) breach.StepFocus(1);
-                if (keyboard.backspaceKey.wasPressedThisFrame) breach.Undo();
-                else if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame) breach.Confirm();
+                if (keyboard.upArrowKey.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame)
+                {
+                    breach.StepFocus(-1);
+                }
+                else if (keyboard.downArrowKey.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame)
+                {
+                    breach.StepFocus(1);
+                }
+
+                if (keyboard.backspaceKey.wasPressedThisFrame)
+                {
+                    breach.Undo();
+                }
+                else if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame)
+                {
+                    breach.Confirm();
+                }
             }
+
             UpdateBreach();
         }
 
         void UpdateBreach()
         {
-            if (breach.State == SignalBreach.Outcome.Pending) return;
+            if (breach.State == SignalBreach.Outcome.Pending)
+            {
+                return;
+            }
+
             if (breach.State == SignalBreach.Outcome.Tracing)
             {
-                if (!BreachTargets.Alive(breachTarget) || !breachTarget.CanBreach) TerminateBreach("SIGNAL LOST");
-                else breach.Tick(Time.time);
+                if (!BreachTargets.Alive(breachTarget) || !breachTarget.CanBreach)
+                {
+                    TerminateBreach("SIGNAL LOST");
+                }
+                else
+                {
+                    breach.Tick(Time.time);
+                }
             }
 
             if (breach.State == SignalBreach.Outcome.Successful)
@@ -241,27 +298,49 @@ namespace NetRunner.Player
                         TerminateBreach("SIGNAL LOST");
                         return;
                     }
+
                     breachApplied = true;
                     breachTarget.SetBreachTracing(false);
                 }
+
                 if (BreachTargets.Alive(breachTarget) && breachTarget.BreachRecovery > 0f)
+                {
                     screen.PresentBreach(breach, breachTarget.BreachRecovery, breachDisableSeconds, player.Preferences.Active.ReduceMotion);
-                else CloseBreach();
+                }
+                else
+                {
+                    CloseBreach();
+                }
+
                 return;
             }
+
             if (breach.State == SignalBreach.Outcome.Terminated)
             {
-                if (failureClosesAt == 0f) TerminateBreach(breach.Feedback);
-                if (Time.time >= failureClosesAt) CloseBreach();
+                if (failureClosesAt == 0f)
+                {
+                    TerminateBreach(breach.Feedback);
+                }
+
+                if (Time.time >= failureClosesAt)
+                {
+                    CloseBreach();
+                }
+
                 return;
             }
+
             screen.PresentBreach(breach, breach.Remaining(Time.time), breachDisableSeconds, player.Preferences.Active.ReduceMotion);
         }
 
         void TerminateBreach(string message)
         {
             breach.Terminate(message);
-            if (BreachTargets.Alive(breachTarget)) breachTarget.SetBreachTracing(false);
+            if (BreachTargets.Alive(breachTarget))
+            {
+                breachTarget.SetBreachTracing(false);
+            }
+
             retryAt = Time.time + BreachCooldown;
             failureClosesAt = Time.time + FailureDisplay;
             screen.PresentBreach(breach, 0f, breachDisableSeconds, player.Preferences.Active.ReduceMotion);
@@ -269,7 +348,11 @@ namespace NetRunner.Player
 
         void ClearBreach()
         {
-            if (BreachTargets.Alive(breachTarget)) breachTarget.SetBreachTracing(false);
+            if (BreachTargets.Alive(breachTarget))
+            {
+                breachTarget.SetBreachTracing(false);
+            }
+
             breach = null;
             breachTarget = null;
         }
@@ -299,20 +382,36 @@ namespace NetRunner.Player
         /// <summary>R: cancels and puts the tablet away.</summary>
         public void Cancel()
         {
-            if (!Active || Current == LatchPhase.Cancel) return;
-            if (BreachOpen)
+            if (!Active || Current == LatchPhase.Cancel)
             {
-                if (breach.State == SignalBreach.Outcome.Successful) CloseBreach();
-                else if (breach.State != SignalBreach.Outcome.Terminated) TerminateBreach("LINK CANCELLED");
                 return;
             }
+
+            if (BreachOpen)
+            {
+                if (breach.State == SignalBreach.Outcome.Successful)
+                {
+                    CloseBreach();
+                }
+                else if (breach.State != SignalBreach.Outcome.Terminated)
+                {
+                    TerminateBreach("LINK CANCELLED");
+                }
+
+                return;
+            }
+
             session.Cancel();
         }
 
         /// <summary>1: opens or closes the CCTV page, or shows the hint while it is locked.</summary>
         public bool ToggleCctv()
         {
-            if (BreachOpen) return false;
+            if (BreachOpen)
+            {
+                return false;
+            }
+
             return session.ToggleCctv(CctvAvailable, Time.unscaledTime);
         }
 
@@ -331,7 +430,11 @@ namespace NetRunner.Player
         /// <summary>Puts the tablet away at once and hides the arms.</summary>
         public void Stow()
         {
-            if (BreachCapturesLook) retryAt = Time.time + BreachCooldown;
+            if (BreachCapturesLook)
+            {
+                retryAt = Time.time + BreachCooldown;
+            }
+
             ClearBreach();
             session.Stow();
         }

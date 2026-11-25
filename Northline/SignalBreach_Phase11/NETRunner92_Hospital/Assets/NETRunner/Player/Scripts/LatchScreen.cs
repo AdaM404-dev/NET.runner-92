@@ -115,7 +115,11 @@ namespace NetRunner.Player
         /// <summary>Switches the screen off.</summary>
         public void Close()
         {
-            if (document) document.gameObject.SetActive(false);
+            if (document)
+            {
+                document.gameObject.SetActive(false);
+            }
+
             title = detail = instructions = null;
             statusPage = cctvPage = null;
             feedImage = null;
@@ -156,7 +160,11 @@ namespace NetRunner.Player
 
             statusPage.style.display = DisplayStyle.Flex;
             cctvPage.style.display = DisplayStyle.None;
-            if (breachPage != null) breachPage.style.display = DisplayStyle.None;
+            if (breachPage != null)
+            {
+                breachPage.style.display = DisplayStyle.None;
+            }
+
             title.text = status.Heading;
             title.style.color = ColourOf(status.Accent);
             detail.text = status.Message;
@@ -178,7 +186,11 @@ namespace NetRunner.Player
 
             statusPage.style.display = DisplayStyle.None;
             cctvPage.style.display = DisplayStyle.Flex;
-            if (breachPage != null) breachPage.style.display = DisplayStyle.None;
+            if (breachPage != null)
+            {
+                breachPage.style.display = DisplayStyle.None;
+            }
+
             feedImage.image = network.Surface;
             feedTitle.text = network.Label switch
             {
@@ -195,12 +207,17 @@ namespace NetRunner.Player
 
         public void PresentBreach(SignalBreach puzzle, float seconds, float disableSeconds, bool reduceMotion)
         {
-            if (title == null) return;
+            if (title == null)
+            {
+                return;
+            }
+
             if (breachPage == null)
             {
                 breachPage = new SignalBreachPanel();
                 document.rootVisualElement.Add(breachPage);
             }
+
             statusPage.style.display = DisplayStyle.None;
             cctvPage.style.display = DisplayStyle.None;
             breachPage.style.display = DisplayStyle.Flex;
