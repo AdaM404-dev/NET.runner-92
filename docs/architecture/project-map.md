@@ -96,7 +96,11 @@ builders) and #45 (`Diagnostics`) do the rest. Paths below are under `Assets/NET
 | `Diagnostics/Tests/PlayMode/RenderFeatureSwitchTests.cs` | each switched-off feature changes only its own camera or light setting | [[systems/performance]] |
 | `World/Tests/PlayMode/DoorInteractionTests.cs` | doors start shut, aim, open/close, lock | [[systems/doors-and-interaction]] |
 | `World/Tests/PlayMode/HospitalDoorTests.cs`, `HospitalLiftTests.cs`, `StairAccessTests.cs`, `ReceptionSecurityTerminalTests.cs`, `ResidualPowerTests.cs` | door timing and doorway, the lift, the first ascent, the reception puzzle, residual power | [[systems/doors-and-interaction]] |
-| `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`, including `HospitalOcclusion.cs`, which bakes occlusion culling) and `PlayModeValidation` | [[systems/level-hospital]] |
+| `World/Editor/*.cs` | `HospitalSceneBuilder` (builds the whole scene), `HospitalImporter` (building and grounds from `SceneSource.json`), `HospitalSystemsBuilder` (doors, stairs), `HospitalLiftBuilder`, `ResidualPowerBuilder`, `HospitalLatchInstaller`, `HospitalCctvInstaller` (with the reception terminal), `HospitalOptimization`, `HospitalOcclusion` (bakes occlusion culling), `HospitalWindowsBuilds`, `PlayModeValidation` | [[systems/level-hospital]] |
+| `Player/Editor/PlayerPrefabBuilder.cs`, `Latch07Installer.cs`, `CctvNetworkBuilder.cs` | the player prefab, the tablet and relay, the CCTV network | [[systems/player]] |
+| `Enemy/Editor/K7PatrolBuilder.cs` | the K-7 prefab and the four patrols | [[systems/enemy-k7]] |
+| `Atmosphere/Editor/*.cs` | `HospitalAtmosphereBuilder`, `FogProfiles`, `PracticalLights`, `ClinicalFillLights` | [[systems/atmosphere]] |
+| `SceneBuilding/Editor/*.cs` | helpers the builders share: `SceneParts`, `HospitalAssets`, `HospitalHierarchy`, `HospitalLayers` | [[architecture/overview]] |
 | `NETRunner/Core/Scripts/PlanarMotion.cs`, `VerticalMotion.cs`, `MotionSteps.cs`, `ViewMotion.cs` | the player's walking, gravity, movement steps, mouse look and head bob | [[systems/player]] |
 | `NETRunner/Core/Scripts/LatchSession.cs`, `LatchPhase.cs`, `LatchStatus.cs`, `LatchAccent.cs`, `CctvFeeds.cs` | the LATCH-07 tablet's phases and screen, and the CCTV feeds | [[systems/player]] |
 | `NETRunner/Core/Scripts/DoorRules.cs`, `LiftCar.cs`, `StairRules.cs`, `SignalPuzzle.cs` | the world's rules: doors, the lift, the first ascent, the reception puzzle | [[systems/doors-and-interaction]] |

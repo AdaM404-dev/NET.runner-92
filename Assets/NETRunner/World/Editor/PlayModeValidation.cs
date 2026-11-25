@@ -1,87 +1,143 @@
+using System;
 using System.IO;
+using NetRunner.Atmosphere.Editor;
 using NetRunner.Diagnostics;
 using NetRunner.Player;
-using UnityEditor.SceneManagement;
+using NetRunner.SceneBuilding.Editor;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace NetRunner.World.Editor
 {
+    /// <summary>
+    /// Runs the hospital's 95 checks (<see cref="ExplorationDiagnostics"/>) in
+    /// the editor's Play mode and quits with 0 when they pass, 2 when they
+    /// fail and 3 when the build after them fails. This is AdaM404's
+    /// workflow; the same checks run as the NUnit test <c>HospitalChecksTests</c>.
+    /// Runs headless with <c>-executeMethod NetRunner.World.Editor.PlayModeValidation.Run</c>.
+    /// </summary>
     [InitializeOnLoad]
     public static class PlayModeValidation
     {
-        const string Session = "NET92.PlayModeValidation";
-        static PlayModeValidation() => EditorApplication.playModeStateChanged += Changed;
+        private const string Session = "NET92.PlayModeValidation";
+        private const string BuildAfter = Session + ".build";
+        private const string Result = Session + ".result";
+        private const int Passed = 0;
+        private const int Failed = 2;
+        private const int BuildFailed = 3;
 
+        // Where the checks write their pictures, by how far the scene has been installed.
+        private const string CctvRenders = "Northline/Renders/Phase_07_CCTV";
+        private const string LatchRenders = "Northline/Renders/Phase_06_Latch07";
+        private const string InteractiveRenders = "Northline/Renders/Phase_05_Unity/Interactive";
+        private const string SceneRenders = "Northline/Renders/Phase_05_Unity";
+
+        static PlayModeValidation()
+        {
+            EditorApplication.playModeStateChanged += HandlePlayModeChanged;
+        }
+
+        /// <summary>Adds the clinical fill lights, then runs the checks.</summary>
         public static void RefineAndRun()
         {
-            HospitalSceneBuilder.RefineReadability();
+            ClinicalFillLights.Refine();
             Run();
         }
 
+        /// <summary>Runs the checks and builds the Windows player if they pass.</summary>
         public static void RunAndBuild()
         {
-            SessionState.SetBool(Session+".build",true);
+            SessionState.SetBool(BuildAfter, true);
             Run();
         }
 
+        /// <summary>Installs the hospital's systems, then runs the checks.</summary>
         public static void InstallAndRun()
         {
-            HospitalSceneBuilder.InstallHospitalSystems();
+            HospitalSystemsBuilder.Install();
             Run();
         }
 
+        /// <summary>Installs LATCH-07, then runs the checks.</summary>
         public static void InstallLatchAndRun()
         {
-            HospitalSceneBuilder.InstallLatch07();
+            HospitalLatchInstaller.Install();
             Run();
         }
 
+        /// <summary>Installs the CCTV, then runs the checks.</summary>
         public static void InstallCctvAndRun()
         {
-            HospitalSceneBuilder.InstallCctv();
+            HospitalCctvInstaller.Install();
             Run();
         }
 
+        /// <summary>Opens the hospital scene and enters Play mode, where the checks run.</summary>
         public static void Run()
         {
-            if (!File.Exists(HospitalSceneBuilder.ScenePath))
-                throw new FileNotFoundException(HospitalSceneBuilder.ScenePath);
-            EditorSceneManager.OpenScene(HospitalSceneBuilder.ScenePath);
-            SessionState.SetBool(Session,true);
-            EditorApplication.isPlaying=true;
+            if (!File.Exists(HospitalAssets.ScenePath))
+            {
+                throw new FileNotFoundException(HospitalAssets.ScenePath);
+            }
+
+            EditorSceneManager.OpenScene(HospitalAssets.ScenePath);
+            SessionState.SetBool(Session, true);
+            EditorApplication.isPlaying = true;
         }
 
-        static void Changed(PlayModeStateChange state)
+        private static void HandlePlayModeChanged(PlayModeStateChange state)
         {
-            if (!SessionState.GetBool(Session,false)) return;
+            if (!SessionState.GetBool(Session, false))
+            {
+                return;
+            }
+
             if (state == PlayModeStateChange.EnteredPlayMode)
             {
-                var o=new GameObject("Transient validation");
-                var d=o.AddComponent<ExplorationDiagnostics>();
-                d.Output=Path.GetFullPath(Object.FindAnyObjectByType<SecurityCctv>() ? "Northline/Renders/Phase_07_CCTV"
-                    : Object.FindAnyObjectByType<LatchViewmodel>() ? "Northline/Renders/Phase_06_Latch07"
-                    : Object.FindAnyObjectByType<StairAccess>() ? "Northline/Renders/Phase_05_Unity/Interactive" : "Northline/Renders/Phase_05_Unity");
-                d.CaptureImages=SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null;
-                d.Complete=ok=>{
-                    SessionState.SetInt(Session+".result",ok?0:2);
-                    EditorApplication.isPlaying=false;
-                };
+                StartChecks();
             }
-            else if(state==PlayModeStateChange.EnteredEditMode)
+            else if (state == PlayModeStateChange.EnteredEditMode)
             {
-                SessionState.SetBool(Session,false);
-                int result=SessionState.GetInt(Session+".result",2);
-                if(result==0 && SessionState.GetBool(Session+".build",false))
-                {
-                    SessionState.SetBool(Session+".build",false);
-                    try { HospitalSceneBuilder.BuildWindows(); }
-                    catch (System.Exception ex) { Debug.LogException(ex); result=3; }
-                }
-                EditorApplication.Exit(result);
+                FinishChecks();
             }
+        }
+
+        private static void StartChecks()
+        {
+            var host = new GameObject("Transient validation");
+            ExplorationDiagnostics diagnostics = host.AddComponent<ExplorationDiagnostics>();
+            diagnostics.Output = Path.GetFullPath(UnityEngine.Object.FindAnyObjectByType<SecurityCctv>() ? CctvRenders
+                : UnityEngine.Object.FindAnyObjectByType<LatchViewmodel>() ? LatchRenders
+                : UnityEngine.Object.FindAnyObjectByType<StairAccess>() ? InteractiveRenders : SceneRenders);
+            diagnostics.CaptureImages = SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
+            diagnostics.Complete = passed =>
+            {
+                SessionState.SetInt(Result, passed ? Passed : Failed);
+                EditorApplication.isPlaying = false;
+            };
+        }
+
+        private static void FinishChecks()
+        {
+            SessionState.SetBool(Session, false);
+            int result = SessionState.GetInt(Result, Failed);
+            if (result == Passed && SessionState.GetBool(BuildAfter, false))
+            {
+                SessionState.SetBool(BuildAfter, false);
+                try
+                {
+                    HospitalWindowsBuilds.Optimized();
+                }
+                catch (Exception exception)
+                {
+                    Debug.LogException(exception);
+                    result = BuildFailed;
+                }
+            }
+
+            EditorApplication.Exit(result);
         }
     }
 }
-
-

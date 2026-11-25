@@ -19,7 +19,7 @@ interaction** yet.
 | Materials (HDRP Lit, seven) and mask map | `Assets/NETRunner92/Environment/K7/MAT_K7_*.mat`, `K7_HDRP_Mask.asset`, `Textures/` |
 | Patrol prefab | `Assets/NETRunner92/Environment/K7/K7_Patrol.prefab` |
 | Patrol code | `Assets/NETRunner/Enemy/Scripts/K7Patrol.cs` (`NetRunner.Enemy`); rules in `Assets/NETRunner/Core/Scripts/Patrol.cs`, `K7Gait.cs` |
-| Placement (editor) | `Assets/NETRunner/World/Editor/HospitalPatrolBuilder.cs` |
+| Prefab and placement (editor) | `Assets/NETRunner/Enemy/Editor/K7PatrolBuilder.cs` (`NetRunner.Enemy.Editor`) |
 | Original source package (Blender, LODs, 2K/4K textures, URP setup helper) | [`ArtSource/K7_Industrial_Robot/`](../../ArtSource/K7_Industrial_Robot/README.md) |
 
 ## How it works

@@ -5,9 +5,12 @@
         "NetRunner.Core",
         "NetRunner.Player",
         "NetRunner.World",
-        "NetRunner.Enemy",
         "NetRunner.Atmosphere",
         "NetRunner.Diagnostics",
+        "NetRunner.SceneBuilding.Editor",
+        "NetRunner.Player.Editor",
+        "NetRunner.Enemy.Editor",
+        "NetRunner.Atmosphere.Editor",
         "Unity.InputSystem",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.HighDefinition.Runtime"
