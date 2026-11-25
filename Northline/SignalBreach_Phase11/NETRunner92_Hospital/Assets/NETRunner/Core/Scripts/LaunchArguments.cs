@@ -8,6 +8,12 @@ namespace NetRunner.Core
     /// </summary>
     public static class LaunchArguments
     {
+        /// <summary>Whether <paramref name="option"/> was given. The option is matched exactly.</summary>
+        public static bool Has(string[] arguments, string option)
+        {
+            return arguments != null && Array.IndexOf(arguments, option) >= 0;
+        }
+
         /// <summary>
         /// The word right after <paramref name="option"/>, or null when the
         /// option is missing or is the last word. The option is matched exactly.

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using NetRunner.Core;
 using NetRunner.Menu;
 using NetRunner.Player;
@@ -18,6 +17,12 @@ namespace NetRunner.Diagnostics
     {
         private const string BenchmarkOption = "-net92-benchmark";
         private const string OutputOption = "-net92-output";
+        private const string DefaultFile = "performance.csv";
+        private const int FailedExitCode = 2;
+        private const int Uncapped = -1;
+        private const int TargetDepth = 24;
+        private const double MillisecondsPerSecond = 1000.0;
+        private const double Percentile = .95;
         private const float WindowRenderTimeout = 2f;
         private const float FirstWarmupSeconds = 8f;
         private const float WarmupSeconds = 5f;
@@ -40,7 +45,7 @@ namespace NetRunner.Diagnostics
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Attach()
         {
-            if (Array.IndexOf(Environment.GetCommandLineArgs(), BenchmarkOption) < 0)
+            if (!LaunchArguments.Has(Environment.GetCommandLineArgs(), BenchmarkOption))
             {
                 return;
             }
@@ -135,14 +140,21 @@ namespace NetRunner.Diagnostics
                         continue;
                     }
 
-                    frame.Add(Time.unscaledDeltaTime * 1000.0);
+                    frame.Add(Time.unscaledDeltaTime * MillisecondsPerSecond);
                     if (FrameTimingManager.GetLatestTimings(1, timings) > 0 && timings[0].gpuFrameTime > 0)
                     {
                         gpu.Add(timings[0].gpuFrameTime);
                     }
 
-                    if (draws.Valid && draws.LastValue > 0) draw.Add(draws.LastValue);
-                    if (triangles.Valid && triangles.LastValue > 0) tris.Add(triangles.LastValue);
+                    if (draws.Valid && draws.LastValue > 0)
+                    {
+                        draw.Add(draws.LastValue);
+                    }
+
+                    if (triangles.Valid && triangles.LastValue > 0)
+                    {
+                        tris.Add(triangles.LastValue);
+                    }
                 }
 
                 if (frame.Count == 0)
@@ -152,7 +164,7 @@ namespace NetRunner.Diagnostics
                 }
 
                 results.Add(FormattableString.Invariant(
-                    $"{label};{frame.Count};{1000 / frame.Average():F1};{P95(frame):F2};{P95(gpu):F2};{Mean(draw):F0};{Mean(tris):F0}"));
+                    $"{label};{frame.Count};{MillisecondsPerSecond / SampleStatistics.Mean(frame):F1};{SampleStatistics.Percentile(frame, Percentile):F2};{SampleStatistics.Percentile(gpu, Percentile):F2};{SampleStatistics.Mean(draw):F0};{SampleStatistics.Mean(tris):F0}"));
             }
 
             WriteResults(results);
@@ -178,7 +190,7 @@ namespace NetRunner.Diagnostics
 
         private bool SetUpOffscreenRender()
         {
-            target = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32)
+            target = new RenderTexture(Screen.width, Screen.height, TargetDepth, RenderTextureFormat.ARGB32)
             {
                 name = "Hospital benchmark",
                 useDynamicScale = true,
@@ -204,14 +216,21 @@ namespace NetRunner.Diagnostics
         private static void Uncap()
         {
             // A display refresh change can cause PreferencesRuntime to reapply pacing.
-            if (QualitySettings.vSyncCount != 0) QualitySettings.vSyncCount = 0;
-            if (Application.targetFrameRate != -1) Application.targetFrameRate = -1;
+            if (QualitySettings.vSyncCount != 0)
+            {
+                QualitySettings.vSyncCount = 0;
+            }
+
+            if (Application.targetFrameRate != Uncapped)
+            {
+                Application.targetFrameRate = Uncapped;
+            }
         }
 
         private static void WriteResults(List<string> results)
         {
             string path = LaunchArguments.ValueAfter(Environment.GetCommandLineArgs(), OutputOption)
-                ?? Path.Combine(Application.persistentDataPath, "performance.csv");
+                ?? Path.Combine(Application.persistentDataPath, DefaultFile);
             try
             {
                 path = Path.GetFullPath(path);
@@ -231,17 +250,9 @@ namespace NetRunner.Diagnostics
         private static void Fail(string message)
         {
             Debug.LogError("NET92 BENCHMARK FAILED | " + message);
-            Application.Quit(2);
+            Application.Quit(FailedExitCode);
         }
 
-        private static double Mean(List<double> values) => values.Count == 0 ? -1 : values.Average();
-
-        private static double P95(List<double> values)
-        {
-            if (values.Count == 0) return -1;
-            values.Sort();
-            return values[Mathf.CeilToInt(values.Count * .95f) - 1];
-        }
     }
 }
 

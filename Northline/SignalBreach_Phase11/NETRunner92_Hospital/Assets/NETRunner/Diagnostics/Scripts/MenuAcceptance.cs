@@ -23,35 +23,33 @@ using MouseButton = UnityEngine.InputSystem.LowLevel.MouseButton;
 
 namespace NetRunner.Diagnostics
 {
-    // Runs only in an explicitly requested, isolated Windows acceptance test.
+    /// <summary>
+    /// The built game's main-menu acceptance run (<c>-net92-menu-check</c>, or
+    /// <c>-net92-menu-reload-check</c> for the second start, both with
+    /// <c>-net92-profile</c>): drives the menu, settings, saves, the HUD and
+    /// the F4 panel with real input and writes one PASS or FAIL line per
+    /// check, then quits with 0, or 2 when a check failed. It runs only in an
+    /// explicitly requested, isolated Windows acceptance test.
+    /// </summary>
     public sealed class MenuAcceptance : MonoBehaviour
     {
-        const string RunFlag = "-net92-menu-check";
-        const string ReloadFlag = "-net92-menu-reload-check";
+        private const string RunFlag = "-net92-menu-check";
+        private const string ReloadFlag = "-net92-menu-reload-check";
+        private const string ProfileOption = "-net92-profile";
+        private const int FailedExitCode = 2;
         private const float PerformancePanelSettleSeconds = 0.75f;
         private const float MenuRateSampleSeconds = 2f;
         private const float MenuRateTolerance = 2f;
-        readonly List<string> results = new();
-        readonly CheckpointStore store = CheckpointStore.ForProfile();
-        Preferences preferences;
-        Keyboard keyboard;
-        Mouse mouse;
-        string path;
+        private readonly List<string> results = new List<string>();
+        private readonly CheckpointStore store = CheckpointStore.ForProfile();
+        private Preferences preferences;
+        private Keyboard keyboard;
+        private Mouse mouse;
+        private string path;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void Attach()
+        private IEnumerator Start()
         {
-            var args = Environment.GetCommandLineArgs();
-            if ((!Array.Exists(args, x => x == RunFlag || x == ReloadFlag))
-                || Array.IndexOf(args, "-net92-profile") < 0) return;
-            var node = new GameObject("Menu acceptance");
-            DontDestroyOnLoad(node);
-            node.AddComponent<MenuAcceptance>();
-        }
-
-        IEnumerator Start()
-        {
-            bool reload = Array.IndexOf(Environment.GetCommandLineArgs(), ReloadFlag) >= 0;
+            bool reload = LaunchArguments.Has(Environment.GetCommandLineArgs(), ReloadFlag);
             // A diagnostic tool may look the shared settings asset up instead of being given it.
             preferences = Resources.Load<Preferences>(PreferencesRuntime.ResourcePath);
             path = Path.Combine(LocalGameFiles.ProfileDirectory, reload ? "reload-checks.txt" : "menu-checks.txt");
@@ -97,6 +95,7 @@ namespace NetRunner.Diagnostics
                 Finish();
                 yield break;
             }
+
             ScreenCapture.CaptureScreenshot(Path.Combine(LocalGameFiles.ProfileDirectory, "settings.png"));
 
             Submit(root.Q<Button>("category-1"));
@@ -203,6 +202,7 @@ namespace NetRunner.Diagnostics
                 Finish();
                 yield break;
             }
+
             root.Q<DropdownField>("display-mode").index = 2;
             SetResolution(root, "1280 × 720");
             Submit(root.Q<Button>("settings-apply"));
@@ -282,6 +282,7 @@ namespace NetRunner.Diagnostics
                 Finish();
                 yield break;
             }
+
             var pause = run.GetComponent<UIDocument>().rootVisualElement;
             Submit(pause.Q<Button>("pause-save"));
             yield return null;
@@ -377,6 +378,7 @@ namespace NetRunner.Diagnostics
                 Finish();
                 yield break;
             }
+
             Submit(root.Q<Button>("exit"));
             Check(true, "The Exit confirmation was submitted to Application.Quit.");
             Submit(root.Q<Button>("dialog-confirm"));
@@ -385,7 +387,21 @@ namespace NetRunner.Diagnostics
             Finish();
         }
 
-        static VisualElement MenuRoot() => FindAnyObjectByType<MainMenuView>()?.GetComponent<UIDocument>().rootVisualElement;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Attach()
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            if (!(LaunchArguments.Has(args, RunFlag) || LaunchArguments.Has(args, ReloadFlag)) || !LaunchArguments.Has(args, ProfileOption))
+            {
+                return;
+            }
+
+            var node = new GameObject("Menu acceptance");
+            DontDestroyOnLoad(node);
+            node.AddComponent<MenuAcceptance>();
+        }
+
+        private static VisualElement MenuRoot() => FindAnyObjectByType<MainMenuView>()?.GetComponent<UIDocument>().rootVisualElement;
 
         private IEnumerator CheckMenuFrameRate()
         {
@@ -434,22 +450,29 @@ namespace NetRunner.Diagnostics
             Check(!overlay.IsVisible, "A second F4 press hides the performance panel.");
         }
 
-        static void SetResolution(VisualElement root, string value)
+        private static void SetResolution(VisualElement root, string value)
         {
             var dropdown = root.Q<DropdownField>("resolution");
             int index = dropdown.choices.IndexOf(value);
-            if (index >= 0) dropdown.index = index;
+            if (index >= 0)
+            {
+                dropdown.index = index;
+            }
         }
 
-        static void Submit(Button button)
+        private static void Submit(Button button)
         {
-            if (button == null) return;
+            if (button == null)
+            {
+                return;
+            }
+
             using var evt = NavigationSubmitEvent.GetPooled();
             evt.target = button;
             button.SendEvent(evt);
         }
 
-        IEnumerator Click(VisualElement root, Button button)
+        private IEnumerator Click(VisualElement root, Button button)
         {
             Vector2 center = button.worldBound.center;
             var point = new Vector2(center.x / root.worldBound.width * Screen.width,
@@ -462,9 +485,13 @@ namespace NetRunner.Diagnostics
             yield return new WaitForSecondsRealtime(.3f);
         }
 
-        IEnumerator Press(Key key)
+        private IEnumerator Press(Key key)
         {
-            if (!keyboard.enabled) InputSystem.EnableDevice(keyboard);
+            if (!keyboard.enabled)
+            {
+                InputSystem.EnableDevice(keyboard);
+            }
+
             keyboard.MakeCurrent();
             InputSystem.QueueStateEvent(keyboard, new KeyboardState());
             yield return null;
@@ -474,14 +501,18 @@ namespace NetRunner.Diagnostics
             yield return new WaitForSecondsRealtime(.20f);
         }
 
-        static IEnumerator WaitForScene(string scene)
+        private static IEnumerator WaitForScene(string scene)
         {
             float until = Time.realtimeSinceStartup + 30;
-            while (SceneManager.GetActiveScene().name != scene && Time.realtimeSinceStartup < until) yield return null;
+            while (SceneManager.GetActiveScene().name != scene && Time.realtimeSinceStartup < until)
+            {
+                yield return null;
+            }
+
             yield return new WaitForSecondsRealtime(.65f);
         }
 
-        bool Check(bool condition, string description)
+        private bool Check(bool condition, string description)
         {
             results.Add((condition ? "PASS " : "FAIL ") + description);
             Debug.Log(results[^1]);
@@ -490,6 +521,9 @@ namespace NetRunner.Diagnostics
             return condition;
         }
 
-        void Finish() => Application.Quit(results.Exists(x => x.StartsWith("FAIL")) ? 2 : 0);
+        private void Finish()
+        {
+            Application.Quit(results.Exists(x => x.StartsWith("FAIL")) ? FailedExitCode : 0);
+        }
     }
 }
