@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System.Collections;
 using System.IO;
+using NetRunner.Core;
 using NetRunner.Player;
 using UnityEngine;
 
@@ -19,28 +20,28 @@ namespace NetRunner.Diagnostics
             AimAtRelay(relay);
             Check(interaction.TargetInView() as UnityEngine.Object == relay, "The service relay is targetable from the south forecourt.");
             latch.Toggle(relay);
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
+            yield return WaitLatch(latch, LatchPhase.Ready);
             latch.Tap();
             latch.Cancel();
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Stowed);
+            yield return WaitLatch(latch, LatchPhase.Stowed);
             Check(!relay.Linked && !latch.Model.activeSelf, "Cancel before the touch aborts the request and hides the arms.");
 
             latch.Toggle(null);
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
+            yield return WaitLatch(latch, LatchPhase.Ready);
             latch.Tap();
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Failed);
+            yield return WaitLatch(latch, LatchPhase.Failed);
             Check(screen.Status == "LINK FAILED" && !relay.Linked, "A touch without a target reaches failure and updates the live screen.");
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
+            yield return WaitLatch(latch, LatchPhase.Ready);
             latch.Toggle(null);
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Stowed);
+            yield return WaitLatch(latch, LatchPhase.Stowed);
             Check(!latch.Model.activeSelf, "The regular unequip returns to the hidden state.");
 
             AimAtRelay(relay);
             latch.Toggle(interaction.TargetInView() as LatchRelay);
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
+            yield return WaitLatch(latch, LatchPhase.Ready);
             latch.Tap();
             Check(!relay.Linked, "The relay waits for the animated touch before committing.");
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Success);
+            yield return WaitLatch(latch, LatchPhase.Success);
             Check(relay.Linked && screen.Status == "LINK ESTABLISHED", "The in-range tap links the relay and plays success.");
             yield return new WaitForSeconds(.22f);
             if (CaptureImages)
@@ -48,9 +49,9 @@ namespace NetRunner.Diagnostics
                 Check(CapturePanel(screen.Surface), "The 640 × 324 tablet RenderTexture contains visible UI pixels.");
                 CaptureCamera("07_LATCH07_Linked", true);
             }
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
+            yield return WaitLatch(latch, LatchPhase.Ready);
             latch.Toggle(null);
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Stowed);
+            yield return WaitLatch(latch, LatchPhase.Stowed);
             interaction.enabled = true;
         }
 
@@ -62,7 +63,7 @@ namespace NetRunner.Diagnostics
             Physics.SyncTransforms();
         }
 
-        IEnumerator WaitLatch(LatchViewmodel latch, LatchViewmodel.Phase phase)
+        IEnumerator WaitLatch(LatchViewmodel latch, LatchPhase phase)
         {
             float until = Time.realtimeSinceStartup + 4f;
             while (latch.Current != phase && Time.realtimeSinceStartup < until) yield return null;

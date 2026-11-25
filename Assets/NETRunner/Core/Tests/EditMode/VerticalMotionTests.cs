@@ -3,70 +3,62 @@ using NUnit.Framework;
 namespace NetRunner.Core.Tests
 {
     /// <summary>
-    /// EditMode tests: they run in a fraction of a second, without a scene,
-    /// because VerticalMotion is plain maths.
+    /// EditMode tests of the player's vertical speed. Expected values come
+    /// from docs/systems/player.md: gravity 18 m/s², falls capped at 34 m/s,
+    /// and a push down of 4.2 m/s while standing.
     /// </summary>
     public sealed class VerticalMotionTests
     {
-        private const float Frame = 1f / 60f;
-        private const float OneFrameOfGravity = VerticalMotion.Gravity * Frame;
+        private const float Gravity = 18f;
+        private const float GroundAdhesion = 4.2f;
+        private const float Step = 1f / 90f;
 
         [Test]
-        public void GravityTakesFourteenMetresPerSecondOffEverySecond()
+        public void InTheAirGravityTakesEighteenMetresPerSecondOffEverySecond()
         {
-            float speed = VerticalMotion.Step(0f, grounded: false, jumpPressed: false, canJump: true, dt: 1f);
+            float speed = VerticalMotion.Step(0f, false, Gravity, GroundAdhesion, .5f);
 
-            Assert.That(speed, Is.EqualTo(-14f).Within(1e-4f));
+            Assert.That(speed, Is.EqualTo(-9f).Within(1e-5f));
         }
 
         [Test]
-        public void OnTheFloorAFallingSpeedIsReplacedByTheGroundStick()
+        public void ARisingPlayerSlowsDownUnderGravity()
         {
-            float speed = VerticalMotion.Step(-5f, grounded: true, jumpPressed: false, canJump: true, dt: Frame);
+            float speed = VerticalMotion.Step(2f, false, Gravity, GroundAdhesion, .1f);
 
-            Assert.That(speed, Is.EqualTo(VerticalMotion.GroundStick - OneFrameOfGravity).Within(1e-4f));
+            Assert.That(speed, Is.EqualTo(.2f).Within(1e-5f));
         }
 
         [Test]
-        public void AJumpFromTheFloorStartsUpwardsAtTheJumpSpeed()
+        public void AFallStopsSpeedingUpAtThirtyFourMetresPerSecond()
         {
-            float speed = VerticalMotion.Step(VerticalMotion.GroundStick, grounded: true, jumpPressed: true, canJump: true, dt: Frame);
+            float nearly = VerticalMotion.Step(-33.9f, false, Gravity, GroundAdhesion, .1f);
+            float atTheLimit = VerticalMotion.Step(-34f, false, Gravity, GroundAdhesion, Step);
 
-            Assert.That(speed, Is.EqualTo(VerticalMotion.JumpSpeed - OneFrameOfGravity).Within(1e-4f));
+            Assert.That(nearly, Is.EqualTo(-34f));
+            Assert.That(atTheLimit, Is.EqualTo(-34f));
         }
 
         [Test]
-        public void JumpingInTheAirDoesNothing()
+        public void OnTheFloorItIsPressedDownAtTheGroundAdhesion()
         {
-            float speed = VerticalMotion.Step(1f, grounded: false, jumpPressed: true, canJump: true, dt: Frame);
+            float fromAFall = VerticalMotion.Step(-12f, true, Gravity, GroundAdhesion, Step);
+            float fromStanding = VerticalMotion.Step(-GroundAdhesion, true, Gravity, GroundAdhesion, Step);
 
-            Assert.That(speed, Is.EqualTo(1f - OneFrameOfGravity).Within(1e-4f));
+            Assert.That(fromAFall, Is.EqualTo(-GroundAdhesion));
+            Assert.That(fromStanding, Is.EqualTo(-GroundAdhesion));
         }
 
         [Test]
-        public void NoJumpWhereJumpingIsSwitchedOff()
+        public void HittingTheCeilingStopsARise()
         {
-            float speed = VerticalMotion.Step(VerticalMotion.GroundStick, grounded: true, jumpPressed: true, canJump: false, dt: Frame);
-
-            Assert.That(speed, Is.EqualTo(VerticalMotion.GroundStick - OneFrameOfGravity).Within(1e-4f));
+            Assert.That(VerticalMotion.AfterHittingCeiling(3f), Is.EqualTo(0f));
         }
 
         [Test]
-        public void AJumpRisesAboutTwoThirdsOfAMetre()
+        public void HittingTheCeilingDoesNotStopAFall()
         {
-            // Same order as in the game: work out the speed, then move by speed × frame time.
-            float speed = VerticalMotion.Step(VerticalMotion.GroundStick, grounded: true, jumpPressed: true, canJump: true, dt: Frame);
-            float height = 0f;
-            float peak = 0f;
-            for (int frame = 0; frame < 120 && height >= 0f; frame++)
-            {
-                height += speed * Frame;
-                peak = UnityEngine.Mathf.Max(peak, height);
-                speed = VerticalMotion.Step(speed, grounded: false, jumpPressed: false, canJump: true, dt: Frame);
-            }
-
-            // 0.66 m was measured in the game on 2026-09-30 (docs/systems/player.md).
-            Assert.That(peak, Is.EqualTo(0.66f).Within(0.03f));
+            Assert.That(VerticalMotion.AfterHittingCeiling(-3f), Is.EqualTo(-3f));
         }
     }
 }

@@ -36,7 +36,7 @@ Library/, Temp/, Logs/, Builds/, UserSettings/  are created by Unity and never c
 | Folder | What is in it | Files | Owner |
 | --- | --- | ---: | --- |
 | `NETRunner92/` | **the hospital's art and scenes**: scenes, environment, LATCH-07 arms and player prefab, K-7, atmosphere assets, rendering (below); no code since #31 PR B | 252 | art: AdaM404; gameplay scenes: Claude/Samuel |
-| `NETRunner/Core/` | rules in plain C# (`VerticalMotion`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`, `RenderFeature`, `RenderFeatureList`, `OcclusionRole`, `OcclusionRules`, `Patrol`, `K7Gait`, `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents`, `LightPulse`, `RandomRange`) and their EditMode tests, two assembly definitions | 35 | Claude/Samuel |
+| `NETRunner/Core/` | rules in plain C# (`PlanarMotion`, `VerticalMotion`, `MotionSteps`, `ViewMotion`, `LatchSession`, `LatchPhase`, `LatchStatus`, `LatchAccent`, `CctvFeeds`, `DoorRules`, `LiftCar`, `StairRules`, `SignalPuzzle`, `PowerFlicker`, `Scalar`, `Easing`, `QualityChoice`, `StartResolution`, `FrameRateMeter`, `LaunchArguments`, `RenderFeature`, `RenderFeatureList`, `OcclusionRole`, `OcclusionRules`, `Patrol`, `K7Gait`, `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents`, `LightPulse`, `RandomRange`) and their EditMode tests, two assembly definitions | 61 | Claude/Samuel |
 | `NETRunner/Player/`, `World/`, `Enemy/`, `Atmosphere/`, `Diagnostics/` | the hospital's code, one feature each, with their tests (see "Code" below) | | Claude/Samuel |
 | `NETRunner/Settings/` | `QualitySwitch` (F2 quality, F3 FPS) and its PlayMode tests, two assembly definitions; see [[systems/quality-settings]] | 4 | Claude/Samuel |
 | `HDRPDefaultResources/` | HDRP global settings and default volume profile | 2 | shared, change by pull request |
@@ -70,19 +70,21 @@ move or be renamed together with its `.meta`.
 
 Since #31 PR B the hospital code is in feature folders, each with its own
 assembly and namespace `NetRunner.<Feature>` ([[architecture/overview]]).
-The code is unchanged from Northline apart from `Enemy` (#41) and
-`Atmosphere` (#42), which follow [[architecture/coding-standards]];
-#43–#45 do the rest, one feature each. Paths below are under `Assets/NETRunner/`.
+The code is unchanged from Northline apart from `Enemy` (#41),
+`Atmosphere` (#42), `Player` (#43) and `World`'s runtime code (#44), which
+follow [[architecture/coding-standards]]; #44's second part (the scene
+builders) and #45 (`Diagnostics`) do the rest. Paths below are under `Assets/NETRunner/`.
 
 | File | What it does | Note |
 | --- | --- | --- |
-| `Player/Scripts/FirstPersonController.cs` | movement, mouse look, cursor | [[systems/player]] |
-| `Player/Scripts/HospitalInteraction.cs`, `IInteractable.cs` | aiming ray, prompt, E key; the interfaces `IInteractable` and `ITerminal` | [[systems/doors-and-interaction]] |
-| `Player/Scripts/Latch*.cs`, `SecurityCctv.cs` | LATCH-07 tablet and live CCTV | [[systems/player]] |
+| `Player/Scripts/FirstPersonController.cs` | movement, mouse look, cursor, with the rules from `PlanarMotion`, `VerticalMotion`, `MotionSteps` and `ViewMotion` | [[systems/player]] |
+| `Player/Scripts/HospitalInteraction.cs`, `IInteractable.cs`, `ITerminal.cs` | aiming ray, prompt, E key; the interfaces `IInteractable` and `ITerminal` | [[systems/doors-and-interaction]] |
+| `Player/Scripts/Latch*.cs`, `SecurityCctv.cs` | LATCH-07 tablet and live CCTV, with the rules from `LatchSession`, `LatchStatus` and `CctvFeeds` | [[systems/player]] |
+| `Player/Tests/PlayMode/*.cs` | walking, sprint, gravity, look; aiming; the relay link; the CCTV feeds (on test-built objects); the tablet's phases and screen (in the hospital) | [[systems/player]] |
 | `Player/Editor/LatchViewmodelBuilder.cs` | LATCH-07 import check scene | [[systems/player]] |
-| `World/Scripts/HospitalDoor.cs`, `HospitalLift.cs`, `HospitalLiftButton.cs`, `StairAccess.cs` | doors, lift, first-ascent rules | [[systems/doors-and-interaction]] |
-| `World/Scripts/ReceptionSecurityTerminal.cs` | reception puzzle that unlocks CCTV | [[systems/doors-and-interaction]] |
-| `World/Scripts/ResidualPower.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | flickering emergency power; room plan and stair route used by the checks | [[systems/level-hospital]] |
+| `World/Scripts/HospitalDoor.cs`, `HospitalLift.cs`, `HospitalLiftButton.cs`, `StairAccess.cs` | doors, lift, first ascent, with the rules from `DoorRules`, `LiftCar` and `StairRules` | [[systems/doors-and-interaction]] |
+| `World/Scripts/ReceptionSecurityTerminal.cs` | reception puzzle that unlocks CCTV, with the rule from `SignalPuzzle` | [[systems/doors-and-interaction]] |
+| `World/Scripts/ResidualPower.cs`, `RoomReachability.cs`, `ExplorationRoute.cs` | flickering emergency power (timing from `PowerFlicker`); room plan and stair route used by the checks | [[systems/level-hospital]] |
 | `Enemy/Scripts/K7Patrol.cs` | K-7 patrol: moves the robot and turns its bones, with the rules from `Patrol` and `K7Gait` | [[systems/enemy-k7]] |
 | `Enemy/Tests/PlayMode/K7PatrolTests.cs` | walks, legs swing, turns round at the end, carries on after being moved | [[systems/enemy-k7]] |
 | `Atmosphere/Scripts/*.cs` | fog zones, weather and ambience, pulsing lights, with the rules from `ZoneBlend`, `Ambience`, `RainField`, `AmbientEvents` and `LightPulse` | [[systems/atmosphere]] |
@@ -93,18 +95,22 @@ The code is unchanged from Northline apart from `Enemy` (#41) and
 | `Diagnostics/Tests/PlayMode/HospitalChecksTests.cs` | runs the 95 checks as one NUnit test | [[architecture/tooling]] |
 | `Diagnostics/Tests/PlayMode/RenderFeatureSwitchTests.cs` | each switched-off feature changes only its own camera or light setting | [[systems/performance]] |
 | `World/Tests/PlayMode/DoorInteractionTests.cs` | doors start shut, aim, open/close, lock | [[systems/doors-and-interaction]] |
+| `World/Tests/PlayMode/HospitalDoorTests.cs`, `HospitalLiftTests.cs`, `StairAccessTests.cs`, `ReceptionSecurityTerminalTests.cs`, `ResidualPowerTests.cs` | door timing and doorway, the lift, the first ascent, the reception puzzle, residual power | [[systems/doors-and-interaction]] |
 | `World/Editor/*.cs` | scene builders (one partial class `HospitalSceneBuilder`, including `HospitalOcclusion.cs`, which bakes occlusion culling) and `PlayModeValidation` | [[systems/level-hospital]] |
-| `NETRunner/Core/Scripts/VerticalMotion.cs` | plain C# rule; currently unused by the hospital | — |
+| `NETRunner/Core/Scripts/PlanarMotion.cs`, `VerticalMotion.cs`, `MotionSteps.cs`, `ViewMotion.cs` | the player's walking, gravity, movement steps, mouse look and head bob | [[systems/player]] |
+| `NETRunner/Core/Scripts/LatchSession.cs`, `LatchPhase.cs`, `LatchStatus.cs`, `LatchAccent.cs`, `CctvFeeds.cs` | the LATCH-07 tablet's phases and screen, and the CCTV feeds | [[systems/player]] |
+| `NETRunner/Core/Scripts/DoorRules.cs`, `LiftCar.cs`, `StairRules.cs`, `SignalPuzzle.cs` | the world's rules: doors, the lift, the first ascent, the reception puzzle | [[systems/doors-and-interaction]] |
+| `NETRunner/Core/Scripts/PowerFlicker.cs`, `Scalar.cs` | residual power; Unity's `MoveTowards` and `Repeat` for rules in `Core` | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/QualityChoice.cs`, `StartResolution.cs`, `FrameRateMeter.cs`, `LaunchArguments.cs` | rules behind the quality switch | [[systems/quality-settings]] |
 | `NETRunner/Core/Scripts/RenderFeature.cs`, `RenderFeatureList.cs` | the features a benchmark run can switch off, and their names | [[systems/performance]] |
 | `NETRunner/Core/Scripts/OcclusionRole.cs`, `OcclusionRules.cs` | which part an object plays in the baked occlusion culling | [[systems/level-hospital]] |
 | `NETRunner/Core/Scripts/Patrol.cs`, `K7Gait.cs` | the K-7's patrol walk and its leg, arm and head angles | [[systems/enemy-k7]] |
 | `NETRunner/Core/Scripts/ZoneBlend.cs`, `Ambience.cs`, `RainField.cs`, `AmbientEvents.cs`, `LightPulse.cs`, `RandomRange.cs`, `Easing.cs` | the atmosphere's rules: zone weights, volumes, rain streaks, lightning and sounds, pulsing lights | [[systems/atmosphere]] |
 | `NETRunner/Settings/Scripts/QualitySwitch.cs` | F2 quality level, F3 FPS counter, first-start resolution, resolution scaling on screen cameras | [[systems/quality-settings]] |
-| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 124 EditMode and 5 PlayMode tests | the test runner |
+| `NETRunner/Core/Tests/EditMode/*.cs`, `NETRunner/Settings/Tests/PlayMode/*.cs` | 227 EditMode and 5 PlayMode tests | the test runner |
 
-Tests: 124 EditMode (`Core`) and 36 PlayMode (5 in `Settings`, 5 in
-`World`, 5 in `Enemy`, 15 in `Atmosphere`, 6 in `Diagnostics`: 5 for the
+Tests: 227 EditMode (`Core`) and 87 PlayMode (5 in `Settings`, 27 in
+`Player`, 29 in `World`, 5 in `Enemy`, 15 in `Atmosphere`, 6 in `Diagnostics`: 5 for the
 benchmark's feature switch and 1 that runs the hospital's 95 checks in
 about 45 seconds).
 
@@ -126,7 +132,7 @@ about 45 seconds).
 | --- | --- | --- |
 | High Definition RP 17.6.0 | the render pipeline (also brings Shader Graph and VFX Graph) | yes |
 | Input System 1.20.0 | keyboard and mouse input | yes, by the hospital code |
-| Test Framework 1.8.0 | automated tests | yes: 124 EditMode, 36 PlayMode tests |
+| Test Framework 1.8.0 | automated tests | yes: 227 EditMode, 87 PlayMode tests |
 | AI Navigation 2.0.14 | navigation meshes for enemies | not yet |
 | Timeline, uGUI, Visual Scripting | cutscenes, UI, node-based scripting | not used by any asset |
 | Pipeline 0.8 (experimental) | lets the `unity` terminal tool drive the editor | yes, by our tooling |
@@ -139,9 +145,9 @@ about 45 seconds).
 | I want to change | Open |
 | --- | --- |
 | walking or sprint speed, mouse sensitivity, eye height | `PlayerController` → First Person Controller ([[systems/player]]) |
-| which key does what | `FirstPersonController.Update()`, `HospitalInteraction.Update()`, `LatchViewmodel` |
+| which key does what | `FirstPersonController.Update()`, `HospitalInteraction.Update()`, `LatchViewmodel.ReadInput()`; what the tablet's keys do in each phase: `Core`'s `LatchSession` |
 | how far E reaches | `HospitalInteraction.Reach` (2.65 m) |
-| a door, the lift or the first-ascent rules | `HospitalDoor`, `HospitalLift`, `StairAccess` ([[systems/doors-and-interaction]]) |
+| a door, the lift or the first-ascent rules | `HospitalDoor`, `HospitalLift`, `StairAccess`; the numbers in `Core`'s `DoorRules`, `LiftCar`, `StairRules` ([[systems/doors-and-interaction]]) |
 | the reception puzzle or CCTV feeds | `ReceptionSecurityTerminal`, `SecurityCctv` |
 | K-7 patrol speed or route | the K-7 object → K7 Patrol → Speed / Route ([[systems/enemy-k7]]) |
 | fog, lights, storm | `Assets/NETRunner92/Atmosphere/` ([[systems/rendering]]) |

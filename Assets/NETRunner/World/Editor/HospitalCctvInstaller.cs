@@ -68,7 +68,7 @@ namespace NetRunner.World.Editor
             {
                 var view = Node($"CAM {index + 1:00} / {p.name}", views);
                 view.SetPositionAndRotation(p.at, Quaternion.LookRotation(p.aim - p.at));
-                return new SecurityCctv.Feed { label = p.name, view = view };
+                return new SecurityCctv.Feed(p.name, view);
             }).ToArray();
             var network = root.gameObject.AddComponent<SecurityCctv>();
             network.Configure(camera, feeds);

@@ -46,8 +46,19 @@ Linux run after the move, see the work log in [`agent.md`](../../agent.md).
 - **Stairs:** the twelve visible flights have invisible ramp colliders
   (2.10 m rise over 3.19 m).
 - **Atmosphere:** rain, lightning, ambience sound, fog zones and pulsing
-  lights: [[systems/atmosphere]]. The flickering "residual power" lights
-  are `World`'s `ResidualPower`.
+  lights: [[systems/atmosphere]].
+- **Residual power:** four concourse lamps and a few screens flicker on
+  `World`'s `ResidualPower`, with the timing from `Core`'s `PowerFlicker`.
+  Each repeats an outage every 11.5 s plus 9% of its own phase, so no two
+  run in step. A lamp drops to 4% from 0 to 0.13 s and from 0.29 to
+  0.43 s, browns out to 27% from 0.64 to 1.20 s and burns fully otherwise;
+  its glowing material follows it. A screen sits at 18% for the first
+  0.28 s and then at 78% ± 20%, waving at 3.1 radians a second.
+  `ResidualPowerTests` follows a test-built lamp through its cycle.
+- **Room reachability:** `World`'s `RoomReachability` (editor only) floods
+  each floor from its centre in 0.32 m steps wherever a player's capsule
+  fits and reports which rooms of `RoomSchedule.json` it reached; the
+  hospital checks use it.
 - **Occlusion culling** (since 2026-11-11, #36 round 1): the cameras skip
   what walls and floors hide. Everything under
   `Northline Medical — imported environment` is static for occlusion:

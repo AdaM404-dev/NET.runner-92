@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.IO;
+using NetRunner.Core;
 using NetRunner.Player;
 using NetRunner.World;
 using UnityEngine.Rendering;
@@ -39,7 +40,7 @@ namespace NetRunner.Diagnostics
             Check(terminal.Submit() && network.Unlocked && !terminal.IsOpen && latch.CctvAvailable,
                 "Matching all three signal nodes unlocks the camera network for the tablet.");
             Check(latch.ToggleCctv(), "The unlocked CCTV request raises the tablet.");
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Ready);
+            yield return WaitLatch(latch, LatchPhase.Ready);
             Check(network.Watching && network.Count == 6 && network.Surface && network.Surface.IsCreated(),
                 "The raised tablet opens the six-feed camera network.");
 
@@ -85,7 +86,7 @@ namespace NetRunner.Diagnostics
                 RenderPipelineManager.endCameraRendering -= CountFeed;
             }
             latch.ToggleCctv();
-            yield return WaitLatch(latch, LatchViewmodel.Phase.Stowed);
+            yield return WaitLatch(latch, LatchPhase.Stowed);
             Check(!network.Watching && !network.FeedCamera.enabled && network.Unlocked,
                 "Closing the tablet stops the extra camera and preserves unlocked access.");
             interaction.enabled = true;
