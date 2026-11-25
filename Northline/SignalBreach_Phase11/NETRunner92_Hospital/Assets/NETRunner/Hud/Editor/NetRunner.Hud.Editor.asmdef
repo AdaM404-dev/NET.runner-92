@@ -1,0 +1,21 @@
+{
+    "name": "NetRunner.Hud.Editor",
+    "rootNamespace": "NetRunner.Hud.Editor",
+    "references": [
+        "NetRunner.Hud",
+        "NetRunner.Player",
+        "NetRunner.World",
+        "NetRunner.SceneBuilding.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

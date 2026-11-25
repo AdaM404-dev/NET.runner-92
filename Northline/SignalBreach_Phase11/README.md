@@ -73,6 +73,15 @@ The hospital player camera also skips HDRP's decal pass because the scene
 has no decal projectors.
 After changing the imported building geometry, run **NET.runner-92 › Bake
 Occlusion Culling** in the editor to regenerate the scene's culling data.
+**NET.runner-92 › Build Hospital Exploration Scene** bakes it last as well.
+
+The scene builders follow `main`'s split by feature (#44, taken over in
+#55 step 4): `World/Editor/HospitalSceneBuilder` builds the hospital and
+calls the builders in `Player/Editor`, `Enemy/Editor`, `Atmosphere/Editor`
+and `Hud/Editor`; `Menu/Editor/MainMenuBuilder` builds the menu scene; and
+`World/Editor/RuntimeReferencesInstaller` (**Phase 11 › Install runtime
+references**) wires the shared assets afterwards. The editor menu items are
+unchanged.
 
 In the local Windows comparison (RTX 3060 Ti, Direct3D 11, 1920×1080
 offscreen, Medium), both modes used the same development build and camera

@@ -1,0 +1,22 @@
+{
+    "name": "NetRunner.Enemy.Editor",
+    "rootNamespace": "NetRunner.Enemy.Editor",
+    "references": [
+        "NetRunner.Core",
+        "NetRunner.Enemy",
+        "NetRunner.SceneBuilding.Editor",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

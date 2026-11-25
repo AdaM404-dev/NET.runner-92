@@ -12,6 +12,12 @@
         "NetRunner.Saves",
         "NetRunner.Settings",
         "NetRunner.World",
+        "NetRunner.SceneBuilding.Editor",
+        "NetRunner.Player.Editor",
+        "NetRunner.Enemy.Editor",
+        "NetRunner.Atmosphere.Editor",
+        "NetRunner.Hud.Editor",
+        "NetRunner.Menu.Editor",
         "Unity.InputSystem",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.HighDefinition.Runtime"

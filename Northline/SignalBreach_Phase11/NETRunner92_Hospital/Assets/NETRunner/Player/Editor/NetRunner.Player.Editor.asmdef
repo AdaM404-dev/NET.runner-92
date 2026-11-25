@@ -3,6 +3,7 @@
     "rootNamespace": "NetRunner.Player.Editor",
     "references": [
         "NetRunner.Player",
+        "NetRunner.SceneBuilding.Editor",
         "Unity.InputSystem",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.HighDefinition.Runtime"

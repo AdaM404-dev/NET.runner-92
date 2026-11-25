@@ -1,69 +1,104 @@
+using System;
+using NetRunner.SceneBuilding.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 
 namespace NetRunner.World.Editor
 {
-    public static partial class HospitalSceneBuilder
+    /// <summary>
+    /// The hospital's first optimisation pass (Northline Phase 05): shadows
+    /// only within 36 m in two cascades, the cheapest volumetric fog quality,
+    /// no shadows from furnishings and ground clutter, and the small ones on
+    /// the near-detail layer, which cameras stop drawing beyond a short
+    /// distance (the player's camera and the CCTV camera set that distance).
+    /// </summary>
+    public static class HospitalOptimization
     {
+        private const string StormVolume = "ZONE_Exterior_Quarantine";
+        private const string FurnishingMark = "_FF_";
+        private const string GroundCoverPrefix = "Q4_";
+        private const float ShadowDistance = 36f;
+        private const int ShadowCascades = 2;
+        private const float FirstCascadeSplit = .32f;
+        private const int LowestFogQuality = 0;
+
+        // Furnishings smaller than this in every direction count as near detail.
+        private const float SmallFurnishing = .86f;
+
+        /// <summary>Optimises the hospital scene, then runs the hospital checks and builds the Windows player if they pass.</summary>
         public static void OptimizeAndBuild()
         {
-            OptimizeScene();
+            Optimize();
             PlayModeValidation.RunAndBuild();
         }
 
-        static void OptimizeScene()
+        /// <summary>Applies the optimisation to the hospital scene and saves it.</summary>
+        public static void Optimize()
         {
-            var scene = EditorSceneManager.OpenScene(ScenePath);
-            var settings = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
-            var tags = new SerializedObject(settings[0]);
-            tags.FindProperty("layers").GetArrayElementAtIndex(8).stringValue = "Near-detail geometry";
-            tags.ApplyModifiedPropertiesWithoutUndo();
+            Scene scene = EditorSceneManager.OpenScene(HospitalAssets.ScenePath);
+            HospitalLayers.Assign(HospitalLayers.NearDetail, HospitalLayers.NearDetailName);
+            LimitShadows(GameObject.Find(StormVolume).GetComponent<Volume>().sharedProfile);
+            foreach (Volume volume in UnityEngine.Object.FindObjectsByType<Volume>())
+            {
+                if (!volume.sharedProfile || !volume.sharedProfile.TryGet<Fog>(out Fog fog))
+                {
+                    continue;
+                }
 
-            var global = GameObject.Find("ZONE_Exterior_Quarantine").GetComponent<Volume>().sharedProfile;
-            if (!global.TryGet<HDShadowSettings>(out var shadow))
-            {
-                shadow = global.Add<HDShadowSettings>(true);
-                AssetDatabase.AddObjectToAsset(shadow, global);
-            }
-            shadow.maxShadowDistance.Override(36f);
-            shadow.cascadeShadowSplitCount.Override(2);
-            shadow.cascadeShadowSplit0.Override(.32f);
-            EditorUtility.SetDirty(shadow);
-            EditorUtility.SetDirty(global);
-            foreach (var volume in Object.FindObjectsByType<Volume>())
-            {
-                if (!volume.sharedProfile || !volume.sharedProfile.TryGet<Fog>(out var fog)) continue;
-                fog.quality.Override(0);
+                fog.quality.Override(LowestFogQuality);
                 EditorUtility.SetDirty(fog);
             }
 
-            int closeDetail = 0, simplifiedShadows = 0;
-            foreach (var r in Object.FindObjectsByType<MeshRenderer>())
+            int closeDetail = 0;
+            int simplifiedShadows = 0;
+            foreach (MeshRenderer renderer in UnityEngine.Object.FindObjectsByType<MeshRenderer>())
             {
-                var b = r.bounds;
-                bool furnishing = r.name.Contains("_FF_");
-                bool fine = r.name.StartsWith("Q4_") && (r.name.Contains("sedge", System.StringComparison.OrdinalIgnoreCase)
-                    || r.name.Contains("Volunteer grass") || r.name.Contains("Local debris") || r.name.Contains("Windblown leaf"));
-                if (furnishing || fine)
+                Bounds bounds = renderer.bounds;
+                bool isFurnishing = renderer.name.Contains(FurnishingMark);
+                bool isGroundCover = IsGroundCover(renderer.name);
+                if (isFurnishing || isGroundCover)
                 {
-                    r.shadowCastingMode = ShadowCastingMode.Off;
+                    renderer.shadowCastingMode = ShadowCastingMode.Off;
                     simplifiedShadows++;
                 }
-                if (fine || furnishing && Mathf.Max(b.size.x, Mathf.Max(b.size.y,b.size.z)) < .86f)
+
+                if (isGroundCover || isFurnishing && Mathf.Max(bounds.size.x, Mathf.Max(bounds.size.y, bounds.size.z)) < SmallFurnishing)
                 {
-                    r.gameObject.layer = 8;
+                    renderer.gameObject.layer = HospitalLayers.NearDetail;
                     closeDetail++;
                 }
             }
+
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
             Debug.Log($"NET92 OPTIMIZED | {closeDetail} distance-culled fine renderers | {simplifiedShadows} fine shadow casters removed");
         }
+
+        private static void LimitShadows(VolumeProfile storm)
+        {
+            if (!storm.TryGet<HDShadowSettings>(out HDShadowSettings shadow))
+            {
+                shadow = storm.Add<HDShadowSettings>(true);
+                AssetDatabase.AddObjectToAsset(shadow, storm);
+            }
+
+            shadow.maxShadowDistance.Override(ShadowDistance);
+            shadow.cascadeShadowSplitCount.Override(ShadowCascades);
+            shadow.cascadeShadowSplit0.Override(FirstCascadeSplit);
+            EditorUtility.SetDirty(shadow);
+            EditorUtility.SetDirty(storm);
+        }
+
+        // The grounds' sedge, grass, debris and leaves.
+        private static bool IsGroundCover(string name)
+        {
+            return name.StartsWith(GroundCoverPrefix) && (name.Contains("sedge", StringComparison.OrdinalIgnoreCase)
+                || name.Contains("Volunteer grass") || name.Contains("Local debris") || name.Contains("Windblown leaf"));
+        }
     }
 }
-
-
