@@ -27,6 +27,12 @@ namespace NetRunner.Diagnostics
         /// <summary>The launch option; the word after it names the upscaler.</summary>
         public const string UpscalerOption = "-net92-upscaler";
 
+        /// <summary>The launch option; the number after it (0 to 1) replaces the fog's GI dimmer for tuning it (#79).</summary>
+        public const string FogGiOption = "-net92-fog-gi";
+
+        // Above the preferences' runtime volume (priority 100), so the tuning value wins.
+        private const int TuningPriority = 1000;
+
         // Point and spot lights farther than this from the camera fade out
         // when distant lights are switched off. The hospital's practicals reach
         // at most 8.5 m, so the lights of the room the player is in stay.
@@ -80,6 +86,16 @@ namespace NetRunner.Diagnostics
             int renderers = Hide(features, UnityEngine.Object.FindObjectsByType<Renderer>());
             SetUpscaler(upscaler, camera);
             string applied = $"without: {RenderFeatureList.Format(features)}; upscaler: {UpscalerList.Format(upscaler)}";
+            string fogGi = LaunchArguments.ValueAfter(Environment.GetCommandLineArgs(), FogGiOption);
+            if (fogGi != null && float.TryParse(fogGi, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float dimmer))
+            {
+                var tuning = new GameObject("Benchmark fog tuning").AddComponent<Volume>();
+                tuning.isGlobal = true;
+                tuning.priority = TuningPriority;
+                tuning.profile.Add<Fog>().globalLightProbeDimmer.Override(Mathf.Clamp01(dimmer));
+                applied += $"; fog GI: {Mathf.Clamp01(dimmer):0.##}";
+            }
+
             Debug.Log($"NET92 WITHOUT | {applied} | {lights} lights and {renderers} renderers changed");
             return applied;
         }

@@ -12,6 +12,14 @@ namespace NetRunner.Core
     public static class FogLights
     {
         /// <summary>
+        /// How strongly indirect light lights the volumetric fog (HDRP's fog "GI
+        /// dimmer"). With the lighting baked (#79) the light probes hold every
+        /// baked lamp's light and would fill the rooms with a bright haze at
+        /// HDRP's default of 1; before the bake the fog got only the dim sky.
+        /// </summary>
+        public const float BakedGiDimmer = .1f;
+
+        /// <summary>
         /// Whether point and spot lights shine into the volumetric fog on quality
         /// <paramref name="level"/> (0 Low, 1 Medium, 2 High): only on High.
         /// </summary>

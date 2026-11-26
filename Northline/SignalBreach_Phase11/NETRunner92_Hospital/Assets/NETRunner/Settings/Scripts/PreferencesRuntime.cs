@@ -66,6 +66,7 @@ namespace NetRunner.Settings
         private HDAdditionalCameraData cameraData;
         private VolumeProfile runtimeProfile;
         private HDShadowSettings shadowVolume;
+        private Fog fog;
         private ColorAdjustments color;
         private MotionBlur blur;
         private DepthOfField depth;
@@ -368,6 +369,8 @@ namespace NetRunner.Settings
             volume.priority = VolumePriority;
             runtimeProfile = volume.profile;
             shadowVolume = runtimeProfile.Add<HDShadowSettings>();
+            fog = runtimeProfile.Add<Fog>();
+            fog.globalLightProbeDimmer.Override(FogLights.BakedGiDimmer);
             color = runtimeProfile.Add<ColorAdjustments>();
             blur = runtimeProfile.Add<MotionBlur>();
             depth = runtimeProfile.Add<DepthOfField>();
