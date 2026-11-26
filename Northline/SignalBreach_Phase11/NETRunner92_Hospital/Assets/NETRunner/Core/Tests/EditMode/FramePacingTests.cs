@@ -5,6 +5,21 @@ namespace NetRunner.Core.Tests
     /// <summary>Checks the desktop frame limit against native and fractional display rates.</summary>
     public sealed class FramePacingTests
     {
+        [TestCase(60)]
+        [TestCase(144)]
+        [TestCase(PreferenceRules.Unlimited)]
+        public void AShownMenuRunsAtTheMenuLimitWhateverTheGameLimit(int gameLimit)
+        {
+            Assert.That(FramePacing.LimitFor(true, gameLimit), Is.EqualTo(FramePacing.MenuLimit));
+        }
+
+        [TestCase(60)]
+        [TestCase(PreferenceRules.Unlimited)]
+        public void WithoutAMenuTheGameLimitApplies(int gameLimit)
+        {
+            Assert.That(FramePacing.LimitFor(false, gameLimit), Is.EqualTo(gameLimit));
+        }
+
         [TestCase(60, 59.94, 1)]
         [TestCase(60, 120, 2)]
         [TestCase(60, 144, 0)]

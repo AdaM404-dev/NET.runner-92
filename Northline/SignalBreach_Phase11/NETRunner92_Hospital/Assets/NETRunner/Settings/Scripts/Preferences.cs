@@ -36,6 +36,9 @@ namespace NetRunner.Settings
         /// <summary>Raised whenever the preferences in effect change.</summary>
         public event Action Changed;
 
+        /// <summary>Raised when <see cref="MenuShown"/> changes.</summary>
+        public event Action MenuShownChanged;
+
         /// <summary>
         /// The preset a new profile starts on, for this machine's graphics: Low on
         /// integrated graphics, Medium otherwise (<see cref="QualityPreset.FirstStartFor"/>).
@@ -57,6 +60,12 @@ namespace NetRunner.Settings
         /// <summary>The player's camera, which the graphics settings apply to; set by the player when it wakes.</summary>
         public Camera PlayerCamera { get; private set; }
 
+        /// <summary>
+        /// Whether a menu is shown over the game, such as the pause menu; the frame
+        /// rate then drops to the menu's limit (<see cref="FramePacing.LimitFor"/>).
+        /// </summary>
+        public bool MenuShown { get; private set; }
+
         /// <summary>True when the game was started with -net92-quality: choices made this run are not saved.</summary>
         public bool QualityFixedAtLaunch => launchPreset != null;
 
@@ -70,11 +79,25 @@ namespace NetRunner.Settings
         public void Load()
         {
             Changed = null;
+            MenuShownChanged = null;
+            MenuShown = false;
             PlayerCamera = null;
             saved = ReadFile();
             saved.Validate();
             launchPreset = LaunchPreset(saved);
             Active = launchPreset ?? saved;
+        }
+
+        /// <summary>Tells the runtime that a menu over the game opened or closed (<see cref="MenuShown"/>).</summary>
+        public void ShowMenu(bool shown)
+        {
+            if (MenuShown == shown)
+            {
+                return;
+            }
+
+            MenuShown = shown;
+            MenuShownChanged?.Invoke();
         }
 
         /// <summary>Uses another folder for the settings file; for tests, which may write only under Logs/.</summary>

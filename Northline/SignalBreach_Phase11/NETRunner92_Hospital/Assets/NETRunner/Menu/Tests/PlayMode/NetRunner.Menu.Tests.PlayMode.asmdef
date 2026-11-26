@@ -9,6 +9,7 @@
         "NetRunner.Player",
         "NetRunner.World",
         "NetRunner.Core",
+        "NetRunner.Settings",
         "Unity.InputSystem",
         "Unity.RenderPipelines.HighDefinition.Runtime"
     ],

@@ -126,6 +126,11 @@ namespace NetRunner.Menu
 
             if (player)
             {
+                if (paused)
+                {
+                    player.Preferences.ShowMenu(false);
+                }
+
                 player.PauseInput(false);
                 player.Defeated -= RestartAfterDefeat;
             }
@@ -183,6 +188,7 @@ namespace NetRunner.Menu
             ShowPauseActions();
             overlay.schedule.Execute(resume.Focus);
             view.Freeze();
+            player.Preferences.ShowMenu(true);
         }
 
         private void Restore(HospitalCheckpoint checkpoint)
@@ -286,6 +292,7 @@ namespace NetRunner.Menu
 
             paused = false;
             view.Thaw();
+            player.Preferences.ShowMenu(false);
             player.PauseInput(false);
             overlay.style.display = DisplayStyle.None;
             Time.timeScale = previousTimeScale;
