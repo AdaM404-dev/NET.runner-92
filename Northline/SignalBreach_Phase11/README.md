@@ -68,6 +68,11 @@ The game stops the GPU computing what nobody sees ([#36](https://github.com/AdaM
 - **Motion vectors** are drawn only when something reads them: TAA, STP,
   motion blur or ambient occlusion (`Core/Scripts/MotionVectorRule.cs`).
   On Windows (Direct3D 11) they are off on Low and Medium.
+- **No colour pyramid:** HDRP built one every frame for refraction and
+  distortion, which no material uses; the player camera now skips both
+  (+12–24% on the laptop, pictures unchanged). Shadow maps of point and
+  spot lights stop beyond the level's shadow distance, and the pause runs
+  at the menu's 30 FPS limit (`FramePacing.LimitFor`).
 - **Lights in the fog** (step 2): on Medium the point and spot lights no
   longer light the volumetric fog; High keeps them (`Core/Scripts/FogLights.cs`,
   applied by `PreferencesRuntime`). Alpha test 6 measured +10–19% on Medium,

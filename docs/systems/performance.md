@@ -154,6 +154,13 @@ Notes:
        baked into light probes;
      - cached shadows on Medium (shadows cost 4–7 ms there);
      - a cheaper glass on Low (1–2 ms, AdaM404's material).
+   - **The final optimized release (alpha test 8, Samuel 2026-11-26):**
+     - Part A (`perf/phase11-free-cuts`): no colour pyramid (no material
+       refracts or distorts; +12–24% on the laptop on every level, pictures
+       identical within run-to-run noise); shadow maps only within the shadow
+       distance; the pause at the menu's 30 FPS.
+     - Part B: the full bake of the 245 static lamps (#79, waits for
+       AdaM404). Glass unchanged.
    - **After alpha test 6 (2026-11-26):** step 2 next: the lights out of
      the fog on Medium. Dropped:
      cheaper particles (they cost nothing measurable) and FSR 1 on Low (it
