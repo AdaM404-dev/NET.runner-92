@@ -27,6 +27,12 @@ benchmark can now switch single features off (`-net92-without`), the
 route walks the whole way again, and the laptop's breakdown is under
 Results; the test machine follows with alpha test 4.
 
+2026-11-26: alpha test 5 is the Phase 11 game (`Northline/SignalBreach_Phase11/`),
+measured on the test machine ([#69](https://github.com/AdaM404-dev/NET.runner-92/issues/69)).
+On Low, four of the five views average 36–43 FPS; the South checkpoint is
+at 27.6 FPS. Details under Results and on
+[#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36#issuecomment-7185936806).
+
 ## What the scene contains
 
 Counted in `Assets/NETRunner92/Scenes/Hospital_Exploration.unity` on
@@ -144,6 +150,28 @@ Notes:
    - Details and order: #36, "What will change", item 5.
 
 ## Results
+
+### Alpha test 5 (Phase 11), Windows test machine (2026-11-26, [#69](https://github.com/AdaM404-dev/NET.runner-92/issues/69))
+
+Intel UHD Graphics 630, Direct3D 11, 1920×1080 in a window, the view
+benchmark only (`Northline/SignalBreach_Phase11/tools/run-benchmarks.bat`).
+This is the Phase 11 game. Its Low preset uses the same pipeline asset and
+the same 50% render scale as the root game's, but switches off shadow maps,
+volumetrics, ambient occlusion, bloom and decals on the player camera.
+
+| View | Low, alpha test 4 (root) | Low | P95 frame on Low | Medium | High |
+| --- | --- | --- | --- | --- | --- |
+| South checkpoint | 13.3 FPS | 27.6 FPS | 41.2 ms | 13.0 FPS | 6.7 FPS |
+| Reception | 18.2 FPS | 40.8 FPS | 29.2 ms | 17.0 FPS | 8.0 FPS |
+| Ward | 16.1 FPS | 36.2 FPS | 31.3 ms | 14.9 FPS | 7.2 FPS |
+| Surgery | 17.4 FPS | 41.7 FPS | 27.5 ms | 17.0 FPS | 8.1 FPS |
+| Research | 19.0 FPS | 42.6 FPS | 26.5 ms | 17.4 FPS | 7.9 FPS |
+
+- P95 GPU time on Low fits 23.7 ms plus 6.8 ms per million triangles
+  (alpha test 4: 52 ms plus 6.2). The fixed cost fell by about 28 ms.
+- The goal of 30 FPS on Low is met indoors. The South checkpoint, outside
+  facing the facade, needs about 8 ms more.
+- New profiles start on Medium, which runs at 13–17 FPS on this machine.
 
 ### Round 1, lever 1: baked occlusion culling, Samuel's laptop (2026-11-11)
 
