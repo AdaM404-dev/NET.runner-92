@@ -9,6 +9,7 @@ using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace NetRunner.Diagnostics
 {
@@ -31,6 +32,8 @@ namespace NetRunner.Diagnostics
         private const float FirstWarmupSeconds = 8f;
         private const float WarmupSeconds = 5f;
         private const float SampleSeconds = 4.5f;
+        private const string PausedLabel = "Paused";
+        private const int NotMeasured = -1;
 
         private static readonly (string Label, Vector3 Position, float Yaw)[] Zones =
         {
@@ -173,6 +176,12 @@ namespace NetRunner.Diagnostics
                     $"{label};{frame.Count};{MillisecondsPerSecond / SampleStatistics.Mean(frame):F1};{SampleStatistics.Percentile(frame, Percentile):F2};{SampleStatistics.Percentile(gpu, Percentile):F2};{SampleStatistics.Mean(draw):F0};{SampleStatistics.Mean(tris):F0}"));
             }
 
+            // Offscreen runs draw the camera by request, which a frozen view would stop.
+            if (renderRequest == null)
+            {
+                yield return MeasurePaused(results);
+            }
+
             WriteResults(results);
         }
 
@@ -184,6 +193,44 @@ namespace NetRunner.Diagnostics
                 target.Release();
                 Destroy(target);
             }
+        }
+
+        // The pause menu's frozen frame at the last view (#36, round 3). The player
+        // camera is off then, so every frame counts, not only the camera's.
+        private IEnumerator MeasurePaused(List<string> results)
+        {
+            var panel = ScriptableObject.CreateInstance<PanelSettings>();
+            var view = new GameObject("Benchmark paused view").AddComponent<PausedView>();
+            view.Configure(eyes, panel);
+            view.Freeze();
+            float warmUntil = Time.realtimeSinceStartup + WarmupSeconds;
+            while (Time.realtimeSinceStartup < warmUntil)
+            {
+                Uncap();
+                yield return null;
+            }
+
+            var frame = new List<double>();
+            var gpu = new List<double>();
+            var timings = new FrameTiming[1];
+            float end = Time.realtimeSinceStartup + SampleSeconds;
+            while (Time.realtimeSinceStartup < end)
+            {
+                Uncap();
+                FrameTimingManager.CaptureFrameTimings();
+                yield return null;
+                frame.Add(Time.unscaledDeltaTime * MillisecondsPerSecond);
+                if (FrameTimingManager.GetLatestTimings(1, timings) > 0 && timings[0].gpuFrameTime > 0)
+                {
+                    gpu.Add(timings[0].gpuFrameTime);
+                }
+            }
+
+            view.Thaw();
+            Destroy(view.gameObject);
+            Destroy(panel);
+            results.Add(FormattableString.Invariant(
+                $"{PausedLabel};{frame.Count};{MillisecondsPerSecond / SampleStatistics.Mean(frame):F1};{SampleStatistics.Percentile(frame, Percentile):F2};{SampleStatistics.Percentile(gpu, Percentile):F2};{NotMeasured};{NotMeasured}"));
         }
 
         private void CountCameraRender(ScriptableRenderContext context, Camera camera)

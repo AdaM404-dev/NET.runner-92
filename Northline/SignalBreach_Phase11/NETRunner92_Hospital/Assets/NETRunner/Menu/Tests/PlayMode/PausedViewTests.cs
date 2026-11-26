@@ -8,10 +8,10 @@ using UnityEngine.UIElements;
 namespace NetRunner.Menu.Tests
 {
     /// <summary>
-    /// PlayMode tests of the paused view (#36, round 3). While paused, the
-    /// player camera is off and its last frame is shown, with a UI-only camera
-    /// presenting the menus. Resuming turns the player camera back on, even
-    /// when it comes in the same frame as the pause.
+    /// PlayMode tests of the paused view (#36, round 3). While paused, no
+    /// camera renders and the player camera's last frame is shown; a UI-only
+    /// camera presents the menus only in the capture frame. Resuming turns the
+    /// player camera back on, even when it comes in the same frame as the pause.
     /// </summary>
     public sealed class PausedViewTests
     {
@@ -46,12 +46,13 @@ namespace NetRunner.Menu.Tests
             view.Freeze();
 
             Assert.That(eyes.targetTexture, Is.Not.Null, "The player camera does not draw its last frame into a texture.");
+            Camera presenter = view.GetComponentInChildren<Camera>(true);
+            Assert.That(presenter.enabled && presenter.cullingMask == 0, Is.True, "No UI-only camera presents the capture frame.");
             yield return WaitForCapture();
 
             Assert.That(view.IsFrozen, Is.True);
             Assert.That(eyes.enabled, Is.False, "The player camera still renders while paused.");
-            Camera presenter = view.GetComponentInChildren<Camera>(true);
-            Assert.That(presenter.enabled && presenter.cullingMask == 0, Is.True, "No UI-only camera presents the menus.");
+            Assert.That(presenter.enabled, Is.False, "The UI-only camera still renders after the capture frame.");
             VisualElement screen = view.GetComponentInChildren<UIDocument>().rootVisualElement.Q("paused-view");
             Assert.That(screen.resolvedStyle.display, Is.EqualTo(DisplayStyle.Flex), "The last frame is not shown.");
         }

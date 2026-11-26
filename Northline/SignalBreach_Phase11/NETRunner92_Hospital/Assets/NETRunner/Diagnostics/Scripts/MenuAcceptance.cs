@@ -362,10 +362,7 @@ namespace NetRunner.Diagnostics
             }
 
             yield return CheckMenuFrameRate();
-            var menuCamera = Camera.main;
-            Check(menuCamera && menuCamera.TryGetComponent<HDAdditionalCameraData>(out var menuCameraData)
-                && !menuCameraData.allowDynamicResolution,
-                "The menu camera leaves HDRP dynamic resolution off for the UI.");
+            Check(Camera.allCamerasCount == 0, "The menu renders no camera: the engine draws its UI without an HDRP frame.");
             yield return CheckMenuInput(root);
             yield return CheckPerformanceOverlay();
 

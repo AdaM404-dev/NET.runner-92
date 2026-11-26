@@ -148,8 +148,54 @@ Notes:
      cheaper transparent effects; FSR 1; Adaptive Probe Volumes with the 49
      fill lights baked. Lightmaps get their own decision later.
    - Details and order: #36, "What will change", item 5.
+   - **After alpha test 6 (2026-11-26):** step 2 next: the light fade on
+     Low and Medium, and the lights out of the fog on Medium. Dropped:
+     cheaper particles (they cost nothing measurable) and FSR 1 on Low (it
+     costs 5–12 ms). Baking the fill lights alone gains little; the glass
+     needs a clean re-run. UI-only screens (pause, intro, main menu) no
+     longer use a camera at all (`perf/phase11-ui-only-frames`).
 
 ## Results
+
+### Alpha test 6 (Phase 11), Windows test machine (2026-11-26, [#73](https://github.com/AdaM404-dev/NET.runner-92/issues/73))
+
+Intel UHD Graphics 630, Direct3D 11, 1920×1080 in a window; the ten runs of
+`Northline/SignalBreach_Phase11/tools/run-benchmarks.bat`.
+
+| View | Low, alpha test 5 | Low | P95 frame on Low | Medium | High |
+| --- | --- | --- | --- | --- | --- |
+| South checkpoint | 27.6 FPS | 33.0 FPS | 34.4 ms | 14.2 FPS | 6.5 FPS |
+| Reception | 40.8 FPS | 45.2 FPS | 25.8 ms | 17.9 FPS | 8.0 FPS |
+| Ward | 36.2 FPS | 39.4 FPS | 29.2 ms | 15.5 FPS | 7.2 FPS |
+| Surgery | 41.7 FPS | 44.7 FPS | 26.3 ms | 17.5 FPS | 8.1 FPS |
+| Research | 42.6 FPS | 44.3 FPS | 25.8 ms | 17.8 FPS | 7.9 FPS |
+
+- **Motion vectors off** (round 3, step 1) gave Low +4–20% and Medium
+  +2–9%. High, which keeps TAA and with it the motion vectors, did not
+  change. The triangle counts on Low and Medium halved (1.88 → 0.94 M at
+  the South checkpoint), because the motion-vector pass drew the scene a
+  second time.
+- Every view on Low now averages more than 30 FPS. Only the South
+  checkpoint's P95 frame (34.4 ms) is still above 33.3 ms.
+
+Each switch against its level's run (mean over the five views; P95 GPU per view):
+
+| Run | FPS | P95 GPU per view |
+| --- | --- | --- |
+| Low without distant lights (25 m fade) | +5% (+2 to +8) | −0.4 to −2.3 ms; South checkpoint P95 frame 32.4 ms |
+| Low without fill lights | +4% (−3 to +11) | −2.3 to +5.0 ms: no clear effect |
+| Low without particles | +1% | −0.6 to +0.1 ms: nothing |
+| Low with FSR 1 | −23% (−17 to −29) | +4.9 to +11.6 ms |
+| Medium without fog lights | +15% (+10 to +19) | −4.7 to −11.9 ms |
+| Low without glass | −15% | +3.6 to +28.4 ms: impossible for less work; another load during the run |
+| Medium without shadows | ±0% | −4.0 to +31.6 ms: the same |
+
+**The UI-only camera** of the pause, the intro and the main menu: on
+Samuel's laptop (RTX 4050, 2560×1440) the frozen pause frame still cost
+2.53 ms of P95 GPU time per frame with it, against 3.69 ms for the whole
+Research view on Low. That's HDRP's full frame at full resolution for a
+camera that draws no objects. Without any camera it is 0.03 ms. On the
+UHD 630 this kept the GPU at full load in the pause and the intro.
 
 ### Alpha test 5 (Phase 11), Windows test machine (2026-11-26, [#69](https://github.com/AdaM404-dev/NET.runner-92/issues/69))
 

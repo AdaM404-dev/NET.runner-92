@@ -7,16 +7,15 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace NetRunner.Menu.Editor
 {
     /// <summary>
-    /// Builds the startup scene <c>MainMenu.unity</c>: a camera that only
-    /// clears to dark blue and draws no 3D (the menu is UI), the menu view
-    /// with its backdrop, styles, the score and the click sound, linked to
+    /// Builds the startup scene <c>MainMenu.unity</c>: no camera, since the
+    /// menu is UI and the engine draws it (#36, round 3), an audio listener,
+    /// the menu view with its backdrop, styles, the score and the click sound, linked to
     /// the shared preferences and run session. Puts the menu after the studio
     /// intro (when it exists) and before the hospital in Build Settings.
     /// </summary>
@@ -30,20 +29,11 @@ namespace NetRunner.Menu.Editor
         private const string SchedulePath = HospitalAssets.Environment + "/Hospital/RoomSchedule.json";
         private const string MixerPath = HospitalAssets.Atmosphere + "/Audio/Northline_Ambience.mixer";
         private const string HudPanelPath = HospitalAssets.Ui + "/HospitalHud_Panel.asset";
-        private const string MainCameraTag = "MainCamera";
         private const float ScoreVolume = .1625f;
 
         // The menu panel matches the screen's height, below every other panel.
         private const float MatchHeight = 1;
         private const int Bottom = 0;
-
-        private static readonly Color Background = new Color(.01f, .02f, .03f);
-
-        private static readonly FrameSettingsField[] SkippedEffects =
-        {
-            FrameSettingsField.Postprocess, FrameSettingsField.SSAO, FrameSettingsField.SSR, FrameSettingsField.Volumetrics,
-            FrameSettingsField.ShadowMaps,
-        };
 
         /// <summary>Builds and saves the menu scene; in the editor it first offers to save open changes.</summary>
         [MenuItem("NET.runner-92/Main Menu/Create startup scene")]
@@ -68,7 +58,7 @@ namespace NetRunner.Menu.Editor
 
             PanelSettings panel = Panel(hudPanel);
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            AddCamera();
+            AddListener();
             var view = new GameObject("Northline main menu");
             view.AddComponent<UIDocument>().panelSettings = panel;
             AudioSource backgroundAudio = new GameObject("Menu score").AddComponent<AudioSource>();
@@ -112,25 +102,13 @@ namespace NetRunner.Menu.Editor
             return panel;
         }
 
-        private static void AddCamera()
+        // No camera: an HDRP camera that draws no objects still runs HDRP's whole
+        // frame at full resolution, about 70% of a hospital view's GPU time on Low
+        // (#36, round 3). With no camera on, HDRP leaves the UI to the engine.
+        // MainMenuView paints the dark backdrop the camera used to clear to.
+        private static void AddListener()
         {
-            var screen = new GameObject("Menu presentation camera");
-            screen.tag = MainCameraTag;
-            Camera camera = screen.AddComponent<Camera>();
-            camera.clearFlags = CameraClearFlags.SolidColor;
-            camera.backgroundColor = Background;
-            camera.cullingMask = 0;
-            HDAdditionalCameraData hdrp = screen.AddComponent<HDAdditionalCameraData>();
-            hdrp.clearColorMode = HDAdditionalCameraData.ClearColorMode.Color;
-            hdrp.backgroundColorHDR = camera.backgroundColor;
-            hdrp.customRenderingSettings = true;
-            foreach (FrameSettingsField setting in SkippedEffects)
-            {
-                hdrp.renderingPathCustomFrameSettings.SetEnabled(setting, false);
-                hdrp.renderingPathCustomFrameSettingsOverrideMask.mask[(uint)setting] = true;
-            }
-
-            screen.AddComponent<AudioListener>();
+            new GameObject("Menu audio listener").AddComponent<AudioListener>();
         }
     }
 }
