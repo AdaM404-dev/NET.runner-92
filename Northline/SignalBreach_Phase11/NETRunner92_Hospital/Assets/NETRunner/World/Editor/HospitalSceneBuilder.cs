@@ -17,7 +17,8 @@ namespace NetRunner.World.Editor
     /// builder: the pipeline and player settings, the imported building and
     /// grounds, the player, the atmosphere, the clinical fill lights, the
     /// optimisation pass, the hospital's systems, LATCH-07 with the CCTV and
-    /// the HUD, and the occlusion bake. The main menu scene and the runtime
+    /// the HUD, the occlusion bake and the lighting bake (<see cref="HospitalLighting"/>,
+    /// #79; the meshes get lightmap UVs on import). The main menu scene and the runtime
     /// references are separate steps (<see cref="HospitalWindowsBuilds.MainMenu"/>,
     /// <see cref="RuntimeReferencesInstaller"/>). It rewrites the mesh, material and profile assets,
     /// so it is run only when the source changes. Runs headless with
@@ -57,7 +58,8 @@ namespace NetRunner.World.Editor
             FirstPersonController player = PlayerPrefabBuilder.Add();
             HospitalAtmosphereBuilder.Add(atmosphere, player.Eyes.transform);
             EditorSceneManager.SaveScene(scene, HospitalAssets.ScenePath);
-            EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(HospitalAssets.ScenePath, true) };
+            // The studio intro and the main menu come first when they exist (SceneParts.StartOrder).
+            SceneParts.SetBuildOrder();
             AssetDatabase.SaveAssets();
             ClinicalFillLights.Refine();
             HospitalOptimization.Optimize();
@@ -68,6 +70,7 @@ namespace NetRunner.World.Editor
             }
 
             HospitalOcclusion.Bake();
+            HospitalLighting.Bake();
             Debug.Log($"NET92 SCENE | {importer.Visuals} visual meshes | {importer.Solids} colliders | {importer.Ramps} stair ramps");
         }
 
