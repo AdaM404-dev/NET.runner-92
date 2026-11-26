@@ -45,6 +45,9 @@ namespace NetRunner.Menu
         private const string StatusText = "RECOVERY CONSOLE   /   092";
         private const string StatusGlitch = "RECOVERY CONSO_E   /   092";
 
+        // No camera clears the screen behind the menu (#36, round 3), so the menu paints its own dark backdrop.
+        private static readonly Color Backdrop = new Color(.01f, .02f, .03f);
+
         [SerializeField] private StyleSheet menuStyle;
         [SerializeField] private Texture2D hospitalPlate;
         [SerializeField] private AudioSource music;
@@ -320,6 +323,7 @@ namespace NetRunner.Menu
             root.Clear();
             root.styleSheets.Add(menuStyle);
             root.AddToClassList("net-menu");
+            root.style.backgroundColor = Backdrop;
 
             plate = MenuWidgets.Box("plate");
             plate.style.backgroundImage = new StyleBackground(hospitalPlate);

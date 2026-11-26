@@ -4,7 +4,6 @@ using NetRunner.SceneBuilding.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
@@ -12,8 +11,9 @@ using UnityEngine.Video;
 namespace NetRunner.Intro.Editor
 {
     /// <summary>
-    /// Builds the startup scene <c>StudioIntro.unity</c> (#66): a camera that
-    /// only clears to black and listens, the intro video with its sound, the
+    /// Builds the startup scene <c>StudioIntro.unity</c> (#66): no camera, since
+    /// the intro is a video on a UI panel and the engine draws it (#36, round 3),
+    /// an audio listener, the intro video with its sound, the
     /// full-screen panel it is shown on, and <see cref="StudioIntro"/>, which
     /// then opens the main menu. Switches Unity's splash screen off and puts
     /// the intro first in Build Settings.
@@ -27,12 +27,6 @@ namespace NetRunner.Intro.Editor
         // The intro's panel draws above everything and fills the screen.
         private const int OnTop = 100;
         private const float MatchHeight = 1;
-
-        private static readonly FrameSettingsField[] SkippedEffects =
-        {
-            FrameSettingsField.Postprocess, FrameSettingsField.SSAO, FrameSettingsField.SSR, FrameSettingsField.Volumetrics,
-            FrameSettingsField.ShadowMaps,
-        };
 
         /// <summary>Builds and saves the intro scene, switches the splash screen off and sets the start order.</summary>
         [MenuItem("NET.runner-92/Intro/Create studio intro scene")]
@@ -50,7 +44,7 @@ namespace NetRunner.Intro.Editor
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             VideoClip clip = AssetDatabase.LoadAssetAtPath<VideoClip>(VideoPath);
             panel = AssetDatabase.LoadAssetAtPath<PanelSettings>(PanelPath);
-            AddCamera();
+            AddListener();
             var intro = new GameObject("Sanhilzon Studio intro");
             AudioSource sound = intro.AddComponent<AudioSource>();
             sound.playOnAwake = false;
@@ -98,24 +92,14 @@ namespace NetRunner.Intro.Editor
             return panel;
         }
 
-        private static void AddCamera()
+        // No camera: an HDRP camera that draws no objects still runs HDRP's whole
+        // frame at full resolution every frame, which kept integrated graphics at
+        // full load during the intro (alpha test 6, #36 round 3). With no camera
+        // on, HDRP leaves the UI to the engine; StudioIntro's picture is black
+        // around the video, where the camera used to clear.
+        private static void AddListener()
         {
-            var screen = new GameObject("Intro camera");
-            Camera camera = screen.AddComponent<Camera>();
-            camera.clearFlags = CameraClearFlags.SolidColor;
-            camera.backgroundColor = Color.black;
-            camera.cullingMask = 0;
-            HDAdditionalCameraData hdrp = screen.AddComponent<HDAdditionalCameraData>();
-            hdrp.clearColorMode = HDAdditionalCameraData.ClearColorMode.Color;
-            hdrp.backgroundColorHDR = Color.black;
-            hdrp.customRenderingSettings = true;
-            foreach (FrameSettingsField setting in SkippedEffects)
-            {
-                hdrp.renderingPathCustomFrameSettings.SetEnabled(setting, false);
-                hdrp.renderingPathCustomFrameSettingsOverrideMask.mask[(uint)setting] = true;
-            }
-
-            screen.AddComponent<AudioListener>();
+            new GameObject("Intro audio listener").AddComponent<AudioListener>();
         }
     }
 }
