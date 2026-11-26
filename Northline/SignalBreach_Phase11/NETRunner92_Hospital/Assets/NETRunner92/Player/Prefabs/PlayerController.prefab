@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 234915522d7bf3545b09725ba2d0faf8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NETRunner92.FirstPersonController
+  m_EditorClassIdentifier: NetRunner.Player::NetRunner.Player.FirstPersonController
   eyes: {fileID: 6912377965376460146}
   walkingSpeed: 3.5
   sprintSpeed: 5.5
@@ -79,8 +79,9 @@ MonoBehaviour:
   pitchLimit: 85
   gravity: 18
   groundAdhesion: 4.2
-  headBob: 0
+  preferences: {fileID: 0}
   eyeHeight: 1.65
+  detailCullDistance: 34
 --- !u!1 &2149373018181753913
 GameObject:
   m_ObjectHideFlags: 0
