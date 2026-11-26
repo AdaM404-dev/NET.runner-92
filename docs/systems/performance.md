@@ -162,8 +162,11 @@ Notes:
      - Part B (`perf/phase11-baked-lighting`): the full bake of the 245
        static lamps into lightmaps and light probes (#79). 23 lamps stay
        live; the fog's GI dimmer is 0.1. On the laptop after Part A: Low
-       +4–12%, Medium +16–30%, High +23–47%. The merge waits for AdaM404 and
-       the screenshot review. Glass unchanged.
+       +4–12%, Medium +16–30%, High +23–47%. Glass unchanged.
+     - Merged 2026-11-26 by Samuel (PRs #78, #80, #81). Alpha test 8 is
+       built from `main` at `476d8d9`; `run-benchmarks.bat` is down to Low,
+       Medium and High, and the release notes ask testers to look for
+       lighting faults (leaks, blotches, seams).
    - **After alpha test 6 (2026-11-26):** step 2 next: the lights out of
      the fog on Medium. Dropped:
      cheaper particles (they cost nothing measurable) and FSR 1 on Low (it
