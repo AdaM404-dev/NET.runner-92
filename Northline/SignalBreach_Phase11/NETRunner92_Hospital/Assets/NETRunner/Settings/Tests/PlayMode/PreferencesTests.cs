@@ -36,14 +36,19 @@ namespace NetRunner.Settings.Tests
             }
         }
 
+        // Samuel's decision of 2026-11-26 (#36): Low with a 50% render scale on
+        // integrated graphics, Medium with 67% otherwise.
         [Test]
-        public void WithoutAFileTheDefaultsAreMediumWithASixtyFpsLimit()
+        public void WithoutAFileTheDefaultsFitTheGraphicsWithASixtyFpsLimit()
         {
+            bool integrated = GraphicsHardware.IsIntegrated(SystemInfo.graphicsDeviceName);
+            int preset = integrated ? QualityPreset.Low : QualityPreset.Medium;
+
             var preferences = Loaded();
 
-            Assert.That(preferences.Active.Preset, Is.EqualTo(QualityPreset.Medium));
-            Assert.That(preferences.Active.Quality, Is.EqualTo(QualityPreset.Medium));
-            Assert.That(preferences.Active.RenderScale, Is.EqualTo(67));
+            Assert.That(preferences.Active.Preset, Is.EqualTo(preset));
+            Assert.That(preferences.Active.Quality, Is.EqualTo(preset));
+            Assert.That(preferences.Active.RenderScale, Is.EqualTo(integrated ? 50 : 67));
             Assert.That(preferences.Active.FrameLimit, Is.EqualTo(60));
             Assert.That(preferences.Active.FieldOfView, Is.EqualTo(68f));
         }
@@ -78,12 +83,14 @@ namespace NetRunner.Settings.Tests
         public void SelectingALevelWithoutSavingAppliesItsPresetOnlyForThisRun()
         {
             var preferences = Loaded();
+            int start = preferences.Saved.Preset;
 
-            preferences.SelectLevel(QualityPreset.Low, false);
+            // High differs from every first-start preset (Low or Medium).
+            preferences.SelectLevel(QualityPreset.High, false);
 
-            Assert.That(preferences.Active.Quality, Is.EqualTo(0));
-            Assert.That(preferences.Active.RenderScale, Is.EqualTo(50));
-            Assert.That(preferences.Saved.Preset, Is.EqualTo(QualityPreset.Medium));
+            Assert.That(preferences.Active.Quality, Is.EqualTo(2));
+            Assert.That(preferences.Active.RenderScale, Is.EqualTo(100));
+            Assert.That(preferences.Saved.Preset, Is.EqualTo(start));
             Assert.That(File.Exists(Path.Combine(folder, "settings.json")), Is.False);
         }
 

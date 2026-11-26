@@ -115,6 +115,16 @@ namespace NetRunner.Core
             return renderScale < MaximumRenderScale;
         }
 
+        /// <summary>
+        /// The preset a new profile starts on (#36, Samuel's decision of
+        /// 2026-11-26): Low on integrated graphics, where Medium ran at 14–18 FPS
+        /// in alpha test 6; Medium otherwise.
+        /// </summary>
+        public static int FirstStartFor(bool integratedGraphics)
+        {
+            return integratedGraphics ? Low : Medium;
+        }
+
         /// <summary>The preset that selects a quality level, used when F2 cycles the levels.</summary>
         public static int ForLevel(int level)
         {

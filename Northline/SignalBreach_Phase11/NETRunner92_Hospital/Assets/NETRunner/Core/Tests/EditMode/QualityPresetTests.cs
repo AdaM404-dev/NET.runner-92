@@ -94,6 +94,13 @@ namespace NetRunner.Core.Tests
             Assert.Throws<System.ArgumentOutOfRangeException>(() => QualityPreset.For(QualityPreset.Custom));
         }
 
+        [TestCase(true, QualityPreset.Low)]
+        [TestCase(false, QualityPreset.Medium)]
+        public void ANewProfileStartsOnLowOnlyOnIntegratedGraphics(bool integrated, int preset)
+        {
+            Assert.That(QualityPreset.FirstStartFor(integrated), Is.EqualTo(preset));
+        }
+
         [TestCase(QualityPreset.MinimumRenderScale, true)]
         [TestCase(99, true)]
         [TestCase(QualityPreset.MaximumRenderScale, false)]

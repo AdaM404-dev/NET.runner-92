@@ -171,11 +171,15 @@ namespace NetRunner.Settings
         /// <summary>The action's name in the settings menu.</summary>
         public static string ActionName(GameAction action) => Names[(int)action];
 
-        /// <summary>Starts new profiles on the Medium preset while keeping existing profiles compatible.</summary>
-        public static GamePreferences CreateDefault()
+        /// <summary>
+        /// The preferences of a new profile, starting on <paramref name="preset"/>
+        /// (<see cref="Preferences.FirstStartPreset"/>: Low on integrated graphics,
+        /// Medium otherwise). Existing profiles keep what they saved.
+        /// </summary>
+        public static GamePreferences CreateDefault(int preset)
         {
             var value = new GamePreferences();
-            value.SetPreset(QualityPreset.Medium);
+            value.SetPreset(preset);
             return value;
         }
 
