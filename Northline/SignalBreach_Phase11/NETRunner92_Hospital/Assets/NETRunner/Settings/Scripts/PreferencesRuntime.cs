@@ -56,8 +56,8 @@ namespace NetRunner.Settings
         private static readonly string[] AmbienceGroups = { "NorthlineExterior", "NorthlineInterior" };
 
         private readonly DisplayModes display = new DisplayModes();
-        private readonly List<(HDAdditionalLightData Light, bool Custom, int Size)> shadowLights =
-            new List<(HDAdditionalLightData, bool, int)>();
+        private readonly List<(HDAdditionalLightData Light, bool Custom, int Size, float Fade)> shadowLights =
+            new List<(HDAdditionalLightData, bool, int, float)>();
 
         // The point and spot lights, with the fog setting the scene gave them.
         private readonly List<(HDAdditionalLightData Light, bool InFog)> localLights = new List<(HDAdditionalLightData, bool)>();
@@ -70,6 +70,7 @@ namespace NetRunner.Settings
         private MotionBlur blur;
         private DepthOfField depth;
         private int appliedShadowResolution;
+        private int appliedShadowDistance = NoLevel;
         private int appliedLightLevel = NoLevel;
         private bool displayApplied;
         private bool isMainMenu;
@@ -83,7 +84,7 @@ namespace NetRunner.Settings
 
         private void Update()
         {
-            if (isMainMenu || !preferences || preferences.Active == null || !preferences.Active.VsyncEnabled
+            if (isMainMenu || !preferences || preferences.MenuShown || preferences.Active == null || !preferences.Active.VsyncEnabled
                 || Time.unscaledTime < nextRefreshCheck)
             {
                 return;
@@ -103,6 +104,7 @@ namespace NetRunner.Settings
             if (preferences)
             {
                 preferences.Changed -= Apply;
+                preferences.MenuShownChanged -= HandleMenuShown;
             }
         }
 
@@ -111,6 +113,7 @@ namespace NetRunner.Settings
         {
             preferences = source;
             preferences.Changed += Apply;
+            preferences.MenuShownChanged += HandleMenuShown;
             DynamicResolutionHandler.SetDynamicResScaler(() => preferences.Active.RenderScale, DynamicResScalePolicyType.ReturnsPercentage);
         }
 
@@ -145,6 +148,7 @@ namespace NetRunner.Settings
             var eyes = preferences.PlayerCamera;
             cameraData = eyes ? eyes.GetComponent<HDAdditionalCameraData>() : null;
             appliedShadowResolution = SceneShadowResolution;
+            appliedShadowDistance = NoLevel;
             appliedLightLevel = NoLevel;
             if (cameraData)
             {
@@ -220,6 +224,9 @@ namespace NetRunner.Settings
                 HasTemporalUpscaler(value.RenderScale));
             // The hospital has no decal projectors. Skip its decal depth prepass.
             SetFrameSetting(FrameSettingsField.Decals, false);
+            // No material refracts or distorts, so skip the colour pyramid HDRP builds for them every frame (#36 round 3).
+            SetFrameSetting(FrameSettingsField.Refraction, false);
+            SetFrameSetting(FrameSettingsField.Distortion, false);
             SetFrameSetting(FrameSettingsField.ShadowMaps, value.Shadows != 0);
             SetFrameSetting(FrameSettingsField.SSAO, value.AmbientOcclusionEnabled);
             SetFrameSetting(FrameSettingsField.Volumetrics, value.VolumetricsEnabled);
@@ -229,6 +236,7 @@ namespace NetRunner.Settings
             SetFrameSetting(FrameSettingsField.MotionVectors, motionVectors);
             SetFrameSetting(FrameSettingsField.ObjectMotionVectors, motionVectors);
             shadowVolume.maxShadowDistance.Override(ShadowDistances[value.Shadows]);
+            ApplyShadowFade(value.Shadows);
             color.postExposure.Override(value.Brightness);
             blur.intensity.Override(motionBlur ? MotionBlurIntensity : 0f);
             depth.focusMode.Override(value.DepthOfFieldEnabled ? DepthOfFieldMode.Manual : DepthOfFieldMode.Off);
@@ -240,7 +248,7 @@ namespace NetRunner.Settings
 
             appliedShadowResolution = value.ShadowResolution;
             bool useScene = value.ShadowResolution == SceneShadowResolution;
-            foreach (var (light, custom, size) in shadowLights)
+            foreach (var (light, custom, size, _) in shadowLights)
             {
                 if (!light)
                 {
@@ -255,8 +263,9 @@ namespace NetRunner.Settings
         private void ApplyFramePacing(GamePreferences value, double refreshRate)
         {
             displayRefreshRate = refreshRate;
-            int frameLimit = isMainMenu ? FramePacing.MenuLimit : value.FrameLimit;
-            QualitySettings.vSyncCount = FramePacing.SyncInterval(!isMainMenu && value.VsyncEnabled, frameLimit, refreshRate);
+            bool menuShown = isMainMenu || preferences.MenuShown;
+            int frameLimit = FramePacing.LimitFor(menuShown, value.FrameLimit);
+            QualitySettings.vSyncCount = FramePacing.SyncInterval(!menuShown && value.VsyncEnabled, frameLimit, refreshRate);
             Application.targetFrameRate = frameLimit;
         }
 
@@ -271,6 +280,31 @@ namespace NetRunner.Settings
         {
             cameraData.renderingPathCustomFrameSettings.SetEnabled(field, enabled);
             cameraData.renderingPathCustomFrameSettingsOverrideMask.mask[(uint)field] = true;
+        }
+
+        // Point and spot lights stop drawing their shadow maps beyond the level's
+        // shadow distance, where the volume has faded those shadows out anyway
+        // (#36 round 3); with shadows off the scene's fade distance stays.
+        private void ApplyShadowFade(int step)
+        {
+            if (appliedShadowDistance == step)
+            {
+                return;
+            }
+
+            appliedShadowDistance = step;
+            foreach (var (light, _, _, fade) in shadowLights)
+            {
+                if (light && light.GetComponent<Light>().type != LightType.Directional)
+                {
+                    light.shadowFadeDistance = step > 0 ? Mathf.Min(fade, ShadowDistances[step]) : fade;
+                }
+            }
+        }
+
+        private void HandleMenuShown()
+        {
+            ApplyFramePacing(preferences.Active, Screen.mainWindowDisplayInfo.refreshRate.value);
         }
 
         // Takes the point and spot lights out of the fog below High (FogLights);
@@ -319,7 +353,7 @@ namespace NetRunner.Settings
                 {
                     if (light.GetComponent<Light>().shadows != LightShadows.None)
                     {
-                        shadowLights.Add((light, light.shadowResolution.useOverride, light.shadowResolution.@override));
+                        shadowLights.Add((light, light.shadowResolution.useOverride, light.shadowResolution.@override, light.shadowFadeDistance));
                     }
                 }
             }

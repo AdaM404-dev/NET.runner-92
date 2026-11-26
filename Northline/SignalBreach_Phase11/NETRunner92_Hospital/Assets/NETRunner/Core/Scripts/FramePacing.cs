@@ -12,6 +12,14 @@ namespace NetRunner.Core
         private const double RefreshTolerance = 0.25;
 
         /// <summary>
+        /// The frame limit with <paramref name="menuShown"/>: the main menu or the
+        /// pause menu needs only <see cref="MenuLimit"/>, otherwise the game's
+        /// <paramref name="gameLimit"/> applies. Menus use the software limit with
+        /// VSync off (#36 round 3: the pause ran at the game's limit).
+        /// </summary>
+        public static int LimitFor(bool menuShown, int gameLimit) => menuShown ? MenuLimit : gameLimit;
+
+        /// <summary>
         /// Returns the number of vertical blanks per frame, or zero to use the software limit.
         /// A fixed limit uses hardware sync only when the display can match it closely or is slower.
         /// </summary>

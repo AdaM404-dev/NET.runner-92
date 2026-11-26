@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using NUnit.Framework;
+using NetRunner.Core;
 using NetRunner.Player;
 using NetRunner.Saves;
 using NetRunner.World;
@@ -18,8 +19,9 @@ namespace NetRunner.Menu.Tests
     /// PlayMode tests of a hospital run in the real hospital scene (Phase 11):
     /// a new game writes its first save, loading a checkpoint restores the
     /// player's place and progress, a hospital started without a run has no
-    /// pause menu, and pausing stops the hospital rendering behind the menu
-    /// until the game resumes (#36, round 3). Saves go to Logs/Tests only.
+    /// pause menu, and pausing stops the hospital rendering behind the menu and
+    /// drops to the menu's frame limit until the game resumes (#36, round 3).
+    /// Saves go to Logs/Tests only.
     /// </summary>
     public sealed class HospitalRunTests
     {
@@ -110,7 +112,8 @@ namespace NetRunner.Menu.Tests
                 session.Begin(0, null);
                 yield return LoadHospital();
                 var run = UnityEngine.Object.FindAnyObjectByType<HospitalRun>();
-                Camera eyes = UnityEngine.Object.FindAnyObjectByType<FirstPersonController>().Eyes;
+                var runner = UnityEngine.Object.FindAnyObjectByType<FirstPersonController>();
+                Camera eyes = runner.Eyes;
 
                 // Escape pauses only while the game holds the mouse, which a batch run's missing window cannot.
                 run.Pause();
@@ -124,12 +127,15 @@ namespace NetRunner.Menu.Tests
                 float litShare = SaveAndMeasure(screen.resolvedStyle.backgroundImage.renderTexture, "PausedView.png");
                 Assert.That(litShare, Is.GreaterThan(LitShare), "The frozen frame is black.");
                 Assert.That(Camera.allCamerasCount, Is.EqualTo(0), "A camera still renders while paused.");
+                Assert.That(Application.targetFrameRate, Is.EqualTo(FramePacing.MenuLimit), "The pause does not run at the menu's limit.");
+                Assert.That(QualitySettings.vSyncCount, Is.EqualTo(0), "The pause keeps VSync on.");
 
                 yield return PressEscape(keyboard);
 
                 Assert.That(run.Paused, Is.False, "Escape did not resume the run.");
                 Assert.That(view.IsFrozen, Is.False);
                 Assert.That(eyes.enabled, Is.True, "The hospital does not render again after resuming.");
+                Assert.That(Application.targetFrameRate, Is.EqualTo(runner.Preferences.Active.FrameLimit), "Resuming does not restore the game's limit.");
             }
             finally
             {
