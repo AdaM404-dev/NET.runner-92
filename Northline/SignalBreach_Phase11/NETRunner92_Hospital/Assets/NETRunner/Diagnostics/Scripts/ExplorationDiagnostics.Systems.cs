@@ -273,9 +273,10 @@ namespace NetRunner.Diagnostics
                 yield return null;
             }
 
-            Check(lamps.Length == 4 && low.Where((value, i) => value <= high[i] * .1f).Count() == 4
-                && power.Length - lamps.Length == 5,
-                "Four practicals dropped below 10% and recovered. Five additional readout power loops are present.");
+            int floors = lamps.Select(l => Mathf.RoundToInt(l.transform.position.y / StairAccess.FloorHeight)).Distinct().Count();
+            Check(lamps.Length == 4 && lamps.Distinct().Count() == 4 && floors == 4
+                && low.Where((value, i) => value <= high[i] * .1f).Count() == 4 && power.Length - lamps.Length == 5,
+                "Four practicals, one per floor, dropped below 10% and recovered. Five additional readout power loops are present.");
         }
     }
 }
