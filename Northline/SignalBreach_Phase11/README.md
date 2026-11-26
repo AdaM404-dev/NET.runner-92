@@ -73,6 +73,19 @@ The game stops the GPU computing what nobody sees ([#36](https://github.com/AdaM
   (+12–24% on the laptop, pictures unchanged). Shadow maps of point and
   spot lights stop beyond the level's shadow distance, and the pause runs
   at the menu's 30 FPS limit (`FramePacing.LimitFor`).
+- **Baked lighting** ([#79](https://github.com/AdaM404-dev/NET.runner-92/issues/79)):
+  the 245 lamps whose light never changes are baked into lightmaps and
+  light probes, so only 23 lamps are lit live (17 pulsing, the 4
+  residual-power lamps, the lightning and the lift light;
+  `Core/Scripts/LightBakeRules.cs`).
+  - `World/Editor/HospitalLighting.cs` runs last in the hospital build, and on its own with
+    `-executeMethod NetRunner.World.Editor.HospitalLighting.Bake -force-vulkan`
+    (HDRP must run). It takes about 1.5 minutes with the GPU lightmapper,
+    which needs an OpenCL driver (Arch: `opencl-nvidia`).
+  - The importer gives every mesh lightmap UVs.
+  - Wide static surfaces are lightmapped; small and thin ones are lit by the probes.
+  - The fog's GI dimmer is 0.1 (`FogLights.BakedGiDimmer`): at HDRP's 1 the baked probes filled the rooms with haze.
+  - Baked lamps make no glints on glossy floors.
 - **Lights in the fog** (step 2): on Medium the point and spot lights no
   longer light the volumetric fog; High keeps them (`Core/Scripts/FogLights.cs`,
   applied by `PreferencesRuntime`). Alpha test 6 measured +10–19% on Medium,
