@@ -4,6 +4,38 @@ Newest entry first. One entry per session: what was built, what was learned,
 what was confusing. The authoritative record of changes is the work log in
 `agent.md`; this is the human-readable story.
 
+## 2026-11-26 — The GPU at 100%: from alpha test 5 to the baked hospital
+
+- Alpha tests 5 to 8 went out in one day for the Windows test machine
+  (Intel UHD 630), each built from `main` and measured with
+  `run-benchmarks.bat`. On Low the slowest view went from 27.6 to 33.4 FPS
+  by alpha test 7. Alpha test 8 is the final optimized release, and its
+  numbers are still to come.
+- Learned: an HDRP camera that draws nothing (culling mask 0) still runs
+  HDRP's whole frame at full resolution. The pause menu, the intro and the
+  main menu each had one, which is why the GPU stayed busy there. With no
+  camera at all, HDRP hands the UI to the engine. The paused frame went
+  from 2.53 ms to 0.03 ms of GPU time.
+- Learned: fading distant lights out looked cheap in numbers, but the
+  screenshots showed the far end of long corridors going dark. Samuel
+  chose no fade. Looking at the pictures before and after caught what the
+  benchmark could not.
+- The free cuts: HDRP built a blurred copy of each frame for refraction,
+  which no material uses (+12–24% on the laptop, same picture). Shadow maps
+  now stop at the shadow distance, and the pause runs at the menu's 30 FPS.
+- The lighting bake (#79): 245 lamps that never change are baked into
+  lightmaps and probe volumes, and 23 that pulse, are scripted or move stay
+  live. The builder now adds lightmap UVs to the meshes it writes and bakes
+  at the end of every hospital build, in about 1.5 minutes on the GPU.
+- Learned from the bake:
+  - Unity's GPU lightmapper on Linux needs an OpenCL driver (`opencl-nvidia`).
+  - `LightingData.asset` is binary despite its `.asset` extension, so it goes
+    to Git LFS.
+  - Baked probes also light the volumetric fog. The first bake filled
+    Reception with a grey haze until the fog's GI dimmer went down to 0.1.
+- A bug the bake brought out: all four "one per floor" failing lamps were
+  on the ground floor, and two of them were the same lamp.
+
 ## 2026-11-11 — One rule file for every agent
 
 - `AGENTS.md` is now the one set of rules for every AI agent: Claude Code
