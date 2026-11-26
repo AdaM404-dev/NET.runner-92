@@ -208,6 +208,8 @@ namespace NetRunner.Diagnostics
         {
             if (LaunchArguments.Has(Environment.GetCommandLineArgs(), Option))
             {
+                // The game pauses in the background; an unattended walk must not.
+                Application.runInBackground = true;
                 new GameObject("Transient moving-route QA").AddComponent<RoutePerformanceCapture>();
             }
         }
