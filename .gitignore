@@ -123,3 +123,6 @@ InitTestScene*.unity*
 
 # Claude Code per-user settings
 /.claude/settings.local.json
+
+# The Phase 11 project builds into ../Builds next to it.
+Northline/SignalBreach_Phase11/Builds/
