@@ -1,0 +1,1378 @@
+{
+  "rooms": [
+    {
+      "name": "Concourse",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": 36,
+          "z0": -2.4,
+          "z1": 2.4
+        }
+      ]
+    },
+    {
+      "name": "West Stair",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "East Stair",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Lift Lobby",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 2.4,
+          "z1": 6.15
+        }
+      ]
+    },
+    {
+      "name": "Riser Access",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 10.15,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "ED Decontamination",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "Outpatient Support",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "Triage",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Fast Track Assessment",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -12,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Reception Hall",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": 12,
+          "z0": -16.05,
+          "z1": -12
+        },
+        {
+          "x0": -12,
+          "x1": 7.3,
+          "z0": -12,
+          "z1": -7.3
+        },
+        {
+          "x0": -12,
+          "x1": 12,
+          "z0": -7.3,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Public Accessible WC",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 7.3,
+          "x1": 12,
+          "z0": -12,
+          "z1": -7.3
+        }
+      ]
+    },
+    {
+      "name": "Public Vestibule",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": 12,
+          "z0": -19.2,
+          "z1": -16.05
+        }
+      ]
+    },
+    {
+      "name": "Admissions",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Outpatient Consult",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "ED Observation",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "ED Resuscitation",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -12,
+          "z0": 2.4,
+          "z1": 15.65
+        }
+      ]
+    },
+    {
+      "name": "Ambulance Vestibule",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -12,
+          "z0": 15.65,
+          "z1": 19.0
+        }
+      ]
+    },
+    {
+      "name": "Emergency Imaging",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": -4,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Diagnostic Support",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "General Imaging",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Outpatient Treatment",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Clinical Staff Support",
+      "floor": 1,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Concourse",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": 36,
+          "z0": -2.4,
+          "z1": 2.4
+        }
+      ]
+    },
+    {
+      "name": "West Stair",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "East Stair",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Lift Lobby",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 2.4,
+          "z1": 6.15
+        }
+      ]
+    },
+    {
+      "name": "Riser Access",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 10.15,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "West Ward Utility",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "East Ward Utility",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "West Clinical Hall",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -25.68,
+          "x1": -22.32,
+          "z0": 2.4,
+          "z1": 6.0
+        },
+        {
+          "x0": -36,
+          "x1": -12,
+          "z0": 6.0,
+          "z1": 8.8
+        }
+      ]
+    },
+    {
+      "name": "West Clean Utility",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -25.68,
+          "z0": 2.4,
+          "z1": 6.0
+        }
+      ]
+    },
+    {
+      "name": "West Ward Staff",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -22.32,
+          "x1": -12,
+          "z0": 2.4,
+          "z1": 6.0
+        }
+      ]
+    },
+    {
+      "name": "Ward W201",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -33.35,
+          "x1": -28,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward W201 Ensuite",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -33.35,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "Ward W202",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -25.35,
+          "x1": -20,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward W202 Ensuite",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -25.35,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "Ward W203",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -17.35,
+          "x1": -12,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": -20,
+          "x1": -12,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward W203 Ensuite",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -17.35,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "East Clinical Hall",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 22.32,
+          "x1": 25.68,
+          "z0": 2.4,
+          "z1": 6.0
+        },
+        {
+          "x0": 12,
+          "x1": 36,
+          "z0": 6.0,
+          "z1": 8.8
+        }
+      ]
+    },
+    {
+      "name": "East Ward Staff",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 22.32,
+          "z0": 2.4,
+          "z1": 6.0
+        }
+      ]
+    },
+    {
+      "name": "East Clean Utility",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 25.68,
+          "x1": 36,
+          "z0": 2.4,
+          "z1": 6.0
+        }
+      ]
+    },
+    {
+      "name": "Ward E204",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 14.65,
+          "x1": 20,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward E204 Ensuite",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 14.65,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "Ward E205",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 22.65,
+          "x1": 28,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward E205 Ensuite",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 22.65,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "Ward E206",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 30.65,
+          "x1": 36,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward E206 Ensuite",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 30.65,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "Ward Utility Hub",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": -4,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Ward Administration",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "West Day Room",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Family Consult",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -12,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Rehabilitation",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": -4,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Patient Lounge",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Therapy Studio",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Ward Treatment",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "East Day Room",
+      "floor": 2,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Concourse",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": 36,
+          "z0": -2.4,
+          "z1": 2.4
+        }
+      ]
+    },
+    {
+      "name": "West Stair",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "East Stair",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Lift Lobby",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 2.4,
+          "z1": 6.15
+        }
+      ]
+    },
+    {
+      "name": "Riser Access",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 10.15,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Surgical Soiled Hold",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "ICU Clean Utility",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "West Clinical Hall",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -25.68,
+          "x1": -22.32,
+          "z0": 2.4,
+          "z1": 6.45
+        },
+        {
+          "x0": -36,
+          "x1": -12,
+          "z0": 6.45,
+          "z1": 9.4
+        }
+      ]
+    },
+    {
+      "name": "Sterile Supply",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -25.68,
+          "z0": 2.4,
+          "z1": 6.45
+        }
+      ]
+    },
+    {
+      "name": "Surgical Scrub",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -22.32,
+          "x1": -12,
+          "z0": 2.4,
+          "z1": 6.45
+        }
+      ]
+    },
+    {
+      "name": "Operating Theatre 01",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": 9.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Operating Theatre 02",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": 9.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Hybrid Theatre 03",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -12,
+          "z0": 9.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "East Clinical Hall",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 22.32,
+          "x1": 25.68,
+          "z0": 2.4,
+          "z1": 6.1
+        },
+        {
+          "x0": 12,
+          "x1": 36,
+          "z0": 6.1,
+          "z1": 8.8
+        }
+      ]
+    },
+    {
+      "name": "ICU Observation",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 22.32,
+          "z0": 2.4,
+          "z1": 6.1
+        }
+      ]
+    },
+    {
+      "name": "ICU Support",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 25.68,
+          "x1": 36,
+          "z0": 2.4,
+          "z1": 6.1
+        }
+      ]
+    },
+    {
+      "name": "ICU 01",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": 8.8,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "ICU 02",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": 8.8,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "ICU Isolation",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 30.65,
+          "x1": 36,
+          "z0": 8.8,
+          "z1": 11.5
+        },
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": 11.5,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "ICU Isolation Ensuite",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 30.65,
+          "z0": 8.8,
+          "z1": 11.5
+        }
+      ]
+    },
+    {
+      "name": "Anaesthesia Support",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": -4,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Critical Care Support",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Surgical Service",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Post Anaesthesia Recovery",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -4,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Pre Op Assessment",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Clinical Transfer",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Family Consult",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "ICU Step Down",
+      "floor": 3,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Concourse",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": 12,
+          "z0": -2.4,
+          "z1": 2.4
+        }
+      ]
+    },
+    {
+      "name": "West Stair",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "East Stair",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -10.6,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Lift Lobby",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 2.4,
+          "z1": 6.15
+        }
+      ]
+    },
+    {
+      "name": "Riser Access",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": 10.15,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Research Waste Hold",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "Restricted Utility",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": -15,
+          "z1": -10.6
+        }
+      ]
+    },
+    {
+      "name": "Restricted Concourse",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 36,
+          "z0": -2.4,
+          "z1": 2.4
+        }
+      ]
+    },
+    {
+      "name": "Research Logistics",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -36,
+          "x1": -28,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Sample Preparation",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Analysis Lab",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -12,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Research Review",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": -4,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Research Operations",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Controlled Records",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": 2.4,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Restricted Anteroom",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": 2.4,
+          "z1": 6.8
+        }
+      ]
+    },
+    {
+      "name": "Final Lab Support",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 28,
+          "x1": 36,
+          "z0": 2.4,
+          "z1": 6.8
+        }
+      ]
+    },
+    {
+      "name": "Final Research Lab",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 36,
+          "z0": 6.8,
+          "z1": 15
+        }
+      ]
+    },
+    {
+      "name": "Facilities Control",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -28,
+          "x1": -20,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Data Analysis",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -20,
+          "x1": -12,
+          "z0": -12.8,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Research Offices",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -12,
+          "x1": -4,
+          "z0": -12.8,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Meeting and Review",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": -4,
+          "x1": 4,
+          "z0": -12.8,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Secure Sample Store",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 4,
+          "x1": 12,
+          "z0": -12.8,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Restricted Workroom",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 12,
+          "x1": 20,
+          "z0": -12.8,
+          "z1": -2.4
+        }
+      ]
+    },
+    {
+      "name": "Restricted Plant Access",
+      "floor": 4,
+      "tiles": [
+        {
+          "x0": 20,
+          "x1": 28,
+          "z0": -15,
+          "z1": -2.4
+        }
+      ]
+    }
+  ]
+}

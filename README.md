@@ -19,6 +19,22 @@ The game's main map is the **Northline hospital**, rendered with **HDRP**
 2026-11-10). Its production material (Blender sources, cinematic, renders,
 design notes) is in [Northline/](Northline/README.md).
 
+## Phase 11 version (Signal Breach)
+
+The repository also holds the Phase 11 version of the hospital as a
+separate Unity project, `Northline/SignalBreach_Phase11/NETRunner92_Hospital/`:
+the Sanhilzon Studio intro, main menu, settings, saves, HUD, the K-7 forearm
+cannon and the Signal Breach hack, brought to the coding standard in #55.
+Open that folder in Unity Hub with **6000.6.2f1**, open
+`Assets/NETRunner92/Scenes/StudioIntro.unity` (or `MainMenu.unity` to skip
+the intro) and press **Play**.
+
+The [Phase 11 README](Northline/SignalBreach_Phase11/README.md) covers the
+Windows build, the intro, the F4 panel, the benchmarks and the Linux checks.
+The [Hungarian performance notes](Northline/SignalBreach_Phase11/PERFORMANCE_HU.md)
+record Codex's measurements. The import instructions below describe the root
+project.
+
 ## Import into Unity
 
 ### Open the complete project

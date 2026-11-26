@@ -1,0 +1,85 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="HospitalHud.uss" />
+    <ui:VisualElement class="overlay">
+        <ui:VisualElement name="world" class="overlay hidden">
+            <ui:VisualElement name="goal" class="goal">
+                <ui:VisualElement name="goal-shape" class="overlay" />
+                <ui:Label name="goal-title" class="goal-title" />
+                <ui:VisualElement name="goal-history" class="line goal-history hidden">
+                    <ui:VisualElement class="completed-icon">
+                        <ui:VisualElement class="completed-tick" />
+                    </ui:VisualElement>
+                    <ui:Label name="goal-detail" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="reticle" class="reticle">
+                <ui:VisualElement class="dot" />
+                <ui:VisualElement class="corner nw" />
+                <ui:VisualElement class="corner ne" />
+                <ui:VisualElement class="corner sw" />
+                <ui:VisualElement class="corner se" />
+            </ui:VisualElement>
+            <ui:VisualElement class="prompt-position">
+                <ui:VisualElement name="prompt" class="line prompt hidden">
+                    <ui:VisualElement class="corner nw" />
+                    <ui:VisualElement class="corner ne" />
+                    <ui:VisualElement class="corner sw" />
+                    <ui:VisualElement class="corner se" />
+                    <ui:Label name="prompt-key" class="key" />
+                    <ui:Label name="prompt-text" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="health" class="line vitals health">
+                <ui:VisualElement name="health-icon" class="vital-icon" />
+                <ui:VisualElement class="vital-readout">
+                    <ui:VisualElement class="line vital-label">
+                        <ui:Label text="HP" />
+                        <ui:Label name="health-value" text="100" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="health-bar" class="line vital-bar" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="stamina" class="line vitals stamina">
+                <ui:VisualElement name="stamina-icon" class="vital-icon" />
+                <ui:VisualElement class="vital-readout">
+                    <ui:Label text="STAMINA" class="vital-label" />
+                    <ui:VisualElement name="stamina-bar" class="line vital-bar" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="notice" class="notice-position hidden">
+            <ui:Label text="A CCTV-hozzáféréshez használd a recepciós terminált." class="plate notice-text" />
+        </ui:VisualElement>
+        <ui:VisualElement name="terminal" class="overlay modal hidden">
+            <ui:VisualElement class="plate terminal-card">
+                <ui:Label text="NORTHLINE / RECEPCIÓ / BIZTONSÁGI HÁLÓZAT" class="eyebrow" />
+                <ui:Label text="Állítsd helyre a jelet" class="terminal-title" />
+                <ui:Label text="Egyeztesd a helyi útvonalat az elfogott jellel." class="detail terminal-copy" />
+                <ui:VisualElement class="signal-grid">
+                    <ui:VisualElement class="line signal-row">
+                        <ui:Label text="ELFOGOTT JEL" class="eyebrow row-label" />
+                        <ui:VisualElement name="reference-cells" class="line cells" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="line signal-row">
+                        <ui:Label text="HELYI ÚTVONAL" class="eyebrow row-label" />
+                        <ui:VisualElement name="route-cells" class="line cells" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label name="terminal-status" class="terminal-status" />
+                <ui:VisualElement class="line terminal-controls">
+                    <ui:Label text="← →" class="key" /><ui:Label text="Kiválasztás" />
+                    <ui:Label text="↑ ↓" class="key space" /><ui:Label text="Érték" />
+                    <ui:Label text="Enter" class="key space" /><ui:Label text="Ellenőrzés" />
+                    <ui:Label name="terminal-exit-key" text="E / Esc" class="key space" /><ui:Label text="Kilépés" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="viewer" class="plate line viewer hidden">
+            <ui:Label text="←" class="key" />
+            <ui:VisualElement name="channels" class="line channels" />
+            <ui:Label text="→" class="key" />
+            <ui:Label name="viewer-exit-key" text="1" class="key space" /><ui:Label text="Bezárás" />
+            <ui:Label name="viewer-stow-key" text="R" class="key space" /><ui:Label text="Elrakás" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

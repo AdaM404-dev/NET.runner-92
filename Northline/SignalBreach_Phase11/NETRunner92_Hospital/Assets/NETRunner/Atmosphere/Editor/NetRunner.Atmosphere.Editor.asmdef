@@ -1,0 +1,22 @@
+{
+    "name": "NetRunner.Atmosphere.Editor",
+    "rootNamespace": "NetRunner.Atmosphere.Editor",
+    "references": [
+        "NetRunner.Core",
+        "NetRunner.Atmosphere",
+        "NetRunner.SceneBuilding.Editor",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

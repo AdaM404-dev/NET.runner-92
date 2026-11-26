@@ -1,0 +1,36 @@
+{
+    "name": "NetRunner.World.Editor",
+    "rootNamespace": "NetRunner.World.Editor",
+    "references": [
+        "NetRunner.Atmosphere",
+        "NetRunner.Core",
+        "NetRunner.Diagnostics",
+        "NetRunner.Enemy",
+        "NetRunner.Hud",
+        "NetRunner.Menu",
+        "NetRunner.Player",
+        "NetRunner.Saves",
+        "NetRunner.Settings",
+        "NetRunner.World",
+        "NetRunner.SceneBuilding.Editor",
+        "NetRunner.Player.Editor",
+        "NetRunner.Enemy.Editor",
+        "NetRunner.Atmosphere.Editor",
+        "NetRunner.Hud.Editor",
+        "NetRunner.Menu.Editor",
+        "Unity.InputSystem",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

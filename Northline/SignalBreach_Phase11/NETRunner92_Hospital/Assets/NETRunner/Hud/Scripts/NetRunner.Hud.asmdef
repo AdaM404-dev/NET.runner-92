@@ -1,0 +1,20 @@
+{
+    "name": "NetRunner.Hud",
+    "rootNamespace": "NetRunner.Hud",
+    "references": [
+        "NetRunner.Core",
+        "NetRunner.Player",
+        "NetRunner.Settings",
+        "NetRunner.World",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
