@@ -11,7 +11,7 @@ namespace NetRunner.Settings
     /// levels (Low, Medium, High) by choosing that preset of the settings menu
     /// (<see cref="Preferences.SelectLevel"/>), which saves it like the menu
     /// does; F3 shows an FPS counter. It also lets the game cameras use HDRP's
-    /// resolution scaling, which the render-scale setting drives. Created
+    /// resolution scaling while the render-scale setting is below 100 %. Created
     /// by <see cref="PreferencesRuntime"/> when the game starts, so no scene
     /// needs it. In Phase 11 the preferences own the level and the display,
     /// so the first-start 1080p cap and the PlayerPrefs storage of main's
@@ -105,18 +105,20 @@ namespace NetRunner.Settings
             preferences = source;
         }
 
-        private static void HandleCameraRendering(ScriptableRenderContext context, Camera renderingCamera)
+        private void HandleCameraRendering(ScriptableRenderContext context, Camera renderingCamera)
         {
             // The menu camera only presents UI. CCTV draws into textures at its own size.
-            if (renderingCamera.cameraType != CameraType.Game || renderingCamera.targetTexture != null
-                || renderingCamera.cullingMask == 0)
+            if (!preferences || preferences.Active == null || renderingCamera.cameraType != CameraType.Game
+                || renderingCamera.targetTexture != null || renderingCamera.cullingMask == 0)
             {
                 return;
             }
 
-            if (renderingCamera.TryGetComponent<HDAdditionalCameraData>(out var cameraData) && !cameraData.allowDynamicResolution)
+            // At 100 % scaling only costs an extra pass, so the camera renders at full size directly.
+            bool scaled = QualityPreset.UsesDynamicResolution(preferences.Active.RenderScale);
+            if (renderingCamera.TryGetComponent<HDAdditionalCameraData>(out var cameraData) && cameraData.allowDynamicResolution != scaled)
             {
-                cameraData.allowDynamicResolution = true;
+                cameraData.allowDynamicResolution = scaled;
             }
         }
     }

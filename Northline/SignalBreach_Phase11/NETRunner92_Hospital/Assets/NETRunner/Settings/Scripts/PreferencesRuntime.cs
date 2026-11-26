@@ -40,6 +40,13 @@ namespace NetRunner.Settings
         private const float FarFocusStart = 18f;
         private const float FarFocusEnd = 35f;
 
+        // Devices without hardware dynamic resolution, where HDRP cannot run STP, its
+        // temporal upscaler. Mirrors HDRP's HDUtils.IsHardwareDynamicResolutionSupportedByDevice, which is internal.
+        private static readonly GraphicsDeviceType[] SoftwareScalingDevices =
+        {
+            GraphicsDeviceType.Direct3D11, GraphicsDeviceType.OpenGLCore, GraphicsDeviceType.OpenGLES3, GraphicsDeviceType.WebGPU,
+        };
+
         private static readonly int[] ShadowSizes = { 256, 512, 1024, 2048 };
         private static readonly float[] ShadowDistances = { 0f, 18f, 36f, 60f };
         private static readonly string[] AmbienceGroups = { "NorthlineExterior", "NorthlineInterior" };
@@ -197,8 +204,10 @@ namespace NetRunner.Settings
                 3 => HDAdditionalCameraData.AntialiasingMode.TemporalAntialiasing,
                 _ => HDAdditionalCameraData.AntialiasingMode.None,
             };
-            cameraData.allowDynamicResolution = value.RenderScale < QualityPreset.MaximumRenderScale;
+            cameraData.allowDynamicResolution = QualityPreset.UsesDynamicResolution(value.RenderScale);
             cameraData.customRenderingSettings = true;
+            bool motionVectors = MotionVectorRule.AreNeeded(value.Antialias, motionBlur, value.AmbientOcclusionEnabled,
+                HasTemporalUpscaler(value.RenderScale));
             // The hospital has no decal projectors. Skip its decal depth prepass.
             SetFrameSetting(FrameSettingsField.Decals, false);
             SetFrameSetting(FrameSettingsField.ShadowMaps, value.Shadows != 0);
@@ -207,6 +216,8 @@ namespace NetRunner.Settings
             SetFrameSetting(FrameSettingsField.Bloom, value.BloomEnabled);
             SetFrameSetting(FrameSettingsField.MotionBlur, motionBlur);
             SetFrameSetting(FrameSettingsField.DepthOfField, value.DepthOfFieldEnabled);
+            SetFrameSetting(FrameSettingsField.MotionVectors, motionVectors);
+            SetFrameSetting(FrameSettingsField.ObjectMotionVectors, motionVectors);
             shadowVolume.maxShadowDistance.Override(ShadowDistances[value.Shadows]);
             color.postExposure.Override(value.Brightness);
             blur.intensity.Override(motionBlur ? MotionBlurIntensity : 0f);
@@ -236,6 +247,13 @@ namespace NetRunner.Settings
             int frameLimit = isMainMenu ? FramePacing.MenuLimit : value.FrameLimit;
             QualitySettings.vSyncCount = FramePacing.SyncInterval(!isMainMenu && value.VsyncEnabled, frameLimit, refreshRate);
             Application.targetFrameRate = frameLimit;
+        }
+
+        // HDRP runs STP below 100 % wherever the device has hardware dynamic resolution.
+        private static bool HasTemporalUpscaler(int renderScale)
+        {
+            return QualityPreset.UsesDynamicResolution(renderScale)
+                && Array.IndexOf(SoftwareScalingDevices, SystemInfo.graphicsDeviceType) < 0;
         }
 
         private void SetFrameSetting(FrameSettingsField field, bool enabled)

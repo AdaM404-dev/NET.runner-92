@@ -66,6 +66,9 @@ namespace NetRunner.Core
         public const int MinimumRenderScale = 50;
         public const int MaximumRenderScale = 100;
 
+        /// <summary>The antialiasing setting that selects temporal antialiasing (TAA).</summary>
+        public const int TemporalAntialias = 3;
+
         private static readonly int[] DefaultRenderScales = { 50, 67, 100, 100 };
 
         /// <summary>
@@ -100,6 +103,16 @@ namespace NetRunner.Core
             int antialias = preset == Low ? 1 : preset == Medium ? 2 : 3;
             return new Settings(texture, preset, preset, antialias, preset >= High, preset >= Medium, preset >= Medium,
                 DefaultRenderScales[preset]);
+        }
+
+        /// <summary>
+        /// Whether a camera at <paramref name="renderScale"/> percent uses HDRP's
+        /// dynamic resolution. At 100 % it would only add an upscaling pass, and on
+        /// Vulkan STP with TAA, that changes nothing in the picture (#36, round 3).
+        /// </summary>
+        public static bool UsesDynamicResolution(int renderScale)
+        {
+            return renderScale < MaximumRenderScale;
         }
 
         /// <summary>The preset that selects a quality level, used when F2 cycles the levels.</summary>
