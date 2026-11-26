@@ -12,8 +12,9 @@ namespace NetRunner.Settings
     /// <summary>
     /// Applies the <see cref="Preferences"/> in effect to the engine (Phase
     /// 11's settings): quality level, VSync and frame cap, texture limit,
-    /// volumes, and on the player's camera the field of view, antialiasing,
-    /// render scale, effects and shadows. Created when the game starts, with
+    /// volumes, on the player's camera the field of view, antialiasing,
+    /// render scale, effects and shadows, and whether the scene's point and
+    /// spot lights light the fog (<see cref="FogLights"/>). Created when the game starts, with
     /// the F2 <see cref="QualitySwitch"/> beside it, so no scene needs it; it
     /// is the one place that loads the preferences asset. Each scene that
     /// loads gets a global volume for brightness, motion blur, depth of field
@@ -31,6 +32,9 @@ namespace NetRunner.Settings
 
         // The shadow resolution step that keeps each light's own resolution from the scene.
         private const int SceneShadowResolution = 2;
+
+        // No quality level's fog setting is applied to the scene's lights yet.
+        private const int NoLevel = -1;
 
         private const float MotionBlurIntensity = .20f;
         private const string EffectsGroup = "NorthlineEffects";
@@ -55,6 +59,9 @@ namespace NetRunner.Settings
         private readonly List<(HDAdditionalLightData Light, bool Custom, int Size)> shadowLights =
             new List<(HDAdditionalLightData, bool, int)>();
 
+        // The point and spot lights, with the fog setting the scene gave them.
+        private readonly List<(HDAdditionalLightData Light, bool InFog)> localLights = new List<(HDAdditionalLightData, bool)>();
+
         private Preferences preferences;
         private HDAdditionalCameraData cameraData;
         private VolumeProfile runtimeProfile;
@@ -63,6 +70,7 @@ namespace NetRunner.Settings
         private MotionBlur blur;
         private DepthOfField depth;
         private int appliedShadowResolution;
+        private int appliedLightLevel = NoLevel;
         private bool displayApplied;
         private bool isMainMenu;
         private double displayRefreshRate;
@@ -137,9 +145,11 @@ namespace NetRunner.Settings
             var eyes = preferences.PlayerCamera;
             cameraData = eyes ? eyes.GetComponent<HDAdditionalCameraData>() : null;
             appliedShadowResolution = SceneShadowResolution;
+            appliedLightLevel = NoLevel;
             if (cameraData)
             {
                 CollectShadowLights(scene);
+                CollectLocalLights(scene);
                 CreateRuntimeVolume(scene);
             }
 
@@ -222,6 +232,7 @@ namespace NetRunner.Settings
             color.postExposure.Override(value.Brightness);
             blur.intensity.Override(motionBlur ? MotionBlurIntensity : 0f);
             depth.focusMode.Override(value.DepthOfFieldEnabled ? DepthOfFieldMode.Manual : DepthOfFieldMode.Off);
+            ApplyFogLights(value.Quality);
             if (appliedShadowResolution == value.ShadowResolution)
             {
                 return;
@@ -260,6 +271,42 @@ namespace NetRunner.Settings
         {
             cameraData.renderingPathCustomFrameSettings.SetEnabled(field, enabled);
             cameraData.renderingPathCustomFrameSettingsOverrideMask.mask[(uint)field] = true;
+        }
+
+        // Takes the point and spot lights out of the fog below High (FogLights);
+        // High gives every light back the scene's setting.
+        private void ApplyFogLights(int level)
+        {
+            if (appliedLightLevel == level)
+            {
+                return;
+            }
+
+            appliedLightLevel = level;
+            bool lightsInFog = FogLights.AreOnFor(level);
+            foreach (var (light, inFog) in localLights)
+            {
+                if (light)
+                {
+                    light.affectsVolumetric = lightsInFog && inFog;
+                }
+            }
+        }
+
+        // The point and spot lights of the scene that just loaded, with their own fog setting.
+        private void CollectLocalLights(Scene scene)
+        {
+            localLights.Clear();
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                foreach (var light in root.GetComponentsInChildren<HDAdditionalLightData>(true))
+                {
+                    if (light.GetComponent<Light>().type != LightType.Directional)
+                    {
+                        localLights.Add((light, light.affectsVolumetric));
+                    }
+                }
+            }
         }
 
         // The shadow-casting lights of the scene that just loaded, with the resolution the scene gave them.
