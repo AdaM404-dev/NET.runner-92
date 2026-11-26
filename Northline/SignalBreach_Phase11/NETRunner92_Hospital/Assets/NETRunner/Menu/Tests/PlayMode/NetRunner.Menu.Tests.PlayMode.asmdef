@@ -8,7 +8,9 @@
         "NetRunner.Saves",
         "NetRunner.Player",
         "NetRunner.World",
-        "NetRunner.Core"
+        "NetRunner.Core",
+        "Unity.InputSystem",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
