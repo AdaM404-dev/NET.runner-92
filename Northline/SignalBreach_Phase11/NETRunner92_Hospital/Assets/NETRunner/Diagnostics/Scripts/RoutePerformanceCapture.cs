@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using NetRunner.Atmosphere;
 using NetRunner.Core;
+using NetRunner.Enemy;
 using NetRunner.Player;
 using NetRunner.World;
 using UnityEngine;
@@ -18,7 +19,10 @@ namespace NetRunner.Diagnostics
     /// frame's time and the ambience mix. Writes route_performance.csv (per
     /// segment and the full route), route_frames.csv, route_audio.csv and
     /// route_checks.txt, then quits with 0, or 2 when a check failed (for
-    /// example the walker got stuck). See docs/systems/performance.md.
+    /// example the walker got stuck). The K-7s keep patrolling but ignore the
+    /// walker, so the run measures the walk, not combat: a shot-down player
+    /// would reload the scene and end the run (Samuel, 2026-11-26, V-15).
+    /// See docs/systems/performance.md.
     /// </summary>
     public sealed class RoutePerformanceCapture : MonoBehaviour
     {
@@ -144,6 +148,11 @@ namespace NetRunner.Diagnostics
 
             Application.targetFrameRate = Uncapped;
             QualitySettings.vSyncCount = 0;
+            foreach (K7Patrol robot in FindObjectsByType<K7Patrol>())
+            {
+                robot.SetTarget(null);
+            }
+
             player.enabled = false;
             player.CaptureCursor(false);
             player.Warp(SouthGate, Quaternion.identity);
