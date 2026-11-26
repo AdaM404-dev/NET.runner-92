@@ -5,7 +5,10 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "NetRunner.Diagnostics",
-        "Unity.RenderPipelines.Core.Runtime"
+        "NetRunner.Atmosphere",
+        "NetRunner.Core",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

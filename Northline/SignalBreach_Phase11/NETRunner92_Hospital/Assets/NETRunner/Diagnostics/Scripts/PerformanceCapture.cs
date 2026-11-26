@@ -12,7 +12,11 @@ using UnityEngine.SceneManagement;
 
 namespace NetRunner.Diagnostics
 {
-    /// <summary>Measures five stationary views of the hospital in a standalone player.</summary>
+    /// <summary>
+    /// Measures five stationary views of the hospital in a standalone player,
+    /// with the features that <see cref="RenderFeatureSwitch"/> switches off
+    /// for the run (<c>-net92-without</c>, <c>-net92-upscaler</c>).
+    /// </summary>
     public sealed class PerformanceCapture : MonoBehaviour
     {
         private const string BenchmarkOption = "-net92-benchmark";
@@ -50,6 +54,8 @@ namespace NetRunner.Diagnostics
                 return;
             }
 
+            // The game pauses in the background; an unattended benchmark must not.
+            Application.runInBackground = true;
             var host = new GameObject("Transient performance capture");
             DontDestroyOnLoad(host);
             host.AddComponent<PerformanceCapture>();
@@ -57,7 +63,6 @@ namespace NetRunner.Diagnostics
 
         private IEnumerator Start()
         {
-            Application.runInBackground = true;
             if (SceneManager.GetActiveScene().name != HospitalRun.HospitalScene)
             {
                 if (!Application.CanStreamedLevelBeLoaded(HospitalRun.HospitalScene))
@@ -82,6 +87,7 @@ namespace NetRunner.Diagnostics
             player.PauseInput(true);
             player.CaptureCursor(false);
             eyes = player.Eyes;
+            string switches = RenderFeatureSwitch.ApplyFromLaunchOptions(eyes);
             RenderPipelineManager.endCameraRendering += CountCameraRender;
             Uncap();
             float deadline = Time.realtimeSinceStartup + WindowRenderTimeout;
@@ -103,7 +109,7 @@ namespace NetRunner.Diagnostics
             string quality = QualitySettings.names[QualitySettings.GetQualityLevel()];
             var results = new List<string>
             {
-                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {width}x{height}; {quality}; {mode}",
+                $"{SystemInfo.graphicsDeviceName}; {SystemInfo.graphicsDeviceType}; {width}x{height}; {quality}; {mode}; {switches}",
                 "Zone;Samples;AvgFPS;P95FrameMs;P95GPUms;MeanDrawCalls;MeanTriangles"
             };
             using var draws = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count");

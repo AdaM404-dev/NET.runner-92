@@ -396,6 +396,8 @@ namespace NetRunner.Diagnostics
                 return;
             }
 
+            // The game pauses in the background; an unattended check must not.
+            Application.runInBackground = true;
             var node = new GameObject("Menu acceptance");
             DontDestroyOnLoad(node);
             node.AddComponent<MenuAcceptance>();

@@ -71,9 +71,19 @@ namespace NetRunner.World.Editor
             Debug.Log($"NET92 SCENE | {importer.Visuals} visual meshes | {importer.Solids} colliders | {importer.Ramps} stair ramps");
         }
 
-        // HDRP with SSR, SSAO and volumetrics but no ray tracing; linear
-        // colour; a 1080p window that keeps running in the background; frame
-        // timing for the benchmarks; Direct3D 11 on Windows; Input System only.
+        /// <summary>
+        /// Applies only the player settings (window, background behaviour, frame
+        /// timing, graphics API, input) without rebuilding the scene. Runs
+        /// headless with <c>-executeMethod NetRunner.World.Editor.HospitalSceneBuilder.ApplyPlayerSettings</c>.
+        /// </summary>
+        [MenuItem("NET.runner-92/Apply player settings")]
+        public static void ApplyPlayerSettings()
+        {
+            ConfigurePlayer();
+            AssetDatabase.SaveAssets();
+        }
+
+        // HDRP with SSR, SSAO and volumetrics but no ray tracing, then the player settings.
         private static void ConfigurePipeline()
         {
             HDRenderPipelineAsset hdrp = AssetDatabase.LoadAssetAtPath<HDRenderPipelineAsset>(PipelinePath);
@@ -93,12 +103,21 @@ namespace NetRunner.World.Editor
             QualitySettings.renderPipeline = hdrp;
             QualitySettings.vSyncCount = 0;
             EditorUtility.SetDirty(hdrp);
+            ConfigurePlayer();
+        }
+
+        // Linear colour; a 1080p window that pauses while it is in the background,
+        // so an unseen game stops loading the GPU (#36, round 3; the benchmarks and
+        // checks switch running in the background back on); frame timing for the
+        // benchmarks; Direct3D 11 on Windows; Input System only.
+        private static void ConfigurePlayer()
+        {
             PlayerSettings.colorSpace = ColorSpace.Linear;
             PlayerSettings.productName = ProductName;
             PlayerSettings.defaultScreenWidth = ScreenWidth;
             PlayerSettings.defaultScreenHeight = ScreenHeight;
             PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
-            PlayerSettings.runInBackground = true;
+            PlayerSettings.runInBackground = false;
             PlayerSettings.enableFrameTimingStats = true;
             PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.StandaloneWindows64, false);
             PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneWindows64, new[] { GraphicsDeviceType.Direct3D11 });

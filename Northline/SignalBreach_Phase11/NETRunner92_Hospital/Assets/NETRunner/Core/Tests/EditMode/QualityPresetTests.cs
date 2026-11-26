@@ -93,5 +93,13 @@ namespace NetRunner.Core.Tests
         {
             Assert.Throws<System.ArgumentOutOfRangeException>(() => QualityPreset.For(QualityPreset.Custom));
         }
+
+        [TestCase(QualityPreset.MinimumRenderScale, true)]
+        [TestCase(99, true)]
+        [TestCase(QualityPreset.MaximumRenderScale, false)]
+        public void OnlyARenderScaleBelowFullUsesDynamicResolution(int renderScale, bool uses)
+        {
+            Assert.That(QualityPreset.UsesDynamicResolution(renderScale), Is.EqualTo(uses));
+        }
     }
 }

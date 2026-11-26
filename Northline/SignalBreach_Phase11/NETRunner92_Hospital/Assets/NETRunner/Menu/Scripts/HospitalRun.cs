@@ -17,6 +17,8 @@ namespace NetRunner.Menu
     /// checkpoint the menu chose, writes the first checkpoint of a new game,
     /// offers the pause menu on Escape (resume, save, back to the main
     /// menu), and after a defeat starts again from the slot's last save.
+    /// While paused, its <see cref="PausedView"/> shows the last frame instead
+    /// of rendering the hospital behind the menu.
     /// It sits in the hospital scene, set up by the hospital's installer
     /// (<see cref="Configure"/>), and takes its run from the
     /// <see cref="RunSession"/>; without a pending run it switches itself off.
@@ -60,6 +62,7 @@ namespace NetRunner.Menu
         private Button save;
         private Button leave;
         private PanelSettings pausePanel;
+        private PausedView view;
 
         /// <summary>The save slot of this run.</summary>
         public int Slot => slot;
@@ -86,6 +89,9 @@ namespace NetRunner.Menu
             }
 
             BuildPause();
+            // Its own object: a UI document under the pause menu's would be merged into the pause panel.
+            view = new GameObject(nameof(PausedView)).AddComponent<PausedView>();
+            view.Configure(player.Eyes, menuPanel);
             if (checkpoint == null && !WriteCheckpoint())
             {
                 status.text = "A kezdőpontot nem sikerült menteni.";
@@ -128,6 +134,11 @@ namespace NetRunner.Menu
             {
                 Destroy(pausePanel);
             }
+
+            if (view)
+            {
+                Destroy(view.gameObject);
+            }
         }
 
         /// <summary>Sets the run up in the hospital scene; called by the hospital's installer.</summary>
@@ -146,6 +157,32 @@ namespace NetRunner.Menu
             menuPanel = panel;
             menuStyle = style;
             roomSchedule = rooms;
+        }
+
+        /// <summary>
+        /// Opens the pause menu, as Escape does while the game has the mouse:
+        /// time stops, input pauses and <see cref="PausedView"/> freezes the view.
+        /// Does nothing while paused, returning to the menu, or without a run.
+        /// </summary>
+        public void Pause()
+        {
+            if (paused || returning || !enabled)
+            {
+                return;
+            }
+
+            var options = player.Preferences.Active;
+            paused = true;
+            player.PauseInput(true);
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            player.CaptureCursor(false);
+            overlay.EnableInClassList("contrast", options.UseHighContrast);
+            pausePanel.scale = options.UiScale;
+            overlay.style.display = DisplayStyle.Flex;
+            ShowPauseActions();
+            overlay.schedule.Execute(resume.Focus);
+            view.Freeze();
         }
 
         private void Restore(HospitalCheckpoint checkpoint)
@@ -234,21 +271,6 @@ namespace NetRunner.Menu
             overlay.style.display = DisplayStyle.None;
         }
 
-        private void Pause()
-        {
-            var options = player.Preferences.Active;
-            paused = true;
-            player.PauseInput(true);
-            previousTimeScale = Time.timeScale;
-            Time.timeScale = 0f;
-            player.CaptureCursor(false);
-            overlay.EnableInClassList("contrast", options.UseHighContrast);
-            pausePanel.scale = options.UiScale;
-            overlay.style.display = DisplayStyle.Flex;
-            ShowPauseActions();
-            overlay.schedule.Execute(resume.Focus);
-        }
-
         private IEnumerator ResumeNextFrame()
         {
             yield return null;
@@ -263,6 +285,7 @@ namespace NetRunner.Menu
             }
 
             paused = false;
+            view.Thaw();
             player.PauseInput(false);
             overlay.style.display = DisplayStyle.None;
             Time.timeScale = previousTimeScale;

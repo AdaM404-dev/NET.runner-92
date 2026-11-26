@@ -18,8 +18,6 @@ namespace NetRunner.Atmosphere.Editor
     /// </summary>
     public static class ClinicalFillLights
     {
-        private const string GroupName = "Low-output clinical fill";
-        private const string LightName = "Reflected clinical practical";
         private const string FogFolder = HospitalAssets.Atmosphere + "/Fog";
         private const int Floors = 4;
         private const float FogDimmer = .08f;
@@ -75,13 +73,13 @@ namespace NetRunner.Atmosphere.Editor
         {
             Scene scene = EditorSceneManager.OpenScene(HospitalAssets.ScenePath);
             Transform root = GameObject.Find(HospitalHierarchy.Atmosphere).transform;
-            Transform previous = root.Find(GroupName);
+            Transform previous = root.Find(FillLightNames.Group);
             if (previous)
             {
                 Object.DestroyImmediate(previous.gameObject);
             }
 
-            Transform fills = SceneParts.Node(GroupName, root);
+            Transform fills = SceneParts.Node(FillLightNames.Group, root);
             for (int floor = 0; floor < Floors; floor++)
             {
                 float elevation = floor * StairRules.FloorHeight;
@@ -132,7 +130,7 @@ namespace NetRunner.Atmosphere.Editor
 
         private static void Fill(Transform root, Vector3 position, float power, float range, Color color)
         {
-            Transform node = SceneParts.Node(LightName, root);
+            Transform node = SceneParts.Node(FillLightNames.Light, root);
             node.position = position;
             Light light = node.gameObject.AddComponent<Light>();
             light.type = LightType.Point;
