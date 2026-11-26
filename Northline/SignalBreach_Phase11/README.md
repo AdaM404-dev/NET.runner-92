@@ -68,6 +68,12 @@ The game stops the GPU computing what nobody sees ([#36](https://github.com/AdaM
 - **Motion vectors** are drawn only when something reads them: TAA, STP,
   motion blur or ambient occlusion (`Core/Scripts/MotionVectorRule.cs`).
   On Windows (Direct3D 11) they are off on Low and Medium.
+- **Lights in the fog** (step 2): on Medium the point and spot lights no
+  longer light the volumetric fog; High keeps them (`Core/Scripts/FogLights.cs`,
+  applied by `PreferencesRuntime`). Alpha test 6 measured +10–19% on Medium,
+  and screenshots barely change. Fading distant lights out (+2–8% on Low)
+  was left out: it turned the far end of long corridors dark (Samuel,
+  2026-11-26).
 
 The video is `Assets/NETRunner92/Intro/Sanhilzon_Studio_Intro_1080p60.webm`
 (Git LFS): AdaM404's original 4K H.264 MP4 from the school-test release,
@@ -90,9 +96,10 @@ shown when Unity's frame timing counters are available. F4 is reserved for
 the panel. Existing profiles that assigned F4 get a free default key for
 that action.
 
-The main menu uses a 30 FPS software limit and its UI-only camera skips HDRP
-dynamic resolution. New profiles and Restore Defaults use the
-Medium preset and a 60 FPS gameplay limit. Existing profiles keep their
+The main menu uses a 30 FPS software limit and renders no camera. New
+profiles and Restore Defaults use the Low preset on integrated graphics
+(Intel UHD/Iris, AMD Radeon Graphics; `Core/Scripts/GraphicsHardware.cs`)
+and Medium otherwise, with a 60 FPS gameplay limit (Samuel, 2026-11-26, #36). Existing profiles keep their
 saved quality and limit. When VSync is requested, the game uses hardware
 sync if the display can match the limit or runs slower, and uses software
 pacing otherwise. The F4 panel shows the active limit and VSync interval.

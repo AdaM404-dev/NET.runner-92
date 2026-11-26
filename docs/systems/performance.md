@@ -148,12 +148,17 @@ Notes:
      cheaper transparent effects; FSR 1; Adaptive Probe Volumes with the 49
      fill lights baked. Lightmaps get their own decision later.
    - Details and order: #36, "What will change", item 5.
-   - **After alpha test 6 (2026-11-26):** step 2 next: the light fade on
-     Low and Medium, and the lights out of the fog on Medium. Dropped:
+   - **After alpha test 6 (2026-11-26):** step 2 next: the lights out of
+     the fog on Medium. Dropped:
      cheaper particles (they cost nothing measurable) and FSR 1 on Low (it
      costs 5–12 ms). Baking the fill lights alone gains little; the glass
      needs a clean re-run. UI-only screens (pause, intro, main menu) no
      longer use a camera at all (`perf/phase11-ui-only-frames`).
+   - Step 2 (`perf/phase11-light-fade`, for alpha test 7, Samuel
+     2026-11-26): on Medium the point and spot lights leave the fog
+     (`FogLights`). New profiles start on Low on integrated graphics, on
+     Medium otherwise (`GraphicsHardware`). No light fade: screenshots
+     showed it turned the far end of long corridors dark.
 
 ## Results
 
