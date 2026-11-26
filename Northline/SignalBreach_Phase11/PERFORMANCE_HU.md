@@ -79,6 +79,16 @@ A mérőkód nézetenként 3 másodperc bemelegítés után 12 másodpercig gyű
 - Unity képkockaminták (`Logs/GpuLoad-SavedProfile/unity-frames.csv`) · Windows folyamatminták (`Logs/GpuLoad-SavedProfile/process-gpu.csv`) · NVIDIA nyers minták (`Logs/GpuLoad-SavedProfile/nvidia.csv`)
 - A mérőbuildhez használt átmeneti futtatókód (`Logs/GpuLoad-SavedProfile/LocalGpuProbe.cs`) és editor buildparancs (`Logs/GpuLoad-SavedProfile/LocalGpuProbeBuilder.cs`) a helyi naplókban van. A kód a mérés idejére a Diagnostics runtime és a World Editor mappájába került. A buildparancs neve `NetRunner.World.Editor.HospitalSceneBuilder.BuildLocalGpuProbe`. A futtatást és összesítést a PowerShell-mérőszkript (`Logs/Measure-Gpu.ps1`) és a CSV-összesítő (`Logs/GpuLoad-Controlled/summarize.py`) végezte. Ezek helyi fájlok a Gitből kizárt `Logs/` mappában.
 
+## GPU-terhelés, 3. kör (#36, 2026. november 26.)
+
+Samuel a tesztgépen és egy erősebb Windows-gépen is közel 100%-os GPU-terhelést látott kevés VRAM-használat mellett. Ez azt jelenti, hogy a GPU számol, nem a memória fogy el. Az első lépés leállítja azt a munkát, amit senki sem lát. [#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36)
+
+- **Szünet:** a szünetmenü mögött nem renderelődik tovább a kórház. A játékoskamera egy utolsó képkockát rajzol, ezt mutatja a menü elsötétítve, a menüt pedig egy csak UI-t rajzoló kamera jeleníti meg. [PausedView](NETRunner92_Hospital/Assets/NETRunner/Menu/Scripts/PausedView.cs)
+- **Háttérben:** a játék megáll, amíg az ablaka nincs fókuszban (`runInBackground` ki). A benchmarkok és az ellenőrzések visszakapcsolják.
+- **Dinamikus felbontás:** csak 100% alatti render skálán fut. A `QualitySwitch` eddig 100%-on is bekapcsolta.
+- **Mozgásvektorok:** csak akkor készülnek, ha valami olvassa őket: TAA, STP, mozgási elmosódás vagy ambient occlusion. Windowson (Direct3D 11) Alacsony és Közepes beállításon kikapcsolnak. [MotionVectorRule](NETRunner92_Hospital/Assets/NETRunner/Core/Scripts/MotionVectorRule.cs)
+- **Mérőkapcsolók:** `-net92-without` (például `distant-lights`, `fill-lights`, `glass`, `particles`) és `-net92-upscaler fsr1|catmull-rom`. A `tools/run-benchmarks.bat` tíz futást végez. Az alpha test 6 eredményeiből derül ki, hogy a következő lépések közül melyik hozza a legtöbbet.
+
 ## Ellenőrzési állapot
 
 - **192/192 EditMode és 17/17 célzott PlayMode** ellenőrzés ment át Windowson. A kiadott player próbája **50/54** ellenőrzésen ment át, köztük az új játék, mentés, visszatöltés, F4 kapcsolás, menükorlát és a kórházi FPS-korlát visszaállítása. EditMode-jelentés (`Logs/Pacing-EditMode.xml`) · PlayMode-jelentés (`Logs/PacingRelease-PlayMode.xml`) · Windows-próba (`Logs/PacingReleaseAcceptance/menu-checks.txt`)

@@ -48,6 +48,22 @@ then opens the main menu. **Space** skips it. Checks and benchmarks
 go straight to the menu. If the video fails, or shows no frame within 5
 seconds, the menu opens anyway.
 
+## GPU load (#36, round 3)
+
+The game stops the GPU computing what nobody sees ([#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36), item 5, step 1):
+
+- **Pause:** the hospital is no longer rendered behind the pause menu. The
+  player camera draws one last frame, which the menu shows dimmed, and a
+  camera that draws only the UI presents the menu (`Menu/Scripts/PausedView.cs`).
+- **In the background:** the game pauses while its window is not in focus
+  (`runInBackground` off; `NET.runner-92 → Apply player settings` sets it
+  without rebuilding the scene). The benchmarks and checks switch running
+  in the background back on.
+- **Dynamic resolution** runs only below a 100% render scale.
+- **Motion vectors** are drawn only when something reads them: TAA, STP,
+  motion blur or ambient occlusion (`Core/Scripts/MotionVectorRule.cs`).
+  On Windows (Direct3D 11) they are off on Low and Medium.
+
 The video is `Assets/NETRunner92/Intro/Sanhilzon_Studio_Intro_1080p60.webm`
 (Git LFS): AdaM404's original 4K H.264 MP4 from the school-test release,
 transcoded to 1920 × 1080 at 60 FPS in VP8 with Vorbis sound (5 MB),
@@ -135,6 +151,12 @@ timestamps. The CSVs and screenshots are under `Logs/OcclusionUmbra/`.
   line identifies the GPU, graphics API, output resolution, quality and
   render mode. Offscreen mode renders into a texture when the window does not
   render. An unavailable GPU timing or rendering counter is reported as `-1`.
+- The view benchmark can switch features off for one run with
+  `-net92-without distant-lights,fill-lights,glass,particles` (every name is
+  in `Core/Scripts/RenderFeatureList.cs`) and choose the upscaler with
+  `-net92-upscaler fsr1|catmull-rom`. The CSV's first line then ends with
+  `without: …; upscaler: …`. `tools/run-benchmarks.bat` makes ten such runs
+  (about 15 minutes) and ships in the alpha zip.
 - The route benchmark, `-net92-route-benchmark -net92-output <folder>`,
   in a build that starts in the hospital: walks from the south gate up the
   stairs to L4 and back and writes `route_performance.csv` (per segment),
@@ -188,6 +210,4 @@ mkdir -p "$(dirname "$build")"
 - The route benchmark and the input check start only in a build that
   starts in the hospital. The release build starts in the main menu, where
   they find no player (the view benchmark loads the hospital itself).
-- `main` has the rendering-feature switch for benchmark runs
-  (`-net92-without`, #36 round 1); this version does not.
 - The merge into `main` waits for Samuel's decision on #55 and PR #62.

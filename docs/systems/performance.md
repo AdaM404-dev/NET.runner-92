@@ -127,6 +127,21 @@ Notes:
      occlusion falls short; it ignores the 34 m detail-layer distance.
    - simpler distant geometry (mesh LOD)
 4. Retune the quality levels; alpha test 4.
+5. **Round 3, the GPU load in the Phase 11 game (Samuel, 2026-11-26; #36,
+   item 5).** The GPU sat near 100% with little VRAM in use on the test
+   machine and on a stronger Windows machine: it is busy computing, not
+   short of memory. So the round stops computing what nobody sees, then
+   stores ("bakes") what doesn't change.
+   - Step 1 (`perf/phase11-idle-gpu`): the pause menu shows a frozen frame
+     instead of rendering the hospital; the game pauses in the background;
+     dynamic resolution only below 100%; motion vectors only for TAA, STP,
+     motion blur or ambient occlusion; the `-net92-without` and
+     `-net92-upscaler` switches in Phase 11, and a ten-run
+     `run-benchmarks.bat` for alpha test 6.
+   - Then: light fade per preset, fewer lights in the fog, cached shadows;
+     cheaper transparent effects; FSR 1; Adaptive Probe Volumes with the 49
+     fill lights baked. Lightmaps get their own decision later.
+   - Details and order: #36, "What will change", item 5.
 
 ## Results
 
