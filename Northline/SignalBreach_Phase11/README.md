@@ -5,22 +5,34 @@ three save slots, the HUD, the K-7 forearm cannon and the Signal Breach
 hack. It is a separate Unity project (`NETRunner92_Hospital/`, Unity
 `6000.6.2f1`, HDRP), not part of the root project.
 
-`CODEX-TEST` is based on `feature/phase11-standard`. It includes the
-Phase 11 HUD, menu and settings, the merged Player and World runtime
-refactors, the F4 performance panel, frame pacing and the hospital
-benchmark fix. The [repository coding standard](../../docs/architecture/coding-standards.md)
-and [#55](https://github.com/AdaM404-dev/NET.runner-92/issues/55) describe
-the integration.
+This version lives on the branch `feature/phase11-standard` (draft PR #62;
+it was Codex's `CODEX-TEST` until 2026-11-25). [#55](https://github.com/AdaM404-dev/NET.runner-92/issues/55)
+brought it to the [repository coding standard](../../docs/architecture/coding-standards.md)
+in five steps, all done:
 
-Windows validation recorded 295/295 EditMode tests, 100/100 Vulkan
-PlayMode tests (including all 95 hospital checks) and 55/55 release
-acceptance checks. The release benchmark exited 0 and recorded all five
-viewpoints. This version still needs the full Linux run described below.
+1. `main`'s feature folders and assemblies.
+2. The menu's quality preset drives `main`'s Low, Medium and High levels.
+3. The Phase 11 features to the standard (Signal Breach, the K-7 cannon
+   and breach, saves, preferences, menu, HUD, room schedule).
+4. `main`'s Player, World and Diagnostics work (#43–#45), including the
+   scene builders split by feature. Codex added the F4 performance panel,
+   frame pacing and the occlusion bake along the way.
+5. This README and `agent.md`.
+
+Whether and how it comes into `main` is decided on #55 and PR #62.
+
+**Checks.** Linux, 2026-11-25 and 26 (Unity 6000.6.2f1, Vulkan):
+compile 0 errors and no warnings, EditMode 306/306, PlayMode 100/100
+(all 95 hospital checks), the route benchmark through the whole route
+(all 12 checks, 641.4 m). The rebuilt scenes and assets were compared with
+the builders before step 4: identical. Windows (Codex, 2026-11-12, before
+step 4): EditMode 295/295, PlayMode 100/100, release acceptance 55/55,
+and the view benchmark.
 
 ## Open and run
 
-1. Clone `CODEX-TEST` with Git LFS, then add `NETRunner92_Hospital/` in
-   Unity Hub with Unity 6000.6.2f1.
+1. Clone `feature/phase11-standard` with Git LFS, then add
+   `NETRunner92_Hospital/` in Unity Hub with Unity 6000.6.2f1.
 2. Open `Assets/NETRunner92/Scenes/MainMenu.unity` and press Play.
    The hospital alone (`Hospital_Exploration.unity`) runs without the
    pause menu and saves, as the tests and benchmarks use it.
@@ -105,10 +117,16 @@ timestamps. The CSVs and screenshots are under `Logs/OcclusionUmbra/`.
   line identifies the GPU, graphics API, output resolution, quality and
   render mode. Offscreen mode renders into a texture when the window does not
   render. An unavailable GPU timing or rendering counter is reported as `-1`.
+- The route benchmark, `-net92-route-benchmark -net92-output <folder>`,
+  in a build that starts in the hospital: walks from the south gate up the
+  stairs to L4 and back and writes `route_performance.csv` (per segment),
+  `route_frames.csv`, `route_audio.csv` and `route_checks.txt`. The K-7s
+  keep patrolling but ignore the walker, so the run measures the walk, not
+  combat (Samuel, 2026-11-26).
 - In a built player: `-net92-menu-check -net92-profile <empty folder>`
   (menu, settings, saves) and, in a build that starts in the hospital,
   `-net92-input-check -net92-output <file>` (movement, doors, LATCH-07,
-  terminal, CCTV). The input check needs the window to keep focus.
+  terminal, CCTV, HUD). The input check needs the window to keep focus.
 
 ## Linux validation
 
@@ -146,6 +164,12 @@ mkdir -p "$(dirname "$build")"
 ## Open points
 
 - The menu music `Menu/Deep Atmospheric Pads.mp3` has no source or licence note yet.
-- #55 step 4 has the merged Player refactor (#43, PR #57) and World
-  runtime refactor (#44, PR #60). The remaining World scene-builder split
-  (#44) and Diagnostics refactor (#45) are pending on the main branch.
+- The input check and the menu acceptance run need a focused Windows
+  player. After step 4 they were compiled and read on Linux but not run;
+  run them on Windows before a release.
+- The route benchmark and the input check start only in a build that
+  starts in the hospital. The release build starts in the main menu, where
+  they find no player (the view benchmark loads the hospital itself).
+- `main` has the rendering-feature switch for benchmark runs
+  (`-net92-without`, #36 round 1); this version does not.
+- The merge into `main` waits for Samuel's decision on #55 and PR #62.
