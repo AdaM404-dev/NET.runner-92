@@ -28,6 +28,12 @@ namespace NetRunner.SceneBuilding.Editor
         /// <summary>The player prefab and the LATCH-07 viewmodel.</summary>
         public const string Player = Root + "/Player";
 
+        /// <summary>The first scene: the Sanhilzon Studio intro (#66).</summary>
+        public const string IntroScenePath = Root + "/Scenes/StudioIntro.unity";
+
+        /// <summary>The studio intro's video and panel.</summary>
+        public const string Intro = Root + "/Intro";
+
         /// <summary>The startup scene with the main menu (Phase 11).</summary>
         public const string MainMenuPath = Root + "/Scenes/MainMenu.unity";
 

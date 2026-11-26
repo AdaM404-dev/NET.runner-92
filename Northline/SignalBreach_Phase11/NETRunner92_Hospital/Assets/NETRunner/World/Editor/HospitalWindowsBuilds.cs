@@ -63,8 +63,9 @@ namespace NetRunner.World.Editor
         }
 
         /// <summary>
-        /// Builds the release game: the main menu first, then the hospital,
-        /// creating the menu scene when it is missing, with the interface font's licence.
+        /// Builds the release game: the studio intro, the main menu, then the
+        /// hospital, creating the menu scene when it is missing, with the
+        /// interface font's licence.
         /// </summary>
         [MenuItem("NET.runner-92/Main Menu/Build Windows player")]
         public static void MainMenu()
@@ -74,7 +75,7 @@ namespace NetRunner.World.Editor
                 MainMenuBuilder.Create();
             }
 
-            string file = Build(MenuPhase, new[] { HospitalAssets.MainMenuPath, HospitalAssets.ScenePath }, BuildOptions.None);
+            string file = Build(MenuPhase, SceneParts.StartOrder(), BuildOptions.None);
             File.Copy(FontLicence, Path.Combine(Path.GetDirectoryName(file), FontLicenceFile), true);
         }
 

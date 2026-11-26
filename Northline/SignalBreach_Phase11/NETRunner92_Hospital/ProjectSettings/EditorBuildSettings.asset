@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/NETRunner92/Scenes/StudioIntro.unity
+    guid: 0b028d8fc86a7a6619bbdd5717c292dc
+  - enabled: 1
     path: Assets/NETRunner92/Scenes/MainMenu.unity
     guid: cbbd3576c6c4cee469cd91ab30eae723
   - enabled: 1

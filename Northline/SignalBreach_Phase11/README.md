@@ -38,6 +38,24 @@ and the view benchmark.
    pause menu and saves, as the tests and benchmarks use it.
 3. On Linux the player builds with Vulkan; Windows uses Direct3D 11.
 
+## Studio intro
+
+The game starts with the 30-second Sanhilzon Studio intro instead of
+Unity's logo ([#66](https://github.com/AdaM404-dev/NET.runner-92/issues/66)),
+then opens the main menu. **Space** skips it. Checks and benchmarks
+(`-net92-benchmark`, `-net92-route-benchmark`, `-net92-menu-check`,
+`-net92-menu-reload-check`, `-net92-input-check`) and `-net92-skip-intro`
+go straight to the menu. If the video fails, or shows no frame within 5
+seconds, the menu opens anyway.
+
+The video is `Assets/NETRunner92/Intro/Sanhilzon_Studio_Intro_1080p60.webm`
+(Git LFS): AdaM404's original 4K H.264 MP4 from the school-test release,
+transcoded to 1920 × 1080 at 60 FPS in VP8 with Vorbis sound (5 MB),
+because Unity on Linux plays only VP8 and the test machine's screen is
+1080p. **NET.runner-92 › Intro › Create studio intro scene** builds
+`Scenes/StudioIntro.unity`, switches Unity's splash screen off and puts the
+intro first in Build Settings, then the menu and the hospital.
+
 ## Windows player
 
 Use **NET.runner-92 › Main Menu › Build Windows player** in the editor to

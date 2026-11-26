@@ -17,8 +17,8 @@ namespace NetRunner.Menu.Editor
     /// Builds the startup scene <c>MainMenu.unity</c>: a camera that only
     /// clears to dark blue and draws no 3D (the menu is UI), the menu view
     /// with its backdrop, styles, the score and the click sound, linked to
-    /// the shared preferences and run session. Puts the menu first and the
-    /// hospital second in Build Settings.
+    /// the shared preferences and run session. Puts the menu after the studio
+    /// intro (when it exists) and before the hospital in Build Settings.
     /// </summary>
     public static class MainMenuBuilder
     {
@@ -88,12 +88,7 @@ namespace NetRunner.Menu.Editor
                 throw new IOException("Could not save MainMenu scene.");
             }
 
-            EditorBuildSettingsScene[] first =
-            {
-                new EditorBuildSettingsScene(HospitalAssets.MainMenuPath, true), new EditorBuildSettingsScene(HospitalAssets.ScenePath, true),
-            };
-            EditorBuildSettings.scenes = first.Concat(EditorBuildSettings.scenes.Where(s =>
-                s.path != HospitalAssets.MainMenuPath && s.path != HospitalAssets.ScenePath)).ToArray();
+            SceneParts.SetBuildOrder();
             AssetDatabase.SaveAssets();
             Debug.Log("NET92 MAIN MENU | Saved startup scene and wired the hospital scene.");
         }

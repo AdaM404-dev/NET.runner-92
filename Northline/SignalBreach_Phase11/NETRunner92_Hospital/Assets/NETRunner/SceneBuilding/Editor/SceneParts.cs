@@ -103,6 +103,24 @@ namespace NetRunner.SceneBuilding.Editor
             return asset ? asset : throw new FileNotFoundException(path);
         }
 
+        /// <summary>
+        /// The game's scenes in start order, those that exist: the studio
+        /// intro, the main menu, the hospital.
+        /// </summary>
+        public static string[] StartOrder()
+        {
+            return new[] { HospitalAssets.IntroScenePath, HospitalAssets.MainMenuPath, HospitalAssets.ScenePath }
+                .Where(File.Exists).ToArray();
+        }
+
+        /// <summary>Puts <see cref="StartOrder"/> first in Build Settings, enabled, and keeps any other scenes after it.</summary>
+        public static void SetBuildOrder()
+        {
+            string[] first = StartOrder();
+            EditorBuildSettings.scenes = first.Select(path => new EditorBuildSettingsScene(path, true))
+                .Concat(EditorBuildSettings.scenes.Where(scene => !first.Contains(scene.path))).ToArray();
+        }
+
         /// <summary><paramref name="name"/> with every character that is not a letter or digit replaced by '_'.</summary>
         public static string AssetName(string name)
         {
