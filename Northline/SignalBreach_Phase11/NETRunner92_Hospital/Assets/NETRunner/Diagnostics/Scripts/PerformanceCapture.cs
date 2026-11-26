@@ -16,12 +16,15 @@ namespace NetRunner.Diagnostics
     /// <summary>
     /// Measures five stationary views of the hospital in a standalone player,
     /// with the features that <see cref="RenderFeatureSwitch"/> switches off
-    /// for the run (<c>-net92-without</c>, <c>-net92-upscaler</c>).
+    /// for the run (<c>-net92-without</c>, <c>-net92-upscaler</c>). With
+    /// <c>-net92-screenshots</c> it saves a picture of each view next to the
+    /// results, for comparing how a change looks.
     /// </summary>
     public sealed class PerformanceCapture : MonoBehaviour
     {
         private const string BenchmarkOption = "-net92-benchmark";
         private const string OutputOption = "-net92-output";
+        private const string ScreenshotsOption = "-net92-screenshots";
         private const string DefaultFile = "performance.csv";
         private const int FailedExitCode = 2;
         private const int Uncapped = -1;
@@ -174,6 +177,12 @@ namespace NetRunner.Diagnostics
 
                 results.Add(FormattableString.Invariant(
                     $"{label};{frame.Count};{MillisecondsPerSecond / SampleStatistics.Mean(frame):F1};{SampleStatistics.Percentile(frame, Percentile):F2};{SampleStatistics.Percentile(gpu, Percentile):F2};{SampleStatistics.Mean(draw):F0};{SampleStatistics.Mean(tris):F0}"));
+                if (renderRequest == null && LaunchArguments.Has(Environment.GetCommandLineArgs(), ScreenshotsOption))
+                {
+                    // Taken at the end of this frame, before the next view moves the player.
+                    ScreenCapture.CaptureScreenshot(PicturePath(label));
+                    yield return null;
+                }
             }
 
             // Offscreen runs draw the camera by request, which a frozen view would stop.
@@ -280,10 +289,24 @@ namespace NetRunner.Diagnostics
             }
         }
 
+        // Beside the results file: views-low.csv gives views-low-Reception.png.
+        private static string PicturePath(string label)
+        {
+            string results = Path.GetFullPath(ResultsPath());
+            string folder = Path.GetDirectoryName(results);
+            Directory.CreateDirectory(folder);
+            return Path.Combine(folder, $"{Path.GetFileNameWithoutExtension(results)}-{label.Replace(' ', '-')}.png");
+        }
+
+        private static string ResultsPath()
+        {
+            return LaunchArguments.ValueAfter(Environment.GetCommandLineArgs(), OutputOption)
+                ?? Path.Combine(Application.persistentDataPath, DefaultFile);
+        }
+
         private static void WriteResults(List<string> results)
         {
-            string path = LaunchArguments.ValueAfter(Environment.GetCommandLineArgs(), OutputOption)
-                ?? Path.Combine(Application.persistentDataPath, DefaultFile);
+            string path = ResultsPath();
             try
             {
                 path = Path.GetFullPath(path);
