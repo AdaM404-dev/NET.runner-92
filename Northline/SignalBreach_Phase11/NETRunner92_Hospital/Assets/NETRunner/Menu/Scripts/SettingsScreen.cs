@@ -124,7 +124,7 @@ namespace NetRunner.Menu
             var defaults = Widgets.Button("Alapértékek", () => host.Confirm("Visszaállítod az alapértékeket?",
                 "A változtatásokat az Alkalmaz gomb menti.", "Visszaállítás", () =>
                 {
-                    draft = GamePreferences.CreateDefault();
+                    draft = GamePreferences.CreateDefault(Preferences.FirstStartPreset);
                     Preferences.Preview(draft);
                     ShowCategory(category);
                 }));

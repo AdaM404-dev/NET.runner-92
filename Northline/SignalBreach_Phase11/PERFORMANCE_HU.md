@@ -48,7 +48,7 @@ A kórházi jelenet betöltésekor a `PreferencesRuntime` visszaállítja a ment
 
 Például 60 FPS-es célnál egy 120 Hz-es kijelzőn 2-es, egy 240 Hz-es kijelzőn 4-es VSync-osztó működik. 144 Hz-en a 60 FPS-es szoftveres korlát érvényesül. Játék közben bekapcsolt VSync mellett a rendszer másodpercenként ellenőrzi a kijelző frissítését, és változáskor újraszámolja a tempót.
 
-Új profil létrehozásakor és az alapértékek visszaállításakor **Közepes profil, 67%-os render skála és 60 FPS-es játékkorlát** az alapérték. A korábbi profilok megőrzik a mentett grafikai értékeiket, így a korábban választott korlátlan FPS is megmarad. A korlát a **Beállítások → Grafika → Játék FPS-korlátja** alatt módosítható. [Profilkezelés](NETRunner92_Hospital/Assets/NETRunner/Settings/Scripts/GamePreferences.cs) · [Grafikai beállítások](NETRunner92_Hospital/Assets/NETRunner/Menu/Scripts/SettingsScreen.cs)
+Új profil létrehozásakor és az alapértékek visszaállításakor integrált GPU-n (Intel UHD/Iris, AMD Radeon Graphics) **Alacsony profil, 50%-os render skála**, egyébként **Közepes profil, 67%-os render skála** az alapérték, mindkettő **60 FPS-es játékkorláttal** (Samuel döntése, 2026. november 26., #36). [Grafikus kártya felismerése](NETRunner92_Hospital/Assets/NETRunner/Core/Scripts/GraphicsHardware.cs) A korábbi profilok megőrzik a mentett grafikai értékeiket, így a korábban választott korlátlan FPS is megmarad. A korlát a **Beállítások → Grafika → Játék FPS-korlátja** alatt módosítható. [Profilkezelés](NETRunner92_Hospital/Assets/NETRunner/Settings/Scripts/GamePreferences.cs) · [Grafikai beállítások](NETRunner92_Hospital/Assets/NETRunner/Menu/Scripts/SettingsScreen.cs)
 
 ## F4 teljesítménypanel
 
@@ -89,6 +89,7 @@ Samuel a tesztgépen és egy erősebb Windows-gépen is közel 100%-os GPU-terhe
 - **Dinamikus felbontás:** csak 100% alatti render skálán fut. A `QualitySwitch` eddig 100%-on is bekapcsolta.
 - **Mozgásvektorok:** csak akkor készülnek, ha valami olvassa őket: TAA, STP, mozgási elmosódás vagy ambient occlusion. Windowson (Direct3D 11) Alacsony és Közepes beállításon kikapcsolnak. [MotionVectorRule](NETRunner92_Hospital/Assets/NETRunner/Core/Scripts/MotionVectorRule.cs)
 - **Mérőkapcsolók:** `-net92-without` (például `distant-lights`, `fill-lights`, `glass`, `particles`) és `-net92-upscaler fsr1|catmull-rom`. A `tools/run-benchmarks.bat` tíz futást végez, az utolsó sor (`Paused`) a szünetképet méri.
+- **Fények a ködben (2. lépés):** Közepes beállításon a pont- és spotfények már nem világítják meg a volumetrikus ködöt, a Magas beállítás megtartja őket. Az alpha test 6 szerint ez Közepesen +10–19%, és a képen alig látszik. A távoli fények elhalványítása (+2–8% Alacsonyon) kimaradt, mert a hosszú folyosók vége elsötétült (Samuel döntése, 2026. november 26.). [FogLights](NETRunner92_Hospital/Assets/NETRunner/Core/Scripts/FogLights.cs)
 - **Alpha test 6 (UHD 630, [#73](https://github.com/AdaM404-dev/NET.runner-92/issues/73)):** Alacsony beállításon mind az öt nézet átlaga 30 FPS fölött van (33,0–45,2 FPS; az alpha test 5-ben 27,6–42,6). A javulás a kikapcsolt mozgásvektoroktól jön. A távoli fények elhalványítása mindenhol segít (+2–8%), Közepesen a ködből kivett fények +10–19%-ot hoznak. A részecskék nem számítanak, az FSR 1 pedig 17–29%-kal lassabb.
 
 ## Ellenőrzési állapot

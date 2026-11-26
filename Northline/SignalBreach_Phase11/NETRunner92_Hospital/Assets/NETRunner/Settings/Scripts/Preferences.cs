@@ -36,6 +36,12 @@ namespace NetRunner.Settings
         /// <summary>Raised whenever the preferences in effect change.</summary>
         public event Action Changed;
 
+        /// <summary>
+        /// The preset a new profile starts on, for this machine's graphics: Low on
+        /// integrated graphics, Medium otherwise (<see cref="QualityPreset.FirstStartFor"/>).
+        /// </summary>
+        public static int FirstStartPreset => QualityPreset.FirstStartFor(GraphicsHardware.IsIntegrated(SystemInfo.graphicsDeviceName));
+
         /// <summary>The preferences in the settings file.</summary>
         public GamePreferences Saved => saved;
 
@@ -178,7 +184,7 @@ namespace NetRunner.Settings
                 Debug.LogWarning($"Northline settings defaults restored: {exception.Message}");
             }
 
-            return GamePreferences.CreateDefault();
+            return GamePreferences.CreateDefault(FirstStartPreset);
         }
     }
 }
