@@ -215,7 +215,8 @@ namespace NetRunner.World.Editor
 
         // Reads every mesh from MeshData.bytes: per mesh its vertex count and
         // submesh count, the vertices (position, normal, uv), then each
-        // submesh's material index and triangles. Rewrites the mesh assets.
+        // submesh's material index and triangles. Adds lightmap UVs and
+        // rewrites the mesh assets.
         private static MeshEntry[] Meshes(string folder, Material[] surfaces, int count)
         {
             using (var reader = new BinaryReader(File.OpenRead(folder + MeshFile)))
@@ -306,7 +307,31 @@ namespace NetRunner.World.Editor
             }
 
             mesh.RecalculateBounds();
+            AddLightmapUvs(mesh);
             return mesh;
+        }
+
+        // The second UV set the lighting bake writes lightmaps into (#79). The
+        // builder unwraps each mesh itself, so AdaM404's exported geometry stays
+        // as it is. Unwrapping splits vertices at its seams, which can pass the
+        // 16-bit index limit; such a mesh moves to 32-bit indices and is unwrapped again.
+        private static void AddLightmapUvs(Mesh mesh)
+        {
+            if (Unwrapping.GenerateSecondaryUVSet(mesh))
+            {
+                return;
+            }
+
+            if (mesh.indexFormat == IndexFormat.UInt16)
+            {
+                mesh.indexFormat = IndexFormat.UInt32;
+                if (Unwrapping.GenerateSecondaryUVSet(mesh))
+                {
+                    return;
+                }
+            }
+
+            throw new InvalidDataException($"Could not unwrap lightmap UVs for {mesh.name}.");
         }
 
         private Material MaterialFor(SourceSurface surface)

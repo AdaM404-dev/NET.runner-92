@@ -61,6 +61,9 @@ namespace NetRunner.Atmosphere
         /// <summary>How far inside the listener is: 0 outdoors, 1 deep inside; it follows the zones at <see cref="Ambience.BlendRate"/>.</summary>
         public float InteriorBlend => inside;
 
+        /// <summary>The lightning's light, whose intensity this sets every frame; the lighting bake keeps it live.</summary>
+        public Light Lightning => lightning;
+
         /// <summary>Rain streaks emitted since the start; the hospital checks count them.</summary>
         public int EmittedRain { get; private set; }
 

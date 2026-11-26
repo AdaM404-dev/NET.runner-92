@@ -51,3 +51,7 @@ bin/*    text eol=lf
 ArtSource/K7_Industrial_Robot/** -text
 ArtSource/Warehouse_NearFuture/** -text whitespace=cr-at-eol
 *.bat    text eol=crlf
+
+# Unity writes baked lighting data (LightingData.asset) in binary, unlike other
+# .asset files: LFS, never line-ending conversion (#79).
+**/LightingData.asset filter=lfs diff=lfs merge=lfs -text
