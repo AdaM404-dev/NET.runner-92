@@ -83,11 +83,13 @@ A mérőkód nézetenként 3 másodperc bemelegítés után 12 másodpercig gyű
 
 Samuel a tesztgépen és egy erősebb Windows-gépen is közel 100%-os GPU-terhelést látott kevés VRAM-használat mellett. Ez azt jelenti, hogy a GPU számol, nem a memória fogy el. Az első lépés leállítja azt a munkát, amit senki sem lát. [#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36)
 
-- **Szünet:** a szünetmenü mögött nem renderelődik tovább a kórház. A játékoskamera egy utolsó képkockát rajzol, ezt mutatja a menü elsötétítve, a menüt pedig egy csak UI-t rajzoló kamera jeleníti meg. [PausedView](NETRunner92_Hospital/Assets/NETRunner/Menu/Scripts/PausedView.cs)
+- **Szünet:** a szünetmenü mögött nem renderelődik tovább a kórház. A játékoskamera egy utolsó képkockát rajzol, ezt mutatja a menü elsötétítve. Utána egyetlen kamera sem renderel, a felületet a motor rajzolja ki. [PausedView](NETRunner92_Hospital/Assets/NETRunner/Menu/Scripts/PausedView.cs)
+- **Intro és főmenü:** ezekben sincs kamera. Egy objektumokat nem rajzoló HDRP-kamera is lefuttatja a HDRP teljes képkockáját teljes felbontáson. Ez az intró alatt teljes terhelésen tartotta az integrált GPU-t (alpha test 6). Samuel laptopján a fagyasztott szünetkép GPU-ideje ezzel a kamerával 2,53 ms volt, nélküle 0,03 ms.
 - **Háttérben:** a játék megáll, amíg az ablaka nincs fókuszban (`runInBackground` ki). A benchmarkok és az ellenőrzések visszakapcsolják.
 - **Dinamikus felbontás:** csak 100% alatti render skálán fut. A `QualitySwitch` eddig 100%-on is bekapcsolta.
 - **Mozgásvektorok:** csak akkor készülnek, ha valami olvassa őket: TAA, STP, mozgási elmosódás vagy ambient occlusion. Windowson (Direct3D 11) Alacsony és Közepes beállításon kikapcsolnak. [MotionVectorRule](NETRunner92_Hospital/Assets/NETRunner/Core/Scripts/MotionVectorRule.cs)
-- **Mérőkapcsolók:** `-net92-without` (például `distant-lights`, `fill-lights`, `glass`, `particles`) és `-net92-upscaler fsr1|catmull-rom`. A `tools/run-benchmarks.bat` tíz futást végez. Az alpha test 6 eredményeiből derül ki, hogy a következő lépések közül melyik hozza a legtöbbet.
+- **Mérőkapcsolók:** `-net92-without` (például `distant-lights`, `fill-lights`, `glass`, `particles`) és `-net92-upscaler fsr1|catmull-rom`. A `tools/run-benchmarks.bat` tíz futást végez, az utolsó sor (`Paused`) a szünetképet méri.
+- **Alpha test 6 (UHD 630, [#73](https://github.com/AdaM404-dev/NET.runner-92/issues/73)):** Alacsony beállításon mind az öt nézet átlaga 30 FPS fölött van (33,0–45,2 FPS; az alpha test 5-ben 27,6–42,6). A javulás a kikapcsolt mozgásvektoroktól jön. A távoli fények elhalványítása mindenhol segít (+2–8%), Közepesen a ködből kivett fények +10–19%-ot hoznak. A részecskék nem számítanak, az FSR 1 pedig 17–29%-kal lassabb.
 
 ## Ellenőrzési állapot
 

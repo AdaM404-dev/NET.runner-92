@@ -53,8 +53,13 @@ seconds, the menu opens anyway.
 The game stops the GPU computing what nobody sees ([#36](https://github.com/AdaM404-dev/NET.runner-92/issues/36), item 5, step 1):
 
 - **Pause:** the hospital is no longer rendered behind the pause menu. The
-  player camera draws one last frame, which the menu shows dimmed, and a
-  camera that draws only the UI presents the menu (`Menu/Scripts/PausedView.cs`).
+  player camera draws one last frame, which the menu shows dimmed; after
+  that no camera renders and the engine draws only the UI (`Menu/Scripts/PausedView.cs`).
+- **Intro and main menu:** no camera either. A camera that draws no
+  objects still runs HDRP's whole frame at full resolution, which kept
+  integrated graphics at full load in the intro (alpha test 6). With no
+  camera on, HDRP leaves the UI to the engine; an audio listener plays the
+  sound.
 - **In the background:** the game pauses while its window is not in focus
   (`runInBackground` off; `NET.runner-92 → Apply player settings` sets it
   without rebuilding the scene). The benchmarks and checks switch running
@@ -156,7 +161,8 @@ timestamps. The CSVs and screenshots are under `Logs/OcclusionUmbra/`.
   in `Core/Scripts/RenderFeatureList.cs`) and choose the upscaler with
   `-net92-upscaler fsr1|catmull-rom`. The CSV's first line then ends with
   `without: …; upscaler: …`. `tools/run-benchmarks.bat` makes ten such runs
-  (about 15 minutes) and ships in the alpha zip.
+  (about 15 minutes) and ships in the alpha zip. A last row, `Paused`,
+  measures the pause menu's frozen frame (every frame, as no camera renders).
 - The route benchmark, `-net92-route-benchmark -net92-output <folder>`,
   in a build that starts in the hospital: walks from the south gate up the
   stairs to L4 and back and writes `route_performance.csv` (per segment),
