@@ -148,6 +148,12 @@ Notes:
      cheaper transparent effects; FSR 1; Adaptive Probe Volumes with the 49
      fill lights baked. Lightmaps get their own decision later.
    - Details and order: #36, "What will change", item 5.
+   - **After alpha test 7 (2026-11-26):** Low averages 33–47 FPS. Next
+     candidates, waiting for Samuel:
+     - the 49 fill lights on Low (+10–15% indoors), switched off on Low or
+       baked into light probes;
+     - cached shadows on Medium (shadows cost 4–7 ms there);
+     - a cheaper glass on Low (1–2 ms, AdaM404's material).
    - **After alpha test 6 (2026-11-26):** step 2 next: the lights out of
      the fog on Medium. Dropped:
      cheaper particles (they cost nothing measurable) and FSR 1 on Low (it
@@ -161,6 +167,31 @@ Notes:
      showed it turned the far end of long corridors dark.
 
 ## Results
+
+### Alpha test 7 (Phase 11), Windows test machine (2026-11-26, [#77](https://github.com/AdaM404-dev/NET.runner-92/issues/77))
+
+Intel UHD Graphics 630, Direct3D 11, 1920×1080 in a window; the six runs of
+`run-benchmarks.bat`, with other programs closed (the runs are consistent).
+
+| View | Low | P95 frame on Low | Medium (alpha test 6) | High |
+| --- | --- | --- | --- | --- |
+| South checkpoint | 33.4 FPS | 34.0 ms | 17.1 FPS (14.2) | 6.8 FPS |
+| Reception | 47.0 FPS | 24.8 ms | 20.4 FPS (17.9) | 8.1 FPS |
+| Ward | 40.6 FPS | 27.8 ms | 18.7 FPS (15.5) | 7.4 FPS |
+| Surgery | 46.2 FPS | 25.5 ms | 20.5 FPS (17.5) | 8.2 FPS |
+| Research | 46.4 FPS | 24.4 ms | 20.4 FPS (17.8) | 8.2 FPS |
+
+- **Medium +14–21%,** from the lights leaving the fog (step 2), as alpha
+  test 6 predicted. Low and High didn't change, by design.
+- **The paused frame** costs 1.4–1.5 ms of GPU time: about 9% of the GPU
+  under the 60 FPS cap.
+- **The clean re-runs,** each against the same level in this test:
+
+  | Run | Result |
+  | --- | --- |
+  | Low without the fill lights | +2% outdoors, +10–15% indoors (−2.3 to −3.2 ms P95 GPU) |
+  | Medium without shadows | +9–15% (−4.0 to −6.8 ms) |
+  | Low without glass | +3–7% (−0.8 to −2.2 ms); the South checkpoint's P95 frame drops to 32.1 ms |
 
 ### Alpha test 6 (Phase 11), Windows test machine (2026-11-26, [#73](https://github.com/AdaM404-dev/NET.runner-92/issues/73))
 
