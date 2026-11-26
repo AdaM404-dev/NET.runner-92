@@ -123,6 +123,7 @@ namespace NetRunner.Menu.Tests
                 VisualElement screen = view.GetComponentInChildren<UIDocument>().rootVisualElement.Q("paused-view");
                 float litShare = SaveAndMeasure(screen.resolvedStyle.backgroundImage.renderTexture, "PausedView.png");
                 Assert.That(litShare, Is.GreaterThan(LitShare), "The frozen frame is black.");
+                Assert.That(Camera.allCamerasCount, Is.EqualTo(0), "A camera still renders while paused.");
 
                 yield return PressEscape(keyboard);
 

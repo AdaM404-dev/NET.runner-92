@@ -8,9 +8,12 @@ namespace NetRunner.Menu
     /// <summary>
     /// Stops the hospital rendering behind the pause menu (#36, round 3). On
     /// <see cref="Freeze"/> the player camera draws one last frame into a
-    /// texture, which is then shown full screen while that camera is off. A
-    /// camera that draws only the UI presents the menus meanwhile, so a paused
-    /// game no longer keeps the GPU at full load. <see cref="Thaw"/> turns the
+    /// texture, which is then shown full screen while that camera is off.
+    /// From the next frame on no camera renders at all: HDRP then leaves the
+    /// UI to the engine, which draws only the panels. A UI-only HDRP camera
+    /// would still run HDRP's whole frame at full resolution, about 70% of a
+    /// hospital view's GPU time on Low (alpha test 6), so it presents the
+    /// menus only during the capture frame. <see cref="Thaw"/> turns the
     /// player camera back on. <see cref="HospitalRun"/> creates it on an object
     /// of its own and calls it when the game pauses and resumes. Its UI
     /// document must not sit under another UI document, which would merge it
@@ -22,7 +25,7 @@ namespace NetRunner.Menu
         private const int BehindEverything = -100;
         private const int NoDepthBuffer = 0;
 
-        // The UI-only camera skips everything a camera that draws no objects would still compute.
+        // The capture frame's UI-only camera skips everything a camera that draws no objects would still compute.
         private static readonly FrameSettingsField[] SkippedEffects =
         {
             FrameSettingsField.Postprocess, FrameSettingsField.SSAO, FrameSettingsField.SSR, FrameSettingsField.Volumetrics,
@@ -76,7 +79,7 @@ namespace NetRunner.Menu
 
         /// <summary>
         /// Draws the player camera's view one last time and shows it in place of
-        /// the live view; from the next frame on the player camera is off.
+        /// the live view; from the next frame on no camera renders.
         /// </summary>
         public void Freeze()
         {
@@ -120,12 +123,14 @@ namespace NetRunner.Menu
             IsFrozen = false;
         }
 
-        // The camera drew into the frame while the frame that called Freeze was rendered.
+        // The camera drew into the frame while the frame that called Freeze was
+        // rendered, with the UI-only camera presenting the menus; now both stop.
         private IEnumerator TurnOffAfterCapture()
         {
             yield return null;
             eyes.enabled = false;
             eyes.targetTexture = null;
+            presenter.enabled = false;
             IsFrozen = true;
             capture = null;
         }
