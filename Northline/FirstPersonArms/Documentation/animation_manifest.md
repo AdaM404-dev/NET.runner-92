@@ -2,6 +2,8 @@
 
 The NLA editor shows each clip as a named track and timeline marker. The stage camera is fixed. The rig uses an analytic two-link arm solve and independently authored finger rotations. The finished actions contain skeletal transform samples at 60 Hz and require no live Blender constraints.
 
+The palm and back of each glove follow the character's anatomical hand orientation. The forearm carries the roll through the wrist, with authored wrist bends capped at 32° on the left and 38° on the right. In `Hack_Interact`, the right index pad approaches the display while the other fingers clear the glass. The [pose audit](../Validation/pose_audit.json) records the thumb orientation and maximum wrist bends.
+
 | Clip | Scene frames | Duration | Loop | Intended transition |
 | --- | --- | --- | --- | --- |
 | Hack_Equip | 1–31 | 0.50 s | No | Stowed to ready. The forearm rolls toward view and the display rises. |

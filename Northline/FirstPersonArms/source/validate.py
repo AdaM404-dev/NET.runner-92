@@ -6,6 +6,7 @@ import sys
 
 import bpy
 import numpy as np
+from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -63,6 +64,14 @@ def main_blend():
     objects=skinned(s)
     arms=[bpy.data.objects["FP_"+side+"_Sleeve_and_Glove"] for side in ("Left","Right")]
     right=arms[1]
+    dorsal = Vector((0, -1, 0))
+    thumb_offsets = {}
+    wrist_bends = {"Left": 0.0, "Right": 0.0}
+    for side in wrist_bends:
+        bones = armature.data.bones
+        hand_axis = bones[side+"Hand"].tail_local-bones[side+"Hand"].head_local
+        thumb_span = bones[side+"ThumbProximal"].head_local-bones[side+"LittleProximal"].head_local
+        thumb_offsets[side] = round(1000 * thumb_span.dot(hand_axis.normalized().cross(dorsal).normalized()), 2)
     slot=right.vertex_groups["RightIndexDistal"].index
     tips=np.array([v.index for v in right.data.vertices if any(g.group==slot and g.weight>.63 for g in v.groups)])
     screen=bpy.data.objects["NR92_Display_Surface"]
@@ -89,6 +98,10 @@ def main_blend():
         result=[]
         for frame in range(start,end+1):
             s.frame_set(frame)
+            for side in wrist_bends:
+                bones = armature.pose.bones
+                bend = math.degrees(bones[side+"LowerArm"].y_axis.angle(bones[side+"Hand"].y_axis))
+                wrist_bends[side] = max(wrist_bends[side], bend)
             dg=bpy.context.evaluated_depsgraph_get()
             gauntlet=points(screen,dg)
             origin,axes=screen_frame(gauntlet)
@@ -154,6 +167,8 @@ def main_blend():
                  and row["screen_corners_in_camera"]==4]
     return {
         "format":"Blend pose audit",
+        "rest_thumb_offsets_mm":thumb_offsets,
+        "maximum_wrist_bend_deg":{side:round(angle, 2) for side, angle in wrist_bends.items()},
         "bone_count":len(armature.data.bones), "arm_vertices":[len(o.data.vertices) for o in arms],
         "skinned_mesh_objects":len(objects), "evaluated_triangles":sum(evaluated_tris.values()),
         "triangles_by_object":evaluated_tris, "max_vertex_influences":max_influences,

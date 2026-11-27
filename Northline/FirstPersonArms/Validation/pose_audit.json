@@ -1,5 +1,13 @@
 {
   "format": "Blend pose audit",
+  "rest_thumb_offsets_mm": {
+    "Left": 58.01,
+    "Right": -58.01
+  },
+  "maximum_wrist_bend_deg": {
+    "Left": 32.0,
+    "Right": 38.0
+  },
   "bone_count": 41,
   "arm_vertices": [
     3986,
@@ -87,73 +95,73 @@
     "476": 0
   },
   "shoulder_trim_visible_frames": [],
-  "min_distance_to_eye_m": 0.16956,
+  "min_distance_to_eye_m": 0.16019,
   "idle_screen_area_percent": [
     7.93,
     8.27
   ],
   "idle_screen_inside_frame_every_sample": true,
   "closest_index_contact": {
-    "frame": 224,
-    "near_eye_m": 0.1712,
+    "frame": 231,
+    "near_eye_m": 0.16938,
     "shoulder_trim_visible": false,
-    "arm_vertices_in_camera": 6639,
+    "arm_vertices_in_camera": 6688,
     "screen_corners_in_camera": 4,
-    "screen_area_fraction": 0.08075,
+    "screen_area_fraction": 0.0806,
     "screen_projection": [
       [
-        0.33656999468803406,
-        0.12334000319242477
+        0.33722999691963196,
+        0.12409999966621399
       ],
       [
-        0.6215100288391113,
-        0.3621799945831299
+        0.6215999722480774,
+        0.3630099892616272
       ],
       [
-        0.5291299819946289,
-        0.5396900177001953
+        0.5291200280189514,
+        0.5401899814605713
       ],
       [
-        0.2531299889087677,
-        0.4043999910354614
+        0.25345999002456665,
+        0.4047600030899048
       ]
     ],
-    "right_nearest_in_panel_bounds_m": 0.0006,
-    "right_index_pad_to_display_m": 0.0006
+    "right_nearest_in_panel_bounds_m": 0.001,
+    "right_index_pad_to_display_m": 0.001
   },
   "panel_penetration_samples": [],
   "glass_triangle_crossings": [],
   "arm_to_arm_triangle_crossings": [],
   "rigid_mount_triangle_crossings": [],
   "carrier_to_guard_triangle_crossings": [],
-  "flexible_liner_contact_frames": 328,
+  "flexible_liner_contact_frames": 24,
   "pose_join_max_delta": {
-    "Hack_Equip → Hack_Idle": 2.980232238769531e-07,
-    "Hack_Idle → Hack_Idle": 3.5762786865234375e-07,
-    "Hack_Idle → Hack_Interact": 3.5762786865234375e-07,
-    "Hack_Interact → Hack_Success": 2.980232238769531e-07,
-    "Hack_Interact → Hack_Failed": 2.980232238769531e-07,
-    "Hack_Success → Hack_Unequip": 3.2782554626464844e-07,
-    "Hack_Failed → Hack_Cancel": 2.980232238769531e-07,
-    "Hack_Unequip → Hack_Equip": 4.76837158203125e-07,
-    "Hack_Cancel → Hack_Equip": 4.76837158203125e-07
+    "Hack_Equip → Hack_Idle": 5.364418029785156e-07,
+    "Hack_Idle → Hack_Idle": 4.172325134277344e-07,
+    "Hack_Idle → Hack_Interact": 4.172325134277344e-07,
+    "Hack_Interact → Hack_Success": 2.384185791015625e-07,
+    "Hack_Interact → Hack_Failed": 2.384185791015625e-07,
+    "Hack_Success → Hack_Unequip": 4.76837158203125e-07,
+    "Hack_Failed → Hack_Cancel": 4.172325134277344e-07,
+    "Hack_Unequip → Hack_Equip": 3.2782554626464844e-07,
+    "Hack_Cancel → Hack_Equip": 3.5762786865234375e-07
   },
   "frames": {
     "Hack_Equip": [
       {
         "frame": 1,
-        "near_eye_m": 0.33223,
+        "near_eye_m": 0.30946,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.99799,
+        "screen_area_fraction": 1.99798,
         "screen_projection": [
           [
             -2.083859920501709,
-            -6.270480155944824
+            -6.270470142364502
           ],
           [
-            -0.646369993686676,
+            -0.6463599801063538,
             -2.4195899963378906
           ],
           [
@@ -161,8 +169,8 @@
             -3.1820099353790283
           ],
           [
-            -2.8740200996398926,
-            -10.327980041503906
+            -2.8740100860595703,
+            -10.327949523925781
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -170,15 +178,15 @@
       },
       {
         "frame": 2,
-        "near_eye_m": 0.33218,
+        "near_eye_m": 0.30927,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.89355,
+        "screen_area_fraction": 1.89354,
         "screen_projection": [
           [
-            -2.0317599773406982,
-            -6.116020202636719
+            -2.031749963760376,
+            -6.116000175476074
           ],
           [
             -0.6298900246620178,
@@ -189,8 +197,8 @@
             -3.1244900226593018
           ],
           [
-            -2.7745399475097656,
-            -9.977849960327148
+            -2.7745299339294434,
+            -9.97780990600586
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -198,15 +206,15 @@
       },
       {
         "frame": 3,
-        "near_eye_m": 0.33201,
+        "near_eye_m": 0.30871,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.62694,
+        "screen_area_fraction": 1.62693,
         "screen_projection": [
           [
             -1.8885999917984009,
-            -5.692440032958984
+            -5.692430019378662
           ],
           [
             -0.584119975566864,
@@ -217,8 +225,8 @@
             -2.9663898944854736
           ],
           [
-            -2.513000011444092,
-            -9.058279991149902
+            -2.5129899978637695,
+            -9.058259963989258
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -226,15 +234,15 @@
       },
       {
         "frame": 4,
-        "near_eye_m": 0.33131,
+        "near_eye_m": 0.30767,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.29066,
+        "screen_area_fraction": 1.29065,
         "screen_projection": [
           [
             -1.6820600032806396,
-            -5.08420991897583
+            -5.084199905395508
           ],
           [
             -0.5165299773216248,
@@ -246,7 +254,7 @@
           ],
           [
             -2.162630081176758,
-            -7.830210208892822
+            -7.8302001953125
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -254,15 +262,15 @@
       },
       {
         "frame": 5,
-        "near_eye_m": 0.32939,
+        "near_eye_m": 0.30606,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 0.96613,
+        "screen_area_fraction": 0.96614,
         "screen_projection": [
           [
             -1.4438999891281128,
-            -4.388959884643555
+            -4.388969898223877
           ],
           [
             -0.43553000688552856,
@@ -274,7 +282,7 @@
           ],
           [
             -1.7918299436569214,
-            -6.539289951324463
+            -6.539299964904785
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -282,7 +290,7 @@
       },
       {
         "frame": 6,
-        "near_eye_m": 0.3266,
+        "near_eye_m": 0.30376,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -290,7 +298,7 @@
         "screen_projection": [
           [
             -1.2023299932479858,
-            -3.693229913711548
+            -3.69323992729187
           ],
           [
             -0.3488300144672394,
@@ -302,7 +310,7 @@
           ],
           [
             -1.4455699920654297,
-            -5.347640037536621
+            -5.347650051116943
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -310,7 +318,7 @@
       },
       {
         "frame": 7,
-        "near_eye_m": 0.3228,
+        "near_eye_m": 0.30069,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -318,7 +326,7 @@
         "screen_projection": [
           [
             -0.9770100116729736,
-            -3.055569887161255
+            -3.055579900741577
           ],
           [
             -0.26232999563217163,
@@ -326,7 +334,7 @@
           ],
           [
             -0.2782300114631653,
-            -1.9155499935150146
+            -1.9155399799346924
           ],
           [
             -1.1447999477386475,
@@ -338,11 +346,11 @@
       },
       {
         "frame": 8,
-        "near_eye_m": 0.31798,
+        "near_eye_m": 0.29693,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 0.3549,
+        "screen_area_fraction": 0.35489,
         "screen_projection": [
           [
             -0.7779499888420105,
@@ -366,22 +374,22 @@
       },
       {
         "frame": 9,
-        "near_eye_m": 0.31223,
+        "near_eye_m": 0.29275,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
         "screen_area_fraction": 0.25674,
         "screen_projection": [
           [
-            -0.6076300144195557,
+            -0.6076400279998779,
             -2.0393600463867188
           ],
           [
             -0.10345999896526337,
-            -1.0750700235366821
+            -1.0750800371170044
           ],
           [
-            -0.11087000370025635,
+            -0.11088000237941742,
             -1.4289599657058716
           ],
           [
@@ -394,7 +402,7 @@
       },
       {
         "frame": 10,
-        "near_eye_m": 0.3051,
+        "near_eye_m": 0.2888,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -422,7 +430,7 @@
       },
       {
         "frame": 11,
-        "near_eye_m": 0.29782,
+        "near_eye_m": 0.28647,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -450,7 +458,7 @@
       },
       {
         "frame": 12,
-        "near_eye_m": 0.29069,
+        "near_eye_m": 0.28782,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -478,7 +486,7 @@
       },
       {
         "frame": 13,
-        "near_eye_m": 0.28488,
+        "near_eye_m": 0.27533,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -501,12 +509,12 @@
             -1.187790036201477
           ]
         ],
-        "right_nearest_in_panel_bounds_m": -0.77863,
+        "right_nearest_in_panel_bounds_m": -0.77515,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 14,
-        "near_eye_m": 0.27799,
+        "near_eye_m": 0.26526,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -529,12 +537,12 @@
             -0.8842599987983704
           ]
         ],
-        "right_nearest_in_panel_bounds_m": -0.75618,
+        "right_nearest_in_panel_bounds_m": -0.75292,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 15,
-        "near_eye_m": 0.26864,
+        "near_eye_m": 0.25312,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -562,7 +570,7 @@
       },
       {
         "frame": 16,
-        "near_eye_m": 0.25841,
+        "near_eye_m": 0.24265,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -590,7 +598,7 @@
       },
       {
         "frame": 17,
-        "near_eye_m": 0.24926,
+        "near_eye_m": 0.23186,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -606,7 +614,7 @@
           ],
           [
             0.33880001306533813,
-            -0.003969999961555004
+            -0.003980000037699938
           ],
           [
             0.10575000196695328,
@@ -618,9 +626,9 @@
       },
       {
         "frame": 18,
-        "near_eye_m": 0.241,
+        "near_eye_m": 0.22298,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 245,
+        "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 1,
         "screen_area_fraction": 0.05873,
         "screen_projection": [
@@ -646,9 +654,9 @@
       },
       {
         "frame": 19,
-        "near_eye_m": 0.23397,
+        "near_eye_m": 0.21506,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 869,
+        "arm_vertices_in_camera": 455,
         "screen_corners_in_camera": 1,
         "screen_area_fraction": 0.06228,
         "screen_projection": [
@@ -674,9 +682,9 @@
       },
       {
         "frame": 20,
-        "near_eye_m": 0.22728,
+        "near_eye_m": 0.20777,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 1920,
+        "arm_vertices_in_camera": 1743,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06435,
         "screen_projection": [
@@ -702,9 +710,9 @@
       },
       {
         "frame": 21,
-        "near_eye_m": 0.2212,
+        "near_eye_m": 0.20122,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 2812,
+        "arm_vertices_in_camera": 2894,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06625,
         "screen_projection": [
@@ -714,7 +722,7 @@
           ],
           [
             0.5298399925231934,
-            0.0936100035905838
+            0.09359999746084213
           ],
           [
             0.45511001348495483,
@@ -730,9 +738,9 @@
       },
       {
         "frame": 22,
-        "near_eye_m": 0.21609,
+        "near_eye_m": 0.19559,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3327,
+        "arm_vertices_in_camera": 3245,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06838,
         "screen_projection": [
@@ -758,9 +766,9 @@
       },
       {
         "frame": 23,
-        "near_eye_m": 0.20926,
+        "near_eye_m": 0.18956,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3400,
+        "arm_vertices_in_camera": 3372,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.07079,
         "screen_projection": [
@@ -786,9 +794,9 @@
       },
       {
         "frame": 24,
-        "near_eye_m": 0.20261,
+        "near_eye_m": 0.18282,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3467,
+        "arm_vertices_in_camera": 3427,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07337,
         "screen_projection": [
@@ -814,9 +822,9 @@
       },
       {
         "frame": 25,
-        "near_eye_m": 0.19615,
+        "near_eye_m": 0.17744,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3506,
+        "arm_vertices_in_camera": 3474,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07594,
         "screen_projection": [
@@ -830,7 +838,7 @@
           ],
           [
             0.5123900175094604,
-            0.4681900143623352
+            0.4681999981403351
           ],
           [
             0.24776999652385712,
@@ -842,9 +850,9 @@
       },
       {
         "frame": 26,
-        "near_eye_m": 0.19129,
+        "near_eye_m": 0.17343,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3536,
+        "arm_vertices_in_camera": 3510,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07822,
         "screen_projection": [
@@ -870,9 +878,9 @@
       },
       {
         "frame": 27,
-        "near_eye_m": 0.18809,
+        "near_eye_m": 0.17081,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3558,
+        "arm_vertices_in_camera": 3528,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07994,
         "screen_projection": [
@@ -898,11 +906,11 @@
       },
       {
         "frame": 28,
-        "near_eye_m": 0.18665,
+        "near_eye_m": 0.16962,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3563,
+        "arm_vertices_in_camera": 3541,
         "screen_corners_in_camera": 4,
-        "screen_area_fraction": 0.08083,
+        "screen_area_fraction": 0.08082,
         "screen_projection": [
           [
             0.33553001284599304,
@@ -926,9 +934,9 @@
       },
       {
         "frame": 29,
-        "near_eye_m": 0.18658,
+        "near_eye_m": 0.16956,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08095,
         "screen_projection": [
@@ -954,9 +962,9 @@
       },
       {
         "frame": 30,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -982,9 +990,9 @@
       },
       {
         "frame": 31,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -1002,7 +1010,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1012,9 +1020,9 @@
     "Hack_Idle": [
       {
         "frame": 61,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -1032,7 +1040,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1040,9 +1048,9 @@
       },
       {
         "frame": 62,
-        "near_eye_m": 0.18653,
+        "near_eye_m": 0.16953,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0809,
         "screen_projection": [
@@ -1052,7 +1060,7 @@
           ],
           [
             0.6214200258255005,
-            0.3613699972629547
+            0.361380010843277
           ],
           [
             0.5291500091552734,
@@ -1068,9 +1076,9 @@
       },
       {
         "frame": 63,
-        "near_eye_m": 0.18647,
+        "near_eye_m": 0.16949,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3566,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08082,
         "screen_projection": [
@@ -1084,7 +1092,7 @@
           ],
           [
             0.5291399955749512,
-            0.5394999980926514
+            0.5394899845123291
           ],
           [
             0.2529999911785126,
@@ -1096,9 +1104,9 @@
       },
       {
         "frame": 64,
-        "near_eye_m": 0.18641,
+        "near_eye_m": 0.16944,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3567,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08073,
         "screen_projection": [
@@ -1108,7 +1116,7 @@
           ],
           [
             0.6215299963951111,
-            0.3623200058937073
+            0.362309992313385
           ],
           [
             0.5291299819946289,
@@ -1124,14 +1132,14 @@
       },
       {
         "frame": 65,
-        "near_eye_m": 0.18634,
+        "near_eye_m": 0.1694,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08064,
         "screen_projection": [
           [
-            0.3370499908924103,
+            0.3370400071144104,
             0.1238899976015091
           ],
           [
@@ -1152,9 +1160,9 @@
       },
       {
         "frame": 66,
-        "near_eye_m": 0.18628,
+        "near_eye_m": 0.16936,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08055,
         "screen_projection": [
@@ -1180,9 +1188,9 @@
       },
       {
         "frame": 67,
-        "near_eye_m": 0.18622,
+        "near_eye_m": 0.16932,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08047,
         "screen_projection": [
@@ -1208,9 +1216,9 @@
       },
       {
         "frame": 68,
-        "near_eye_m": 0.18616,
+        "near_eye_m": 0.16928,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08038,
         "screen_projection": [
@@ -1228,7 +1236,7 @@
           ],
           [
             0.2538999915122986,
-            0.405239999294281
+            0.40525001287460327
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1236,9 +1244,9 @@
       },
       {
         "frame": 69,
-        "near_eye_m": 0.18611,
+        "near_eye_m": 0.16924,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0803,
         "screen_projection": [
@@ -1256,7 +1264,7 @@
           ],
           [
             0.25407999753952026,
-            0.40542998909950256
+            0.40544000267982483
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1264,9 +1272,9 @@
       },
       {
         "frame": 70,
-        "near_eye_m": 0.18605,
+        "near_eye_m": 0.1692,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08022,
         "screen_projection": [
@@ -1275,7 +1283,7 @@
             0.12590999901294708
           ],
           [
-            0.6218199729919434,
+            0.6218100190162659,
             0.36500000953674316
           ],
           [
@@ -1292,9 +1300,9 @@
       },
       {
         "frame": 71,
-        "near_eye_m": 0.186,
+        "near_eye_m": 0.16916,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08014,
         "screen_projection": [
@@ -1320,9 +1328,9 @@
       },
       {
         "frame": 72,
-        "near_eye_m": 0.18594,
+        "near_eye_m": 0.16912,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08007,
         "screen_projection": [
@@ -1340,7 +1348,7 @@
           ],
           [
             0.25457000732421875,
-            0.4059799909591675
+            0.4059700071811676
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1348,9 +1356,9 @@
       },
       {
         "frame": 73,
-        "near_eye_m": 0.18589,
+        "near_eye_m": 0.16909,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08,
         "screen_projection": [
@@ -1360,7 +1368,7 @@
           ],
           [
             0.6219499707221985,
-            0.366210013628006
+            0.3662000000476837
           ],
           [
             0.5290600061416626,
@@ -1376,9 +1384,9 @@
       },
       {
         "frame": 74,
-        "near_eye_m": 0.18584,
+        "near_eye_m": 0.16905,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07992,
         "screen_projection": [
@@ -1404,9 +1412,9 @@
       },
       {
         "frame": 75,
-        "near_eye_m": 0.18579,
+        "near_eye_m": 0.16902,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07986,
         "screen_projection": [
@@ -1432,9 +1440,9 @@
       },
       {
         "frame": 76,
-        "near_eye_m": 0.18575,
+        "near_eye_m": 0.16899,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07979,
         "screen_projection": [
@@ -1460,9 +1468,9 @@
       },
       {
         "frame": 77,
-        "near_eye_m": 0.1857,
+        "near_eye_m": 0.16895,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07973,
         "screen_projection": [
@@ -1472,7 +1480,7 @@
           ],
           [
             0.6220999956130981,
-            0.36761000752449036
+            0.3675999939441681
           ],
           [
             0.5290300250053406,
@@ -1488,9 +1496,9 @@
       },
       {
         "frame": 78,
-        "near_eye_m": 0.18566,
+        "near_eye_m": 0.16893,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07967,
         "screen_projection": [
@@ -1516,9 +1524,9 @@
       },
       {
         "frame": 79,
-        "near_eye_m": 0.18562,
+        "near_eye_m": 0.1689,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07962,
         "screen_projection": [
@@ -1544,9 +1552,9 @@
       },
       {
         "frame": 80,
-        "near_eye_m": 0.18559,
+        "near_eye_m": 0.16887,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3570,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07957,
         "screen_projection": [
@@ -1572,9 +1580,9 @@
       },
       {
         "frame": 81,
-        "near_eye_m": 0.18555,
+        "near_eye_m": 0.16885,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3570,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07952,
         "screen_projection": [
@@ -1600,14 +1608,14 @@
       },
       {
         "frame": 82,
-        "near_eye_m": 0.18552,
+        "near_eye_m": 0.16883,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3570,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07948,
         "screen_projection": [
           [
-            0.34193000197410583,
+            0.34191998839378357,
             0.1295199990272522
           ],
           [
@@ -1628,9 +1636,9 @@
       },
       {
         "frame": 83,
-        "near_eye_m": 0.1855,
+        "near_eye_m": 0.16881,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07944,
         "screen_projection": [
@@ -1656,9 +1664,9 @@
       },
       {
         "frame": 84,
-        "near_eye_m": 0.18547,
+        "near_eye_m": 0.16879,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07941,
         "screen_projection": [
@@ -1684,9 +1692,9 @@
       },
       {
         "frame": 85,
-        "near_eye_m": 0.18545,
+        "near_eye_m": 0.16878,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07938,
         "screen_projection": [
@@ -1704,7 +1712,7 @@
           ],
           [
             0.2560499906539917,
-            0.4075700044631958
+            0.4075799882411957
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1712,14 +1720,14 @@
       },
       {
         "frame": 86,
-        "near_eye_m": 0.18543,
+        "near_eye_m": 0.16877,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07935,
         "screen_projection": [
           [
-            0.3424600064754486,
+            0.3424699902534485,
             0.1301400065422058
           ],
           [
@@ -1732,7 +1740,7 @@
           ],
           [
             0.2561100125312805,
-            0.4076400101184845
+            0.40762999653816223
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -1740,9 +1748,9 @@
       },
       {
         "frame": 87,
-        "near_eye_m": 0.18542,
+        "near_eye_m": 0.16876,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07933,
         "screen_projection": [
@@ -1768,9 +1776,9 @@
       },
       {
         "frame": 88,
-        "near_eye_m": 0.18541,
+        "near_eye_m": 0.16875,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07932,
         "screen_projection": [
@@ -1796,9 +1804,9 @@
       },
       {
         "frame": 89,
-        "near_eye_m": 0.1854,
+        "near_eye_m": 0.16874,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0793,
         "screen_projection": [
@@ -1824,9 +1832,9 @@
       },
       {
         "frame": 90,
-        "near_eye_m": 0.18539,
+        "near_eye_m": 0.16874,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0793,
         "screen_projection": [
@@ -1852,9 +1860,9 @@
       },
       {
         "frame": 91,
-        "near_eye_m": 0.18539,
+        "near_eye_m": 0.16874,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07929,
         "screen_projection": [
@@ -1868,7 +1876,7 @@
           ],
           [
             0.5289899706840515,
-            0.5443300008773804
+            0.5443199872970581
           ],
           [
             0.2562299966812134,
@@ -1880,9 +1888,9 @@
       },
       {
         "frame": 92,
-        "near_eye_m": 0.18539,
+        "near_eye_m": 0.16874,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0793,
         "screen_projection": [
@@ -1908,9 +1916,9 @@
       },
       {
         "frame": 93,
-        "near_eye_m": 0.1854,
+        "near_eye_m": 0.16874,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0793,
         "screen_projection": [
@@ -1936,9 +1944,9 @@
       },
       {
         "frame": 94,
-        "near_eye_m": 0.18541,
+        "near_eye_m": 0.16875,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07932,
         "screen_projection": [
@@ -1964,9 +1972,9 @@
       },
       {
         "frame": 95,
-        "near_eye_m": 0.18542,
+        "near_eye_m": 0.16876,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07933,
         "screen_projection": [
@@ -1992,14 +2000,14 @@
       },
       {
         "frame": 96,
-        "near_eye_m": 0.18543,
+        "near_eye_m": 0.16877,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07935,
         "screen_projection": [
           [
-            0.3424699902534485,
+            0.3424600064754486,
             0.1301400065422058
           ],
           [
@@ -2020,9 +2028,9 @@
       },
       {
         "frame": 97,
-        "near_eye_m": 0.18545,
+        "near_eye_m": 0.16878,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07938,
         "screen_projection": [
@@ -2048,9 +2056,9 @@
       },
       {
         "frame": 98,
-        "near_eye_m": 0.18547,
+        "near_eye_m": 0.16879,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07941,
         "screen_projection": [
@@ -2076,9 +2084,9 @@
       },
       {
         "frame": 99,
-        "near_eye_m": 0.1855,
+        "near_eye_m": 0.16881,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3571,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07944,
         "screen_projection": [
@@ -2104,15 +2112,15 @@
       },
       {
         "frame": 100,
-        "near_eye_m": 0.18552,
+        "near_eye_m": 0.16883,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3570,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07948,
         "screen_projection": [
           [
-            0.34193000197410583,
-            0.1295199990272522
+            0.34191998839378357,
+            0.12951000034809113
           ],
           [
             0.6222400069236755,
@@ -2132,9 +2140,9 @@
       },
       {
         "frame": 101,
-        "near_eye_m": 0.18555,
+        "near_eye_m": 0.16885,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3570,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07952,
         "screen_projection": [
@@ -2160,9 +2168,9 @@
       },
       {
         "frame": 102,
-        "near_eye_m": 0.18559,
+        "near_eye_m": 0.16887,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3570,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07957,
         "screen_projection": [
@@ -2188,9 +2196,9 @@
       },
       {
         "frame": 103,
-        "near_eye_m": 0.18562,
+        "near_eye_m": 0.1689,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07962,
         "screen_projection": [
@@ -2216,9 +2224,9 @@
       },
       {
         "frame": 104,
-        "near_eye_m": 0.18566,
+        "near_eye_m": 0.16893,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07967,
         "screen_projection": [
@@ -2244,9 +2252,9 @@
       },
       {
         "frame": 105,
-        "near_eye_m": 0.1857,
+        "near_eye_m": 0.16895,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07973,
         "screen_projection": [
@@ -2272,9 +2280,9 @@
       },
       {
         "frame": 106,
-        "near_eye_m": 0.18575,
+        "near_eye_m": 0.16899,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07979,
         "screen_projection": [
@@ -2300,9 +2308,9 @@
       },
       {
         "frame": 107,
-        "near_eye_m": 0.18579,
+        "near_eye_m": 0.16902,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07986,
         "screen_projection": [
@@ -2311,7 +2319,7 @@
             0.1276800036430359
           ],
           [
-            0.6220300197601318,
+            0.6220200061798096,
             0.3669399917125702
           ],
           [
@@ -2328,9 +2336,9 @@
       },
       {
         "frame": 108,
-        "near_eye_m": 0.18584,
+        "near_eye_m": 0.16905,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07992,
         "screen_projection": [
@@ -2356,9 +2364,9 @@
       },
       {
         "frame": 109,
-        "near_eye_m": 0.18589,
+        "near_eye_m": 0.16909,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08,
         "screen_projection": [
@@ -2368,7 +2376,7 @@
           ],
           [
             0.6219499707221985,
-            0.366210013628006
+            0.3662000000476837
           ],
           [
             0.5290600061416626,
@@ -2376,7 +2384,7 @@
           ],
           [
             0.2547299861907959,
-            0.4061500132083893
+            0.406139999628067
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -2384,9 +2392,9 @@
       },
       {
         "frame": 110,
-        "near_eye_m": 0.18594,
+        "near_eye_m": 0.16912,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08007,
         "screen_projection": [
@@ -2412,9 +2420,9 @@
       },
       {
         "frame": 111,
-        "near_eye_m": 0.186,
+        "near_eye_m": 0.16916,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08014,
         "screen_projection": [
@@ -2440,9 +2448,9 @@
       },
       {
         "frame": 112,
-        "near_eye_m": 0.18605,
+        "near_eye_m": 0.1692,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08022,
         "screen_projection": [
@@ -2468,9 +2476,9 @@
       },
       {
         "frame": 113,
-        "near_eye_m": 0.18611,
+        "near_eye_m": 0.16924,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0803,
         "screen_projection": [
@@ -2496,9 +2504,9 @@
       },
       {
         "frame": 114,
-        "near_eye_m": 0.18616,
+        "near_eye_m": 0.16928,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08038,
         "screen_projection": [
@@ -2524,9 +2532,9 @@
       },
       {
         "frame": 115,
-        "near_eye_m": 0.18622,
+        "near_eye_m": 0.16932,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08047,
         "screen_projection": [
@@ -2552,9 +2560,9 @@
       },
       {
         "frame": 116,
-        "near_eye_m": 0.18628,
+        "near_eye_m": 0.16936,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08055,
         "screen_projection": [
@@ -2572,7 +2580,7 @@
           ],
           [
             0.2535499930381775,
-            0.4048599898815155
+            0.4048500061035156
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -2580,9 +2588,9 @@
       },
       {
         "frame": 117,
-        "near_eye_m": 0.18634,
+        "near_eye_m": 0.1694,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3568,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08064,
         "screen_projection": [
@@ -2608,9 +2616,9 @@
       },
       {
         "frame": 118,
-        "near_eye_m": 0.18641,
+        "near_eye_m": 0.16944,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3567,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08073,
         "screen_projection": [
@@ -2636,9 +2644,9 @@
       },
       {
         "frame": 119,
-        "near_eye_m": 0.18647,
+        "near_eye_m": 0.16949,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3566,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08082,
         "screen_projection": [
@@ -2664,9 +2672,9 @@
       },
       {
         "frame": 120,
-        "near_eye_m": 0.18653,
+        "near_eye_m": 0.16953,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0809,
         "screen_projection": [
@@ -2676,7 +2684,7 @@
           ],
           [
             0.6214200258255005,
-            0.361380010843277
+            0.3613699972629547
           ],
           [
             0.5291500091552734,
@@ -2692,9 +2700,9 @@
       },
       {
         "frame": 121,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -2712,7 +2720,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -2720,9 +2728,9 @@
       },
       {
         "frame": 122,
-        "near_eye_m": 0.18665,
+        "near_eye_m": 0.16962,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08108,
         "screen_projection": [
@@ -2748,9 +2756,9 @@
       },
       {
         "frame": 123,
-        "near_eye_m": 0.18671,
+        "near_eye_m": 0.16966,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08117,
         "screen_projection": [
@@ -2767,7 +2775,7 @@
             0.5383599996566772
           ],
           [
-            0.25224998593330383,
+            0.2522599995136261,
             0.403439998626709
           ]
         ],
@@ -2776,9 +2784,9 @@
       },
       {
         "frame": 124,
-        "near_eye_m": 0.18677,
+        "near_eye_m": 0.1697,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08126,
         "screen_projection": [
@@ -2804,9 +2812,9 @@
       },
       {
         "frame": 125,
-        "near_eye_m": 0.18683,
+        "near_eye_m": 0.16974,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08135,
         "screen_projection": [
@@ -2832,9 +2840,9 @@
       },
       {
         "frame": 126,
-        "near_eye_m": 0.18689,
+        "near_eye_m": 0.16979,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3541,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08143,
         "screen_projection": [
@@ -2860,9 +2868,9 @@
       },
       {
         "frame": 127,
-        "near_eye_m": 0.18695,
+        "near_eye_m": 0.16983,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3541,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08152,
         "screen_projection": [
@@ -2888,9 +2896,9 @@
       },
       {
         "frame": 128,
-        "near_eye_m": 0.18701,
+        "near_eye_m": 0.16987,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0816,
         "screen_projection": [
@@ -2916,9 +2924,9 @@
       },
       {
         "frame": 129,
-        "near_eye_m": 0.18707,
+        "near_eye_m": 0.16991,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3563,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08168,
         "screen_projection": [
@@ -2944,9 +2952,9 @@
       },
       {
         "frame": 130,
-        "near_eye_m": 0.18712,
+        "near_eye_m": 0.16994,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08176,
         "screen_projection": [
@@ -2972,9 +2980,9 @@
       },
       {
         "frame": 131,
-        "near_eye_m": 0.18717,
+        "near_eye_m": 0.16998,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08184,
         "screen_projection": [
@@ -3000,9 +3008,9 @@
       },
       {
         "frame": 132,
-        "near_eye_m": 0.18723,
+        "near_eye_m": 0.17002,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08192,
         "screen_projection": [
@@ -3028,9 +3036,9 @@
       },
       {
         "frame": 133,
-        "near_eye_m": 0.18728,
+        "near_eye_m": 0.17005,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08199,
         "screen_projection": [
@@ -3056,9 +3064,9 @@
       },
       {
         "frame": 134,
-        "near_eye_m": 0.18732,
+        "near_eye_m": 0.17009,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08206,
         "screen_projection": [
@@ -3084,9 +3092,9 @@
       },
       {
         "frame": 135,
-        "near_eye_m": 0.18737,
+        "near_eye_m": 0.17012,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08213,
         "screen_projection": [
@@ -3112,9 +3120,9 @@
       },
       {
         "frame": 136,
-        "near_eye_m": 0.18741,
+        "near_eye_m": 0.17015,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08219,
         "screen_projection": [
@@ -3140,9 +3148,9 @@
       },
       {
         "frame": 137,
-        "near_eye_m": 0.18745,
+        "near_eye_m": 0.17018,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08225,
         "screen_projection": [
@@ -3168,9 +3176,9 @@
       },
       {
         "frame": 138,
-        "near_eye_m": 0.18749,
+        "near_eye_m": 0.17021,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08231,
         "screen_projection": [
@@ -3196,9 +3204,9 @@
       },
       {
         "frame": 139,
-        "near_eye_m": 0.18753,
+        "near_eye_m": 0.17023,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08236,
         "screen_projection": [
@@ -3224,9 +3232,9 @@
       },
       {
         "frame": 140,
-        "near_eye_m": 0.18756,
+        "near_eye_m": 0.17026,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08241,
         "screen_projection": [
@@ -3244,7 +3252,7 @@
           ],
           [
             0.2496899962425232,
-            0.40059998631477356
+            0.4005900025367737
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -3252,9 +3260,9 @@
       },
       {
         "frame": 141,
-        "near_eye_m": 0.1876,
+        "near_eye_m": 0.17028,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08246,
         "screen_projection": [
@@ -3280,9 +3288,9 @@
       },
       {
         "frame": 142,
-        "near_eye_m": 0.18762,
+        "near_eye_m": 0.1703,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0825,
         "screen_projection": [
@@ -3308,9 +3316,9 @@
       },
       {
         "frame": 143,
-        "near_eye_m": 0.18765,
+        "near_eye_m": 0.17032,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08254,
         "screen_projection": [
@@ -3336,9 +3344,9 @@
       },
       {
         "frame": 144,
-        "near_eye_m": 0.18767,
+        "near_eye_m": 0.17033,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08257,
         "screen_projection": [
@@ -3364,9 +3372,9 @@
       },
       {
         "frame": 145,
-        "near_eye_m": 0.18769,
+        "near_eye_m": 0.17035,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0826,
         "screen_projection": [
@@ -3392,9 +3400,9 @@
       },
       {
         "frame": 146,
-        "near_eye_m": 0.18771,
+        "near_eye_m": 0.17036,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08263,
         "screen_projection": [
@@ -3420,9 +3428,9 @@
       },
       {
         "frame": 147,
-        "near_eye_m": 0.18772,
+        "near_eye_m": 0.17037,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08265,
         "screen_projection": [
@@ -3448,9 +3456,9 @@
       },
       {
         "frame": 148,
-        "near_eye_m": 0.18773,
+        "near_eye_m": 0.17038,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08267,
         "screen_projection": [
@@ -3476,9 +3484,9 @@
       },
       {
         "frame": 149,
-        "near_eye_m": 0.18774,
+        "near_eye_m": 0.17038,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08268,
         "screen_projection": [
@@ -3496,7 +3504,7 @@
           ],
           [
             0.2491600066423416,
-            0.3999899923801422
+            0.4000000059604645
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -3504,9 +3512,9 @@
       },
       {
         "frame": 150,
-        "near_eye_m": 0.18775,
+        "near_eye_m": 0.17038,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08268,
         "screen_projection": [
@@ -3532,9 +3540,9 @@
       },
       {
         "frame": 151,
-        "near_eye_m": 0.18775,
+        "near_eye_m": 0.17039,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08269,
         "screen_projection": [
@@ -3560,9 +3568,9 @@
       },
       {
         "frame": 152,
-        "near_eye_m": 0.18775,
+        "near_eye_m": 0.17038,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08268,
         "screen_projection": [
@@ -3588,9 +3596,9 @@
       },
       {
         "frame": 153,
-        "near_eye_m": 0.18774,
+        "near_eye_m": 0.17038,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08268,
         "screen_projection": [
@@ -3608,7 +3616,7 @@
           ],
           [
             0.2491600066423416,
-            0.3999899923801422
+            0.4000000059604645
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -3616,9 +3624,9 @@
       },
       {
         "frame": 154,
-        "near_eye_m": 0.18773,
+        "near_eye_m": 0.17038,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08267,
         "screen_projection": [
@@ -3644,9 +3652,9 @@
       },
       {
         "frame": 155,
-        "near_eye_m": 0.18772,
+        "near_eye_m": 0.17037,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08265,
         "screen_projection": [
@@ -3672,9 +3680,9 @@
       },
       {
         "frame": 156,
-        "near_eye_m": 0.18771,
+        "near_eye_m": 0.17036,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08263,
         "screen_projection": [
@@ -3692,7 +3700,7 @@
           ],
           [
             0.24925999343395233,
-            0.40011000633239746
+            0.4000999927520752
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -3700,9 +3708,9 @@
       },
       {
         "frame": 157,
-        "near_eye_m": 0.18769,
+        "near_eye_m": 0.17035,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0826,
         "screen_projection": [
@@ -3728,9 +3736,9 @@
       },
       {
         "frame": 158,
-        "near_eye_m": 0.18767,
+        "near_eye_m": 0.17033,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08257,
         "screen_projection": [
@@ -3756,9 +3764,9 @@
       },
       {
         "frame": 159,
-        "near_eye_m": 0.18765,
+        "near_eye_m": 0.17032,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08254,
         "screen_projection": [
@@ -3784,9 +3792,9 @@
       },
       {
         "frame": 160,
-        "near_eye_m": 0.18762,
+        "near_eye_m": 0.1703,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0825,
         "screen_projection": [
@@ -3812,9 +3820,9 @@
       },
       {
         "frame": 161,
-        "near_eye_m": 0.1876,
+        "near_eye_m": 0.17028,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08246,
         "screen_projection": [
@@ -3840,9 +3848,9 @@
       },
       {
         "frame": 162,
-        "near_eye_m": 0.18756,
+        "near_eye_m": 0.17026,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08241,
         "screen_projection": [
@@ -3860,7 +3868,7 @@
           ],
           [
             0.2496899962425232,
-            0.4005900025367737
+            0.40059998631477356
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -3868,9 +3876,9 @@
       },
       {
         "frame": 163,
-        "near_eye_m": 0.18753,
+        "near_eye_m": 0.17023,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08236,
         "screen_projection": [
@@ -3896,9 +3904,9 @@
       },
       {
         "frame": 164,
-        "near_eye_m": 0.18749,
+        "near_eye_m": 0.17021,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08231,
         "screen_projection": [
@@ -3924,9 +3932,9 @@
       },
       {
         "frame": 165,
-        "near_eye_m": 0.18745,
+        "near_eye_m": 0.17018,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08225,
         "screen_projection": [
@@ -3952,9 +3960,9 @@
       },
       {
         "frame": 166,
-        "near_eye_m": 0.18741,
+        "near_eye_m": 0.17015,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08219,
         "screen_projection": [
@@ -3980,9 +3988,9 @@
       },
       {
         "frame": 167,
-        "near_eye_m": 0.18737,
+        "near_eye_m": 0.17012,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08213,
         "screen_projection": [
@@ -4008,9 +4016,9 @@
       },
       {
         "frame": 168,
-        "near_eye_m": 0.18732,
+        "near_eye_m": 0.17009,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08206,
         "screen_projection": [
@@ -4020,7 +4028,7 @@
           ],
           [
             0.6207699775695801,
-            0.35521000623703003
+            0.3552199900150299
           ],
           [
             0.529259979724884,
@@ -4036,9 +4044,9 @@
       },
       {
         "frame": 169,
-        "near_eye_m": 0.18728,
+        "near_eye_m": 0.17005,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08199,
         "screen_projection": [
@@ -4064,9 +4072,9 @@
       },
       {
         "frame": 170,
-        "near_eye_m": 0.18723,
+        "near_eye_m": 0.17002,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08192,
         "screen_projection": [
@@ -4092,9 +4100,9 @@
       },
       {
         "frame": 171,
-        "near_eye_m": 0.18717,
+        "near_eye_m": 0.16998,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08184,
         "screen_projection": [
@@ -4120,9 +4128,9 @@
       },
       {
         "frame": 172,
-        "near_eye_m": 0.18712,
+        "near_eye_m": 0.16994,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08176,
         "screen_projection": [
@@ -4148,9 +4156,9 @@
       },
       {
         "frame": 173,
-        "near_eye_m": 0.18707,
+        "near_eye_m": 0.16991,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3563,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08168,
         "screen_projection": [
@@ -4176,9 +4184,9 @@
       },
       {
         "frame": 174,
-        "near_eye_m": 0.18701,
+        "near_eye_m": 0.16987,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0816,
         "screen_projection": [
@@ -4204,9 +4212,9 @@
       },
       {
         "frame": 175,
-        "near_eye_m": 0.18695,
+        "near_eye_m": 0.16983,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3541,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08152,
         "screen_projection": [
@@ -4223,7 +4231,7 @@
             0.5372499823570251
           ],
           [
-            0.25154000520706177,
+            0.2515299916267395,
             0.4026400148868561
           ]
         ],
@@ -4232,9 +4240,9 @@
       },
       {
         "frame": 176,
-        "near_eye_m": 0.18689,
+        "near_eye_m": 0.16979,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3541,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08143,
         "screen_projection": [
@@ -4260,9 +4268,9 @@
       },
       {
         "frame": 177,
-        "near_eye_m": 0.18683,
+        "near_eye_m": 0.16974,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08135,
         "screen_projection": [
@@ -4288,9 +4296,9 @@
       },
       {
         "frame": 178,
-        "near_eye_m": 0.18677,
+        "near_eye_m": 0.1697,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08126,
         "screen_projection": [
@@ -4316,9 +4324,9 @@
       },
       {
         "frame": 179,
-        "near_eye_m": 0.18671,
+        "near_eye_m": 0.16966,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08117,
         "screen_projection": [
@@ -4335,7 +4343,7 @@
             0.5383599996566772
           ],
           [
-            0.2522599995136261,
+            0.25224998593330383,
             0.403439998626709
           ]
         ],
@@ -4344,9 +4352,9 @@
       },
       {
         "frame": 180,
-        "near_eye_m": 0.18665,
+        "near_eye_m": 0.16962,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08108,
         "screen_projection": [
@@ -4372,9 +4380,9 @@
       },
       {
         "frame": 181,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -4402,9 +4410,9 @@
     "Hack_Interact": [
       {
         "frame": 211,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -4422,7 +4430,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -4430,9 +4438,9 @@
       },
       {
         "frame": 212,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -4458,9 +4466,9 @@
       },
       {
         "frame": 213,
-        "near_eye_m": 0.18658,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -4486,9 +4494,9 @@
       },
       {
         "frame": 214,
-        "near_eye_m": 0.18658,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08098,
         "screen_projection": [
@@ -4514,9 +4522,9 @@
       },
       {
         "frame": 215,
-        "near_eye_m": 0.18657,
+        "near_eye_m": 0.16956,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08096,
         "screen_projection": [
@@ -4526,7 +4534,7 @@
           ],
           [
             0.6213899850845337,
-            0.3610599935054779
+            0.361050009727478
           ],
           [
             0.5291500091552734,
@@ -4542,9 +4550,9 @@
       },
       {
         "frame": 216,
-        "near_eye_m": 0.18656,
+        "near_eye_m": 0.16955,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 4079,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08095,
         "screen_projection": [
@@ -4570,9 +4578,9 @@
       },
       {
         "frame": 217,
-        "near_eye_m": 0.18655,
+        "near_eye_m": 0.16954,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 5891,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08093,
         "screen_projection": [
@@ -4598,9 +4606,9 @@
       },
       {
         "frame": 218,
-        "near_eye_m": 0.18653,
+        "near_eye_m": 0.16953,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3609,
+        "arm_vertices_in_camera": 6431,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08091,
         "screen_projection": [
@@ -4626,9 +4634,9 @@
       },
       {
         "frame": 219,
-        "near_eye_m": 0.18652,
+        "near_eye_m": 0.16952,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 4412,
+        "arm_vertices_in_camera": 6470,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08089,
         "screen_projection": [
@@ -4649,14 +4657,14 @@
             0.4040899872779846
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
+        "right_nearest_in_panel_bounds_m": 0.02918,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 220,
-        "near_eye_m": 0.1865,
+        "near_eye_m": 0.16951,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 5186,
+        "arm_vertices_in_camera": 6533,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08086,
         "screen_projection": [
@@ -4674,17 +4682,17 @@
           ],
           [
             0.25290000438690186,
-            0.40413999557495117
+            0.40415000915527344
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.01738,
+        "right_index_pad_to_display_m": 0.01738
       },
       {
         "frame": 221,
-        "near_eye_m": 0.18648,
+        "near_eye_m": 0.1695,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 5988,
+        "arm_vertices_in_camera": 6490,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08084,
         "screen_projection": [
@@ -4705,14 +4713,14 @@
             0.40421000123023987
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.02631,
+        "right_index_pad_to_display_m": 0.02631
       },
       {
         "frame": 222,
-        "near_eye_m": 0.18646,
+        "near_eye_m": 0.16948,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6617,
+        "arm_vertices_in_camera": 6434,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08081,
         "screen_projection": [
@@ -4733,14 +4741,14 @@
             0.4042699933052063
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.02824,
+        "right_index_pad_to_display_m": 0.02824
       },
       {
         "frame": 223,
-        "near_eye_m": 0.18269,
+        "near_eye_m": 0.16947,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6648,
+        "arm_vertices_in_camera": 6447,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08078,
         "screen_projection": [
@@ -4761,14 +4769,14 @@
             0.40432998538017273
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.0008,
-        "right_index_pad_to_display_m": 0.0008
+        "right_nearest_in_panel_bounds_m": 0.02591,
+        "right_index_pad_to_display_m": 0.02591
       },
       {
         "frame": 224,
-        "near_eye_m": 0.1712,
+        "near_eye_m": 0.16946,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6639,
+        "arm_vertices_in_camera": 6472,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08075,
         "screen_projection": [
@@ -4789,14 +4797,14 @@
             0.4043999910354614
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.0006,
-        "right_index_pad_to_display_m": 0.0006
+        "right_nearest_in_panel_bounds_m": 0.02162,
+        "right_index_pad_to_display_m": 0.02162
       },
       {
         "frame": 225,
-        "near_eye_m": 0.17099,
+        "near_eye_m": 0.16944,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6706,
+        "arm_vertices_in_camera": 6513,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08073,
         "screen_projection": [
@@ -4817,14 +4825,14 @@
             0.40446001291275024
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.0006,
-        "right_index_pad_to_display_m": 0.0006
+        "right_nearest_in_panel_bounds_m": 0.01671,
+        "right_index_pad_to_display_m": 0.01671
       },
       {
         "frame": 226,
-        "near_eye_m": 0.16995,
+        "near_eye_m": 0.16943,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6749,
+        "arm_vertices_in_camera": 6567,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0807,
         "screen_projection": [
@@ -4845,16 +4853,16 @@
             0.4045200049877167
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00316,
-        "right_index_pad_to_display_m": 0.00316
+        "right_nearest_in_panel_bounds_m": 0.01192,
+        "right_index_pad_to_display_m": 0.01192
       },
       {
         "frame": 227,
-        "near_eye_m": 0.16968,
+        "near_eye_m": 0.16942,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6772,
+        "arm_vertices_in_camera": 6628,
         "screen_corners_in_camera": 4,
-        "screen_area_fraction": 0.08068,
+        "screen_area_fraction": 0.08067,
         "screen_projection": [
           [
             0.336899995803833,
@@ -4873,14 +4881,14 @@
             0.4045799970626831
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00371,
-        "right_index_pad_to_display_m": 0.00371
+        "right_nearest_in_panel_bounds_m": 0.00769,
+        "right_index_pad_to_display_m": 0.00769
       },
       {
         "frame": 228,
-        "near_eye_m": 0.17062,
+        "near_eye_m": 0.16941,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6789,
+        "arm_vertices_in_camera": 6662,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08065,
         "screen_projection": [
@@ -4901,14 +4909,14 @@
             0.40463000535964966
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00285,
-        "right_index_pad_to_display_m": 0.00285
+        "right_nearest_in_panel_bounds_m": 0.00432,
+        "right_index_pad_to_display_m": 0.00432
       },
       {
         "frame": 229,
-        "near_eye_m": 0.1717,
+        "near_eye_m": 0.1694,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6798,
+        "arm_vertices_in_camera": 6684,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08063,
         "screen_projection": [
@@ -4929,14 +4937,14 @@
             0.4046800136566162
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00167,
-        "right_index_pad_to_display_m": 0.00167
+        "right_nearest_in_panel_bounds_m": 0.00203,
+        "right_index_pad_to_display_m": 0.00203
       },
       {
         "frame": 230,
-        "near_eye_m": 0.17229,
+        "near_eye_m": 0.16939,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08061,
         "screen_projection": [
@@ -4957,20 +4965,20 @@
             0.4047200083732605
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00102,
-        "right_index_pad_to_display_m": 0.00102
+        "right_nearest_in_panel_bounds_m": 0.00103,
+        "right_index_pad_to_display_m": 0.00103
       },
       {
         "frame": 231,
-        "near_eye_m": 0.17231,
+        "near_eye_m": 0.16938,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0806,
         "screen_projection": [
           [
-            0.3372200131416321,
-            0.12409000098705292
+            0.33722999691963196,
+            0.12409999966621399
           ],
           [
             0.6215999722480774,
@@ -4982,7 +4990,7 @@
           ],
           [
             0.25345999002456665,
-            0.4047499895095825
+            0.4047600030899048
           ]
         ],
         "right_nearest_in_panel_bounds_m": 0.001,
@@ -4990,9 +4998,9 @@
       },
       {
         "frame": 232,
-        "near_eye_m": 0.17232,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08059,
         "screen_projection": [
@@ -5018,9 +5026,9 @@
       },
       {
         "frame": 233,
-        "near_eye_m": 0.17232,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08058,
         "screen_projection": [
@@ -5046,9 +5054,9 @@
       },
       {
         "frame": 234,
-        "near_eye_m": 0.17233,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08057,
         "screen_projection": [
@@ -5074,9 +5082,9 @@
       },
       {
         "frame": 235,
-        "near_eye_m": 0.17233,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08057,
         "screen_projection": [
@@ -5102,9 +5110,9 @@
       },
       {
         "frame": 236,
-        "near_eye_m": 0.17233,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6796,
+        "arm_vertices_in_camera": 6688,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08057,
         "screen_projection": [
@@ -5130,9 +5138,9 @@
       },
       {
         "frame": 237,
-        "near_eye_m": 0.172,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6798,
+        "arm_vertices_in_camera": 6685,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08058,
         "screen_projection": [
@@ -5153,14 +5161,14 @@
             0.4047999978065491
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00137,
-        "right_index_pad_to_display_m": 0.00137
+        "right_nearest_in_panel_bounds_m": 0.00156,
+        "right_index_pad_to_display_m": 0.00156
       },
       {
         "frame": 238,
-        "near_eye_m": 0.1712,
+        "near_eye_m": 0.16937,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6795,
+        "arm_vertices_in_camera": 6671,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08059,
         "screen_projection": [
@@ -5181,20 +5189,20 @@
             0.40478000044822693
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00226,
-        "right_index_pad_to_display_m": 0.00226
+        "right_nearest_in_panel_bounds_m": 0.00306,
+        "right_index_pad_to_display_m": 0.00306
       },
       {
         "frame": 239,
-        "near_eye_m": 0.17027,
+        "near_eye_m": 0.16938,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6786,
+        "arm_vertices_in_camera": 6651,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0806,
         "screen_projection": [
           [
             0.33722999691963196,
-            0.12409000098705292
+            0.12409999966621399
           ],
           [
             0.6215999722480774,
@@ -5209,14 +5217,14 @@
             0.4047600030899048
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00324,
-        "right_index_pad_to_display_m": 0.00324
+        "right_nearest_in_panel_bounds_m": 0.0054,
+        "right_index_pad_to_display_m": 0.0054
       },
       {
         "frame": 240,
-        "near_eye_m": 0.16956,
+        "near_eye_m": 0.16939,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6768,
+        "arm_vertices_in_camera": 6617,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08061,
         "screen_projection": [
@@ -5237,14 +5245,14 @@
             0.4047200083732605
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00375,
-        "right_index_pad_to_display_m": 0.00375
+        "right_nearest_in_panel_bounds_m": 0.00847,
+        "right_index_pad_to_display_m": 0.00847
       },
       {
         "frame": 241,
-        "near_eye_m": 0.17001,
+        "near_eye_m": 0.1694,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6748,
+        "arm_vertices_in_camera": 6564,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08063,
         "screen_projection": [
@@ -5265,14 +5273,14 @@
             0.4046800136566162
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.00309,
-        "right_index_pad_to_display_m": 0.00309
+        "right_nearest_in_panel_bounds_m": 0.0121,
+        "right_index_pad_to_display_m": 0.0121
       },
       {
         "frame": 242,
-        "near_eye_m": 0.17109,
+        "near_eye_m": 0.16941,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6716,
+        "arm_vertices_in_camera": 6521,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08065,
         "screen_projection": [
@@ -5293,16 +5301,16 @@
             0.40463000535964966
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.0006,
-        "right_index_pad_to_display_m": 0.0006
+        "right_nearest_in_panel_bounds_m": 0.01611,
+        "right_index_pad_to_display_m": 0.01611
       },
       {
         "frame": 243,
-        "near_eye_m": 0.17105,
+        "near_eye_m": 0.16942,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6666,
+        "arm_vertices_in_camera": 6488,
         "screen_corners_in_camera": 4,
-        "screen_area_fraction": 0.08068,
+        "screen_area_fraction": 0.08067,
         "screen_projection": [
           [
             0.336899995803833,
@@ -5321,14 +5329,14 @@
             0.4045799970626831
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.0006,
-        "right_index_pad_to_display_m": 0.0006
+        "right_nearest_in_panel_bounds_m": 0.02027,
+        "right_index_pad_to_display_m": 0.02027
       },
       {
         "frame": 244,
-        "near_eye_m": 0.172,
+        "near_eye_m": 0.16943,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6588,
+        "arm_vertices_in_camera": 6456,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0807,
         "screen_projection": [
@@ -5349,14 +5357,14 @@
             0.4045200049877167
           ]
         ],
-        "right_nearest_in_panel_bounds_m": 0.0006,
-        "right_index_pad_to_display_m": 0.0006
+        "right_nearest_in_panel_bounds_m": 0.02416,
+        "right_index_pad_to_display_m": 0.02416
       },
       {
         "frame": 245,
-        "near_eye_m": 0.1864,
+        "near_eye_m": 0.16944,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6633,
+        "arm_vertices_in_camera": 6434,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08073,
         "screen_projection": [
@@ -5377,14 +5385,14 @@
             0.40446001291275024
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.02719,
+        "right_index_pad_to_display_m": 0.02719
       },
       {
         "frame": 246,
-        "near_eye_m": 0.18642,
+        "near_eye_m": 0.16946,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 6563,
+        "arm_vertices_in_camera": 6445,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08075,
         "screen_projection": [
@@ -5405,14 +5413,14 @@
             0.4043999910354614
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.02826,
+        "right_index_pad_to_display_m": 0.02826
       },
       {
         "frame": 247,
-        "near_eye_m": 0.18644,
+        "near_eye_m": 0.16947,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 5920,
+        "arm_vertices_in_camera": 6492,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08078,
         "screen_projection": [
@@ -5433,20 +5441,20 @@
             0.40432998538017273
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.02586,
+        "right_index_pad_to_display_m": 0.02586
       },
       {
         "frame": 248,
-        "near_eye_m": 0.18646,
+        "near_eye_m": 0.16948,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 5229,
+        "arm_vertices_in_camera": 6537,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08081,
         "screen_projection": [
           [
             0.3363400101661682,
-            0.12307000160217285
+            0.12308000028133392
           ],
           [
             0.6214799880981445,
@@ -5461,14 +5469,14 @@
             0.4042699933052063
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
-        "right_index_pad_to_display_m": null
+        "right_nearest_in_panel_bounds_m": 0.01835,
+        "right_index_pad_to_display_m": 0.01835
       },
       {
         "frame": 249,
-        "near_eye_m": 0.18648,
+        "near_eye_m": 0.1695,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 4556,
+        "arm_vertices_in_camera": 6487,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08084,
         "screen_projection": [
@@ -5489,14 +5497,14 @@
             0.40421000123023987
           ]
         ],
-        "right_nearest_in_panel_bounds_m": null,
+        "right_nearest_in_panel_bounds_m": 0.02511,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 250,
-        "near_eye_m": 0.1865,
+        "near_eye_m": 0.16951,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3794,
+        "arm_vertices_in_camera": 6443,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08086,
         "screen_projection": [
@@ -5522,9 +5530,9 @@
       },
       {
         "frame": 251,
-        "near_eye_m": 0.18652,
+        "near_eye_m": 0.16952,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 6256,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08089,
         "screen_projection": [
@@ -5550,9 +5558,9 @@
       },
       {
         "frame": 252,
-        "near_eye_m": 0.18653,
+        "near_eye_m": 0.16953,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 5385,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08091,
         "screen_projection": [
@@ -5570,7 +5578,7 @@
           ],
           [
             0.25279998779296875,
-            0.40404000878334045
+            0.4040299952030182
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -5578,9 +5586,9 @@
       },
       {
         "frame": 253,
-        "near_eye_m": 0.18655,
+        "near_eye_m": 0.16954,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3867,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08093,
         "screen_projection": [
@@ -5606,9 +5614,9 @@
       },
       {
         "frame": 254,
-        "near_eye_m": 0.18656,
+        "near_eye_m": 0.16955,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08095,
         "screen_projection": [
@@ -5626,7 +5634,7 @@
           ],
           [
             0.2527199983596802,
-            0.40393999218940735
+            0.4039500057697296
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -5634,9 +5642,9 @@
       },
       {
         "frame": 255,
-        "near_eye_m": 0.18657,
+        "near_eye_m": 0.16956,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08096,
         "screen_projection": [
@@ -5662,9 +5670,9 @@
       },
       {
         "frame": 256,
-        "near_eye_m": 0.18658,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08098,
         "screen_projection": [
@@ -5690,9 +5698,9 @@
       },
       {
         "frame": 257,
-        "near_eye_m": 0.18658,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -5718,9 +5726,9 @@
       },
       {
         "frame": 258,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -5746,9 +5754,9 @@
       },
       {
         "frame": 259,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -5766,7 +5774,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -5776,9 +5784,9 @@
     "Hack_Success": [
       {
         "frame": 281,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -5796,7 +5804,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -5804,14 +5812,14 @@
       },
       {
         "frame": 282,
-        "near_eye_m": 0.18654,
+        "near_eye_m": 0.16954,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08098,
         "screen_projection": [
           [
-            0.335860013961792,
+            0.3358500003814697,
             0.1222900003194809
           ],
           [
@@ -5832,9 +5840,9 @@
       },
       {
         "frame": 283,
-        "near_eye_m": 0.18639,
+        "near_eye_m": 0.16944,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3566,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08093,
         "screen_projection": [
@@ -5860,9 +5868,9 @@
       },
       {
         "frame": 284,
-        "near_eye_m": 0.18614,
+        "near_eye_m": 0.16927,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3567,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08084,
         "screen_projection": [
@@ -5888,9 +5896,9 @@
       },
       {
         "frame": 285,
-        "near_eye_m": 0.18581,
+        "near_eye_m": 0.16904,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08073,
         "screen_projection": [
@@ -5916,9 +5924,9 @@
       },
       {
         "frame": 286,
-        "near_eye_m": 0.18538,
+        "near_eye_m": 0.16875,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08058,
         "screen_projection": [
@@ -5944,9 +5952,9 @@
       },
       {
         "frame": 287,
-        "near_eye_m": 0.18487,
+        "near_eye_m": 0.16841,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08041,
         "screen_projection": [
@@ -5956,7 +5964,7 @@
           ],
           [
             0.6272100210189819,
-            0.36574000120162964
+            0.3657299876213074
           ],
           [
             0.5337299704551697,
@@ -5972,9 +5980,9 @@
       },
       {
         "frame": 288,
-        "near_eye_m": 0.18429,
+        "near_eye_m": 0.16802,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08021,
         "screen_projection": [
@@ -6000,9 +6008,9 @@
       },
       {
         "frame": 289,
-        "near_eye_m": 0.18365,
+        "near_eye_m": 0.16759,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07999,
         "screen_projection": [
@@ -6028,9 +6036,9 @@
       },
       {
         "frame": 290,
-        "near_eye_m": 0.18295,
+        "near_eye_m": 0.16713,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07975,
         "screen_projection": [
@@ -6056,14 +6064,14 @@
       },
       {
         "frame": 291,
-        "near_eye_m": 0.18222,
+        "near_eye_m": 0.16664,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07949,
         "screen_projection": [
           [
-            0.3603900074958801,
+            0.36037999391555786,
             0.13154999911785126
           ],
           [
@@ -6084,9 +6092,9 @@
       },
       {
         "frame": 292,
-        "near_eye_m": 0.18145,
+        "near_eye_m": 0.16614,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07923,
         "screen_projection": [
@@ -6112,22 +6120,22 @@
       },
       {
         "frame": 293,
-        "near_eye_m": 0.18067,
+        "near_eye_m": 0.16563,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07895,
         "screen_projection": [
           [
-            0.3693099915981293,
-            0.1349100023508072
+            0.3693000078201294,
+            0.13492000102996826
           ],
           [
             0.6414399743080139,
             0.37759000062942505
           ],
           [
-            0.5448700189590454,
+            0.5448600053787231,
             0.5513299703598022
           ],
           [
@@ -6140,9 +6148,9 @@
       },
       {
         "frame": 294,
-        "near_eye_m": 0.17989,
+        "near_eye_m": 0.16512,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07867,
         "screen_projection": [
@@ -6168,9 +6176,9 @@
       },
       {
         "frame": 295,
-        "near_eye_m": 0.17912,
+        "near_eye_m": 0.16458,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07839,
         "screen_projection": [
@@ -6196,9 +6204,9 @@
       },
       {
         "frame": 296,
-        "near_eye_m": 0.17837,
+        "near_eye_m": 0.16396,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07812,
         "screen_projection": [
@@ -6224,9 +6232,9 @@
       },
       {
         "frame": 297,
-        "near_eye_m": 0.17766,
+        "near_eye_m": 0.16325,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07786,
         "screen_projection": [
@@ -6236,7 +6244,7 @@
           ],
           [
             0.6516299843788147,
-            0.3861500024795532
+            0.38613998889923096
           ],
           [
             0.55281001329422,
@@ -6252,9 +6260,9 @@
       },
       {
         "frame": 298,
-        "near_eye_m": 0.177,
+        "near_eye_m": 0.16258,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07762,
         "screen_projection": [
@@ -6280,9 +6288,9 @@
       },
       {
         "frame": 299,
-        "near_eye_m": 0.1764,
+        "near_eye_m": 0.16198,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07739,
         "screen_projection": [
@@ -6308,9 +6316,9 @@
       },
       {
         "frame": 300,
-        "near_eye_m": 0.17586,
+        "near_eye_m": 0.16146,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0772,
         "screen_projection": [
@@ -6336,9 +6344,9 @@
       },
       {
         "frame": 301,
-        "near_eye_m": 0.17537,
+        "near_eye_m": 0.16101,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07703,
         "screen_projection": [
@@ -6364,9 +6372,9 @@
       },
       {
         "frame": 302,
-        "near_eye_m": 0.17498,
+        "near_eye_m": 0.16066,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07689,
         "screen_projection": [
@@ -6392,9 +6400,9 @@
       },
       {
         "frame": 303,
-        "near_eye_m": 0.1747,
+        "near_eye_m": 0.1604,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3576,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0768,
         "screen_projection": [
@@ -6420,9 +6428,9 @@
       },
       {
         "frame": 304,
-        "near_eye_m": 0.17452,
+        "near_eye_m": 0.16025,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3576,
+        "arm_vertices_in_camera": 3545,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07674,
         "screen_projection": [
@@ -6448,9 +6456,9 @@
       },
       {
         "frame": 305,
-        "near_eye_m": 0.17446,
+        "near_eye_m": 0.16019,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3576,
+        "arm_vertices_in_camera": 3545,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07672,
         "screen_projection": [
@@ -6476,9 +6484,9 @@
       },
       {
         "frame": 306,
-        "near_eye_m": 0.17452,
+        "near_eye_m": 0.16025,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3576,
+        "arm_vertices_in_camera": 3545,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07674,
         "screen_projection": [
@@ -6504,9 +6512,9 @@
       },
       {
         "frame": 307,
-        "near_eye_m": 0.1747,
+        "near_eye_m": 0.1604,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3576,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0768,
         "screen_projection": [
@@ -6532,9 +6540,9 @@
       },
       {
         "frame": 308,
-        "near_eye_m": 0.17498,
+        "near_eye_m": 0.16066,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07689,
         "screen_projection": [
@@ -6560,9 +6568,9 @@
       },
       {
         "frame": 309,
-        "near_eye_m": 0.17537,
+        "near_eye_m": 0.16101,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07703,
         "screen_projection": [
@@ -6588,9 +6596,9 @@
       },
       {
         "frame": 310,
-        "near_eye_m": 0.17586,
+        "near_eye_m": 0.16146,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0772,
         "screen_projection": [
@@ -6616,9 +6624,9 @@
       },
       {
         "frame": 311,
-        "near_eye_m": 0.1764,
+        "near_eye_m": 0.16198,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07739,
         "screen_projection": [
@@ -6644,9 +6652,9 @@
       },
       {
         "frame": 312,
-        "near_eye_m": 0.177,
+        "near_eye_m": 0.16258,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3575,
+        "arm_vertices_in_camera": 3544,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07762,
         "screen_projection": [
@@ -6672,9 +6680,9 @@
       },
       {
         "frame": 313,
-        "near_eye_m": 0.17766,
+        "near_eye_m": 0.16325,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07786,
         "screen_projection": [
@@ -6700,9 +6708,9 @@
       },
       {
         "frame": 314,
-        "near_eye_m": 0.17837,
+        "near_eye_m": 0.16396,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07812,
         "screen_projection": [
@@ -6728,9 +6736,9 @@
       },
       {
         "frame": 315,
-        "near_eye_m": 0.17912,
+        "near_eye_m": 0.16458,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07839,
         "screen_projection": [
@@ -6756,9 +6764,9 @@
       },
       {
         "frame": 316,
-        "near_eye_m": 0.17989,
+        "near_eye_m": 0.16512,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07867,
         "screen_projection": [
@@ -6784,9 +6792,9 @@
       },
       {
         "frame": 317,
-        "near_eye_m": 0.18067,
+        "near_eye_m": 0.16563,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07895,
         "screen_projection": [
@@ -6812,9 +6820,9 @@
       },
       {
         "frame": 318,
-        "near_eye_m": 0.18145,
+        "near_eye_m": 0.16614,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07923,
         "screen_projection": [
@@ -6840,14 +6848,14 @@
       },
       {
         "frame": 319,
-        "near_eye_m": 0.18222,
+        "near_eye_m": 0.16664,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07949,
         "screen_projection": [
           [
-            0.3603900074958801,
+            0.36037999391555786,
             0.13154999911785126
           ],
           [
@@ -6868,9 +6876,9 @@
       },
       {
         "frame": 320,
-        "near_eye_m": 0.18295,
+        "near_eye_m": 0.16713,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3574,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07975,
         "screen_projection": [
@@ -6896,9 +6904,9 @@
       },
       {
         "frame": 321,
-        "near_eye_m": 0.18365,
+        "near_eye_m": 0.16759,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07999,
         "screen_projection": [
@@ -6924,9 +6932,9 @@
       },
       {
         "frame": 322,
-        "near_eye_m": 0.18429,
+        "near_eye_m": 0.16802,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08021,
         "screen_projection": [
@@ -6952,9 +6960,9 @@
       },
       {
         "frame": 323,
-        "near_eye_m": 0.18487,
+        "near_eye_m": 0.16841,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3543,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08041,
         "screen_projection": [
@@ -6964,7 +6972,7 @@
           ],
           [
             0.6272100210189819,
-            0.3657299876213074
+            0.36574000120162964
           ],
           [
             0.5337299704551697,
@@ -6980,9 +6988,9 @@
       },
       {
         "frame": 324,
-        "near_eye_m": 0.18538,
+        "near_eye_m": 0.16875,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3572,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08058,
         "screen_projection": [
@@ -7008,9 +7016,9 @@
       },
       {
         "frame": 325,
-        "near_eye_m": 0.18581,
+        "near_eye_m": 0.16904,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3569,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08073,
         "screen_projection": [
@@ -7036,9 +7044,9 @@
       },
       {
         "frame": 326,
-        "near_eye_m": 0.18614,
+        "near_eye_m": 0.16927,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3567,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08084,
         "screen_projection": [
@@ -7064,9 +7072,9 @@
       },
       {
         "frame": 327,
-        "near_eye_m": 0.18639,
+        "near_eye_m": 0.16944,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3566,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08093,
         "screen_projection": [
@@ -7092,14 +7100,14 @@
       },
       {
         "frame": 328,
-        "near_eye_m": 0.18654,
+        "near_eye_m": 0.16954,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08098,
         "screen_projection": [
           [
-            0.335860013961792,
+            0.3358500003814697,
             0.1222900003194809
           ],
           [
@@ -7120,9 +7128,9 @@
       },
       {
         "frame": 329,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -7140,7 +7148,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -7150,9 +7158,9 @@
     "Hack_Failed": [
       {
         "frame": 351,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -7170,7 +7178,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -7178,9 +7186,9 @@
       },
       {
         "frame": 352,
-        "near_eye_m": 0.18665,
+        "near_eye_m": 0.16961,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08101,
         "screen_projection": [
@@ -7206,9 +7214,9 @@
       },
       {
         "frame": 353,
-        "near_eye_m": 0.18681,
+        "near_eye_m": 0.16972,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08105,
         "screen_projection": [
@@ -7234,9 +7242,9 @@
       },
       {
         "frame": 354,
-        "near_eye_m": 0.18717,
+        "near_eye_m": 0.16996,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08114,
         "screen_projection": [
@@ -7262,9 +7270,9 @@
       },
       {
         "frame": 355,
-        "near_eye_m": 0.1878,
+        "near_eye_m": 0.17041,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3561,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08127,
         "screen_projection": [
@@ -7290,9 +7298,9 @@
       },
       {
         "frame": 356,
-        "near_eye_m": 0.18863,
+        "near_eye_m": 0.17101,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3558,
+        "arm_vertices_in_camera": 3537,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08142,
         "screen_projection": [
@@ -7318,9 +7326,9 @@
       },
       {
         "frame": 357,
-        "near_eye_m": 0.18957,
+        "near_eye_m": 0.17168,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3558,
+        "arm_vertices_in_camera": 3535,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0816,
         "screen_projection": [
@@ -7346,9 +7354,9 @@
       },
       {
         "frame": 358,
-        "near_eye_m": 0.19054,
+        "near_eye_m": 0.17238,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3555,
+        "arm_vertices_in_camera": 3531,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08178,
         "screen_projection": [
@@ -7374,15 +7382,15 @@
       },
       {
         "frame": 359,
-        "near_eye_m": 0.19146,
+        "near_eye_m": 0.17304,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3553,
+        "arm_vertices_in_camera": 3529,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08197,
         "screen_projection": [
           [
             0.3119100034236908,
-            0.09838999807834625
+            0.09839999675750732
           ],
           [
             0.605929970741272,
@@ -7402,9 +7410,9 @@
       },
       {
         "frame": 360,
-        "near_eye_m": 0.19226,
+        "near_eye_m": 0.17361,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3528,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08216,
         "screen_projection": [
@@ -7430,9 +7438,9 @@
       },
       {
         "frame": 361,
-        "near_eye_m": 0.19291,
+        "near_eye_m": 0.17406,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3527,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08231,
         "screen_projection": [
@@ -7458,9 +7466,9 @@
       },
       {
         "frame": 362,
-        "near_eye_m": 0.19353,
+        "near_eye_m": 0.17449,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3527,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08245,
         "screen_projection": [
@@ -7486,9 +7494,9 @@
       },
       {
         "frame": 363,
-        "near_eye_m": 0.19411,
+        "near_eye_m": 0.1749,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3526,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08257,
         "screen_projection": [
@@ -7514,9 +7522,9 @@
       },
       {
         "frame": 364,
-        "near_eye_m": 0.19464,
+        "near_eye_m": 0.17527,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3526,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0827,
         "screen_projection": [
@@ -7542,9 +7550,9 @@
       },
       {
         "frame": 365,
-        "near_eye_m": 0.19509,
+        "near_eye_m": 0.17559,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3551,
+        "arm_vertices_in_camera": 3526,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08282,
         "screen_projection": [
@@ -7570,9 +7578,9 @@
       },
       {
         "frame": 366,
-        "near_eye_m": 0.19546,
+        "near_eye_m": 0.17585,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3526,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08293,
         "screen_projection": [
@@ -7598,9 +7606,9 @@
       },
       {
         "frame": 367,
-        "near_eye_m": 0.19572,
+        "near_eye_m": 0.17603,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3526,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08303,
         "screen_projection": [
@@ -7626,9 +7634,9 @@
       },
       {
         "frame": 368,
-        "near_eye_m": 0.19585,
+        "near_eye_m": 0.17612,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3528,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.0831,
         "screen_projection": [
@@ -7654,9 +7662,9 @@
       },
       {
         "frame": 369,
-        "near_eye_m": 0.19584,
+        "near_eye_m": 0.17611,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3529,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08314,
         "screen_projection": [
@@ -7682,9 +7690,9 @@
       },
       {
         "frame": 370,
-        "near_eye_m": 0.19571,
+        "near_eye_m": 0.176,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3550,
+        "arm_vertices_in_camera": 3529,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08315,
         "screen_projection": [
@@ -7710,14 +7718,14 @@
       },
       {
         "frame": 371,
-        "near_eye_m": 0.19544,
+        "near_eye_m": 0.1758,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3552,
+        "arm_vertices_in_camera": 3529,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08313,
         "screen_projection": [
           [
-            0.28723999857902527,
+            0.2872300148010254,
             0.1036200001835823
           ],
           [
@@ -7738,14 +7746,14 @@
       },
       {
         "frame": 372,
-        "near_eye_m": 0.19505,
+        "near_eye_m": 0.17552,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3553,
+        "arm_vertices_in_camera": 3531,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08307,
         "screen_projection": [
           [
-            0.28916001319885254,
+            0.2891499996185303,
             0.10542000085115433
           ],
           [
@@ -7766,9 +7774,9 @@
       },
       {
         "frame": 373,
-        "near_eye_m": 0.19455,
+        "near_eye_m": 0.17515,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3554,
+        "arm_vertices_in_camera": 3532,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08298,
         "screen_projection": [
@@ -7794,9 +7802,9 @@
       },
       {
         "frame": 374,
-        "near_eye_m": 0.19395,
+        "near_eye_m": 0.17472,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3554,
+        "arm_vertices_in_camera": 3535,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08287,
         "screen_projection": [
@@ -7822,9 +7830,9 @@
       },
       {
         "frame": 375,
-        "near_eye_m": 0.19327,
+        "near_eye_m": 0.17423,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3554,
+        "arm_vertices_in_camera": 3535,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08272,
         "screen_projection": [
@@ -7834,7 +7842,7 @@
           ],
           [
             0.5971099734306335,
-            0.34556999802589417
+            0.3455600142478943
           ],
           [
             0.5095300078392029,
@@ -7850,9 +7858,9 @@
       },
       {
         "frame": 376,
-        "near_eye_m": 0.19254,
+        "near_eye_m": 0.1737,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3555,
+        "arm_vertices_in_camera": 3537,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08254,
         "screen_projection": [
@@ -7878,9 +7886,9 @@
       },
       {
         "frame": 377,
-        "near_eye_m": 0.19176,
+        "near_eye_m": 0.17315,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3555,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08234,
         "screen_projection": [
@@ -7906,9 +7914,9 @@
       },
       {
         "frame": 378,
-        "near_eye_m": 0.19097,
+        "near_eye_m": 0.17259,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3557,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08213,
         "screen_projection": [
@@ -7934,9 +7942,9 @@
       },
       {
         "frame": 379,
-        "near_eye_m": 0.19018,
+        "near_eye_m": 0.17204,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3558,
+        "arm_vertices_in_camera": 3538,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08193,
         "screen_projection": [
@@ -7962,9 +7970,9 @@
       },
       {
         "frame": 380,
-        "near_eye_m": 0.18942,
+        "near_eye_m": 0.17151,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3560,
+        "arm_vertices_in_camera": 3539,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08173,
         "screen_projection": [
@@ -7990,9 +7998,9 @@
       },
       {
         "frame": 381,
-        "near_eye_m": 0.18871,
+        "near_eye_m": 0.17102,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3562,
+        "arm_vertices_in_camera": 3540,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08154,
         "screen_projection": [
@@ -8018,9 +8026,9 @@
       },
       {
         "frame": 382,
-        "near_eye_m": 0.18808,
+        "near_eye_m": 0.17058,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3541,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08137,
         "screen_projection": [
@@ -8046,15 +8054,15 @@
       },
       {
         "frame": 383,
-        "near_eye_m": 0.18754,
+        "near_eye_m": 0.17021,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3564,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08123,
         "screen_projection": [
           [
             0.3298499882221222,
-            0.12146999686956406
+            0.12145999819040298
           ],
           [
             0.617579996585846,
@@ -8074,9 +8082,9 @@
       },
       {
         "frame": 384,
-        "near_eye_m": 0.18711,
+        "near_eye_m": 0.16992,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08112,
         "screen_projection": [
@@ -8102,9 +8110,9 @@
       },
       {
         "frame": 385,
-        "near_eye_m": 0.18682,
+        "near_eye_m": 0.16972,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08105,
         "screen_projection": [
@@ -8130,9 +8138,9 @@
       },
       {
         "frame": 386,
-        "near_eye_m": 0.18665,
+        "near_eye_m": 0.16961,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08101,
         "screen_projection": [
@@ -8158,9 +8166,9 @@
       },
       {
         "frame": 387,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -8188,9 +8196,9 @@
     "Hack_Unequip": [
       {
         "frame": 411,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -8208,7 +8216,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8216,9 +8224,9 @@
       },
       {
         "frame": 412,
-        "near_eye_m": 0.18658,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08097,
         "screen_projection": [
@@ -8244,9 +8252,9 @@
       },
       {
         "frame": 413,
-        "near_eye_m": 0.18742,
+        "near_eye_m": 0.17025,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3560,
+        "arm_vertices_in_camera": 3537,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08044,
         "screen_projection": [
@@ -8272,9 +8280,9 @@
       },
       {
         "frame": 414,
-        "near_eye_m": 0.19075,
+        "near_eye_m": 0.17298,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3538,
+        "arm_vertices_in_camera": 3512,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07863,
         "screen_projection": [
@@ -8300,9 +8308,9 @@
       },
       {
         "frame": 415,
-        "near_eye_m": 0.19648,
+        "near_eye_m": 0.17771,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3506,
+        "arm_vertices_in_camera": 3473,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07594,
         "screen_projection": [
@@ -8328,9 +8336,9 @@
       },
       {
         "frame": 416,
-        "near_eye_m": 0.2045,
+        "near_eye_m": 0.1844,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3448,
+        "arm_vertices_in_camera": 3409,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07285,
         "screen_projection": [
@@ -8356,9 +8364,9 @@
       },
       {
         "frame": 417,
-        "near_eye_m": 0.21239,
+        "near_eye_m": 0.1929,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3371,
+        "arm_vertices_in_camera": 3352,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06978,
         "screen_projection": [
@@ -8384,9 +8392,9 @@
       },
       {
         "frame": 418,
-        "near_eye_m": 0.21929,
+        "near_eye_m": 0.19912,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3178,
+        "arm_vertices_in_camera": 3040,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06705,
         "screen_projection": [
@@ -8400,7 +8408,7 @@
           ],
           [
             0.4621799886226654,
-            0.28374001383781433
+            0.2837499976158142
           ],
           [
             0.22010000050067902,
@@ -8412,9 +8420,9 @@
       },
       {
         "frame": 419,
-        "near_eye_m": 0.22626,
+        "near_eye_m": 0.20672,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 2035,
+        "arm_vertices_in_camera": 1976,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06469,
         "screen_projection": [
@@ -8431,7 +8439,7 @@
             0.20930999517440796
           ],
           [
-            0.20162999629974365,
+            0.20161999762058258,
             0.06650999933481216
           ]
         ],
@@ -8440,9 +8448,9 @@
       },
       {
         "frame": 420,
-        "near_eye_m": 0.23423,
+        "near_eye_m": 0.21538,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 813,
+        "arm_vertices_in_camera": 413,
         "screen_corners_in_camera": 1,
         "screen_area_fraction": 0.0622,
         "screen_projection": [
@@ -8468,9 +8476,9 @@
       },
       {
         "frame": 421,
-        "near_eye_m": 0.24284,
+        "near_eye_m": 0.22497,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 164,
+        "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 1,
         "screen_area_fraction": 0.05735,
         "screen_projection": [
@@ -8496,7 +8504,7 @@
       },
       {
         "frame": 422,
-        "near_eye_m": 0.25336,
+        "near_eye_m": 0.23626,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8524,7 +8532,7 @@
       },
       {
         "frame": 423,
-        "near_eye_m": 0.26449,
+        "near_eye_m": 0.24918,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8552,7 +8560,7 @@
       },
       {
         "frame": 424,
-        "near_eye_m": 0.27662,
+        "near_eye_m": 0.26311,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8575,12 +8583,12 @@
             -0.830269992351532
           ]
         ],
-        "right_nearest_in_panel_bounds_m": -0.68642,
+        "right_nearest_in_panel_bounds_m": -0.69245,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 425,
-        "near_eye_m": 0.28501,
+        "near_eye_m": 0.2757,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8600,15 +8608,15 @@
           ],
           [
             -0.19086000323295593,
-            -1.1957299709320068
+            -1.1957199573516846
           ]
         ],
-        "right_nearest_in_panel_bounds_m": -0.77453,
+        "right_nearest_in_panel_bounds_m": -0.772,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 426,
-        "near_eye_m": 0.29222,
+        "near_eye_m": 0.2874,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8636,7 +8644,7 @@
       },
       {
         "frame": 427,
-        "near_eye_m": 0.30081,
+        "near_eye_m": 0.28711,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8664,7 +8672,7 @@
       },
       {
         "frame": 428,
-        "near_eye_m": 0.30959,
+        "near_eye_m": 0.29116,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8692,7 +8700,7 @@
       },
       {
         "frame": 429,
-        "near_eye_m": 0.31698,
+        "near_eye_m": 0.29618,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8720,14 +8728,14 @@
       },
       {
         "frame": 430,
-        "near_eye_m": 0.32286,
+        "near_eye_m": 0.30074,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
         "screen_area_fraction": 0.49939,
         "screen_projection": [
           [
-            -0.9797999858856201,
+            -0.9797899723052979,
             -3.063390016555786
           ],
           [
@@ -8748,11 +8756,11 @@
       },
       {
         "frame": 431,
-        "near_eye_m": 0.32726,
+        "near_eye_m": 0.3043,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 0.74889,
+        "screen_area_fraction": 0.74888,
         "screen_projection": [
           [
             -1.25232994556427,
@@ -8768,7 +8776,7 @@
           ],
           [
             -1.5150599479675293,
-            -5.585400104522705
+            -5.585390090942383
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8776,7 +8784,7 @@
       },
       {
         "frame": 432,
-        "near_eye_m": 0.33027,
+        "near_eye_m": 0.3068,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -8795,8 +8803,8 @@
             -2.580970048904419
           ],
           [
-            -1.9420599937438965,
-            -7.060850143432617
+            -1.9420499801635742,
+            -7.060840129852295
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8804,15 +8812,15 @@
       },
       {
         "frame": 433,
-        "near_eye_m": 0.33189,
+        "near_eye_m": 0.30836,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.49731,
+        "screen_area_fraction": 1.4973,
         "screen_projection": [
           [
             -1.812880039215088,
-            -5.468989849090576
+            -5.468979835510254
           ],
           [
             -0.5595800280570984,
@@ -8823,8 +8831,8 @@
             -2.8825700283050537
           ],
           [
-            -2.381089925765991,
-            -8.595279693603516
+            -2.381079912185669,
+            -8.595250129699707
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8832,15 +8840,15 @@
       },
       {
         "frame": 434,
-        "near_eye_m": 0.33216,
+        "near_eye_m": 0.30919,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.85106,
+        "screen_area_fraction": 1.85105,
         "screen_projection": [
           [
             -2.0099599361419678,
-            -6.0514397621154785
+            -6.0514302253723145
           ],
           [
             -0.6229699850082397,
@@ -8852,7 +8860,7 @@
           ],
           [
             -2.7336199283599854,
-            -9.833889961242676
+            -9.833880424499512
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8860,18 +8868,18 @@
       },
       {
         "frame": 435,
-        "near_eye_m": 0.33223,
+        "near_eye_m": 0.30946,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.99799,
+        "screen_area_fraction": 1.99798,
         "screen_projection": [
           [
             -2.083859920501709,
-            -6.270480155944824
+            -6.270470142364502
           ],
           [
-            -0.646369993686676,
+            -0.6463599801063538,
             -2.4195899963378906
           ],
           [
@@ -8880,7 +8888,7 @@
           ],
           [
             -2.8740100860595703,
-            -10.327969551086426
+            -10.327949523925781
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8890,9 +8898,9 @@
     "Hack_Cancel": [
       {
         "frame": 461,
-        "near_eye_m": 0.18659,
+        "near_eye_m": 0.16957,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3565,
+        "arm_vertices_in_camera": 3542,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.08099,
         "screen_projection": [
@@ -8910,7 +8918,7 @@
           ],
           [
             0.25262001156806946,
-            0.40384000539779663
+            0.4038499891757965
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -8918,9 +8926,9 @@
       },
       {
         "frame": 462,
-        "near_eye_m": 0.18971,
+        "near_eye_m": 0.17212,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3545,
+        "arm_vertices_in_camera": 3518,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07943,
         "screen_projection": [
@@ -8946,9 +8954,9 @@
       },
       {
         "frame": 463,
-        "near_eye_m": 0.19845,
+        "near_eye_m": 0.17933,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3494,
+        "arm_vertices_in_camera": 3458,
         "screen_corners_in_camera": 4,
         "screen_area_fraction": 0.07553,
         "screen_projection": [
@@ -8974,9 +8982,9 @@
       },
       {
         "frame": 464,
-        "near_eye_m": 0.21063,
+        "near_eye_m": 0.19106,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 3385,
+        "arm_vertices_in_camera": 3363,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.07091,
         "screen_projection": [
@@ -9002,9 +9010,9 @@
       },
       {
         "frame": 465,
-        "near_eye_m": 0.22129,
+        "near_eye_m": 0.20128,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 2779,
+        "arm_vertices_in_camera": 2874,
         "screen_corners_in_camera": 3,
         "screen_area_fraction": 0.06683,
         "screen_projection": [
@@ -9030,9 +9038,9 @@
       },
       {
         "frame": 466,
-        "near_eye_m": 0.23286,
+        "near_eye_m": 0.21371,
         "shoulder_trim_visible": false,
-        "arm_vertices_in_camera": 1041,
+        "arm_vertices_in_camera": 655,
         "screen_corners_in_camera": 1,
         "screen_area_fraction": 0.0633,
         "screen_projection": [
@@ -9058,7 +9066,7 @@
       },
       {
         "frame": 467,
-        "near_eye_m": 0.24616,
+        "near_eye_m": 0.22852,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 1,
@@ -9086,7 +9094,7 @@
       },
       {
         "frame": 468,
-        "near_eye_m": 0.26274,
+        "near_eye_m": 0.24736,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -9114,7 +9122,7 @@
       },
       {
         "frame": 469,
-        "near_eye_m": 0.28049,
+        "near_eye_m": 0.26745,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -9137,12 +9145,12 @@
             -0.9693899750709534
           ]
         ],
-        "right_nearest_in_panel_bounds_m": -0.78657,
+        "right_nearest_in_panel_bounds_m": -0.78047,
         "right_index_pad_to_display_m": null
       },
       {
         "frame": 470,
-        "near_eye_m": 0.29134,
+        "near_eye_m": 0.28802,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -9170,7 +9178,7 @@
       },
       {
         "frame": 471,
-        "near_eye_m": 0.30447,
+        "near_eye_m": 0.28856,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -9186,7 +9194,7 @@
           ],
           [
             -0.03305000066757202,
-            -1.2029199600219727
+            -1.2029099464416504
           ],
           [
             -0.5101799964904785,
@@ -9198,7 +9206,7 @@
       },
       {
         "frame": 472,
-        "near_eye_m": 0.31653,
+        "near_eye_m": 0.29585,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -9226,11 +9234,11 @@
       },
       {
         "frame": 473,
-        "near_eye_m": 0.32502,
+        "near_eye_m": 0.30247,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 0.59898,
+        "screen_area_fraction": 0.59897,
         "screen_projection": [
           [
             -1.0971499681472778,
@@ -9254,7 +9262,7 @@
       },
       {
         "frame": 474,
-        "near_eye_m": 0.33018,
+        "near_eye_m": 0.30673,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
@@ -9282,14 +9290,14 @@
       },
       {
         "frame": 475,
-        "near_eye_m": 0.33206,
+        "near_eye_m": 0.30884,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
         "screen_area_fraction": 1.68315,
         "screen_projection": [
           [
-            -1.9200899600982666,
+            -1.9200999736785889,
             -5.785520076751709
           ],
           [
@@ -9301,8 +9309,8 @@
             -3.0011699199676514
           ],
           [
-            -2.569119930267334,
-            -9.25547981262207
+            -2.5691299438476562,
+            -9.25549030303955
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
@@ -9310,18 +9318,18 @@
       },
       {
         "frame": 476,
-        "near_eye_m": 0.33223,
+        "near_eye_m": 0.30946,
         "shoulder_trim_visible": false,
         "arm_vertices_in_camera": 0,
         "screen_corners_in_camera": 0,
-        "screen_area_fraction": 1.998,
+        "screen_area_fraction": 1.99798,
         "screen_projection": [
           [
             -2.083859920501709,
-            -6.270480155944824
+            -6.270470142364502
           ],
           [
-            -0.646369993686676,
+            -0.6463599801063538,
             -2.4195899963378906
           ],
           [
@@ -9329,8 +9337,8 @@
             -3.1820099353790283
           ],
           [
-            -2.8740200996398926,
-            -10.32798957824707
+            -2.874000072479248,
+            -10.327939987182617
           ]
         ],
         "right_nearest_in_panel_bounds_m": null,
