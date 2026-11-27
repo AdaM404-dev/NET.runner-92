@@ -47,7 +47,7 @@ def child_pose(name, matrix, pose):
 def align_bone(name, position, axis, dorsal):
     original = a.rest[name][0].to_3x3()
     original_axis = original @ Y
-    r = a.basis(axis,dorsal) @ a.basis(original_axis,V((0,1,0))).inverted()
+    r = a.basis(axis,dorsal) @ a.basis(original_axis,a.DORSAL).inverted()
     return transform(position, r @ original)
 
 
@@ -67,13 +67,21 @@ def arm_pose(side, shoulder, wrist, hint, hand_direction, dorsal, curl, pose):
     clav_matrix.translation += shoulder-a.rest[upper][0].translation
     local_pose(clav,clav_matrix,pose)
     local_pose(upper,align_bone(upper,shoulder,elbow-shoulder,V((0,-.83,.55))),pose)
-    local_pose(lower,align_bone(lower,elbow,wrist-elbow,dorsal),pose)
-    local_pose(hand,align_bone(hand,wrist,hand_direction,dorsal),pose)
+    forearm_axis = (wrist-elbow).normalized()
+    local_pose(lower,align_bone(lower,elbow,forearm_axis,dorsal),pose)
+    desired = hand_direction.normalized()
+    bend = forearm_axis.angle(desired)
+    wrist_limit = math.radians(32 if side == "Left" else 38)
+    hand_axis = forearm_axis.slerp(desired, min(1, wrist_limit/max(bend, 1e-6)))
+    forearm_back = a.basis(forearm_axis,dorsal).col[2].copy()
+    # Carry forearm roll through the wrist, which only bends here.
+    hand_back = forearm_axis.rotation_difference(hand_axis) @ forearm_back
+    local_pose(hand,align_bone(hand,wrist,hand_axis,hand_back),pose)
     for i,finger in enumerate(a.FINGERS):
         for j,joint in enumerate(a.JOINTS):
             name=side+finger+joint
             m=a.rest[name][0].to_3x3()
-            axis=(m@Y).cross(V((0,-1,0))).normalized()
+            axis=(m@Y).cross(-a.DORSAL).normalized()
             local=m.inverted()@axis
             child_pose(name,Quaternion(local,math.radians(curl[i][j])).to_matrix().to_4x4(),pose)
 
@@ -118,33 +126,38 @@ def author_pose(clip,t,target=(-.018,-.011)):
     left_wrist=left_shoulder+down.normalized().slerp(raised.normalized(),e)*(down.length*(1-e)+raised.length*e)
     left_hint=V((-.27,.12,-.53)).lerp(V((-.23,.261,-.118)),e)
     dorsal=V((-.94,-.22,-.27)).lerp(V((.02,-.80,.60)),e)
-    left_axis=V((.88,.37,-.08))
-    relaxed=((23,22,12),(26,27,14),(31,30,17),(37,31,17),(16,15,12))
+    left_axis=V((.80,.56,.05))
+    relaxed=((14,17,8),(20,23,10),(25,27,13),(31,30,16),(9,12,8))
     arm_pose("Left",left_shoulder,left_wrist,left_hint,
              V((-.20,.21,-.82)).lerp(left_axis,e),dorsal,relaxed,pose)
     child_pose("Device_Mount",Matrix.Identity(4),pose)
     child_pose("Device_Display",Matrix.Translation(Z*(deployment*.0046)),pose)
     screen=pose["Device_Display"]
     n=screen.to_3x3()@Z
-    ready_d=V((-.92,.10,-.38)).normalized()
-    waiting_d=V((-.28,.57,-.46)).normalized()
+    ready_d=screen.to_3x3()@V((-.65,.19,-1.18)).normalized()
+    waiting_d=V((-.48,.70,-.53)).normalized()
     d=V((.27,.18,-.82)).lerp(waiting_d.lerp(ready_d,tap),e).normalized()
-    right_dorsal=Quaternion(d,math.radians(8*tap))@V((0,-.68,.74)).lerp(n,e)
+    right_dorsal=Quaternion(d,math.radians(26*tap))@V((0,-.68,.74)).lerp(n,e)
     stowed=V((.31,.183,-.49))
-    hint=V((.40,.14,-.52)).lerp(V((.38,.19,-.36)),e)
+    hint=V((.35,.07,-.48)).lerp(V((.40,.13,-.33)),e)+n*(.58*tap)
     waiting=V((.261+.026*abs(accent),.328+breath*.001,-.312+accent*.018))
     desired = screen@V((.045*(1-tap)+target[0]*tap, -.025*(1-tap)+target[1]*tap, a.GLASS+.001+.079*(1-tap)))
     wrist=stowed.lerp(waiting.lerp(desired-d*.168,tap),e)
-    curl=((22-12*tap,25-10*tap,12-5*tap),(48,45,31),(53,50,34),(56,49,37),(23,29,18))
+    curl=((18-12*tap,20-13*tap,10-6*tap),(29-4*tap,37-10*tap,21+5*tap),
+          (35-4*tap,42-10*tap,23+6*tap),(39-4*tap,44-8*tap,25+6*tap),(12,19,12))
     arm_pose("Right",right_shoulder,wrist,hint,d,right_dorsal,curl,pose)
     if tap>.001:
-        pad=min(skin_samples(pad_samples,pose,"Right"),key=lambda q:(q-desired).dot(n))
-        wrist += (desired-pad)*tap
-        arm_pose("Right",right_shoulder,wrist,hint,d,right_dorsal,curl,pose)
+        # Follow the actual pad after the wrist limit is applied. Re-solving
+        # the elbow changes that offset, so converge on the displayed target.
+        for _ in range(5):
+            pad=min(skin_samples(pad_samples,pose,"Right"),key=lambda q:(q-desired).dot(n))
+            wrist += (desired-pad)*(.75*tap)
+            arm_pose("Right",right_shoulder,wrist,hint,d,right_dorsal,curl,pose)
         # Keep non-index glove geometry out of the panel's rectangle while preserving fingertip travel.
         inv=screen.inverted()
         near=[inv@q for q in skin_samples(right_hand_samples,pose,"Right")]
-        in_plane=[p.z for p in near if abs(p.x)<a.W*.5 and abs(p.y)<a.H*.5]
+        margin = .008
+        in_plane=[p.z for p in near if abs(p.x)<a.W*.5+margin and abs(p.y)<a.H*.5+margin]
         if in_plane and min(in_plane)<a.GLASS+.0006:
             wrist+=n*(a.GLASS+.0006-min(in_plane))
             arm_pose("Right",right_shoulder,wrist,hint,d,right_dorsal,curl,pose)

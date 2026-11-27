@@ -17,6 +17,9 @@ from surfaces import make_materials, plain
 V = Vector
 Z = V((0, 0, 1))
 Y = V((0, 1, 0))
+# The character faces -Y. In the source A-pose the thumb is on the
+# medial side, with the back of the hand facing forward.
+DORSAL = -Y
 OFFSET = V((0, 0, -1.55))
 SIDES = ("Left", "Right")
 FINGERS = ("Index", "Middle", "Ring", "Little", "Thumb")
@@ -123,7 +126,7 @@ def cut_arm(side):
         points = [source_points[i] for i in f]
         mid = sum(points,V())/len(f)
         distal = (mid-wrist).dot(lower_axis)
-        grip = distal > .108 and sum(v.y for v in points)/len(f) < wrist.y-.003
+        grip = distal > .108 and (mid-wrist).dot(DORSAL) < -.003
         slot = (2 if grip else 1) if distal > .003 else 0
         faces.append([keep.setdefault(i,len(keep)) for i in f])
         scale = 13 if slot==0 else 8
@@ -146,6 +149,8 @@ def cut_arm(side):
         for loop in face.loops:
             v=loop.vert.co
             loop[cap_uv].uv=(v.x*18,v.y*18)
+    # Tessellate the shoulder rim in Blender so Unity can import the cap.
+    bmesh.ops.triangulate(b, faces=caps)
     bmesh.ops.recalc_face_normals(b,faces=list(b.faces))
     b.to_mesh(ob.data)
     b.free()
@@ -169,7 +174,7 @@ def deform_overlay(side, tree, name, sections, angles, material, offset, coll=No
         m,l,_ = rest[bone]
         axis = m.to_3x3()@Y
         center = m.translation + axis*l*t
-        dorsal = (V((0,1,0))-axis*axis.y).normalized()
+        dorsal = (DORSAL-axis*DORSAL.dot(axis)).normalized()
         cross = axis.cross(dorsal).normalized()
         for angle in angles:
             normal = math.cos(angle)*dorsal+math.sin(angle)*cross
@@ -367,7 +372,7 @@ if __name__=="__main__":
     open_new()
     forearm,length,_=rest["LeftLowerArm"]
     axis=forearm.to_3x3()@Y
-    normal=(V((0,1,0))-axis*axis.y).normalized()
+    normal=(DORSAL-axis*DORSAL.dot(axis)).normalized()
     direction=normal.cross(axis).normalized()
     device_m=Matrix((axis,direction,normal)).transposed().to_4x4()
     device_m.translation=forearm.translation+axis*(length*.51)+normal*.055
