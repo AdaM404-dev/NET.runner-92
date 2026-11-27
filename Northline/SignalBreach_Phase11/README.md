@@ -185,8 +185,10 @@ timestamps. The CSVs and screenshots are under `Logs/OcclusionUmbra/`.
   `-net92-without distant-lights,fill-lights,glass,particles` (every name is
   in `Core/Scripts/RenderFeatureList.cs`) and choose the upscaler with
   `-net92-upscaler fsr1|catmull-rom`. The CSV's first line then ends with
-  `without: …; upscaler: …`. `tools/run-benchmarks.bat` makes ten such runs
-  (about 15 minutes) and ships in the alpha zip. A last row, `Paused`,
+  `without: …; upscaler: …`. Since the bake (#79) the fill lights are baked,
+  so `fill-lights` no longer changes the frame. `tools/run-benchmarks.bat`
+  measures Low, Medium and High (three runs, about 5 minutes) and ships in
+  the alpha zip. A last row, `Paused`,
   measures the pause menu's frozen frame (every frame, as no camera renders).
 - The route benchmark, `-net92-route-benchmark -net92-output <folder>`,
   in a build that starts in the hospital: walks from the south gate up the
